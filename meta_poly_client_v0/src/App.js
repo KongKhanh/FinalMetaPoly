@@ -1,3 +1,6 @@
+
+import Profile from './pages/Profile/Profile';
+
 function App() {
 
     return (
@@ -5,7 +8,7 @@ function App() {
             <div className="App-Inner-Container">
                 <div className="App-Wrapper">
                     <div className="App-Inner-Wrapper">
-
+                        <Profile />
                     </div>
                 </div>
             </div>

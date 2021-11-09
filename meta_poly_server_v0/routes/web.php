@@ -1,10 +1,10 @@
 <?php   
-    require_once('./Kernel/Router.php');
 
-    require_once('./app/Http/Controllers/XControllrt.php');
-
+    require_once('./Kernel/Router.php');    
     $router = new Router();
 
-    $router->get('/', 'XControllrt@getX');
+    require_once('./app/Http/Controllers/UserController.php');  
+
+    $router->get('/user/{idUser}','UserController@__getIdUser');
 
 ?>
