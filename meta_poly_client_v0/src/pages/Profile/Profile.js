@@ -40,6 +40,7 @@ function Profile(){
        <div>
             Hello {UserInfor.UserName}
             Hello {UserInfor.UserPhone}
+            
        </div>
     )
 }

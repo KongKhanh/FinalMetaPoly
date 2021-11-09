@@ -9,11 +9,12 @@ function App() {
             <div className="App-Inner-Container">
                 <div className="App-Wrapper">
                     <div className="App-Inner-Wrapper">
-                        <Profile />
-                        {/*  */}
-                        {/* <SignIn/> */}
+
+                        {/* <Profile /> */}
+
                         <SignUp/>
-                        <SignIn/>
+
+                        {/* <SignIn/> */}
 
                     </div>
                 </div>
