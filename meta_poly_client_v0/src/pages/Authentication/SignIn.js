@@ -1,4 +1,24 @@
+import { useState } from 'react';
+ 
 function SignIn() {
+
+    const [InputSignInField, setInputSignInField] = useState({
+        user_phone: '',
+        user_password: '',
+    });
+
+
+    const handleOnChangeSignInField = (event) => {
+        const targetValue = event.target.value;
+        setInputSignInField({
+            ...InputSignInField,
+            [event.target.name]: targetValue,
+        });
+    }
+
+    const handleOnClickSignIn = () => {
+        
+    }
 
     return (
         <div className="SignIn-Container">
@@ -26,15 +46,29 @@ function SignIn() {
                                                 <form action="#">
 
                                                     <div className="mb-3">
-                                                        <label htmlFor="emailaddress" className="form-label">Số điện thoại</label>
-                                                        <input className="form-control" type="email" id="emailaddress" required="" placeholder="Nhập số điện thoại" />
+                                                        <label htmlFor="user_phone" className="form-label">Số điện thoại</label>
+                                                        <input className="form-control" 
+                                                            type="number" 
+                                                            id="user_phone" 
+                                                            name="user_phone"
+                                                            required 
+                                                            placeholder="Nhập số điện thoại" 
+                                                            onChange={(event) => handleOnChangeSignInField(event)} 
+                                                        />
                                                     </div>
 
                                                     <div className="mb-3">
                                                         <a href="pages-recoverpw.html" className="text-muted float-end"><small>Quên mật khẩu?</small></a>
-                                                        <label htmlFor="password" className="form-label">Mật khẩu</label>
+                                                        <label htmlFor="user_password" className="form-label">Mật khẩu</label>
                                                         <div className="input-group input-group-merge">
-                                                            <input type="password" id="password" className="form-control" placeholder="Nhập mật khẩu" />
+                                                            <input 
+                                                                type="password" 
+                                                                id="user_password" 
+                                                                name="user_password"
+                                                                className="form-control" 
+                                                                placeholder="Nhập mật khẩu" 
+                                                                onChange={(event) => handleOnChangeSignInField(event)} 
+                                                            />
                                                             <div className="input-group-text" data-password="false">
                                                                 <span className="password-eye"></span>
                                                             </div>
@@ -49,7 +83,11 @@ function SignIn() {
                                                     </div>
 
                                                     <div className="mb-3 mb-0 text-end">
-                                                        <button className="btn btn-primary" type="submit"> ĐĂNG NHẬP </button>
+                                                        <button 
+                                                            className="btn btn-primary" 
+                                                            type="button"
+                                                            onClick={() => handleOnClickSignIn()}
+                                                        > ĐĂNG NHẬP </button>
                                                     </div>
 
                                                 </form>
@@ -61,7 +99,6 @@ function SignIn() {
                                                 <p className="text-muted">Chưa có tài khoản <a href="pages-register.html" className="text-muted ms-1"><b>Tạo tài khoản</b></a></p>
                                             </div>
                                         </div>
-
 
                                     </div>
                                 </div>

@@ -1,7 +1,6 @@
 import SignIn from './pages/Authentication/SignIn';
 import SignUp from './pages/Authentication/SignUp';
 
-
 function App() {
 
     return (
@@ -10,8 +9,9 @@ function App() {
                 <div className="App-Wrapper">
                     <div className="App-Inner-Wrapper">
 
-                        <SignIn/>
-
+                        {/*  */}
+                        {/* <SignIn/> */}
+                        <SignUp/>
                     </div>
                 </div>
             </div>
