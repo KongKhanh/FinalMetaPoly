@@ -1,3 +1,4 @@
+import Profile from './pages/Profile/Profile';
 import SignIn from './pages/Authentication/SignIn';
 import SignUp from './pages/Authentication/SignUp';
 
@@ -8,10 +9,12 @@ function App() {
             <div className="App-Inner-Container">
                 <div className="App-Wrapper">
                     <div className="App-Inner-Wrapper">
-
+                        <Profile />
                         {/*  */}
                         {/* <SignIn/> */}
                         <SignUp/>
+                        <SignIn/>
+
                     </div>
                 </div>
             </div>
