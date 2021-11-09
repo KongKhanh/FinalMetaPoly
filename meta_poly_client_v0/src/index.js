@@ -6,7 +6,7 @@ import './assets/css/app-dark.css';
 import './assets/css/app.css';
 import './assets/css/icons.css';
 
-
+// Components
 import App from './App';
 
 ReactDOM.render(

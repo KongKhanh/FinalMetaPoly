@@ -1,0 +1,39 @@
+.Header-Container {
+    .Header-Inner-Container {
+        .Header-Wrapper {
+
+            .navbar-custom {
+
+                .app-search {
+                    .app-search-block {
+                        display: flex !important;
+                        align-items: center;
+                        form {
+
+                        }
+                        .dropdown-menu {
+                            top: 4.5rem !important;
+                        }
+                    }
+                }
+
+                .Nav-Control-Layout-App-Container {
+                    .Nav-Control-Layout-App-Inner-Container {
+                        .Nav-Control-Layout-App-Wrapper {
+                            .Nav-Control-Layout-App-Inner-Wrapper {
+                                display: flex;
+                                align-items: center;
+                                .Nav-Control-Layout-Item-Container {
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .Nav-Control-Layout-App-Container {
+
+    }
+}
