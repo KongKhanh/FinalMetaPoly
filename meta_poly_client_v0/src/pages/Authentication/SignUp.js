@@ -1,4 +1,12 @@
+import { useState } from 'react';
+
 function SignUp() {
+
+    const [InputSignUpField, setInputSignUpField] = useState({
+        user_name: '',
+        user_phone: '',
+        user_password: '',
+    });
 
     return (
         <div className="SignUp-Container">
