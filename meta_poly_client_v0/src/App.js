@@ -19,7 +19,6 @@ import SignUp from './pages/Authentication/SignUp';
 function App() {
             const[UserInforClient, setUserInforClient] = useState({
                 userId: getCookie('user_id'),
-                
             })
     return (
         <div className="App-Container">
