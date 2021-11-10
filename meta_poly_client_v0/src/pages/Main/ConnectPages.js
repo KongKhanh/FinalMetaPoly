@@ -2,6 +2,8 @@
 import Header from '../../common/components/Header';
 import Profile from '../Profile/Profile';
 
+import { ChangePageAdapter } from './ChangePageAdapter';
+
 function ConnectPages(props) {
     return (
         <div className="ConnectPages-Container">
@@ -16,10 +18,17 @@ function ConnectPages(props) {
                         <div className="ConnectPages-Body-Container mt-5">
                             <div className="ConnectPages-Body-Wrapper">
                                 <div className="ConnectPages-Body-Inner">
+                                    {
+                                        ChangePageAdapter(
+                                            // Xac dinh id_page de tra ve view
+                                            'H8HBZbNuLNUkzTf', 
 
-                                    <Profile 
-                                         UserInforClient = {props.UserInforClient}
-                                    />
+                                            // Du lieu tra ve cho view
+                                            {
+                                                UserInforClient: props.UserInforClient
+                                            }
+                                        )
+                                    }
 
                                 </div>
                             </div>

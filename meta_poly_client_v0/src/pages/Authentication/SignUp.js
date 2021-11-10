@@ -8,6 +8,8 @@ function SignUp() {
         user_password: '',
     });
 
+    
+
     return (
         <div className="SignUp-Container">
             <div className="SignUp-Inner-Container">
