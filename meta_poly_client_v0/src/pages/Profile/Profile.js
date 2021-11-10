@@ -14,12 +14,12 @@ function Profile(props){
         UserGender: '',
         UserEmail: ''
     });
-    const requestData = async() => {
 
+    const requestData = async() => {
         const responseResult = await axios({
             headers: { 
                 'Access-Control-Allow-Origin' : '*',
-              },
+            },
             url: `${API_URL.GET_SINGLE_USER}/${props.UserInforClient.userId}`,
             method: 'GET',
         });
@@ -66,8 +66,11 @@ function Profile(props){
 
               <p className="text-muted mb-1 font-13"><strong>Gender:</strong> <span className="ms-2">
               {
-                UserInfor.UserGender === "1" ? "Nam" : "Nữ"  
-                 /* Nếu user_gender = 1 thì là Nam. Ngược lại Nữ */
+                UserInfor.UserGender === "2" ? "Không xác định" : 
+                UserInfor.UserGender === "1" ? "Nam" : "Nữ"
+                 /* Nếu user_gender = 2 là không xác định 
+                 1 thì là Nam. 
+                 Ngược lại Nữ */
               }
               </span></p>
 

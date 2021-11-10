@@ -5,10 +5,13 @@
 
     // Controllers Path Here
     require_once('./app/Http/Controllers/UserController.php');  
+    require_once('./app/Http/Controllers/NewsfeedController.php');  
 
 
     // ------------------------------Handle GET method------------------------------
     $router->get('/user/{idUser}','UserController@__getIdUser');
+    $router->get('/newsfeed','NewsfeedController@__getPostList');
+
 
     // ------------------------------Handle POST method------------------------------
     $router->post('/user/create-new','UserController@__CreateNewUser');

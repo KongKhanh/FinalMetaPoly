@@ -46,7 +46,6 @@ function SignUp(props) {
 
         __requestCreateNewAccount(dataRequest)
         .then((res) => {
-
             if(res.status_task === 1) {
 
                 props.setCurrentPage('gh7Gv46kZYuhrAP');

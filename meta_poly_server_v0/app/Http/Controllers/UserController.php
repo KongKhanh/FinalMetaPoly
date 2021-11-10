@@ -4,14 +4,17 @@ class UserController{
     
     private $modelUserObj;
     
-
+    // @Author: @KongKhanh
     function __construct(){
         require_once('./app/Models/readSide/UserMd/UserMd.php');
         $this->modelUserObj = new UserMd();
     }
 
     public function __getIdUser($idUser){
-        $idUser = $this->modelUserObj->getIdUser($idUser);
+        $idUser = $this->modelUserObj->getIdUser(base64_decode($idUser));
+        $idUser['user_name'] = base64_decode($idUser['user_name']);
+        $idUser['user_phone'] = base64_decode($idUser['user_phone']);
+        $idUser['user_email'] = base64_decode($idUser['user_email']);
         echo json_encode($idUser);
     }
 
@@ -28,7 +31,7 @@ class UserController{
                 'user_password' => isset($_POST['user_password']) ? base64_encode(trim(strip_tags($_POST['user_password']))) : null,
                 'user_token' => base64_encode(Random::generateRandomString(50)),
             ];
-    
+            
             require_once('./app/Models/writeSide/UserMd/wUserMd.php');
     
             $wUserMd_Obj = new wUserMd();
@@ -36,7 +39,7 @@ class UserController{
             $recordID = $wUserMd_Obj->_insertNewUser($blockInfoUser);
     
             echo json_encode([
-                'status_task' => 1,
+                'status_task' =>  1,
                 'message_task' => 'successful',
                 'recordID' => $recordID,
             ]);

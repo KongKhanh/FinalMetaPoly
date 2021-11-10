@@ -7,8 +7,6 @@ import {getCookie} from "./libs_3rd/Cookie/handleCookie";
 
 //Components
 import ConnectPages from './pages/Main/ConnectPages';
-import SignIn from './pages/Authentication/SignIn';
-import SignUp from './pages/Authentication/SignUp';
 
 function App() {
 

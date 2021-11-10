@@ -6,6 +6,7 @@ import { ChangePageAdapter } from './ChangePageAdapter';
 
 function ConnectPages(props) {
 
+    // Mặc định trang chủ do case uGqXQpyJeFUoBqm bên phần ChangePage
     const [currentPage, setCurrentPage] = useState('uGqXQpyJeFUoBqm')  //-------------This is default page;
 
     function __AuthPermissionUsingApp() {
@@ -22,6 +23,7 @@ function ConnectPages(props) {
     __AuthPermissionUsingApp();
 
     }, []);
+
 
     return (
         <div className="ConnectPages-Container">
