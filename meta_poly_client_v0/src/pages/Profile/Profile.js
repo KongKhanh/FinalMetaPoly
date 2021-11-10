@@ -39,7 +39,8 @@ function Profile(props){
                     });    
                }
             )
-        },[]) 
+        }, []);
+
     return(
         <div className="row">
         <div className="col-xl-4 col-lg-5">
@@ -73,16 +74,16 @@ function Profile(props){
             </div>
             <ul className="social-list list-inline mt-3 mb-0">
               <li className="list-inline-item">
-                <a href="javascript: void(0);" className="social-list-item border-primary text-primary"><i className="mdi mdi-facebook" /></a>
+                <a href="/#" className="social-list-item border-primary text-primary"><i className="mdi mdi-facebook" /></a>
               </li>
               <li className="list-inline-item">
-                <a href="javascript: void(0);" className="social-list-item border-danger text-danger"><i className="mdi mdi-google" /></a>
+                <a href="/#" className="social-list-item border-danger text-danger"><i className="mdi mdi-google" /></a>
               </li>
               <li className="list-inline-item">
-                <a href="javascript: void(0);" className="social-list-item border-info text-info"><i className="mdi mdi-twitter" /></a>
+                <a href="/#" className="social-list-item border-info text-info"><i className="mdi mdi-twitter" /></a>
               </li>
               <li className="list-inline-item">
-                <a href="javascript: void(0);" className="social-list-item border-secondary text-secondary"><i className="mdi mdi-github" /></a>
+                <a href="/#" className="social-list-item border-secondary text-secondary"><i className="mdi mdi-github" /></a>
               </li>
             </ul>
           </div> {/* end card-body */}
@@ -96,9 +97,9 @@ function Profile(props){
               </a>
               <div className="dropdown-menu dropdown-menu-end">
                 {/* item*/}
-                <a href="javascript:void(0);" className="dropdown-item">Settings</a>
+                <a href="/#" className="dropdown-item">Settings</a>
                 {/* item*/}
-                <a href="javascript:void(0);" className="dropdown-item">Action</a>
+                <a href="/#" className="dropdown-item">Action</a>
               </div>
             </div>
             <h4 className="header-title mb-3">Messages</h4>

@@ -151,9 +151,9 @@ function PostProfile(){
               <img src="assets/images/small/small-2.jpg" alt="post-img" className="rounded me-1" height={60} />
               <img src="assets/images/small/small-3.jpg" alt="post-img" className="rounded" height={60} />
               <div className="mt-2">
-                <a href="javascript: void(0);" className="btn btn-sm btn-link text-muted"><i className="mdi mdi-reply" /> Reply</a>
-                <a href="javascript: void(0);" className="btn btn-sm btn-link text-muted"><i className="mdi mdi-heart-outline" /> Like</a>
-                <a href="javascript: void(0);" className="btn btn-sm btn-link text-muted"><i className="mdi mdi-share-variant" /> Share</a>
+                <a href="/#" className="btn btn-sm btn-link text-muted"><i className="mdi mdi-reply" /> Reply</a>
+                <a href="/#" className="btn btn-sm btn-link text-muted"><i className="mdi mdi-heart-outline" /> Like</a>
+                <a href="/#" className="btn btn-sm btn-link text-muted"><i className="mdi mdi-share-variant" /> Share</a>
               </div>
             </div>
             {/* Story Box*/}
@@ -179,7 +179,7 @@ function PostProfile(){
                     <h5 className="mt-0">Jeremy Tomlinson <small className="text-muted">3 hours ago</small></h5>
                     Nice work, makes me think of The Money Pit.
                     <br />
-                    <a href="javascript: void(0);" className="text-muted font-13 d-inline-block mt-2"><i className="mdi mdi-reply" /> Reply</a>
+                    <a href="/#" className="text-muted font-13 d-inline-block mt-2"><i className="mdi mdi-reply" /> Reply</a>
                     <div className="d-flex mt-3">
                       <a className="pe-2" href="#">
                         <img src="assets/images/users/avatar-4.jpg" className="rounded-circle" alt="Generic placeholder image" height={32} />
@@ -201,8 +201,8 @@ function PostProfile(){
                 </div>
               </div>
               <div className="mt-2">
-                <a href="javascript: void(0);" className="btn btn-sm btn-link text-danger"><i className="mdi mdi-heart" /> Like (28)</a>
-                <a href="javascript: void(0);" className="btn btn-sm btn-link text-muted"><i className="mdi mdi-share-variant" /> Share</a>
+                <a href="/#" className="btn btn-sm btn-link text-danger"><i className="mdi mdi-heart" /> Like (28)</a>
+                <a href="/#" className="btn btn-sm btn-link text-muted"><i className="mdi mdi-share-variant" /> Share</a>
               </div>
             </div>
             {/* Story Box*/}
@@ -218,7 +218,7 @@ function PostProfile(){
               <iframe src="../../video/87993762.html" height={300} className="img-fluid border-0" />
             </div>
             <div className="text-center">
-              <a href="javascript:void(0);" className="text-danger"><i className="mdi mdi-spin mdi-loading me-1" /> Load more </a>
+              <a href="/#" className="text-danger"><i className="mdi mdi-spin mdi-loading me-1" /> Load more </a>
             </div>
           </div>
           {/* end timeline content*/}
@@ -252,14 +252,14 @@ function PostProfile(){
                   <div className="mb-3">
                     <label htmlFor="useremail" className="form-label">Email Address</label>
                     <input type="email" className="form-control" id="useremail" placeholder="Enter email" />
-                    <span className="form-text text-muted"><small>If you want to change email please <a href="javascript: void(0);">click</a> here.</small></span>
+                    <span className="form-text text-muted"><small>If you want to change email please <a href="/#">click</a> here.</small></span>
                   </div>
                 </div>
                 <div className="col-md-6">
                   <div className="mb-3">
                     <label htmlFor="userpassword" className="form-label">Password</label>
                     <input type="password" className="form-control" id="userpassword" placeholder="Enter password" />
-                    <span className="form-text text-muted"><small>If you want to change password please <a href="javascript: void(0);">click</a> here.</small></span>
+                    <span className="form-text text-muted"><small>If you want to change password please <a href="/#">click</a> here.</small></span>
                   </div>
                 </div> {/* end col */}
               </div> {/* end row */}
