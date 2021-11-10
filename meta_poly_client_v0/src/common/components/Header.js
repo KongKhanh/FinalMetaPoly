@@ -1,6 +1,6 @@
 import '../../assets/css/components/header/header.css';
 
-function Header () {
+function Header (props) {
 
     return (
         <div className="Header-Container">
@@ -194,7 +194,7 @@ function Header () {
                                         <h6 className="text-overflow m-0">Welcome !</h6>
                                     </div>
                                     {/* item*/}
-                                    <a href="/#" className="dropdown-item notify-item">
+                                    <a href="/#" className="dropdown-item notify-item" onClick = {() => props.setCurrentPage('H8HBZbNuLNUkzTf')}>
                                         <i className="mdi mdi-account-circle me-1" />
                                         <span>My Account</span>
                                     </a>
@@ -288,7 +288,9 @@ function Header () {
                                         <div className="Nav-Control-Layout-App-Inner-Container">
                                             <div className="Nav-Control-Layout-App-Wrapper">
                                                 <div className="Nav-Control-Layout-App-Inner-Wrapper">
-                                                    <div className="Nav-Control-Layout-Item-Container mx-5">
+                                                    <div className="Nav-Control-Layout-Item-Container mx-5" 
+                                                        onClick = {()=> props.setCurrentPage('uGqXQpyJeFUoBqm')}
+                                                    >
                                                         <div className="Nav-Control-Layout-Item">
                                                             <img src="./assets/icons/flaticon/24px/home.png"/>
                                                         </div>   

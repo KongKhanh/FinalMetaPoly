@@ -1,13 +1,12 @@
+import { useState} from 'react';
 
 import Header from '../../common/components/Header';
-import Profile from '../Profile/Profile';
 
 import { ChangePageAdapter } from './ChangePageAdapter';
 
 function ConnectPages(props) {
 
-    
-
+    const [currentPage, setCurrentPage] = useState('uGqXQpyJeFUoBqm')  //-------------This is default page;
 
     return (
         <div className="ConnectPages-Container">
@@ -16,7 +15,9 @@ function ConnectPages(props) {
                     <div className="ConnectPages-Inner-Wrapper">
 
                         {/* Header Page Here, For Fixed Header */}
-                        <Header />
+                        <Header 
+                            setCurrentPage = {setCurrentPage}
+                        />
 
                         {/*  Main Page Here, For Scroll Page */}
                         <div className="ConnectPages-Body-Container mt-5">
@@ -25,7 +26,7 @@ function ConnectPages(props) {
                                     {
                                         ChangePageAdapter(
                                             // Xac dinh id_page de tra ve view
-                                            'H8HBZbNuLNUkzTf', 
+                                            currentPage, 
 
                                             // Du lieu tra ve cho view
                                             {
