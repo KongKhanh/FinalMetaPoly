@@ -1,8 +1,9 @@
 import Profile from '../Profile/Profile';
 import Newsfeed from '../Newsfeed/Newsfeed';
 
-
 export function ChangePageAdapter(id_page, dataComp) {
+
+    console.log(id_page);
 
     switch(id_page) {
 

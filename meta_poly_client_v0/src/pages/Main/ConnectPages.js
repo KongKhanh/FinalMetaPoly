@@ -1,14 +1,17 @@
-import { useState, useEffect} from 'react';
+import { useState} from 'react';
 
 import Header from '../../common/components/Header';
-import Profile from '../Profile/Profile';
 
 import { ChangePageAdapter } from './ChangePageAdapter';
 
 function ConnectPages(props) {
 
+
     const [currentPage, setCurrentPage] = useState( 'uGqXQpyJeFUoBqm');
     //This is default page
+
+    const [currentPage, setCurrentPage] = useState('uGqXQpyJeFUoBqm')  //-------------This is default page;
+
 
     return (
         <div className="ConnectPages-Container">
@@ -29,7 +32,7 @@ function ConnectPages(props) {
                                         ChangePageAdapter(
                                             // Xac dinh id_page de tra ve view
                                             currentPage, 
-                                        
+
                                             // Du lieu tra ve cho view
                                             {
                                                 UserInforClient: props.UserInforClient

@@ -288,7 +288,9 @@ function Header (props) {
                                         <div className="Nav-Control-Layout-App-Inner-Container">
                                             <div className="Nav-Control-Layout-App-Wrapper">
                                                 <div className="Nav-Control-Layout-App-Inner-Wrapper">
-                                                    <div className="Nav-Control-Layout-Item-Container mx-5" onClick = {()=> props.setCurrentPage('uGqXQpyJeFUoBqm')}>
+                                                    <div className="Nav-Control-Layout-Item-Container mx-5" 
+                                                        onClick = {()=> props.setCurrentPage('uGqXQpyJeFUoBqm')}
+                                                    >
                                                         <div className="Nav-Control-Layout-Item">
                                                             <img src="./assets/icons/flaticon/24px/home.png"/>
                                                         </div>   
