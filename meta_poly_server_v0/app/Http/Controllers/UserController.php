@@ -26,7 +26,7 @@ class UserController{
                 'user_phone' => isset($_POST['user_phone']) ? base64_encode(trim(strip_tags($_POST['user_phone']))) : null,
                 'user_email' => isset($_POST['user_email']) ? base64_encode(trim(strip_tags($_POST['user_email']))) : null,
                 'user_password' => isset($_POST['user_password']) ? base64_encode(trim(strip_tags($_POST['user_password']))) : null,
-                'user_token' => base64_encode(Random::generateRandomString(255)),
+                'user_token' => base64_encode(Random::generateRandomString(50)),
             ];
     
             require_once('./app/Models/writeSide/UserMd/wUserMd.php');
