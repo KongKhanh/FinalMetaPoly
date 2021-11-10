@@ -6,7 +6,12 @@ import { ChangePageAdapter } from './ChangePageAdapter';
 
 function ConnectPages(props) {
 
+
+    const [currentPage, setCurrentPage] = useState( 'uGqXQpyJeFUoBqm');
+    //This is default page
+
     const [currentPage, setCurrentPage] = useState('uGqXQpyJeFUoBqm')  //-------------This is default page;
+
 
     return (
         <div className="ConnectPages-Container">
