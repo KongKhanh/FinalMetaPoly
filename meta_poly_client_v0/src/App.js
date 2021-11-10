@@ -43,7 +43,7 @@ function App() {
                         {/* <Profile /> */}
                         {/*  */}
                         {/* <SignIn/> */}
-                        {/* <SignUp/> */}
+                        <SignUp/>
                         {/* <SignIn/> */}
 
                     </div>

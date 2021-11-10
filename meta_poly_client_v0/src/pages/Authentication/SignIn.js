@@ -21,8 +21,20 @@ function SignIn() {
         
     }
 
+    const Styles = {
+        SignIn_Container: {
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgb(0, 0, 0, 0.5)',
+            zIndex: 1002,
+        }
+    }
+
     return (
-        <div className="SignIn-Container">
+        <div className="SignIn-Container" style={Styles.SignIn_Container}>
             <div className="SignIn-Inner-Container">
                 <div className="SignIn-Wrapper">
                     <div className="SignIn-Inner-Wrapper">
@@ -97,7 +109,7 @@ function SignIn() {
 
                                         <div className="row mt-3">
                                             <div className="col-12 text-center">
-                                                <p className="text-muted">Chưa có tài khoản <a href="pages-register.html" className="text-muted ms-1"><b>Tạo tài khoản</b></a></p>
+                                                <p className="text-white">Chưa có tài khoản <a href="pages-register.html" className="text-muted ms-1"><b className="text-white">Tạo tài khoản</b></a></p>
                                             </div>
                                         </div>
 
