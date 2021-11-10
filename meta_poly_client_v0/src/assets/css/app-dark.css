@@ -13317,9 +13317,9 @@ body {
 }
 
 .content-page {
-    margin-left: 260px;
+    margin-left: 0;
     overflow: hidden;
-    padding: 70px 12px 65px;
+    padding: 0 12px 65px;
     min-height: 100vh
 }
 

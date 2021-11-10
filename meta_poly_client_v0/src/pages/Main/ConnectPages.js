@@ -7,10 +7,9 @@ import { ChangePageAdapter } from './ChangePageAdapter';
 
 function ConnectPages(props) {
 
-    const [currentPage, setCurrentPage] = useState({
-        id_page: 'uGqXQpyJeFUoBqm', //This is default page
-    });
-    console.log(currentPage);
+    const [currentPage, setCurrentPage] = useState( 'uGqXQpyJeFUoBqm');
+    //This is default page
+
     return (
         <div className="ConnectPages-Container">
             <div className="ConnectPages-Inner-Container">
@@ -29,8 +28,8 @@ function ConnectPages(props) {
                                     {
                                         ChangePageAdapter(
                                             // Xac dinh id_page de tra ve view
-                                            currentPage.id_page, 
-
+                                            currentPage, 
+                                        
                                             // Du lieu tra ve cho view
                                             {
                                                 UserInforClient: props.UserInforClient
