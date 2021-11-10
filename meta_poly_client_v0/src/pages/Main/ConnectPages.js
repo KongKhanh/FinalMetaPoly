@@ -5,6 +5,10 @@ import Profile from '../Profile/Profile';
 import { ChangePageAdapter } from './ChangePageAdapter';
 
 function ConnectPages(props) {
+
+    
+
+
     return (
         <div className="ConnectPages-Container">
             <div className="ConnectPages-Inner-Container">

@@ -1,7 +1,6 @@
 import Profile from '../Profile/Profile';
 
 
-
 export function ChangePageAdapter(id_page, dataComp) {
 
     switch(id_page) {
