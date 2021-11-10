@@ -6,6 +6,9 @@ import { API_URL } from '../../settings/Api';
 
 import { setCookie } from '../../libs_3rd/Cookie/handleCookie';
 
+// Style App
+import '../../assets/css/components/authentication/auth_form.css';
+
 function SignIn(props) {
 
     const [InputSignInField, setInputSignInField] = useState({
@@ -61,6 +64,8 @@ function SignIn(props) {
         });
     };
 
+
+
     const Styles = {
         SignIn_Container: {
             position: 'absolute',
@@ -70,7 +75,10 @@ function SignIn(props) {
             height: '100%',
             backgroundColor: 'rgb(0, 0, 0, 0.5)',
             zIndex: 1002,
-        }
+        },
+        EyePassword: {
+
+        },
     }
 
     return (
@@ -123,7 +131,7 @@ function SignIn(props) {
                                                                 placeholder="Nhập mật khẩu" 
                                                                 onChange={(event) => handleOnChangeSignInField(event)} 
                                                             />
-                                                            <div className="input-group-text" data-password="false">
+                                                            <div className="input-group-text" data-password="false" id="Eye_Password_Area">
                                                                 <span className="password-eye"></span>
                                                             </div>
                                                         </div>
