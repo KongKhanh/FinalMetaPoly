@@ -4,7 +4,10 @@
     $router = new Router();
 
     require_once('./app/Http/Controllers/UserController.php');  
+    require_once('./app/Http/Controllers/NewsfeedController.php');  
 
     $router->get('/user/{idUser}','UserController@__getIdUser');
+    $router->get('/newsfeed','NewsfeedController@__getIdPost');
+
 
 ?>
