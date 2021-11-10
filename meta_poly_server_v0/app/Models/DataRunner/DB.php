@@ -59,6 +59,44 @@
     
         }
 
+        public static function addBlockRunner($add_Block, $table_Name) {
+
+            require('./app/Models/initialConnect/connectDatabase.php');
+
+            $keyBlockGobal = "";
+            $valueBlockGobal = "";
+
+            $numItems = count($add_Block);
+            $i = 0;
+    
+            foreach($add_Block as $BlockKey => $BlockValue) {
+
+                if(is_string($BlockValue)) {
+                    $BlockValue = "'$BlockValue'";
+                }
+
+                if($numItems == ++$i) {
+
+                    $keyBlockGobal .= $BlockKey;
+                    $valueBlockGobal .= $BlockValue;
+
+                }else {
+
+                    $keyBlockGobal .= $BlockKey . ", ";
+                    $valueBlockGobal .= $BlockValue . ", ";
+
+                }
+
+            }
+
+            $sql = "INSERT INTO {$table_Name}({$keyBlockGobal}) VALUES ({$valueBlockGobal})";
+
+            $conn->exec($sql);
+            
+            return $conn->lastInsertId();
+
+        }
+
     }
 
 ?>

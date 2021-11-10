@@ -1,5 +1,5 @@
 <?php
-
+    //@Author KongKhanh
 class NewsfeedController{
     
     private $NewsfeedObj;
@@ -9,9 +9,20 @@ class NewsfeedController{
         $this->NewsfeedObj = new Newsfeed();
     }
 
-    public function __getIdPost(){
-        $idPost = $this->NewsfeedObj->getPostId();
-        echo json_encode($idPost);
+    public function __getPostList(){
+
+        $PostList = $this->NewsfeedObj->getPostList();
+        // Dùng vòng lập for để mã hóa các phần tử trong $PostList
+        for($i = 0; $i < count($PostList); $i++){
+            // Dòng này dùng để decode tên User Name
+            $PostList[$i]['user_name'] = base64_decode($PostList[$i]['user_name']);
+            // Lấy post_id trong vòng lặp for truyền vào hàm getPostLikeList bên Model
+
+            // $PostLikeList = $this->NewsfeedObj->getPostLikeList(2);
+
+            //$PostList[$i]['list_like'] = $PostLikeList;
+        }
+        echo json_encode($PostList);
     }
 }
 ?>

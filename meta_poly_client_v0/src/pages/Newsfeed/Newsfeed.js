@@ -1,9 +1,35 @@
-
+import {useState,useEffect} from 'react';
+import axios from 'axios';
+import {API_URL} from '../../settings/Api';
 
 //Component
 import PostContent from './PostContent';
 
 function Newsfeed(){
+
+      const[PostList, setPostList] = useState([])
+    
+        const requestPost = async() => {
+          const responseResult = await axios({
+              headers: { 
+                'Access-Control-Allow-Origin' : '*',
+              },
+              url: `${API_URL.GET_NEWS_FEED}`,
+              method: 'GET',
+          });
+          return responseResult.data;
+        };
+      
+          useEffect(function(){
+            requestPost()
+                .then(
+                    function(res) {
+                          setPostList(res);
+                          // console.log(res);
+                    }
+                  )
+          }, []);
+
     return(
         <div className="content-page w-100">
         <div className="content">
@@ -20,9 +46,9 @@ function Newsfeed(){
                       </a>
                       <div className="dropdown-menu dropdown-menu-end">
                         {/* item*/}
-                        <a href="javascript:void(0);" className="dropdown-item">Edit Profile</a>
+                        <a href="#/" className="dropdown-item">Edit Profile</a>
                         {/* item*/}
-                        <a href="javascript:void(0);" className="dropdown-item">Settings</a>
+                        <a href="#/" className="dropdown-item">Settings</a>
                       </div>
                     </div>
                     <div className="d-flex align-self-start">
@@ -33,11 +59,11 @@ function Newsfeed(){
                       </div>
                     </div>
                     <div className="list-group list-group-flush mt-2">
-                      <a href="javascript:void(0);" className="list-group-item list-group-item-action text-primary border-0"><i className="uil uil-images me-1" /> News Feed</a>
-                      <a href="javascript:void(0);" className="list-group-item list-group-item-action border-0"><i className="uil uil-comment-alt-message me-1" /> Messages</a>
-                      <a href="javascript:void(0);" className="list-group-item list-group-item-action border-0"><i className="uil uil-calendar-alt me-1" /> Events</a>
-                      <a href="javascript:void(0);" className="list-group-item list-group-item-action border-0"><i className="uil uil-users-alt me-1" /> Groups</a>
-                      <a href="javascript:void(0);" className="list-group-item list-group-item-action border-0"><i className="uil uil-copy me-1" /> Pages</a>
+                      <a href="#/" className="list-group-item list-group-item-action text-primary border-0"><i className="uil uil-images me-1" /> News Feed</a>
+                      <a href="#/" className="list-group-item list-group-item-action border-0"><i className="uil uil-comment-alt-message me-1" /> Messages</a>
+                      <a href="#/" className="list-group-item list-group-item-action border-0"><i className="uil uil-calendar-alt me-1" /> Events</a>
+                      <a href="#/" className="list-group-item list-group-item-action border-0"><i className="uil uil-users-alt me-1" /> Groups</a>
+                      <a href="#/" className="list-group-item list-group-item-action border-0"><i className="uil uil-copy me-1" /> Pages</a>
                     </div>
                   </div>
                 </div>
@@ -46,9 +72,9 @@ function Newsfeed(){
                 <div className="card">
                   <div className="card-body p-2">
                     <div className="list-group list-group-flush my-2">
-                      <a href="javascript:void(0);" className="list-group-item list-group-item-action border-0"><i className="uil uil-calendar-alt me-1" /> 3 events this week</a>
-                      <a href="javascript:void(0);" className="list-group-item list-group-item-action border-0"><i className="uil uil-calender me-1" /> Eva's birthday today</a>
-                      <a href="javascript:void(0);" className="list-group-item list-group-item-action border-0"><i className="uil uil-bookmark me-1" /> Jenny's wedding tomorrow</a>
+                      <a href="#/" className="list-group-item list-group-item-action border-0"><i className="uil uil-calendar-alt me-1" /> 3 events this week</a>
+                      <a href="#/" className="list-group-item list-group-item-action border-0"><i className="uil uil-calender me-1" /> Eva's birthday today</a>
+                      <a href="#/" className="list-group-item list-group-item-action border-0"><i className="uil uil-bookmark me-1" /> Jenny's wedding tomorrow</a>
                     </div>
                   </div>
                 </div>
@@ -62,20 +88,20 @@ function Newsfeed(){
                       </a>
                       <div className="dropdown-menu dropdown-menu-end">
                         {/* item*/}
-                        <a href="javascript:void(0);" className="dropdown-item">Today</a>
+                        <a href="#/" className="dropdown-item">Today</a>
                         {/* item*/}
-                        <a href="javascript:void(0);" className="dropdown-item">Yesterday</a>
+                        <a href="#/" className="dropdown-item">Yesterday</a>
                         {/* item*/}
-                        <a href="javascript:void(0);" className="dropdown-item">Last Week</a>
+                        <a href="#/" className="dropdown-item">Last Week</a>
                         {/* item*/}
-                        <a href="javascript:void(0);" className="dropdown-item">Last Month</a>
+                        <a href="#/" className="dropdown-item">Last Month</a>
                       </div>
                     </div>
                     <h4 className="header-title mb-1">Trending</h4>
                     <div className="d-flex mt-3">
                       <i className="uil uil-arrow-growth me-2 font-18 text-primary" />
                       <div>
-                        <a className="mt-1 font-14" href="javascript:void(0);">
+                        <a className="mt-1 font-14" href="#/">
                           <strong>Golden Globes:</strong>
                           <span className="text-muted">
                             The 27 Best moments from the Golden Globe Awards
@@ -86,7 +112,7 @@ function Newsfeed(){
                     <div className="d-flex mt-3">
                       <i className="uil uil-arrow-growth me-2 font-18 text-primary" />
                       <div>
-                        <a className="mt-1 font-14" href="javascript:void(0);">
+                        <a className="mt-1 font-14" href="#/">
                           <strong>World Cricket:</strong>
                           <span className="text-muted">
                             India has won ICC T20 World Cup Yesterday
@@ -97,7 +123,7 @@ function Newsfeed(){
                     <div className="d-flex mt-3">
                       <i className="uil uil-arrow-growth me-2 font-18 text-primary" />
                       <div>
-                        <a className="mt-1 font-14" href="javascript:void(0);">
+                        <a className="mt-1 font-14" href="#/">
                           <strong>Antartica:</strong>
                           <span className="text-muted">
                             Metling of Totten Glacier could cause high risk to areas near by sea
@@ -155,12 +181,22 @@ function Newsfeed(){
                 </div>
 
                 {/* start news feeds */}
-                <PostContent />
+                {
+                  PostList.map((PostItem, index) => {
+                      return (
+                          <div key={index}>
+                            <PostContent 
+                              PostItem = {PostItem}
+                            />;
+                          </div>
+                      )
+                  })
+                }
                {/* end card */}
                 {/* end news feeds */}
                 {/* loader */}
                 <div className="text-center mb-3">
-                  <a href="javascript:void(0);" className="text-danger"><i className="mdi mdi-spin mdi-loading me-1 font-16" /> Load more </a>
+                  <a href="#/" className="text-danger"><i className="mdi mdi-spin mdi-loading me-1 font-16" /> Load more </a>
                 </div>
                 {/* end loader */}
               </div>
@@ -174,13 +210,13 @@ function Newsfeed(){
                       </a>
                       <div className="dropdown-menu dropdown-menu-end">
                         {/* item*/}
-                        <a href="javascript:void(0);" className="dropdown-item">Today</a>
+                        <a href="#/" className="dropdown-item">Today</a>
                         {/* item*/}
-                        <a href="javascript:void(0);" className="dropdown-item">Yesterday</a>
+                        <a href="#/" className="dropdown-item">Yesterday</a>
                         {/* item*/}
-                        <a href="javascript:void(0);" className="dropdown-item">Last Week</a>
+                        <a href="#/" className="dropdown-item">Last Week</a>
                         {/* item*/}
-                        <a href="javascript:void(0);" className="dropdown-item">Last Month</a>
+                        <a href="#/" className="dropdown-item">Last Month</a>
                       </div>
                     </div>
                     <h4 className="header-title mb-1">Featured Video For You</h4>
@@ -201,7 +237,7 @@ function Newsfeed(){
                       </a>
                       <div className="dropdown-menu dropdown-menu-end">
                         {/* item*/}
-                        <a href="javascript:void(0);" className="dropdown-item">View All</a>
+                        <a href="#/" className="dropdown-item">View All</a>
                       </div>
                     </div>
                     <h4 className="header-title mb-3">People you may know</h4>
@@ -248,7 +284,7 @@ function Newsfeed(){
                       </div>
                     </div> {/* end inbox-widget */}    
                     <div className="mt-2 mb-3 text-center">
-                      <a href>View More<i className="uil uil-arrow-right ms-1" /></a>
+                      <a href="/#">View More<i className="uil uil-arrow-right ms-1" /></a>
                     </div>
                   </div> {/* end card-body */}
                 </div>
@@ -266,9 +302,9 @@ function Newsfeed(){
               </div>
               <div className="col-md-6">
                 <div className="text-md-end footer-links d-none d-md-block">
-                  <a href="javascript: void(0);">About</a>
-                  <a href="javascript: void(0);">Support</a>
-                  <a href="javascript: void(0);">Contact Us</a>
+                  <a href="#/">About</a>
+                  <a href="#/">Support</a>
+                  <a href="#/">Contact Us</a>
                 </div>
               </div>
             </div>

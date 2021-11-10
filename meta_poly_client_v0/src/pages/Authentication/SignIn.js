@@ -1,13 +1,17 @@
 import { useState } from 'react';
 
+import axios from 'axios';
 
-function SignIn() {
+import { API_URL } from '../../settings/Api';
+
+import { setCookie } from '../../libs_3rd/Cookie/handleCookie';
+
+function SignIn(props) {
 
     const [InputSignInField, setInputSignInField] = useState({
         user_phone: '',
         user_password: '',
     });
-
 
     const handleOnChangeSignInField = (event) => {
         const targetValue = event.target.value;
@@ -15,14 +19,62 @@ function SignIn() {
             ...InputSignInField,
             [event.target.name]: targetValue,
         });
+    };
+
+    async function __requestAuthSignIn(dataRequest) {
+
+        const responseResult = await axios({
+            url: API_URL.AUTH_ACCOUNT_USING,
+            method: 'POST',
+            data: dataRequest,
+        });
+
+        return responseResult.data;
     }
 
     const handleOnClickSignIn = () => {
-        
+
+        const dataRequest = new FormData();
+
+        // Them thuoc tinh vao formData de gui len server
+        for(let i = 0; i < Object.keys(InputSignInField).length; i++) {
+
+            dataRequest.append(Object.keys(InputSignInField)[i], InputSignInField[Object.keys(InputSignInField)[i]]);
+            
+        }
+
+        __requestAuthSignIn(dataRequest)
+        .then((res) => {
+
+            if(res.status_task === 1) {
+
+                // Chuyen ve trang NewsFeed khi dang nhap thanh cong
+                props.setCurrentPage('uGqXQpyJeFUoBqm');
+
+                setCookie('user_id', res.user_info.user_id, 30);
+                setCookie('access_token', res.user_info.user_token, 30);
+
+            }
+            else {
+                alert("Đăng nhập thất bại !");
+            }
+        });
+    };
+
+    const Styles = {
+        SignIn_Container: {
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgb(0, 0, 0, 0.5)',
+            zIndex: 1002,
+        }
     }
 
     return (
-        <div className="SignIn-Container">
+        <div className="SignIn-Container" style={Styles.SignIn_Container}>
             <div className="SignIn-Inner-Container">
                 <div className="SignIn-Wrapper">
                     <div className="SignIn-Inner-Wrapper">
@@ -53,6 +105,7 @@ function SignIn() {
                                                             id="user_phone" 
                                                             name="user_phone"
                                                             required 
+                                                            value={InputSignInField.user_phone ? InputSignInField.user_phone : ''}
                                                             placeholder="Nhập số điện thoại" 
                                                             onChange={(event) => handleOnChangeSignInField(event)} 
                                                         />
@@ -97,7 +150,16 @@ function SignIn() {
 
                                         <div className="row mt-3">
                                             <div className="col-12 text-center">
-                                                <p className="text-muted">Chưa có tài khoản <a href="pages-register.html" className="text-muted ms-1"><b>Tạo tài khoản</b></a></p>
+                                                <p className="text-white">Chưa có tài khoản 
+                                                    <a 
+                                                        href="/#" 
+                                                        className="ms-1"
+                                                        // Chuyen qua trang SignUp khi chua co tai khoan
+                                                        onClick={() => props.setCurrentPage('6VRiCktUwxaLAud')}
+                                                    >   
+                                                        <b className="text-white">Tạo tài khoản</b>
+                                                    </a>
+                                                </p>
                                             </div>
                                         </div>
 

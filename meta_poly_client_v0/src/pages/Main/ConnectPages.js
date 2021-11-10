@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import { useState, useEffect } from 'react';
 
 import Header from '../../common/components/Header';
 
@@ -6,9 +6,24 @@ import { ChangePageAdapter } from './ChangePageAdapter';
 
 function ConnectPages(props) {
 
+    // Mặc định trang chủ do case uGqXQpyJeFUoBqm bên phần ChangePage
+    const [currentPage, setCurrentPage] = useState('uGqXQpyJeFUoBqm')  //-------------This is default page;
 
-    const [currentPage, setCurrentPage] = useState( 'uGqXQpyJeFUoBqm');
-    //This is default page
+    function __AuthPermissionUsingApp() {
+
+        if(!props.UserInforClient.userId) {
+            // Neu khong thoa man dieu kien Auth thi tro ve trang SignIn
+            setCurrentPage('gh7Gv46kZYuhrAP');
+        };
+
+    };
+
+    useEffect(() => {
+
+    __AuthPermissionUsingApp();
+
+    }, []);
+
 
     return (
         <div className="ConnectPages-Container">
@@ -33,6 +48,12 @@ function ConnectPages(props) {
                                             // Du lieu tra ve cho view
                                             {
                                                 UserInforClient: props.UserInforClient
+                                            },
+                                            // Props field 
+                                            {
+                                                setCurrentPage: setCurrentPage,
+                                                UserInforClient: props.UserInforClient,
+                                                setUserInforClient: props.setUserInforClient
                                             }
                                         )
                                     }
