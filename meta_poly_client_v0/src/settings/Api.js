@@ -5,5 +5,7 @@ export const API_URL = {
     GET_SINGLE_USER: BASE_API_URL + '/user',
 
     CREATE_NEW_ACCOUNT: BASE_API_URL + '/user/create-new',
+
+    AUTH_ACCOUNT_USING: BASE_API_URL + '/user/auth-using',
     
 };

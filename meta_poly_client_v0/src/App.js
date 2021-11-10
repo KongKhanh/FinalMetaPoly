@@ -1,7 +1,6 @@
 
-import { useState, useEffect} from "react";
+import { useState } from "react";
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 // Custom Function
 import {getCookie} from "./libs_3rd/Cookie/handleCookie";
@@ -13,9 +12,11 @@ import SignUp from './pages/Authentication/SignUp';
 
 function App() {
 
-            const[UserInforClient, setUserInforClient] = useState({
-                userId: getCookie('user_id'),
-            })
+    const[UserInforClient, setUserInforClient] = useState({
+        userId: getCookie('user_id') ? getCookie('user_id') : undefined,
+        user_phone: '',
+    });
+
     return (
         <div className="App-Container">
             <div className="App-Inner-Container">
@@ -24,27 +25,8 @@ function App() {
 
                         <ConnectPages 
                             UserInforClient = {UserInforClient}
+                            setUserInforClient={setUserInforClient}
                         />
-
-                    {/* <Router>
-                        <Switch>
-                            <Route path="/user/profile">
-                                <Profile />
-                            </Route>
-                            <Route path="/signin">
-                                <SignIn/>
-                            </Route>
-                            <Route path="/signup">
-                                <SignUp/>
-                            </Route>
-                        </Switch>
-                    </Router> */}
-
-                        {/* <Profile /> */}
-                        {/*  */}
-                        {/* <SignIn/> */}
-                        <SignUp/>
-                        {/* <SignIn/> */}
 
                     </div>
                 </div>

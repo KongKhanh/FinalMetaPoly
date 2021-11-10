@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { API_URL } from '../../settings/Api';
 
-function SignUp() {
+function SignUp(props) {
 
     const [InputSignUpField, setInputSignUpField] = useState({
         user_name: '',
@@ -47,14 +47,38 @@ function SignUp() {
         __requestCreateNewAccount(dataRequest)
         .then((res) => {
 
-            console.log(res);
+            if(res.status_task === 1) {
+
+                props.setCurrentPage('gh7Gv46kZYuhrAP');
+
+                props.setUserInforClient({
+                    ...props.UserInforClient,
+                    user_phone: InputSignUpField.user_phone,
+                });
+
+            }
+            else {
+                alert("Tạo tài khoản thất bại !");
+            }
 
         });
 
+    };
+
+    const Styles = {
+        SignUp_Container: {
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            width: '100%',
+            backgroundColor: 'rgb(0, 0, 0, 0.5)',
+            zIndex: 1002,
+        }
     }
 
+
     return (
-        <div className="SignUp-Container">
+        <div className="SignUp-Container" style={Styles.SignUp_Container}>
             <div className="SignUp-Inner-Container">
                 <div className="SignUp-Wrapper">
                     <div className="SignUp-Inner-Wrapper">
@@ -153,7 +177,16 @@ function SignUp() {
 
                                         <div className="row mt-3">
                                             <div className="col-12 text-center">
-                                                <p className="text-muted">Bạn đã có tài khoản? <a href="pages-login.html" className="text-muted ms-1"><b>Đăng nhập ngay</b></a></p>
+                                                <p className="text-white">Bạn đã có tài khoản? 
+                                                    <a 
+                                                        href="/#" 
+                                                        className="ms-1"
+                                                        // Chuyen qua trang SignIn khi da co tai khoan
+                                                        onClick={() => props.setCurrentPage('gh7Gv46kZYuhrAP')}
+                                                    >
+                                                        <b className="text-white">Đăng nhập ngay</b>
+                                                    </a>
+                                                </p>
                                             </div>
                                         </div>
 
