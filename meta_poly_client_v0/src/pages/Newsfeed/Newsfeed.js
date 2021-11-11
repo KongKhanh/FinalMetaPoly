@@ -26,10 +26,13 @@ function Newsfeed(){
                 .then(
                     function(res) {
                         setPostList(res);
+                        // res.map((PostItem) => {
+                        //   if(PostItem.user_id == )
+                        //   console.log(PostItem.user_name)
+                        // });
                     }
                   )
           }, []);
-
     return(
         <div className="content-page w-100">
         <div className="content">
@@ -54,7 +57,9 @@ function Newsfeed(){
                     <div className="d-flex align-self-start">
                       <img className="d-flex align-self-start rounded me-2" src="assets/images/users/avatar-5.jpg" alt="Soeng Souy" height={48} />
                       <div className="w-100 overflow-hidden">
-                        <h5 className="mt-1 mb-0">Soeng Souy</h5>
+                        <h5 className="mt-1 mb-0">
+                        {/* {PostItem.user_name} */}
+                        </h5>
                         <p className="mb-1 mt-1 text-muted">California, USA</p>
                       </div>
                     </div>
@@ -138,7 +143,8 @@ function Newsfeed(){
 
                 {/* @Auth VoVanHau */}
                 <PostingBox />
-
+                
+                {/* @Auth KongKhanh ft VovanHau  */}
                 {
                   PostList.map((PostItem, index) => {
                       return (
@@ -149,9 +155,7 @@ function Newsfeed(){
                           </div>
                       )
                   })
-                }
-                
-
+                }       
                 {/* loader */}
                 <div className="text-center mb-3">
                   <a href="#/" className="text-danger"><i className="mdi mdi-spin mdi-loading me-1 font-16" /> Load more </a>

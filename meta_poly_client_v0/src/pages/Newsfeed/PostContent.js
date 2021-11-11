@@ -1,6 +1,5 @@
 
 function PostContent(props){
-
     return(
         <div className="card">
           <div className="card-body pb-1">
@@ -74,7 +73,7 @@ function PostContent(props){
               </div> {/* end d-flex */}
               <hr />
               <div className="d-flex mb-2">
-                <img src="assets/images/users/avatar-1.jpg" height={32} className="align-self-start rounded me-2" alt="Arya Stark" />
+                <img src="assets/images/users/avatar-5.jpg" height={32} className="align-self-start rounded me-2" alt="Arya Stark" />
                 <div className="w-100">
                   <input type="text" className="form-control border-0 form-control-sm" placeholder="Write a comment" />
                 </div> {/* end w-100 */}

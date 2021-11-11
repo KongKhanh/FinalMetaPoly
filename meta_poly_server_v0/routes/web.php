@@ -6,11 +6,13 @@
     // Controllers Path Here
     require_once('./app/Http/Controllers/UserController.php');  
     require_once('./app/Http/Controllers/NewsfeedController.php');  
+    require_once('./app/Http/Controllers/NewsfeedProflieController.php');  
 
 
     // ------------------------------Handle GET method------------------------------
     $router->get('/user/{idUser}','UserController@__getIdUser');
     $router->get('/newsfeed','NewsfeedController@__getPostList');
+    $router->get('/profile/{idUser}','NewsfeedProflieController@__getPostProfileList');
 
 
     // ------------------------------Handle POST method------------------------------

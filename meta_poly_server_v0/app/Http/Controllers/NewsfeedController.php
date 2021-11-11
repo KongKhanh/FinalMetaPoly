@@ -19,7 +19,7 @@ class NewsfeedController{
         // Dùng vòng lập for để mã hóa các phần tử trong $PostList
         for($i = 0; $i < count($PostList); $i++){
 
-            // Dòng này dùng để decode tên User Name
+            // Dòng này dùng để decode User Name
             $PostList[$i]['user_name'] = base64_decode($PostList[$i]['user_name']);
 
             // Lấy post_id trong vòng lặp for truyền vào hàm getPostLikeList bên Model

@@ -41,13 +41,41 @@ function Profile(props){
             )
         }, []);
 
+        const[PostList, setPostList] = useState([])
+    
+        const requestPost = async() => {
+          const responseResult = await axios({
+              headers: { 
+                'Access-Control-Allow-Origin' : '*',
+              },
+              url: `${API_URL.GET_NEWS_FEED}`,
+              method: 'GET',
+          });
+          return responseResult.data;
+        };
+      
+          useEffect(function(){
+            requestPost()
+                .then(
+                    function(res) {
+                        setPostList(res);
+                        // res.map((PostItem) => {
+                        //   if(PostItem.user_id == )
+                        //   console.log(PostItem.user_name)
+                        // });
+                    }
+                  )
+          }, []);
+
     return(
         <div className="row">
         <div className="col-xl-4 col-lg-5">
          <div className="card text-center">
           <div className="card-body">
-            <img src="assets/images/users/avatar-1.jpg" className="rounded-circle avatar-lg img-thumbnail" alt="profile-image" />
-            <h4 className="mb-0 mt-2">Soeng Souy</h4>
+            <img src="assets/images/users/avatar-5.jpg" className="rounded-circle avatar-lg img-thumbnail" alt="profile-image" />
+            <h4 className="mb-0 mt-2">
+            {UserInfor.UserName}
+            </h4>
             <p className="text-muted font-14">Founder</p>
             <button type="button" className="btn btn-success btn-sm mb-2">Follow</button>
             <button type="button" className="btn btn-danger btn-sm mb-2">Message</button>
@@ -151,7 +179,9 @@ function Profile(props){
           </div> {/* end card-body*/}
         </div> {/* end card*/}
       </div>
-      <PostProfile />;
+      <PostProfile 
+        UserInfor = {UserInfor}
+      />;
     </div>
     )
 }

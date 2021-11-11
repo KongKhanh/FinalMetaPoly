@@ -1,4 +1,7 @@
-function PostProfile(){
+import ProfileSettings from './ProfileSettings';
+
+function PostProfile(props){
+  
     return(
     <div className="col-xl-8 col-lg-7">
         <div className="card">
@@ -142,7 +145,9 @@ function PostProfile(){
               <div className="d-flex">
                 <img className="me-2 rounded-circle" src="assets/images/users/avatar-3.jpg" alt="Generic placeholder image" height={32} />
                 <div>
-                  <h5 className="m-0">Jeremy Tomlinson</h5>
+                  <h5 className="m-0">
+                    {props.UserInfor.UserName}
+                  </h5>
                   <p className="text-muted"><small>about 2 minuts ago</small></p>
                 </div>
               </div>
@@ -157,193 +162,15 @@ function PostProfile(){
               </div>
             </div>
             {/* Story Box*/}
-            <div className="border border-light rounded p-2 mb-3">
-              <div className="d-flex">
-                <img className="me-2 rounded-circle" src="assets/images/users/avatar-4.jpg" alt="Generic placeholder image" height={32} />
-                <div>
-                  <h5 className="m-0">Thelma Fridley</h5>
-                  <p className="text-muted"><small>about 1 hour ago</small></p>
-                </div>
-              </div>
-              <div className="font-16 text-center fst-italic text-dark">
-                <i className="mdi mdi-format-quote-open font-20" /> Cras sit amet nibh libero, in
-                gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
-                purus odio, vestibulum in vulputate at, tempus viverra turpis. Duis
-                sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper
-                porta. Mauris massa.
-              </div>
-              <div className="mx-n2 p-2 mt-3 bg-light">
-                <div className="d-flex">
-                  <img className="me-2 rounded-circle" src="assets/images/users/avatar-3.jpg" alt="Generic placeholder image" height={32} />
-                  <div>
-                    <h5 className="mt-0">Jeremy Tomlinson <small className="text-muted">3 hours ago</small></h5>
-                    Nice work, makes me think of The Money Pit.
-                    <br />
-                    <a href="/#" className="text-muted font-13 d-inline-block mt-2"><i className="mdi mdi-reply" /> Reply</a>
-                    <div className="d-flex mt-3">
-                      <a className="pe-2" href="#">
-                        <img src="assets/images/users/avatar-4.jpg" className="rounded-circle" alt="Generic placeholder image" height={32} />
-                      </a>
-                      <div>
-                        <h5 className="mt-0">Thelma Fridley <small className="text-muted">5 hours ago</small></h5>
-                        i'm in the middle of a timelapse animation myself! (Very different though.) Awesome stuff.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="d-flex mt-2">
-                  <a className="pe-2" href="#">
-                    <img src="assets/images/users/avatar-1.jpg" className="rounded-circle" alt="Generic placeholder image" height={32} />
-                  </a>
-                  <div className="w-100">
-                    <input type="text" id="simpleinput" className="form-control border-0 form-control-sm" placeholder="Add comment" />
-                  </div>
-                </div>
-              </div>
-              <div className="mt-2">
-                <a href="/#" className="btn btn-sm btn-link text-danger"><i className="mdi mdi-heart" /> Like (28)</a>
-                <a href="/#" className="btn btn-sm btn-link text-muted"><i className="mdi mdi-share-variant" /> Share</a>
-              </div>
-            </div>
-            {/* Story Box*/}
-            <div className="border border-light p-2 mb-3">
-              <div className="d-flex">
-                <img className="me-2 rounded-circle" src="assets/images/users/avatar-6.jpg" alt="Generic placeholder image" height={32} />
-                <div>
-                  <h5 className="m-0">Martin Williamson</h5>
-                  <p className="text-muted"><small>15 hours ago</small></p>
-                </div>
-              </div>
-              <p>The parallax is a little odd but O.o that house build is awesome!!</p>
-              <iframe src="../../video/87993762.html" height={300} className="img-fluid border-0" />
-            </div>
             <div className="text-center">
               <a href="/#" className="text-danger"><i className="mdi mdi-spin mdi-loading me-1" /> Load more </a>
             </div>
           </div>
+          <ProfileSettings 
+            InforUS = {props.UserInfor}
+          />
+          
           {/* end timeline content*/}
-          <div className="tab-pane" id="settings">
-            <form>
-              <h5 className="mb-4 text-uppercase"><i className="mdi mdi-account-circle me-1" /> Personal Info</h5>
-              <div className="row">
-                <div className="col-md-6">
-                  <div className="mb-3">
-                    <label htmlFor="firstname" className="form-label">First Name</label>
-                    <input type="text" className="form-control" id="firstname" placeholder="Enter first name" />
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="mb-3">
-                    <label htmlFor="lastname" className="form-label">Last Name</label>
-                    <input type="text" className="form-control" id="lastname" placeholder="Enter last name" />
-                  </div>
-                </div> {/* end col */}
-              </div> {/* end row */}
-              <div className="row">
-                <div className="col-12">
-                  <div className="mb-3">
-                    <label htmlFor="userbio" className="form-label">Bio</label>
-                    <textarea className="form-control" id="userbio" rows={4} placeholder="Write something..." defaultValue={""} />
-                  </div>
-                </div> {/* end col */}
-              </div> {/* end row */}
-              <div className="row">
-                <div className="col-md-6">
-                  <div className="mb-3">
-                    <label htmlFor="useremail" className="form-label">Email Address</label>
-                    <input type="email" className="form-control" id="useremail" placeholder="Enter email" />
-                    <span className="form-text text-muted"><small>If you want to change email please <a href="/#">click</a> here.</small></span>
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="mb-3">
-                    <label htmlFor="userpassword" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="userpassword" placeholder="Enter password" />
-                    <span className="form-text text-muted"><small>If you want to change password please <a href="/#">click</a> here.</small></span>
-                  </div>
-                </div> {/* end col */}
-              </div> {/* end row */}
-              <h5 className="mb-3 text-uppercase bg-light p-2"><i className="mdi mdi-office-building me-1" /> Company Info</h5>
-              <div className="row">
-                <div className="col-md-6">
-                  <div className="mb-3">
-                    <label htmlFor="companyname" className="form-label">Company Name</label>
-                    <input type="text" className="form-control" id="companyname" placeholder="Enter company name" />
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="mb-3">
-                    <label htmlFor="cwebsite" className="form-label">Website</label>
-                    <input type="text" className="form-control" id="cwebsite" placeholder="Enter website url" />
-                  </div>
-                </div> {/* end col */}
-              </div> {/* end row */}
-              <h5 className="mb-3 text-uppercase bg-light p-2"><i className="mdi mdi-earth me-1" /> Social</h5>
-              <div className="row">
-                <div className="col-md-6">
-                  <div className="mb-3">
-                    <label htmlFor="social-fb" className="form-label">Facebook</label>
-                    <div className="input-group">
-                      <span className="input-group-text"><i className="mdi mdi-facebook" /></span>
-                      <input type="text" className="form-control" id="social-fb" placeholder="Url" />
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="mb-3">
-                    <label htmlFor="social-tw" className="form-label">Twitter</label>
-                    <div className="input-group">
-                      <span className="input-group-text"><i className="mdi mdi-twitter" /></span>
-                      <input type="text" className="form-control" id="social-tw" placeholder="Username" />
-                    </div>
-                  </div>
-                </div> {/* end col */}
-              </div> {/* end row */}
-              <div className="row">
-                <div className="col-md-6">
-                  <div className="mb-3">
-                    <label htmlFor="social-insta" className="form-label">Instagram</label>
-                    <div className="input-group">
-                      <span className="input-group-text"><i className="mdi mdi-instagram" /></span>
-                      <input type="text" className="form-control" id="social-insta" placeholder="Url" />
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="mb-3">
-                    <label htmlFor="social-lin" className="form-label">Linkedin</label>
-                    <div className="input-group">
-                      <span className="input-group-text"><i className="mdi mdi-linkedin" /></span>
-                      <input type="text" className="form-control" id="social-lin" placeholder="Url" />
-                    </div>
-                  </div>
-                </div> {/* end col */}
-              </div> {/* end row */}
-              <div className="row">
-                <div className="col-md-6">
-                  <div className="mb-3">
-                    <label htmlFor="social-sky" className="form-label">Skype</label>
-                    <div className="input-group">
-                      <span className="input-group-text"><i className="mdi mdi-skype" /></span>
-                      <input type="text" className="form-control" id="social-sky" placeholder="@username" />
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="mb-3">
-                    <label htmlFor="social-gh" className="form-label">Github</label>
-                    <div className="input-group">
-                      <span className="input-group-text"><i className="mdi mdi-github" /></span>
-                      <input type="text" className="form-control" id="social-gh" placeholder="Username" />
-                    </div>
-                  </div>
-                </div> {/* end col */}
-              </div> {/* end row */}
-              <div className="text-end">
-                <button type="submit" className="btn btn-success mt-2"><i className="mdi mdi-content-save" /> Save</button>
-              </div>
-            </form>
-          </div>
           {/* end settings content*/}
         </div> {/* end tab-content */}
       </div>

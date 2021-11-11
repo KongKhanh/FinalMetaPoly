@@ -181,7 +181,7 @@ function Header (props) {
                                 <li className="dropdown notification-list">
                                     <a className="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                     <span className="account-user-avatar"> 
-                                        <img src="assets/images/users/avatar-1.jpg" alt="user-image" className="rounded-circle" />
+                                        <img src="assets/images/users/avatar-5.jpg" alt="user-image" className="rounded-circle" />
                                     </span>
                                     <span>
                                         <span className="account-user-name">Soeng Souy</span>
