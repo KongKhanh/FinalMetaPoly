@@ -24,8 +24,7 @@ function Newsfeed(){
             requestPost()
                 .then(
                     function(res) {
-                          setPostList(res);
-                          // console.log(res);
+                        setPostList(res);
                     }
                   )
           }, []);
