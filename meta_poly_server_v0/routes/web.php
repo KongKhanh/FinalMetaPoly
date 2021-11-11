@@ -17,6 +17,7 @@
     // ------------------------------Handle POST method------------------------------
     $router->post('/user/create-new','UserController@__CreateNewUser');
     $router->post('/user/auth-using','UserController@__authUsingUser');
+    $router->post('/user/create-like','PostingController@__likePost');
 
     // ---------------------For Posting
     $router->post('/posting/single/create-new','PostingController@__handleCreateNewPost');
