@@ -6,6 +6,7 @@
     // Controllers Path Here
     require_once('./app/Http/Controllers/UserController.php');  
     require_once('./app/Http/Controllers/NewsfeedController.php');  
+    require_once('./app/Http/Controllers/PostingController.php');  
 
 
     // ------------------------------Handle GET method------------------------------
@@ -16,5 +17,8 @@
     // ------------------------------Handle POST method------------------------------
     $router->post('/user/create-new','UserController@__CreateNewUser');
     $router->post('/user/auth-using','UserController@__authUsingUser');
+
+    // ---------------------For Posting
+    $router->post('/posting/single/create-new','PostingController@__handleCreateNewPost');
 
 ?>

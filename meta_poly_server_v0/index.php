@@ -6,8 +6,6 @@
 
     define('PATH_ROOT', __DIR__);   
 
-    require_once('./app/Models/initialConnect/connectDatabase.php');
-
     require_once('./redirect.php');
 
     $App = new App();

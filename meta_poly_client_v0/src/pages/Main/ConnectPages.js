@@ -20,9 +20,13 @@ function ConnectPages(props) {
 
     useEffect(() => {
 
-    __AuthPermissionUsingApp();
+        __AuthPermissionUsingApp();
 
-    }, []);
+        return () => {
+
+        };
+
+    }, [props]);
 
 
     return (

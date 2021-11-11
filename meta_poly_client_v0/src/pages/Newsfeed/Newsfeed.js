@@ -6,7 +6,7 @@ import {API_URL} from '../../settings/Api';
 import PostingBox from '../../common/components/PostingBox/PostingBox';
 import PostContent from './PostContent';
 
-function Newsfeed(){
+function Newsfeed(props){
 
       const[PostList, setPostList] = useState([])
     
@@ -33,15 +33,17 @@ function Newsfeed(){
     return(
         <div className="content-page w-100">
         <div className="content">
-          {/* Start Content*/}
+
           <div className="container-fluid">
             <div className="row">
+
+              {/* Left Side */}
               <div className="col-xxl-3 col-lg-6 order-lg-1 order-xxl-1">
                 {/* start profile info */}
                 <div className="card">
                   <div className="card-body">
                     <div className="dropdown float-end">
-                      <a href="#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                      <a href="/#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
                         <i className="mdi mdi-dots-horizontal" />
                       </a>
                       <div className="dropdown-menu dropdown-menu-end">
@@ -83,7 +85,7 @@ function Newsfeed(){
                 <div className="card">
                   <div className="card-body">
                     <div className="dropdown float-end">
-                      <a href="#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                      <a href="/#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
                         <i className="mdi mdi-dots-horizontal" />
                       </a>
                       <div className="dropdown-menu dropdown-menu-end">
@@ -133,68 +135,43 @@ function Newsfeed(){
                     </div>
                   </div> {/* end card-body*/}
                 </div> {/* end card*/}
-              </div> {/* end col */}
+              </div>
+
+              {/* Center Side */}
               <div className="col-xxl-6 col-lg-12 order-lg-2 order-xxl-1">
 
                 {/* @Auth VoVanHau */}
-                <PostingBox />
+                <PostingBox 
+                    UserInforClient={props.UserInforClient}
+                />
 
                 {
                   PostList.map((PostItem, index) => {
                       return (
                           <div key={index}>
-                            <PostContent 
-                              PostItem = {PostItem}
-                            />;
+                              <PostContent 
+                                PostItem = {PostItem}
+                              />
                           </div>
                       )
                   })
                 }
-                
-
-                {/* loader */}
+              
                 <div className="text-center mb-3">
                   <a href="#/" className="text-danger"><i className="mdi mdi-spin mdi-loading me-1 font-16" /> Load more </a>
                 </div>
-                {/* end loader */}
+
               </div>
+
+              {/* Right Side */}
               <div className="col-xxl-3 col-lg-6 order-lg-1 order-xxl-2">
-                {/* video */}
-                <div className="card">
-                  <div className="card-body">
-                    <div className="dropdown float-end">
-                      <a href="#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i className="mdi mdi-dots-horizontal" />
-                      </a>
-                      <div className="dropdown-menu dropdown-menu-end">
-                        {/* item*/}
-                        <a href="#/" className="dropdown-item">Today</a>
-                        {/* item*/}
-                        <a href="#/" className="dropdown-item">Yesterday</a>
-                        {/* item*/}
-                        <a href="#/" className="dropdown-item">Last Week</a>
-                        {/* item*/}
-                        <a href="#/" className="dropdown-item">Last Month</a>
-                      </div>
-                    </div>
-                    <h4 className="header-title mb-1">Featured Video For You</h4>
-                    <div className="mt-3">
-                      <div className="ratio ratio-16x9">
-                        <iframe src="../../embed/9_eqq0HlN9g.html?autohide=0&showinfo=0&controls=0" />
-                      </div>
-                    </div>
-                  </div> {/* end card-body */}
-                </div>
-                {/* end video */}
-                {/* video */}
                 <div className="card">
                   <div className="card-body pb-0">
                     <div className="dropdown float-end">
-                      <a href="#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                      <a href="/#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
                         <i className="mdi mdi-dots-horizontal" />
                       </a>
                       <div className="dropdown-menu dropdown-menu-end">
-                        {/* item*/}
                         <a href="#/" className="dropdown-item">View All</a>
                       </div>
                     </div>
@@ -240,18 +217,18 @@ function Newsfeed(){
                           <button type="button" className="btn btn-sm btn-outline-primary px-1 py-0"> <i className="uil uil-user-plus font-16" /> </button>
                         </p>
                       </div>
-                    </div> {/* end inbox-widget */}    
+                    </div>   
                     <div className="mt-2 mb-3 text-center">
                       <a href="/#">View More<i className="uil uil-arrow-right ms-1" /></a>
                     </div>
-                  </div> {/* end card-body */}
+                  </div>
                 </div>
-                {/* end video */}
-              </div> {/* end col */}
-            </div> {/*end row */}
-          </div> {/* container */}
-        </div> {/* content */}
-        {/* Footer Start */}
+              </div>
+
+            </div>
+          </div>
+        </div>
+
         <footer className="footer">
           <div className="container-fluid">
             <div className="row">

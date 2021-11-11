@@ -1,5 +1,60 @@
-export default function PostingBox() {
+import { useState } from 'react';
 
+import axios from 'axios';
+
+import { API_URL } from '../../../settings/Api'; 
+
+// Components
+import RichTextEditor from './RichTextEditor';
+import BtnRequestPost from './BtnRequestPost';
+
+export default function PostingBox(props) {
+
+    const [pctContentObj, setPctContentObj] = useState({
+        pct_content: '',
+    });
+
+    const __requestCreateNewPost = async () => {
+
+        const dataRequest = new FormData();
+
+        for(let i = 0; i < Object.keys(pctContentObj).length; i++) {
+            dataRequest.append(
+                Object.keys(pctContentObj)[i], pctContentObj[Object.keys(pctContentObj)[i]]
+            );
+        };
+
+        dataRequest.append('post_fk_user_id', props.UserInforClient.userId);
+
+        const resultsReq = await axios({
+            url: API_URL.CREATE_NEW_POST,
+            method: 'POST',
+            data: dataRequest,
+        });
+
+        return resultsReq.data;
+
+    };
+
+    const handleClickReqPosting = () => {
+
+        __requestCreateNewPost()
+        .then((res) => {
+
+            if(res.status_task === 1) {
+
+                setPctContentObj({
+                    ...pctContentObj,
+                    pct_content: '',
+                });
+
+            } else {
+                alert('Đã xảy ra lỗi trong quá trình thực hiện !');
+            }
+
+        });
+
+    };
 
     return (
         <div className="posting-box-container">
@@ -28,26 +83,38 @@ export default function PostingBox() {
                                         <span className="d-none d-md-block">Story</span>
                                         </a>
                                     </li>
-                                </ul> {/* end nav*/}
+                                </ul>
                                 <div className="tab-content">
                                     <div className="tab-pane show active p-3" id="newpost">
-                                        {/* comment box */}
+
                                         <div className="border rounded">
-                                            <form action="#" className="comment-area-box">
-                                                <textarea rows={4} className="form-control border-0 resize-none" placeholder="Write something...." defaultValue={""} />
+                                            <form className="comment-area-box">
+
+                                                <RichTextEditor 
+                                                    pctContentObj={pctContentObj}
+                                                    setPctContentObj={setPctContentObj}
+                                                />
+
                                                 <div className="p-2 bg-light d-flex justify-content-between align-items-center">
-                                                <div>
-                                                    <a href="#" className="btn btn-sm px-2 font-16 btn-light"><i className="uil uil-scenery" /></a>
-                                                    <a href="#" className="btn btn-sm px-2 font-16 btn-light"><i className="uil uil-location" /></a>
-                                                    <a href="#" className="btn btn-sm px-2 font-16 btn-light"><i className="uil uil-paperclip" /></a>
-                                                </div>
-                                                <button type="submit" className="btn btn-sm btn-success"><i className="uil uil-message me-1" />Post</button>
+                                                    <div>
+                                                        <a href="/#" className="btn btn-sm px-2 font-16 btn-light">
+                                                            <img src="./assets/icons/flaticon/24px/picture.png" alt="metapoly"/>
+                                                        </a>
+                                                        <a href="/#" className="btn btn-sm px-2 font-16 btn-light">
+                                                            <img src="./assets/icons/flaticon/24px/location.png" alt="metapoly"/>
+                                                        </a>
+                                                        <a href="/#" className="btn btn-sm px-2 font-16 btn-light">
+                                                            <img src="./assets/icons/flaticon/24px/add_link.png" alt="metapoly"/>
+                                                        </a>
+                                                    </div>
+                                                    <BtnRequestPost 
+                                                        handleClickReqPosting={handleClickReqPosting}
+                                                    />
                                                 </div>
                                             </form>
-                                        </div> {/* end .border*/}
-                                        {/* end comment box */}
-                                    </div> {/* end preview*/}
-                                </div> {/* end tab-content*/}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

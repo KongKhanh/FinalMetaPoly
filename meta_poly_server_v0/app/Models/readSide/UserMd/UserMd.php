@@ -20,7 +20,7 @@ class UserMd{
 
     public function __authUser($blockInfoUser) {
 
-        require_once('./app/Models/initialConnect/connectDatabase.php');
+        require('./app/Models/initialConnect/connectDatabase.php');
         
         $slq = "SELECT * FROM users WHERE user_phone = '{$blockInfoUser['user_phone']}' AND user_password = '{$blockInfoUser['user_password']}'";
 
