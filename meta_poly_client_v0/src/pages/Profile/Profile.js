@@ -12,7 +12,8 @@ function Profile(props){
         UserPhone: '',
         UserImg: '',
         UserGender: '',
-        UserEmail: ''
+        UserEmail: '',
+        PostList: []
     });
 
     const requestData = async() => {
@@ -36,36 +37,11 @@ function Profile(props){
                         UserPhone: res.user_phone,
                         UserEmail: res.user_email,
                         UserGender: res.user_gender,
-                    });    
+                        PostList: res.post_list_by_user_id
+                    });   
                }
             )
         }, []);
-
-        const[PostList, setPostList] = useState([])
-    
-        const requestPost = async() => {
-          const responseResult = await axios({
-              headers: { 
-                'Access-Control-Allow-Origin' : '*',
-              },
-              url: `${API_URL.GET_NEWS_FEED}`,
-              method: 'GET',
-          });
-          return responseResult.data;
-        };
-      
-          useEffect(function(){
-            requestPost()
-                .then(
-                    function(res) {
-                        setPostList(res);
-                        // res.map((PostItem) => {
-                        //   if(PostItem.user_id == )
-                        //   console.log(PostItem.user_name)
-                        // });
-                    }
-                  )
-          }, []);
 
     return(
         <div className="row">
@@ -180,7 +156,7 @@ function Profile(props){
         </div> {/* end card*/}
       </div>
       <PostProfile 
-        UserInfor = {UserInfor}
+             UserInfor = {UserInfor}
       />;
     </div>
     )

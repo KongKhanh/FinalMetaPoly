@@ -6,16 +6,24 @@ class UserController{
     
     // @Author: @KongKhanh
     function __construct(){
-        require_once('./app/Models/readSide/UserMd/UserMd.php');
+        require('./app/Models/readSide/UserMd/UserMd.php');
         $this->modelUserObj = new UserMd();
     }
 
     public function __getIdUser($idUser){
-        $idUser = $this->modelUserObj->getIdUser(base64_decode($idUser));
-        $idUser['user_name'] = base64_decode($idUser['user_name']);
-        $idUser['user_phone'] = base64_decode($idUser['user_phone']);
-        $idUser['user_email'] = base64_decode($idUser['user_email']);
-        echo json_encode($idUser);
+
+        require('./app/Http/Controllers/NewsfeedProflieController.php');
+
+        $NewsfeedControllerObj = new NewsfeedProflieController();
+        $UserPostListById = $NewsfeedControllerObj -> __getPostProfileList($idUser);
+
+        $UserInfor = $this->modelUserObj->getIdUser(base64_decode($idUser));
+        $UserInfor['user_name'] = base64_decode($UserInfor['user_name']);
+        $UserInfor['user_phone'] = base64_decode($UserInfor['user_phone']);
+        $UserInfor['user_email'] = base64_decode($UserInfor['user_email']);
+        $UserInfor['post_list_by_user_id'] =  $UserPostListById;
+        echo json_encode($UserInfor);
+
     }
 
     // @Author: @VoVanHau

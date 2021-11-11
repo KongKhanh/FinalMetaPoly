@@ -1,4 +1,5 @@
 import ProfileSettings from './ProfileSettings';
+import NewsfeedProfile from './NewsfeedProfile';
 
 function PostProfile(props){
   
@@ -141,26 +142,17 @@ function PostProfile(props){
             </div> {/* end .border*/}
             {/* end comment box */}
             {/* Story Box*/}
-            <div className="border border-light rounded p-2 mb-3">
-              <div className="d-flex">
-                <img className="me-2 rounded-circle" src="assets/images/users/avatar-3.jpg" alt="Generic placeholder image" height={32} />
-                <div>
-                  <h5 className="m-0">
-                    {props.UserInfor.UserName}
-                  </h5>
-                  <p className="text-muted"><small>about 2 minuts ago</small></p>
+                {
+            props.UserInfor.PostList.map((NewsfeedProfileItem, index) => {
+              return (
+                <div key={index}>
+                  <NewsfeedProfile 
+                    NewsfeedProfileItem = {NewsfeedProfileItem}
+                  />
                 </div>
-              </div>
-              <p>Story based around the idea of time lapse, animation to post soon!</p>
-              <img src="assets/images/small/small-1.jpg" alt="post-img" className="rounded me-1" height={60} />
-              <img src="assets/images/small/small-2.jpg" alt="post-img" className="rounded me-1" height={60} />
-              <img src="assets/images/small/small-3.jpg" alt="post-img" className="rounded" height={60} />
-              <div className="mt-2">
-                <a href="/#" className="btn btn-sm btn-link text-muted"><i className="mdi mdi-reply" /> Reply</a>
-                <a href="/#" className="btn btn-sm btn-link text-muted"><i className="mdi mdi-heart-outline" /> Like</a>
-                <a href="/#" className="btn btn-sm btn-link text-muted"><i className="mdi mdi-share-variant" /> Share</a>
-              </div>
-            </div>
+              )
+            })
+          }
             {/* Story Box*/}
             <div className="text-center">
               <a href="/#" className="text-danger"><i className="mdi mdi-spin mdi-loading me-1" /> Load more </a>
