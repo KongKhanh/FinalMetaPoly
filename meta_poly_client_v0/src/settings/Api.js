@@ -11,7 +11,9 @@ export const API_URL = {
 
     AUTH_ACCOUNT_USING: BASE_API_URL + '/user/auth-using',
 
-    AUTH_ACCOUNT_USING: BASE_API_URL + '/user/auth-using',
-
     CREATE_NEW_POST: BASE_API_URL + '/posting/single/create-new',
+
+    CREATE_NEW_LIKE: BASE_API_URL + '/user/create-like',
+
+
 };

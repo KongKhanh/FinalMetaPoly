@@ -6,7 +6,7 @@ import {API_URL} from '../../settings/Api';
 import PostingBox from '../../common/components/PostingBox/PostingBox';
 import PostContent from './PostContent';
 
-function Newsfeed(){
+function Newsfeed(props){
 
       const[PostList, setPostList] = useState([])
     
@@ -149,6 +149,7 @@ function Newsfeed(){
                           <div key={index}>
                               <PostContent 
                                 PostItem = {PostItem}
+                                UserInforClient = {props.UserInforClient}
                               />
                           </div>
                       )
