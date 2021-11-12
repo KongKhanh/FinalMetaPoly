@@ -4,7 +4,7 @@ import {API_URL} from '../../settings/Api';
 
 //Component
 import PostingBox from '../../common/components/PostingBox/PostingBox';
-import b from './PostContent';
+import PostContent from './PostContent';
 
 function Newsfeed(props){
 
