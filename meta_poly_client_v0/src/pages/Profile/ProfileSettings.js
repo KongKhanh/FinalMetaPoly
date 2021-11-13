@@ -51,11 +51,11 @@ function ProfileSettings(props){
     
     function OnClickSaveSettingProfile(){
 
-      requestInforProfileSetting().then((res)=>{
+        requestInforProfileSetting().then((res)=>{
 
-        console.log(res);
+          console.log(res);
 
-      });
+        });
     }
 
     function ShowGender(DataGender){

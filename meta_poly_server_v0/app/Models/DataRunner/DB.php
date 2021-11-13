@@ -18,7 +18,9 @@
             foreach($update_Block as $BlockKey => $BlockValue) {
 
                 if(is_string($BlockValue)) {
+
                     $BlockValue = "'$BlockValue'";
+                    
                 }
 
                 if($numItems == ++$i) {
@@ -36,7 +38,7 @@
             }
 
             $sql .= $whereData;
-            return $sql;
+
             $stmt = $conn->prepare($sql);
 
             $stmt->setFetchMode(PDO::FETCH_ASSOC);

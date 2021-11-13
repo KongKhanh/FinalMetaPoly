@@ -22,7 +22,7 @@ class UserController{
         $UserInfor['user_name'] = base64_decode($UserInfor['user_name']);
         $UserInfor['user_phone'] = base64_decode($UserInfor['user_phone']);
         $UserInfor['user_email'] = base64_decode($UserInfor['user_email']);
-        
+
         $UserInfor['post_list_by_user_id'] =  $UserPostListById;
 
         echo json_encode($UserInfor);
@@ -112,9 +112,13 @@ class UserController{
 
                 'user_gender' => isset($_POST['user_gender']) ? trim(strip_tags($_POST['user_gender'])) : '',
             ];
+
             $wUserMdObj = new wUserMd();
+
             $idUser = base64_decode($idUser);
-            $x = $wUserMdObj-> setProfileSetting($blockUserSetting,$idUser);
+
+            $x = $wUserMdObj->setProfileSettingMd($blockUserSetting,$idUser);
+
             echo json_encode([
                 'status_task' =>  $x,
                 'message_task' => 'successful',

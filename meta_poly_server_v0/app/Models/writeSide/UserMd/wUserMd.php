@@ -11,7 +11,7 @@
         
         }
 
-        public function setProfileSetting($blockUserSetting,$idUser){
+        public function setProfileSettingMd($blockUserSetting,$idUser){
             
             require_once('./app/Models/DataRunner/DB.php');
 
