@@ -37,16 +37,6 @@ function LikeButton(props){
           requestLikePost().then(
 
               function (res) {
-
-                  // if(res) {
-
-                  //   setActiveToggleLike(false);
-
-                  // } else {
-
-                  //   setActiveToggleLike(true);
-
-                  // }
                       
                   if(res.status_insert === 1) {
 
