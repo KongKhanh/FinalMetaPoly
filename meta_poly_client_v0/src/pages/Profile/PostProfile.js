@@ -159,7 +159,9 @@ function PostProfile(props){
             </div>
           </div>
           <ProfileSettings 
-            InforUS = {props.UserInfor}
+            ProfileSetting = {props.ProfileSetting}
+            setProfileSetting = {props.setProfileSetting}
+            idUserCoockie = {props.idUserCoockie}
           />
           
           {/* end timeline content*/}

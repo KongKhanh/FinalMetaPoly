@@ -15,7 +15,12 @@ function Profile(props){
         UserEmail: '',
         PostList: []
     });
-
+    const [ProfileSetting, setProfileSetting] = useState({
+      UserName: '',
+      UserImg: '',
+      UserGender: '',
+      UserEmail: '',
+    });
     const requestData = async() => {
         const responseResult = await axios({
             headers: { 
@@ -38,7 +43,13 @@ function Profile(props){
                         UserEmail: res.user_email,
                         UserGender: res.user_gender,
                         PostList: res.post_list_by_user_id
-                    });   
+                    });  
+                    setProfileSetting({
+                      ...ProfileSetting,
+                      UserName: res.user_name,
+                      UserEmail: res.user_email,
+                      UserGender: res.user_gender,
+                  });  
                }
             )
         }, []);
@@ -157,6 +168,9 @@ function Profile(props){
       </div>
       <PostProfile 
              UserInfor = {UserInfor}
+             ProfileSetting = {ProfileSetting}
+             setProfileSetting = {setProfileSetting}
+             idUserCoockie = {props.UserInforClient.userId}
       />;
     </div>
     )
