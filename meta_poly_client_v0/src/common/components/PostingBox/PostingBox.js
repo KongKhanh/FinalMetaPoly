@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import axios from 'axios';
 
-import { API_URL } from '../../../settings/Api'; 
+import { API_URL } from '../../../settings/Api';
 
 // Components
 import RichTextEditor from './RichTextEditor';
@@ -18,13 +18,14 @@ export default function PostingBox(props) {
 
         const dataRequest = new FormData();
 
-        for(let i = 0; i < Object.keys(pctContentObj).length; i++) {
+        for (let i = 0; i < Object.keys(pctContentObj).length; i++) {
             dataRequest.append(
                 Object.keys(pctContentObj)[i], pctContentObj[Object.keys(pctContentObj)[i]]
             );
         };
 
         dataRequest.append('post_fk_user_id', props.UserInforClient.userId);
+        dataRequest.append('user_id',);
 
         const resultsReq = await axios({
             url: API_URL.CREATE_NEW_POST,
@@ -39,20 +40,22 @@ export default function PostingBox(props) {
     const handleClickReqPosting = () => {
 
         __requestCreateNewPost()
-        .then((res) => {
+            .then((res) => {
 
-            if(res.status_task === 1) {
+                if (res.status_task === 1) {
 
-                setPctContentObj({
-                    ...pctContentObj,
-                    pct_content: '',
-                });
+                    setPctContentObj({
+                        ...pctContentObj,
+                        pct_content: '',
+                    });
 
-            } else {
-                alert('Đã xảy ra lỗi trong quá trình thực hiện !');
-            }
+                } else {
+                    alert('Đã xảy ra lỗi trong quá trình thực hiện !');
+                }
 
-        });
+                console.log(res);
+
+            });
 
     };
 
@@ -61,26 +64,26 @@ export default function PostingBox(props) {
             <div className="posting-box-inner-container">
                 <div className="posting-box-wrapper">
                     <div className="posting-box-inner-wrapper">
-                            
+
                         <div className="card">
                             <div className="card-body p-0">
                                 <ul className="nav nav-tabs nav-bordered">
                                     <li className="nav-item">
                                         <a href="#newpost" data-bs-toggle="tab" aria-expanded="false" className="nav-link active px-3 py-2">
-                                        <i className="mdi mdi-pencil-box-multiple font-18 d-md-none d-block" />
-                                        <span className="d-none d-md-block">Create Post</span>
+                                            <i className="mdi mdi-pencil-box-multiple font-18 d-md-none d-block" />
+                                            <span className="d-none d-md-block">Create Post</span>
                                         </a>
                                     </li>
                                     <li className="nav-item">
                                         <a href="#photo-video" data-bs-toggle="tab" aria-expanded="true" className="nav-link px-3 py-2">
-                                        <i className="mdi mdi-image font-18 d-md-none d-block" />
-                                        <span className="d-none d-md-block">Photos/Videos</span>
+                                            <i className="mdi mdi-image font-18 d-md-none d-block" />
+                                            <span className="d-none d-md-block">Photos/Videos</span>
                                         </a>
                                     </li>
                                     <li className="nav-item">
                                         <a href="#story" data-bs-toggle="tab" aria-expanded="true" className="nav-link px-3 py-2">
-                                        <i className="mdi mdi-book-open-variant font-18 d-md-none d-block" />
-                                        <span className="d-none d-md-block">Story</span>
+                                            <i className="mdi mdi-book-open-variant font-18 d-md-none d-block" />
+                                            <span className="d-none d-md-block">Story</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -90,7 +93,7 @@ export default function PostingBox(props) {
                                         <div className="border rounded">
                                             <form className="comment-area-box">
 
-                                                <RichTextEditor 
+                                                <RichTextEditor
                                                     pctContentObj={pctContentObj}
                                                     setPctContentObj={setPctContentObj}
                                                 />
@@ -98,16 +101,16 @@ export default function PostingBox(props) {
                                                 <div className="p-2 bg-light d-flex justify-content-between align-items-center">
                                                     <div>
                                                         <a href="/#" className="btn btn-sm px-2 font-16 btn-light">
-                                                            <img src="./assets/icons/flaticon/24px/picture.png" alt="metapoly"/>
+                                                            <img src="./assets/icons/flaticon/24px/picture.png" alt="metapoly" />
                                                         </a>
                                                         <a href="/#" className="btn btn-sm px-2 font-16 btn-light">
-                                                            <img src="./assets/icons/flaticon/24px/location.png" alt="metapoly"/>
+                                                            <img src="./assets/icons/flaticon/24px/location.png" alt="metapoly" />
                                                         </a>
                                                         <a href="/#" className="btn btn-sm px-2 font-16 btn-light">
-                                                            <img src="./assets/icons/flaticon/24px/add_link.png" alt="metapoly"/>
+                                                            <img src="./assets/icons/flaticon/24px/add_link.png" alt="metapoly" />
                                                         </a>
                                                     </div>
-                                                    <BtnRequestPost 
+                                                    <BtnRequestPost
                                                         handleClickReqPosting={handleClickReqPosting}
                                                     />
                                                 </div>

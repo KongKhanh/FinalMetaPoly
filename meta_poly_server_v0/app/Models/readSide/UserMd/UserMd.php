@@ -3,7 +3,7 @@
 class UserMd{
 
     public function getIdUser($idUser){
-       
+
         require('./app/Models/initialConnect/connectDatabase.php');
         
         $slq = "SELECT * FROM users WHERE user_id = $idUser";

@@ -33,6 +33,7 @@ function Newsfeed(props){
                     }
                   )
           }, []);
+
     return(
         <div className="content-page w-100">
         <div className="content">
@@ -62,6 +63,7 @@ function Newsfeed(props){
                         <h5 className="mt-1 mb-0">
                         {/* {PostItem.user_name} */}
                         </h5>
+                        <h5 className="mt-1 mb-0">Soeng Souy</h5>
                         <p className="mb-1 mt-1 text-muted">California, USA</p>
                       </div>
                     </div>
@@ -145,18 +147,20 @@ function Newsfeed(props){
               {/* Center Side */}
               <div className="col-xxl-6 col-lg-12 order-lg-2 order-xxl-1">
 
-
                 {/* @Auth VoVanHau */}
                 <PostingBox 
                     UserInforClient={props.UserInforClient}
                 />
-
+                {/* @Auth VoVanHau */}
+                <PostingBox />
                 {
                   PostList.map((PostItem, index) => {
                       return (
                           <div key={index}>
                               <PostContent 
                                 PostItem = {PostItem}
+
+                                UserInforClient = {props.UserInforClient}
                               />
                           </div>
                       )

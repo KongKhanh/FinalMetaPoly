@@ -38,7 +38,7 @@ function Profile(props){
                         UserEmail: res.user_email,
                         UserGender: res.user_gender,
                         PostList: res.post_list_by_user_id
-                    });   
+                    });
                }
             )
         }, []);
@@ -52,6 +52,8 @@ function Profile(props){
             <h4 className="mb-0 mt-2">
             {UserInfor.UserName}
             </h4>
+            <img src="assets/images/users/avatar-1.jpg" className="rounded-circle avatar-lg img-thumbnail" alt="profile-image" />
+            <h4 className="mb-0 mt-2">Soeng Souy</h4>
             <p className="text-muted font-14">Founder</p>
             <button type="button" className="btn btn-success btn-sm mb-2">Follow</button>
             <button type="button" className="btn btn-danger btn-sm mb-2">Message</button>
@@ -158,6 +160,7 @@ function Profile(props){
       <PostProfile 
              UserInfor = {UserInfor}
       />;
+      <PostProfile />;
     </div>
     )
 }

@@ -34,6 +34,7 @@ export function ChangePageAdapter(id_page, dataComp, props) {
         case 'uGqXQpyJeFUoBqm':
             return <Newsfeed 
                 UserInforClient={props.UserInforClient}
+
             />
 
         default: return <Newsfeed />

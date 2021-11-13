@@ -1,57 +1,43 @@
-<?php 
-    class PostingController {
+<?php
+class PostingController
+{
 
-        protected $PostingMd_Obj;
+    public function __handleCreateNewPost()
+    {
 
-        function __construct() {
-
-            require('./app/Models/writeSide/PostingMd/PostingMd.php');
-
-            $this->PostingMd_Obj = new PostingMd();
-        }
-
-        public function __handleCreateNewPost() {
-
-            try {
-                
-                $blockPostingInfo = [
-                    'post_fk_user_id' => isset($_POST['post_fk_user_id']) ? base64_decode(trim($_POST['post_fk_user_id'])) : null,
-                ];
-    
-                $blockPostingContent = [
-                    'pct_content' => isset($_POST['pct_content']) ? trim($_POST['pct_content']) : null,
-                ];
-    
-                if($blockPostingContent['pct_content'] != '' && $blockPostingInfo['post_fk_user_id']) {
-    
-                    $PostingID = $this->PostingMd_Obj->_insertNewSinglePost($blockPostingInfo);
-    
-                    $blockPostingContent['pct_fk_post_id'] = $PostingID;
-    
-                    $PostingContentID = $this->PostingMd_Obj->_insertPostContent($blockPostingContent);
-
-                    echo json_encode([
-                        'status_task' =>  1,
-                        'message_task' => 'successful',
-                    ]);
-                }
-                else {
-                    echo json_encode([
-                        'status_task' =>  2,
-                        'message_task' => 'failed',
-                    ]);
-                }
-            }
-
-            catch(Exception $err) {
-                echo json_encode([
-                    'status_task' =>  2,
-                    'message_task' => 'failed',
-                ]);
-            }  
-
-        }
-
+        $blockPostingInfo = [
+            'pct_content' => isset($_POST['pct_content']) ?  isset($_POST['pct_content']) : null,
+        ];
     }
 
-?>
+    public function __likePost()
+    {
+        require('./app/Models/writeSide/LikePostMd/LikePostMd.php');
+
+        $idUser = isset($_POST['userID']) ? $_POST['userID'] : null;
+
+        $postID = isset($_POST['postID']) ? $_POST['postID'] : null;
+
+        $activeLike = ($_POST['activeLike']);
+
+        // echo $activeLike;
+
+        // return;
+
+        if ($activeLike == true) {
+            $reSult = PostMd::likePost(base64_decode($idUser), $postID);
+            
+            echo json_encode([
+                'status_insert' => 1, //thành công
+
+            ]);
+        } else {    
+            PostMd::unlikePost(base64_decode($idUser), $postID);
+
+            echo json_encode([
+                'status_insert' => 0, //thành công
+
+            ]);
+        }
+    }
+}

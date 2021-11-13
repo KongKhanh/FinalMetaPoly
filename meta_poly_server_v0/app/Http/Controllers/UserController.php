@@ -7,6 +7,7 @@ class UserController{
     // @Author: @KongKhanh
     function __construct(){
         require('./app/Models/readSide/UserMd/UserMd.php');
+
         $this->modelUserObj = new UserMd();
     }
 
@@ -24,6 +25,11 @@ class UserController{
         $UserInfor['post_list_by_user_id'] =  $UserPostListById;
         echo json_encode($UserInfor);
 
+        $idUser = $this->modelUserObj->getIdUser(base64_decode($idUser));
+        $idUser['user_name'] = base64_decode($idUser['user_name']);
+        $idUser['user_phone'] = base64_decode($idUser['user_phone']);
+        $idUser['user_email'] = base64_decode($idUser['user_email']);
+        echo json_encode($idUser);
     }
 
     // @Author: @VoVanHau

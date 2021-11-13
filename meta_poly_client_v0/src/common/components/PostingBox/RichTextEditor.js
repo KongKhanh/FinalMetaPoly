@@ -18,6 +18,10 @@ function RichTextEditor(props) {
                             className="form-control border-0 resize-none" 
                             placeholder='Chia sẽ cảm nhận của bạn...' 
                             value={props.pctContentObj.pct_content} 
+                            rows={4} 
+                            className="form-control border-0 resize-none" 
+                            placeholder='Chia sẽ cảm nhận của bạn...' 
+                            defaultValue={''} 
                             name="pct_content"
                             onChange={(event) => handleOnChangeFieldPctContent(event)}
                         />
