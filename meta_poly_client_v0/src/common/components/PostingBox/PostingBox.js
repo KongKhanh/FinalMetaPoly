@@ -7,11 +7,19 @@ import { API_URL } from '../../../settings/Api';
 // Components
 import RichTextEditor from './RichTextEditor';
 import BtnRequestPost from './BtnRequestPost';
+import AttachMediaBox from './AttachMediaBox';
+
+//  Styles
+import '../../../assets/css/components/post_box/postbox.css';
 
 export default function PostingBox(props) {
 
     const [pctContentObj, setPctContentObj] = useState({
         pct_content: '',
+    });
+
+    const [activeAttachMediaBox, setActiveAttachMediaBox] = useState({
+        is_active: false,
     });
 
     const __requestCreateNewPost = async () => {
@@ -37,6 +45,7 @@ export default function PostingBox(props) {
 
     };
 
+    // Xu ly su kien gui thong tin bai POST len server
     const handleClickReqPosting = () => {
 
         __requestCreateNewPost()
@@ -44,6 +53,7 @@ export default function PostingBox(props) {
 
                 if (res.status_task === 1) {
 
+                    // Tra ve trang thai ban dau cua Content Box
                     setPctContentObj({
                         ...pctContentObj,
                         pct_content: '',
@@ -53,11 +63,16 @@ export default function PostingBox(props) {
                     alert('Đã xảy ra lỗi trong quá trình thực hiện !');
                 }
 
-                console.log(res);
-
             });
 
     };
+
+    const handleOpenDropBoxImage = () => {
+        setActiveAttachMediaBox({
+            ...activeAttachMediaBox,
+            is_active: true,
+        });
+    }
 
     return (
         <div className="posting-box-container">
@@ -100,7 +115,7 @@ export default function PostingBox(props) {
 
                                                 <div className="p-2 bg-light d-flex justify-content-between align-items-center">
                                                     <div>
-                                                        <a href="/#" className="btn btn-sm px-2 font-16 btn-light">
+                                                        <a href="/#" className="btn btn-sm px-2 font-16 btn-light" onClick={() => handleOpenDropBoxImage()}>
                                                             <img src="./assets/icons/flaticon/24px/picture.png" alt="metapoly" />
                                                         </a>
                                                         <a href="/#" className="btn btn-sm px-2 font-16 btn-light">
@@ -120,6 +135,15 @@ export default function PostingBox(props) {
                                 </div>
                             </div>
                         </div>
+
+                        {/* AttachMediaBox Here */}
+                        { activeAttachMediaBox.is_active ? 
+
+                            <AttachMediaBox 
+                                activeAttachMediaBox={activeAttachMediaBox}
+                                setActiveAttachMediaBox={setActiveAttachMediaBox}
+                            /> : '' 
+                        }
 
                     </div>
                 </div>
