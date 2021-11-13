@@ -1,4 +1,5 @@
-function PostProfile(){
+import ProfileSettings from './ProfileSettings'
+function PostProfile(props){
     return(
     <div className="col-xl-8 col-lg-7">
         <div className="card">
@@ -223,7 +224,9 @@ function PostProfile(){
           </div>
 
           <ProfileSettings 
-            InforUS = {props.UserInfor}
+            ProfileSetting = {props.ProfileSetting}
+            setProfileSetting = {props.setProfileSetting}
+            idUserCoockie = {props.idUserCoockie}
           />
           
           {/* end timeline content*/}

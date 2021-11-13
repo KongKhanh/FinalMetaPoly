@@ -5,7 +5,7 @@
 
     // Controllers Path Here
     require_once('./app/Http/Controllers/UserController.php');  
-    require_once('./app/Http/Controllers/NewsfeedController.php');  
+    require_once('./app/Http/Controllers/NewsfeedController.php');   
     require_once('./app/Http/Controllers/PostingController.php');  
 
 
@@ -13,11 +13,11 @@
     $router->get('/user/{idUser}','UserController@__getIdUser');
     $router->get('/newsfeed','NewsfeedController@__getPostList');
 
-
     // ------------------------------Handle POST method------------------------------
     $router->post('/user/create-new','UserController@__CreateNewUser');
     $router->post('/user/auth-using','UserController@__authUsingUser');
-    $router->post('/user/create-like','PostingController@__likePost');
+    $router->post('/user/profile-setting/{idUser}','UserController@__setProfileSetting');
+
 
     // ---------------------For Posting
     $router->post('/posting/single/create-new','PostingController@__handleCreateNewPost');

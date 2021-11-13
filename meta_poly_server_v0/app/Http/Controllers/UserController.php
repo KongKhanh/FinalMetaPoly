@@ -103,5 +103,33 @@ class UserController{
         }
 
     }
+
+    //@Author: @KongKhanh
+    public function __setProfileSetting($idUser){
+        try{
+            require('./app/Models/writeSide/UserMd/wUserMd.php');
+            $blockUserSetting = [
+
+                'user_name' => isset($_POST['user_name']) ? trim(strip_tags(base64_encode($_POST['user_name']))) : '',
+
+                'user_email' => isset($_POST['user_email']) ? trim(strip_tags(base64_encode($_POST['user_email']))) : '',
+
+                'user_gender' => isset($_POST['user_gender']) ? trim(strip_tags($_POST['user_gender'])) : '',
+            ];
+            $wUserMdObj = new wUserMd();
+            $idUser = base64_decode($idUser);
+            $x = $wUserMdObj-> setProfileSetting($blockUserSetting,$idUser);
+            echo json_encode([
+                'status_task' =>  $x,
+                'message_task' => 'successful',
+            ]);
+        }
+        catch(Exception $err) {
+            echo json_encode([
+                'status_task' => 2,
+                'message_task' => 'failed',
+            ]);
+        }
+    }
 }
 ?>

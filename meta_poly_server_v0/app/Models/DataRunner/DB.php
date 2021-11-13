@@ -8,7 +8,7 @@
 
         public static function updateData($update_Block, $table_Name, $whereData) {
 
-            require('./Model/initialConnect/connectDatabase.php');
+            require('./app/Models/initialConnect/connectDatabase.php');
 
             $sql = "UPDATE {$table_Name} SET ";
 
@@ -36,7 +36,7 @@
             }
 
             $sql .= $whereData;
-
+            return $sql;
             $stmt = $conn->prepare($sql);
 
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -47,7 +47,7 @@
 
         public static function deleteData($table_Name, $whereData) {
 
-            require('./Model/initialConnect/connectDatabase.php');
+            require('./app/Models/initialConnect/connectDatabase.php');
 
             $sql = "DELETE FROM {$table_Name} " . $whereData;
 
