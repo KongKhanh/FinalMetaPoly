@@ -22,14 +22,10 @@ class UserController{
         $UserInfor['user_name'] = base64_decode($UserInfor['user_name']);
         $UserInfor['user_phone'] = base64_decode($UserInfor['user_phone']);
         $UserInfor['user_email'] = base64_decode($UserInfor['user_email']);
+        
         $UserInfor['post_list_by_user_id'] =  $UserPostListById;
-        echo json_encode($UserInfor);
 
-        $idUser = $this->modelUserObj->getIdUser(base64_decode($idUser));
-        $idUser['user_name'] = base64_decode($idUser['user_name']);
-        $idUser['user_phone'] = base64_decode($idUser['user_phone']);
-        $idUser['user_email'] = base64_decode($idUser['user_email']);
-        echo json_encode($idUser);
+        echo json_encode($UserInfor);
     }
 
     // @Author: @VoVanHau

@@ -1,4 +1,4 @@
-import {useState,useEffect} from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import {API_URL} from '../../settings/Api';
 
@@ -8,31 +8,55 @@ import PostContent from './PostContent';
 
 function Newsfeed(props){
 
-      const[PostList, setPostList] = useState([])
-    
-        const requestPost = async() => {
-          const responseResult = await axios({
-              headers: { 
-                'Access-Control-Allow-Origin' : '*',
-              },
-              url: `${API_URL.GET_NEWS_FEED}`,
-              method: 'GET',
-          });
-          return responseResult.data;
-        };
+      const[PostList, setPostList] = useState([]);
+
+      const CancelToken = axios.CancelToken;
       
-          useEffect(function(){
+      const source = CancelToken.source();
+    
+      const requestPost = useCallback(async () => {
+
+        const responseResult = await axios({
+            headers: { 
+              'Access-Control-Allow-Origin' : '*',
+            },
+            url: `${API_URL.GET_NEWS_FEED}`,
+            method: 'GET',
+            cancelToken: source.token,
+        }).catch(function (thrown) {
+            if (axios.isCancel(thrown)) {
+
+              console.log('Request canceled', thrown.message);
+
+            } else {
+              // handle error
+            }
+        });
+
+        if(responseResult) {
+
+           return responseResult.data;
+
+        };
+
+      }, [source]);
+    
+      useEffect(function(){
+
+        if(props.UserInforClient.access_token) {
             requestPost()
-                .then(
-                    function(res) {
-                        setPostList(res);
-                        // res.map((PostItem) => {
-                        //   if(PostItem.user_id == )
-                        //   console.log(PostItem.user_name)
-                        // });
-                    }
-                  )
-          }, []);
+            .then(
+                function(res) {
+                    setPostList(res); 
+                }
+            );
+        }
+
+        return () => {
+            source.cancel('Operation canceled by the user.');
+        }
+
+      }, [props, requestPost, source]);
 
     return(
         <div className="content-page w-100">
@@ -140,8 +164,8 @@ function Newsfeed(props){
                         </a>
                       </div>
                     </div>
-                  </div> {/* end card-body*/}
-                </div> {/* end card*/}
+                  </div>
+                </div>
               </div>
 
               {/* Center Side */}
@@ -151,8 +175,7 @@ function Newsfeed(props){
                 <PostingBox 
                     UserInforClient={props.UserInforClient}
                 />
-                {/* @Auth VoVanHau */}
-                <PostingBox />
+
                 {
                   PostList.map((PostItem, index) => {
                       return (
@@ -166,7 +189,6 @@ function Newsfeed(props){
                       )
                   })
                 }       
-                {/* loader */}
               
                 <div className="text-center mb-3">
                   <a href="#/" className="text-danger"><i className="mdi mdi-spin mdi-loading me-1 font-16" /> Load more </a>

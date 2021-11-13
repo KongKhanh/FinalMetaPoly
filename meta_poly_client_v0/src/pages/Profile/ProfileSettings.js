@@ -1,9 +1,10 @@
-import {useState} from 'react';
 import axios from 'axios';
+
 import {API_URL} from '../../settings/Api';
 
 
 function ProfileSettings(props){
+    
     const DataGender = [
             {
                 Gender_title: 'Nam',
@@ -11,7 +12,7 @@ function ProfileSettings(props){
             },
             {
                 Gender_title: 'Nữ',
-                Gender_value: '0' 
+                Gender_value: '0'
             },
             {
                 Gender_title: 'Khác',
@@ -63,21 +64,25 @@ function ProfileSettings(props){
                 <div key = {index}>
                     <input 
                         type="radio" 
-                        id="Gender"  
+                        id={`Gender_${index}`} 
                         value={GenderItem.Gender_value} name="UserGender"
                         onChange={(event) => OnChangeSettingProfile(event)} 
-                        defaultChecked={GenderItem.Gender_value === props.ProfileSetting.UserGender ? "checked" : ''}
+                        checked={GenderItem.Gender_value === props.ProfileSetting.UserGender ? true : false}
                     />
-                    <label htmlFor="Gender" className="form-label">&nbsp;{GenderItem.Gender_title}</label>
+                    <label htmlFor={`Gender_${index}`} className="form-label">&nbsp;{GenderItem.Gender_title}</label>
                 </div>
             )
         })
     }
-return(
-    <div className="tab-pane" id="settings">
+
+    return(
+        <div className="tab-pane" id="settings">
             <form>
+
               <h5 className="mb-4 text-uppercase">
+
               <i className="mdi mdi-account-circle me-1" /> Personal Info</h5>
+
               <div className="row">
                 <div className="col-md-6">
                   <div className="mb-3">
@@ -104,8 +109,9 @@ return(
                     onChange={(event) =>OnChangeSettingProfile(event)}
                     />
                   </div>
-                </div> {/* end col */}
-              </div> {/* end row */}
+                </div>
+              </div>
+
               <div className="row">
                 <div className="col-md-6">
                   <div className="mb-3">
@@ -114,14 +120,16 @@ return(
                     {ShowGender(DataGender)}
                   </div>
                 </div>
-              </div> {/* end row */}
+              </div>
+
               <div className="text-end">
                 <button type="button" className="btn btn-success mt-2" onClick={()=>OnClickSaveSettingProfile()}>
-                <i className="mdi mdi-content-save"/>Cập nhật
+                  <i className="mdi mdi-content-save"/>Cập nhật
                 </button>
               </div>
+
             </form>
-          </div>
-)
+        </div>
+    )
 }
 export default ProfileSettings;

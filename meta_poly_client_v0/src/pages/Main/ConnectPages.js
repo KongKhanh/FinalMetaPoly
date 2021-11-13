@@ -1,33 +1,8 @@
-import { useState, useEffect } from 'react';
-
 import Header from '../../common/components/Header';
 
 import { ChangePageAdapter } from './ChangePageAdapter';
 
 function ConnectPages(props) {
-
-    // Mặc định trang chủ do case uGqXQpyJeFUoBqm bên phần ChangePage
-    const [currentPage, setCurrentPage] = useState('uGqXQpyJeFUoBqm')  //-------------This is default page;
-
-    function __AuthPermissionUsingApp() {
-
-        if(!props.UserInforClient.userId) {
-            // Neu khong thoa man dieu kien Auth thi tro ve trang SignIn
-            setCurrentPage('gh7Gv46kZYuhrAP');
-        };
-
-    };
-
-    useEffect(() => {
-
-        __AuthPermissionUsingApp();
-
-        return () => {
-
-        };
-
-    }, [props]);
-
 
     return (
         <div className="ConnectPages-Container">
@@ -37,7 +12,7 @@ function ConnectPages(props) {
 
                         {/* Header Page Here, For Fixed Header */}
                         <Header 
-                            setCurrentPage = {setCurrentPage}
+                            setCurrentPage = {props.setCurrentPage}
                         />
 
                         {/*  Main Page Here, For Scroll Page */}
@@ -47,7 +22,7 @@ function ConnectPages(props) {
                                     {
                                         ChangePageAdapter(
                                             // Xac dinh id_page de tra ve view
-                                            currentPage, 
+                                            props.currentPage, 
 
                                             // Du lieu tra ve cho view
                                             {
@@ -55,7 +30,7 @@ function ConnectPages(props) {
                                             },
                                             // Props field 
                                             {
-                                                setCurrentPage: setCurrentPage,
+                                                setCurrentPage: props.setCurrentPage,
                                                 UserInforClient: props.UserInforClient,
                                                 setUserInforClient: props.setUserInforClient
                                             }
