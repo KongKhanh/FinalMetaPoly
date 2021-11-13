@@ -32,27 +32,27 @@ function Profile(props){
         return responseResult.data;
     };
 
-        useEffect(function(){
-            requestData()
-           .then(
-              function(res) {
-                    setUserInfor({
-                        ...UserInfor,
-                        UserName: res.user_name,
-                        UserPhone: res.user_phone,
-                        UserEmail: res.user_email,
-                        UserGender: res.user_gender,
-                        PostList: res.post_list_by_user_id
-                    });  
-                    setProfileSetting({
-                      ...ProfileSetting,
+      useEffect(function(){
+          requestData()
+          .then(
+            function(res) {
+                  setUserInfor({
+                      ...UserInfor,
                       UserName: res.user_name,
+                      UserPhone: res.user_phone,
                       UserEmail: res.user_email,
                       UserGender: res.user_gender,
+                      PostList: res.post_list_by_user_id
                   });  
-               }
-            )
-        }, []);
+                  setProfileSetting({
+                    ...ProfileSetting,
+                    UserName: res.user_name,
+                    UserEmail: res.user_email,
+                    UserGender: res.user_gender,
+                });  
+              }
+          )
+      }, []);
 
     return(
         <div className="row">

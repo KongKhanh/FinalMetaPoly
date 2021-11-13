@@ -38,17 +38,25 @@ function ProfileSettings(props){
   };
 
     function OnChangeSettingProfile(event){
+
         props.setProfileSetting({
+
           ...props.ProfileSetting,
+
           [event.target.name]: event.target.value,
-        })
+
+        });
     }
     
     function OnClickSaveSettingProfile(){
+
       requestInforProfileSetting().then((res)=>{
+
         console.log(res);
+
       });
     }
+
     function ShowGender(DataGender){
        return DataGender.map((GenderItem, index)=>{
             return(

@@ -1,11 +1,14 @@
-import {useState} from 'react';
+import { useState } from 'react';
+
 import { API_URL } from '../../settings/Api';
+
 import axios from 'axios';
 
 function LikeButton(props){
-    const [ToggleLike,setToggleLike] = useState(false);
 
-    const requestLikePost = async (ToggleLike) => {
+    const [activeToggleLike, setActiveToggleLike] = useState(true);
+
+    const requestLikePost = async () => {
 
         var formData = new FormData();
 
@@ -13,7 +16,7 @@ function LikeButton(props){
     
         formData.append('postID', props.PostID);
 
-        formData.append('activeLike', ToggleLike);
+        formData.append('activeLike', activeToggleLike);
 
         const responseResult = await axios({
           headers: {
@@ -27,23 +30,54 @@ function LikeButton(props){
         return responseResult.data;
       }
 
-      const likePostMM = (ToggleLike) => {
-        requestLikePost(ToggleLike).then(
-          function (res) {
-            console.log(res);
-          }
-        )
+      // When user onclick the "Like Button", Default value in state @@activeToggleLike sending to server.
+      // First click is **True.
+      const likePostMM = () => {
+
+          requestLikePost().then(
+
+              function (res) {
+
+                  // if(res) {
+
+                  //   setActiveToggleLike(false);
+
+                  // } else {
+
+                  //   setActiveToggleLike(true);
+
+                  // }
+                      
+                  if(res.status_insert === 1) {
+
+                      setActiveToggleLike(false);
+                      
+                  } 
+                  else {
+
+                      setActiveToggleLike(true);
+                  }
+
+
+                  console.log(res);
+                
+              }
+          );
+
       }
 
-    function handleClick(ToggleLike){
-        likePostMM(ToggleLike);
-        setToggleLike(!ToggleLike);
+    function handleClick(){
+
+        likePostMM();
 
     }
+
     return(
         <div className="p-1 d-inline"> 
             {/* () trước khi chạy hàm */}
-                <i className= {ToggleLike? 'mdi mdi-heart text-danger' : 'mdi mdi-heart'} onClick={()=>handleClick(ToggleLike)}/>
+              <button className="border-0">
+                <i className= { !activeToggleLike ? 'mdi mdi-heart text-danger' : 'mdi mdi-heart' } onClick={ () => handleClick() }/>
+              </button>
         </div>
     )
 }

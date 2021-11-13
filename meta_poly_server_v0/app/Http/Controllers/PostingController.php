@@ -1,5 +1,5 @@
 <?php
-class PostingController
+class PostingController 
 {
 
     public function __handleCreateNewPost()
@@ -18,23 +18,32 @@ class PostingController
 
         $postID = isset($_POST['postID']) ? $_POST['postID'] : null;
 
-        $activeLike = ($_POST['activeLike']);
-        // echo $activeLike;
-        // return;
+        $activeLike = isset($_POST['activeLike']) ? $_POST['activeLike'] : null;
 
-        if($activeLike) {
+        // Convert Requset "String Type to Boolean Type"
+        $activeLike == 'true' ? $activeLike = true : $activeLike = false;
+
+        if($activeLike == true) {
+
             PostMd::likePost(base64_decode($idUser), $postID);
+
             echo json_encode([
                 'status_insert' => 1, //like
                 'active ' => $activeLike
             ]);
-        } else {
+            return;
+        } 
+
+        if($activeLike == false) {
+
             PostMd::unlikePost(base64_decode($idUser), $postID);
+
             echo json_encode([
-                'status_insert' => 'unlike', //unlike
+                'status_insert' => 2, //unlike
                 'active ' => $activeLike
             ]);
+            return;
         }
-
+       
     }
 }

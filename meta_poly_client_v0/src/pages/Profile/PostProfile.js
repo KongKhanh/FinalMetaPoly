@@ -1,4 +1,5 @@
-import ProfileSettings from './ProfileSettings'
+import ProfileSettings from './ProfileSettings';
+
 function PostProfile(props){
     return(
     <div className="col-xl-8 col-lg-7">
