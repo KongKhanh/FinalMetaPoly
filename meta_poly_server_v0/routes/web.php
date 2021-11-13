@@ -17,6 +17,7 @@
     $router->post('/user/create-new','UserController@__CreateNewUser');
     $router->post('/user/auth-using','UserController@__authUsingUser');
     $router->post('/user/profile-setting/{idUser}','UserController@__setProfileSetting');
+    $router->post('/user/create-like','PostingController@__likePost');
 
 
     // ---------------------For Posting

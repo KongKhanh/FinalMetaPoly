@@ -40,7 +40,6 @@ function LikeButton(props){
         setToggleLike(!ToggleLike);
 
     }
-
     return(
         <div className="p-1 d-inline"> 
             {/* () trước khi chạy hàm */}
