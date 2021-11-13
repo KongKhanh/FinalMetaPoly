@@ -62,14 +62,12 @@ function Profile(props){
 
               <div className="card text-center">
                   <div className="card-body">
-
-                      <h4 className="mb-0 mt-2">
-                          {UserInfor.UserName}
-                      </h4>
-
+                  
                       <img src="assets/images/users/avatar-1.jpg" className="rounded-circle avatar-lg img-thumbnail" alt="MetaPoly" />
 
-                      <h4 className="mb-0 mt-2">Soeng Souy</h4>
+                      <h4 className="mb-0 mt-2"> 
+                      {UserInfor.UserName} 
+                      </h4>
 
                       <p className="text-muted font-14">Founder</p>
 
@@ -185,6 +183,7 @@ function Profile(props){
 
           <PostProfile 
               UserInfor = {UserInfor}
+              setUserInfor = {setUserInfor}
               ProfileSetting = {ProfileSetting}
               setProfileSetting = {setProfileSetting}
               idUserCoockie = {props.UserInforClient.userId}

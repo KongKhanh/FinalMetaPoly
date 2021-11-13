@@ -15,10 +15,9 @@ class NewsfeedController{
     public function __getPostList(){
 
         $PostList = $this->NewsfeedMdObj->getPostList();
-
+        
         // Dùng vòng lập for để mã hóa các phần tử trong $PostList
         for($i = 0; $i < count($PostList); $i++){
-
 
             // Dòng này dùng để decode User Name
 

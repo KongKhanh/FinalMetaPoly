@@ -117,10 +117,10 @@ class UserController{
 
             $idUser = base64_decode($idUser);
 
-            $x = $wUserMdObj->setProfileSettingMd($blockUserSetting,$idUser);
+            $wUserMdObj->setProfileSettingMd($blockUserSetting,$idUser);
 
             echo json_encode([
-                'status_task' =>  $x,
+                'status_task' =>  1,
                 'message_task' => 'successful',
             ]);
         }

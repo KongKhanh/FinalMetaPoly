@@ -23,8 +23,11 @@ function ProfileSettings(props){
     const requestInforProfileSetting = async() => {
 
       var DataRequestInfor = new FormData(); // Currently empty
+
       DataRequestInfor.append('user_name', props.ProfileSetting.UserName);
+
       DataRequestInfor.append('user_email', props.ProfileSetting.UserEmail);
+
       DataRequestInfor.append('user_gender', props.ProfileSetting.UserGender);
 
       const responseResult = await axios({
@@ -53,6 +56,26 @@ function ProfileSettings(props){
 
         requestInforProfileSetting().then((res)=>{
 
+          if (res.status_task === 1){
+            props.setUserInfor({
+
+              ...props.UserInfor,
+
+              UserName: props.ProfileSetting.UserName,
+              
+              // UserPhone: props.UserInfor.UserPhone,
+              // Mai update sđt
+
+              UserGender: props.ProfileSetting.UserGender,
+
+              UserEmail: props.ProfileSetting.UserEmail
+
+            })
+            alert("Cập nhập thành công")
+          }
+          else{
+            alert("Cập nhập thất bại")
+          }
           console.log(res);
 
         });
