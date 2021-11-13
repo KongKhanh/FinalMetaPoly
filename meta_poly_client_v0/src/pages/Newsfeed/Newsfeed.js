@@ -48,6 +48,7 @@ function Newsfeed(props){
             .then(
                 function(res) {
                     setPostList(res); 
+                    console.log("Over");
                 }
             );
         }
@@ -56,7 +57,7 @@ function Newsfeed(props){
             source.cancel('Operation canceled by the user.');
         }
 
-      }, [props, requestPost, source]);
+      }, [props]);
 
     return(
         <div className="content-page w-100">
@@ -182,7 +183,6 @@ function Newsfeed(props){
                           <div key={index}>
                               <PostContent 
                                 PostItem = {PostItem}
-
                                 UserInforClient = {props.UserInforClient}
                               />
                           </div>
