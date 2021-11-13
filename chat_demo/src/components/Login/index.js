@@ -1,19 +1,33 @@
 import React from 'react';
 import { Row, Col, Button, Typography } from 'antd';
-import firebase, { auth } from '../../firebase/config';
+import firebase, { auth, db } from '../../firebase/config';
+import { addDocument } from '../../firebase/services';
+//v6 useHistory -> useNavigate,history.push() = navigate()
+// import { useNavigate } from 'react-router-dom';
+
+
 
 const { Title } = Typography;
 
 const fbProvider = new firebase.auth.FacebookAuthProvider();
 
 export default function Login() {
-    const handleFbLogin = () => {
-        auth.signInWithPopup(fbProvider);
-    };
 
-    auth.onAuthStateChanged((user) => {
-        console.log({ user });
-    })
+    const handleFbLogin = async () => {
+        const {additionalUserInfo, user } = await auth.signInWithPopup(fbProvider);
+
+        if (additionalUserInfo?.isNewUser) {
+            addDocument('users', {
+              displayName: user.displayName,
+              email: user.email,
+              photoURL: user.photoURL,
+              uid: user.displayName,
+              providerId: additionalUserInfo.providerId,
+             
+            });
+          }
+        };
+    
     return (
         <div>
             <Row justify='center' style={{ height: 800 }}>
