@@ -29,6 +29,9 @@ function ProfileSettings(props){
       DataRequestInfor.append('user_email', props.ProfileSetting.UserEmail);
 
       DataRequestInfor.append('user_gender', props.ProfileSetting.UserGender);
+      
+      DataRequestInfor.append('user_phone', props.ProfileSetting.UserPhone);
+
 
       const responseResult = await axios({
           headers: { 
@@ -63,8 +66,7 @@ function ProfileSettings(props){
 
               UserName: props.ProfileSetting.UserName,
               
-              // UserPhone: props.UserInfor.UserPhone,
-              // Mai update sđt
+              UserPhone: props.ProfileSetting.UserPhone,
 
               UserGender: props.ProfileSetting.UserGender,
 
@@ -104,12 +106,12 @@ function ProfileSettings(props){
 
               <h5 className="mb-4 text-uppercase">
 
-              <i className="mdi mdi-account-circle me-1" /> Personal Info</h5>
+              <i className="mdi mdi-account-circle me-1" /> Cập nhật tài khoản </h5>
 
               <div className="row">
                 <div className="col-md-6">
                   <div className="mb-3">
-                    <label htmlFor="firstname" className="form-label">Name</label>
+                    <label htmlFor="firstname" className="form-label">Họ và Tên</label>
                     <input 
                     type="text" 
                     className="form-control" 
@@ -138,9 +140,22 @@ function ProfileSettings(props){
               <div className="row">
                 <div className="col-md-6">
                   <div className="mb-3">
-                    <label className="form-label">Gender</label>
+                    <label className="form-label">Giới tính</label>
                     <br/>
                     {ShowGender(DataGender)}
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="mb-3">
+                    <label htmlFor="Phone" className="form-label">Số điện thoại</label>
+                    <input 
+                    type="text" 
+                    className="form-control" 
+                    id="Phone"
+                    name='UserPhone' 
+                    value={props.ProfileSetting.UserPhone} 
+                    onChange={(event) =>OnChangeSettingProfile(event)}
+                    />
                   </div>
                 </div>
               </div>

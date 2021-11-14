@@ -1,3 +1,4 @@
+import NewsfeedProfile from './NewsfeedProfile';
 import ProfileSettings from './ProfileSettings';
 
 function PostProfile(props){
@@ -9,17 +10,17 @@ function PostProfile(props){
                   <ul className="nav nav-pills bg-nav-pills nav-justified mb-3">
                     <li className="nav-item">
                       <a href="#aboutme" data-bs-toggle="tab" aria-expanded="false" className="nav-link rounded-0">
-                        About
+                        Ảnh/Video
                       </a>
                     </li>
                     <li className="nav-item">
                       <a href="#timeline" data-bs-toggle="tab" aria-expanded="true" className="nav-link rounded-0 active">
-                        Timeline
+                        Bài viết
                       </a>
                     </li>
                     <li className="nav-item">
                       <a href="#settings" data-bs-toggle="tab" aria-expanded="false" className="nav-link rounded-0">
-                        Settings
+                        Cập nhật tài khoản
                       </a>
                     </li>
                   </ul>
@@ -141,85 +142,17 @@ function PostProfile(props){
                       </div> {/* end .border*/}
                       {/* end comment box */}
                       {/* Story Box*/}
-                      <div className="border border-light rounded p-2 mb-3">
-                        <div className="d-flex">
-                          <img className="me-2 rounded-circle" src="assets/images/users/avatar-3.jpg" alt="MetaPoly" height={32} />
-                          <div>
-                            <h5 className="m-0">Jeremy Tomlinson</h5>
-                            <p className="text-muted"><small>about 2 minuts ago</small></p>
-                          </div>
-                        </div>
-                        <p>Story based around the idea of time lapse, animation to post soon!</p>
-                        <img src="assets/images/small/small-1.jpg" alt="post-img" className="rounded me-1" height={60} />
-                        <img src="assets/images/small/small-2.jpg" alt="post-img" className="rounded me-1" height={60} />
-                        <img src="assets/images/small/small-3.jpg" alt="post-img" className="rounded" height={60} />
-                        <div className="mt-2">
-                          <a href="/#" className="btn btn-sm btn-link text-muted"><i className="mdi mdi-reply" /> Reply</a>
-                          <a href="/#" className="btn btn-sm btn-link text-muted"><i className="mdi mdi-heart-outline" /> Like</a>
-                          <a href="/#" className="btn btn-sm btn-link text-muted"><i className="mdi mdi-share-variant" /> Share</a>
-                        </div>
-                      </div>
-                      {/* Story Box*/}
-                      <div className="border border-light rounded p-2 mb-3">
-                        <div className="d-flex">
-                          <img className="me-2 rounded-circle" src="assets/images/users/avatar-4.jpg" alt="MetaPoly" height={32} />
-                          <div>
-                            <h5 className="m-0">Thelma Fridley</h5>
-                            <p className="text-muted"><small>about 1 hour ago</small></p>
-                          </div>
-                        </div>
-                        <div className="font-16 text-center fst-italic text-dark">
-                          <i className="mdi mdi-format-quote-open font-20" /> Cras sit amet nibh libero, in
-                          gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
-                          purus odio, vestibulum in vulputate at, tempus viverra turpis. Duis
-                          sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper
-                          porta. Mauris massa.
-                        </div>
-                        <div className="mx-n2 p-2 mt-3 bg-light">
-                          <div className="d-flex">
-                            <img className="me-2 rounded-circle" src="assets/images/users/avatar-3.jpg" alt="MetaPoly" height={32} />
-                            <div>
-                              <h5 className="mt-0">Jeremy Tomlinson <small className="text-muted">3 hours ago</small></h5>
-                              Nice work, makes me think of The Money Pit.
-                              <br />
-                              <a href="/#" className="text-muted font-13 d-inline-block mt-2"><i className="mdi mdi-reply" /> Reply</a>
-                              <div className="d-flex mt-3">
-                                <a className="pe-2" href="/#">
-                                  <img src="assets/images/users/avatar-4.jpg" className="rounded-circle" alt="MetaPoly" height={32} />
-                                </a>
-                                <div>
-                                  <h5 className="mt-0">Thelma Fridley <small className="text-muted">5 hours ago</small></h5>
-                                  i'm in the middle of a timelapse animation myself! (Very different though.) Awesome stuff.
-                                </div>
-                              </div>
+                      {
+                        props.UserInfor.PostList.map((NewsfeedProfileItem, index) => {
+                          return (
+                            <div key={index}>
+                              <NewsfeedProfile 
+                                NewsfeedProfileItem = {NewsfeedProfileItem}
+                              />
                             </div>
-                          </div>
-                          <div className="d-flex mt-2">
-                            <a className="pe-2" href="/#">
-                              <img src="assets/images/users/avatar-1.jpg" className="rounded-circle" alt="MetaPoly" height={32} />
-                            </a>
-                            <div className="w-100">
-                              <input type="text" id="simpleinput" className="form-control border-0 form-control-sm" placeholder="Add comment" />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="mt-2">
-                          <a href="/#" className="btn btn-sm btn-link text-danger"><i className="mdi mdi-heart" /> Like (28)</a>
-                          <a href="/#" className="btn btn-sm btn-link text-muted"><i className="mdi mdi-share-variant" /> Share</a>
-                        </div>
-                      </div>
-                      {/* Story Box*/}
-                      <div className="border border-light p-2 mb-3">
-                        <div className="d-flex">
-                          <img className="me-2 rounded-circle" src="assets/images/users/avatar-6.jpg" alt="MetaPoly" height={32} />
-                          <div>
-                            <h5 className="m-0">Martin Williamson</h5>
-                            <p className="text-muted"><small>15 hours ago</small></p>
-                          </div>
-                        </div>
-                        <p>The parallax is a little odd but O.o that house build is awesome!!</p>
-                        <iframe title="MetaPoly" height={300} className="img-fluid border-0" />
-                      </div>
+                          )
+                        })
+                      }
                       <div className="text-center">
                         <a href="/#" className="text-danger"><i className="mdi mdi-spin mdi-loading me-1" /> Load more </a>
                       </div>
