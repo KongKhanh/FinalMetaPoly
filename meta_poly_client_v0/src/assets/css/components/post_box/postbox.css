@@ -1,0 +1,195 @@
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1002;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box {
+  width: 36%;
+  background-color: #FFFFFF !important;
+  top: 32px;
+  border-radius: 8px;
+  position: fixed;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .Box-Header .Box-Header-Wrapper .Box-Header-Wrapper-Inner {
+  position: relative;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .Box-Header .Box-Header-Wrapper .Box-Header-Wrapper-Inner .Box-Header-Title {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .Box-Header .Box-Header-Wrapper .Box-Header-Wrapper-Inner .Box-Header-Btn-Off .Btn-Off-Box {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .Box-Header .Box-Header-Wrapper .Box-Header-Wrapper-Inner .Box-Header-Btn-Off .Btn-Off-Box .btn-icon-wapper {
+  height: 28px;
+  width: 28px;
+  background-color: #E4E6EB;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .Box-Header .Box-Header-Wrapper .Box-Header-Wrapper-Inner .Box-Header-Btn-Off .Btn-Off-Box .btn-icon-wapper .btn_icon {
+  max-height: 28px;
+  max-width: 28px;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Post-Relative .Box-Body-Post-Relative-Container .Box-Body-Post-Wrapper {
+  display: flex;
+  align-items: stretch;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Post-Relative .Box-Body-Post-Relative-Container .Box-Body-Post-Wrapper .Avatar-Area .Avatar-Area-Custom {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Post-Relative .Box-Body-Post-Relative-Container .Box-Body-Post-Wrapper .Avatar-Area .Avatar-Area-Custom .Avatar-Item {
+  width: 40px !important;
+  height: 40px !important;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Post-Relative .Box-Body-Post-Relative-Container .Box-Body-Post-Wrapper .Info-Relative-Area .Info-Relative-Custom .Info-Relative-Wrapper .Relative-User-Name .User-Name-Value {
+  font-weight: 800;
+  color: #192a56;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Post-Relative .Box-Body-Post-Relative-Container .Box-Body-Post-Wrapper .Info-Relative-Area .Info-Relative-Custom .Info-Relative-Wrapper .TLContainer .TLContainer-Wrapper .TLContainer-DropDown-Focus .btn-DropDown {
+  display: flex;
+  align-items: flex-end;
+  background-color: #E4E6EB;
+  border: 1px solid #E4E6EB;
+  border-radius: 4px;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Post-Relative .Box-Body-Post-Relative-Container .Box-Body-Post-Wrapper .Info-Relative-Area .Info-Relative-Custom .Info-Relative-Wrapper .TLContainer .TLContainer-Wrapper .TLContainer-DropDown-Focus .btn-DropDown .btn-DropDown-Content .btn-DropDown-Tags .btn-DropDown-Tags-Box {
+  display: flex;
+  align-items: flex-start;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Post-Relative .Box-Body-Post-Relative-Container .Box-Body-Post-Wrapper .Info-Relative-Area .Info-Relative-Custom .Info-Relative-Wrapper .TLContainer .TLContainer-Wrapper .TLContainer-DropDown-Focus .btn-DropDown .btn-DropDown-Content .btn-DropDown-Tags .btn-DropDown-Tags-Box .Tags-Box-Content .Tags-Content {
+  margin-bottom: 0;
+  font-weight: 600;
+  color: #636e72;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Post-Relative .Box-Body-Post-Relative-Container .Box-Body-Post-Wrapper .Info-Relative-Area .Info-Relative-Custom .Info-Relative-Wrapper .TLContainer .TLContainer-Wrapper .TLContainer-DropDown-Focus .btn-DropDown .btn-DropDown-icon .btn_icon {
+  width: 12px;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Content-Text .Box-Body-Content-Text-Inner .Content-Text-Package textarea {
+  padding-left: 0;
+  padding-right: 0;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Content-Media .Box-Body-Content-Media-Inner .Box-Body-Content-Media-Package {
+  position: relative;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Content-Media .Box-Body-Content-Media-Inner .Box-Body-Content-Media-Package .Post-Media_Images_Item {
+  max-width: 100%;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Content-Media .Box-Body-Content-Media-Inner .Box-Body-Content-Media-Package .Media-Package-Btn-Cancel {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  background-color: #FFFFFF;
+  overflow: hidden;
+  cursor: pointer;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Content-Media .Box-Body-Content-Media-Inner .Box-Body-Content-Media-Package .Media-Package-Btn-Cancel .Btn-Off-Media {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background-color: #FFFFFF;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Content-Media .Box-Body-Content-Media-Inner .Box-Body-Content-Media-Package .Media-Package-Btn-Cancel .Btn-Off-Media .btn-icon-wapper {
+  width: 100%;
+  height: 100%;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Content-Media .Box-Body-Content-Media-Inner .Box-Body-Content-Media-Package .Media-Package-Btn-Cancel .Btn-Off-Media .btn-icon-wapper .btn_icon {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 50%;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Content-Media .Box-Body-Content-Media-Inner .Box-Body-Content-Media-Drag {
+  height: 180px;
+  background-color: #F7F8FA;
+  border-radius: 8px;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Content-Media .Box-Body-Content-Media-Inner .Box-Body-Content-Media-Drag:hover {
+  background-color: #E4E6EB;
+  cursor: pointer;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Content-Media .Box-Body-Content-Media-Inner .Box-Body-Content-Media-Drag .labbel-select-container:hover {
+  cursor: pointer;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Content-Media .Box-Body-Content-Media-Inner .Box-Body-Content-Media-Drag .labbel-select-container .Media-Drag-Container {
+  height: 100%;
+  width: 100%;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Content-Media .Box-Body-Content-Media-Inner .Box-Body-Content-Media-Drag .labbel-select-container .Media-Drag-Container .Media-Drag-Wrapper {
+  height: 100%;
+  width: 100%;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Content-Media .Box-Body-Content-Media-Inner .Box-Body-Content-Media-Drag .labbel-select-container .Media-Drag-Container .Media-Drag-Wrapper .Media-Drag-Box {
+  height: 100%;
+  width: 100%;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Content-Media .Box-Body-Content-Media-Inner .Box-Body-Content-Media-Drag .labbel-select-container .Media-Drag-Container .Media-Drag-Wrapper .Media-Drag-Box .Media-Drag-Box-Content-Container {
+  height: 100%;
+  width: 100%;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Content-Media .Box-Body-Content-Media-Inner .Box-Body-Content-Media-Drag .labbel-select-container .Media-Drag-Container .Media-Drag-Wrapper .Media-Drag-Box .Media-Drag-Box-Content-Container .Media-Drag-Box-Content-Wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Content-Media .Box-Body-Content-Media-Inner .Box-Body-Content-Media-Drag .labbel-select-container .Media-Drag-Container .Media-Drag-Wrapper .Media-Drag-Box .Media-Drag-Box-Content-Container .Media-Drag-Box-Content-Wrapper .Box-Content-Icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+  border: 1px solid #E4E6EB;
+  background-color: #E4E6EB;
+  border-radius: 50%;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Content-Media .Box-Body-Content-Media-Inner .Box-Body-Content-Media-Drag .labbel-select-container .Media-Drag-Container .Media-Drag-Wrapper .Media-Drag-Box .Media-Drag-Box-Content-Container .Media-Drag-Box-Content-Wrapper .Box-Content-Title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Content-Media .Box-Body-Content-Media-Inner .Box-Body-Content-Media-Drag .labbel-select-container .Media-Drag-Container .Media-Drag-Wrapper .Media-Drag-Box .Media-Drag-Box-Content-Container .Media-Drag-Box-Content-Wrapper .Box-Content-Title .head-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Content-Media .Box-Body-Content-Media-Inner .Box-Body-Content-Media-Drag .labbel-select-container .Media-Drag-Container .Media-Drag-Wrapper .Media-Drag-Box .Media-Drag-Box-Content-Container .Media-Drag-Box-Content-Wrapper .Box-Content-Title .head-note {
+  font-weight: lighter;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Box-Body-Content-Media .Box-Body-Content-Media-Inner .Box-Body-Content-Media-Drag #imgInpPost {
+  display: none;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .Box-Footer .Box-Footer-Container .Box-Footer-Wrapper #btnPostToNewsFeed {
+  background-color: #1877F2;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #1877F2;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .Box-Footer .Box-Footer-Container .Box-Footer-Wrapper #btnPostToNewsFeed .BtN-nAME {
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+/*# sourceMappingURL=postbox.css.map */
