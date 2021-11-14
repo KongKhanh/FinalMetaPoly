@@ -160,6 +160,7 @@ function PostProfile(props){
 
                     <ProfileSettings 
                         setUserInfor = {props.setUserInfor}
+                        UserInfor = {props.UserInfor}
                         ProfileSetting = {props.ProfileSetting}
                         setProfileSetting = {props.setProfileSetting}
                         idUserCoockie = {props.idUserCoockie}
