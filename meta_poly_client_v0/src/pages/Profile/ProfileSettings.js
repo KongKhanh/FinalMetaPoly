@@ -31,7 +31,8 @@ function ProfileSettings(props){
       DataRequestInfor.append('user_gender', props.ProfileSetting.UserGender);
       
       DataRequestInfor.append('user_phone', props.ProfileSetting.UserPhone);
-
+      
+      DataRequestInfor.append('user_phone', props.ProfileSetting.UserBirthday);
 
       const responseResult = await axios({
           headers: { 
@@ -70,6 +71,8 @@ function ProfileSettings(props){
 
               UserGender: props.ProfileSetting.UserGender,
 
+              UserBirthday: props.ProfileSetting.UserBirthday,
+
               UserEmail: props.ProfileSetting.UserEmail
 
             })
@@ -86,7 +89,7 @@ function ProfileSettings(props){
     function ShowGender(DataGender){
        return DataGender.map((GenderItem, index)=>{
             return(
-                <div key = {index}>
+                <div key = {index} className={index == 0 ? 'me-2' : 'mx-2'}>
                     <input 
                         type="radio" 
                         id={`Gender_${index}`} 
@@ -140,13 +143,6 @@ function ProfileSettings(props){
               <div className="row">
                 <div className="col-md-6">
                   <div className="mb-3">
-                    <label className="form-label">Giới tính</label>
-                    <br/>
-                    {ShowGender(DataGender)}
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="mb-3">
                     <label htmlFor="Phone" className="form-label">Số điện thoại</label>
                     <input 
                     type="text" 
@@ -156,6 +152,27 @@ function ProfileSettings(props){
                     value={props.ProfileSetting.UserPhone} 
                     onChange={(event) =>OnChangeSettingProfile(event)}
                     />
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="mb-3">
+                    <label htmlFor="Date" className="form-label">Ngày sinh</label>
+                    <input 
+                    type="date" 
+                    className="form-control" 
+                    id="Date"
+                    name='UserBirthday' 
+                    value={props.ProfileSetting.UserBirthday} 
+                    onChange={(event) => OnChangeSettingProfile(event)}
+                    />
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="mb-3 d-flex flex-column">
+                    <label className="form-label">Giới tính:</label>
+                    <div className="d-flex">
+                      {ShowGender(DataGender)}
+                    </div>
                   </div>
                 </div>
               </div>

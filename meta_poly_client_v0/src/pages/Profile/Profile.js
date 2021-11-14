@@ -11,6 +11,7 @@ function Profile(props){
         UserName: '',
         UserPhone: '',
         UserImg: '',
+        UserBirthday: '',
         UserGender: '',
         UserEmail: '',
         PostList: []
@@ -21,6 +22,7 @@ function Profile(props){
         UserImg: '',
         UserGender: '',
         UserEmail: '',
+        UserBirthday: '',
     });
 
     useEffect(function(){
@@ -43,6 +45,7 @@ function Profile(props){
                     UserPhone: res.user_phone,
                     UserEmail: res.user_email,
                     UserGender: res.user_gender,
+                    UserBirthday: res.user_date_of_birth,
                     PostList: res.post_list_by_user_id
                 });  
                 setProfileSetting({
@@ -51,6 +54,7 @@ function Profile(props){
                     UserPhone: res.user_phone,
                     UserEmail: res.user_email,
                     UserGender: res.user_gender,
+                    UserBirthday: res.user_date_of_birth,
                 });
             }
         )
@@ -81,14 +85,14 @@ function Profile(props){
                           Hi I'm Johnathn Deo,has been the industry's standard dummy text ever since the
                           1500s, when an unknown printer took a galley of type.
                         </p>
-                        <p className="text-muted mb-2 font-13"><strong>Full Name :</strong> <span className="ms-2">{UserInfor.UserName}</span></p>
+                        <p className="text-muted mb-2 font-13"><strong>Họ và tên :</strong> <span className="ms-2">{UserInfor.UserName}</span></p>
 
-                        <p className="text-muted mb-2 font-13"><strong>Mobile :</strong><span className="ms-2">
+                        <p className="text-muted mb-2 font-13"><strong>Số điện thoại :</strong><span className="ms-2">
                         {UserInfor.UserPhone}</span></p>
 
                         <p className="text-muted mb-2 font-13"><strong>Email :</strong> <span className="ms-2 ">{UserInfor.UserEmail}</span></p>
 
-                        <p className="text-muted mb-1 font-13"><strong>Gender:</strong> 
+                        <p className="text-muted mb-2 font-13"><strong>Giới tính :</strong> 
                           <span className="ms-2">
                             {
                                 UserInfor.UserGender === "2" ? "Không xác định" : 
@@ -99,7 +103,7 @@ function Profile(props){
                             }
                           </span>
                         </p>
-
+                        <p className="text-muted mb-2 font-13"><strong>Ngày sinh :</strong> <span className="ms-2 ">{UserInfor.UserBirthday}</span></p>
                       </div>
 
                       <ul className="social-list list-inline mt-3 mb-0">

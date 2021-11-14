@@ -19,7 +19,7 @@ export default function PostingBox(props) {
     });
 
     const [activeAttachMediaBox, setActiveAttachMediaBox] = useState({
-        is_active: true,
+        is_active: false,
     });
 
     const __requestCreateNewPost = async () => {
