@@ -34,9 +34,8 @@ function Newsfeed(props){
         });
 
         if(responseResult) {
-          console.log(responseResult);
-           return responseResult.data;
 
+           return responseResult.data;
         };
 
       }, [source]);

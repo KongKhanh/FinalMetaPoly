@@ -1,16 +1,5 @@
 function RichTextEditor(props) {
 
-    const handleOnChangeFieldPctContent = (event) => {
-
-        props.setPctContentObj({
-
-            ...props.pctContentObj,
-
-            [event.target.name]: event.target.value,
-
-        });
-    }
-
     return (
         <div className="RichTextEditor-container">
             <div className="RichTextEditor-inner-container">
@@ -23,7 +12,7 @@ function RichTextEditor(props) {
                             placeholder='Chia sẽ cảm nhận của bạn...' 
                             value={props.pctContentObj.pct_content} 
                             name="pct_content"
-                            onChange={(event) => handleOnChangeFieldPctContent(event)}
+                            onChange={(event) => props.handleOnChangeFieldPctContent(event)}
                         />
                     </div>
                 </div>

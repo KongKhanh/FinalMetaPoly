@@ -1,5 +1,25 @@
+import { useState } from "react";
+
+import MediaBoxContainer from './MediaBoxContainer';
+import BtnDragMedia from './BtnDragMedia';
 
 export default function AttachMediaBox(props) {
+
+    const [activeDragMediaBox, setActiveDragMediaBox] = useState(false);
+
+    const [MediaContentURL, setMediaContentURL] = useState(false);
+
+     function hanldeOnChangeDragMedia(event){
+
+            const [file] = event.target.files;
+
+            if(file) {
+
+                setMediaContentURL(file);
+
+                setActiveDragMediaBox(true);
+            }
+     }
 
     return (
         <div className="AttachMediaBox-Container">
@@ -25,7 +45,7 @@ export default function AttachMediaBox(props) {
                                                 })}
                                             >
                                                 <div className="btn-icon-wapper">
-                                                    <img src="./assets/icons/flaticon/24px/cancel.png" alt="MetaPoly_Icon" className="btn_icon"></img>
+                                                    <img src="./assets/icons/flaticon/32px/cancel.png" alt="MetaPoly_Icon" className="btn_icon"></img>
                                                 </div>
                                             </button>
                                         </div>
@@ -68,7 +88,7 @@ export default function AttachMediaBox(props) {
                                                                                     </div>
                                                                                 </div>
                                                                                 <div className="btn-DropDown-icon ms-1">
-                                                                                    <img src="./assets/icons/flaticon/16px/caret_down.png" alt="MetaPoly_Icon" className="btn_icon"></img>
+                                                                                    <img src="./assets/icons/flaticon/16px/caret_down.png" alt="MetaPoly_Icon" className="btn_icon"/>
                                                                                 </div>
                                                                             </button>
                                                                         </div>  
@@ -86,8 +106,11 @@ export default function AttachMediaBox(props) {
                                                 <div className="Content-Text-Package">
                                                     <textarea 
                                                         rows={2} 
+                                                        value={props.pctContentObj.pct_content} 
                                                         className="form-control border-0 resize-none" 
                                                         placeholder='Chia sẽ cảm nhận của bạn...' 
+                                                        name="pct_content"
+                                                        onChange={(event) => props.handleOnChangeFieldPctContent(event)}
                                                     />
                                                 </div>
                                             </div>
@@ -95,9 +118,20 @@ export default function AttachMediaBox(props) {
 
                                         <div className="Box-Body-Content-Media mt-2">
                                             <div className="Box-Body-Content-Media-Inner p-2 border">
-                                                <div className="Box-Body-Content-Media-Package">
-                                                    <img src="./assets/images/testing/139700576_164367498808253_7125241253815335092_o.jpg" alt="MetaPoly_Media" className="Post-Media_Images_Item"></img>
-                                                </div>
+                                               
+                                               {
+                                                   activeDragMediaBox ? 
+                                                        <MediaBoxContainer 
+                                                            MediaContentURL={MediaContentURL}
+                                                            setActiveDragMediaBox={setActiveDragMediaBox}
+                                                            setMediaContentURL={setMediaContentURL}
+                                                        /> : 
+
+                                                        <BtnDragMedia 
+                                                            hanldeOnChangeDragMedia={hanldeOnChangeDragMedia}
+                                                        />
+                                               }
+                                                
                                             </div>
                                         </div>
 

@@ -19,7 +19,7 @@ export default function PostingBox(props) {
     });
 
     const [activeAttachMediaBox, setActiveAttachMediaBox] = useState({
-        is_active: false,
+        is_active: true,
     });
 
     const __requestCreateNewPost = async () => {
@@ -44,6 +44,17 @@ export default function PostingBox(props) {
         return resultsReq.data;
 
     };
+
+    const handleOnChangeFieldPctContent = (event) => {
+
+        setPctContentObj({
+
+            ...pctContentObj,
+
+            [event.target.name]: event.target.value,
+
+        });
+    }
 
     // Xu ly su kien gui thong tin bai POST len server
     const handleClickReqPosting = () => {
@@ -111,6 +122,7 @@ export default function PostingBox(props) {
                                                 <RichTextEditor
                                                     pctContentObj={pctContentObj}
                                                     setPctContentObj={setPctContentObj}
+                                                    handleOnChangeFieldPctContent={handleOnChangeFieldPctContent}
                                                 />
 
                                                 <div className="p-2 bg-light d-flex justify-content-between align-items-center">
@@ -142,6 +154,9 @@ export default function PostingBox(props) {
                             <AttachMediaBox 
                                 activeAttachMediaBox={activeAttachMediaBox}
                                 setActiveAttachMediaBox={setActiveAttachMediaBox}
+                                pctContentObj={pctContentObj}
+                                setPctContentObj={setPctContentObj}
+                                handleOnChangeFieldPctContent={handleOnChangeFieldPctContent}
                             /> : '' 
                         }
 
