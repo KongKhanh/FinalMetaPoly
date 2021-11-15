@@ -113,6 +113,8 @@ class UserController{
                 'user_gender' => isset($_POST['user_gender']) ? trim(strip_tags($_POST['user_gender'])) : '',
 
                 'user_phone' => isset($_POST['user_phone']) ? trim(strip_tags(base64_encode($_POST['user_phone']))) : '',
+
+                // 'user_date_of_birth' => isset($_POST['user_date_of_birth']) ? trim(strip_tags(base64_encode($_POST['user_date_of_birth']))) : '',
             ];
 
             $wUserMdObj = new wUserMd();
@@ -132,6 +134,19 @@ class UserController{
                 'message_task' => 'failed',
             ]);
         }
+    }
+
+    public function __getUser($idUser){
+
+        $UsersAllList = $this->modelUserObj->getUser(base64_decode($idUser));
+        $UserRecommend = [];
+        for($i = 0; $i < 5; $i++){
+            if($UsersAllList[$i]){
+                $UsersAllList[$i]['user_name'] = base64_decode($UsersAllList[$i]['user_name']);
+                array_push($UserRecommend, $UsersAllList[$i]);
+            }
+        }
+        echo json_encode($UserRecommend);
     }
 }
 ?>

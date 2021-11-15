@@ -1,7 +1,8 @@
 import '../../assets/css/components/header/header.css';
+//Component 
+// End
 
 function Header (props) {
-
     return (
         <div className="Header-Container">
             <div className="Header-Inner-Container">
@@ -230,9 +231,9 @@ function Header (props) {
                                     {/* Form App Search Here */}
                                     <form>
                                         <div className="input-group">
-                                            <input type="text" className="form-control dropdown-toggle" placeholder="Search..." id="top-search" />
+                                            <input type="text" className="form-control dropdown-toggle" placeholder="Tìm kiếm..." id="top-search"/>
                                             <span className="mdi mdi-magnify search-icon" />
-                                            <button className="input-group-text btn-primary" type="submit">Search</button>
+                                            <button className="input-group-text btn-primary" type="submit" id="Find">Tìm kiếm</button>
                                         </div>
                                     </form>
                                     {/* Result of Searching */}
@@ -260,28 +261,10 @@ function Header (props) {
                                         <div className="dropdown-header noti-title">
                                             <h6 className="text-overflow mb-2 text-uppercase">Users</h6>
                                         </div>
-                                        <div className="notification-list">
                                         {/* item*/}
-                                        <a href="/#" className="dropdown-item notify-item">
-                                            <div className="d-flex">
-                                            <img className="d-flex me-2 rounded-circle" src="assets/images/users/avatar-2.jpg" alt="ResultSearch" height={32} />
-                                            <div className="w-100">
-                                                <h5 className="m-0 font-14">Erwin Brown</h5>
-                                                <span className="font-12 mb-0">UI Designer</span>
-                                            </div>
-                                            </div>
-                                        </a>
+                                        {/* {ShowUsers(res)} */}
+                                        {/* {showUserRecommend()} */}
                                         {/* item*/}
-                                        <a href="/#" className="dropdown-item notify-item">
-                                            <div className="d-flex">
-                                            <img className="d-flex me-2 rounded-circle" src="assets/images/users/avatar-5.jpg" alt="ResultSearch" height={32} />
-                                            <div className="w-100">
-                                                <h5 className="m-0 font-14">Jacob Deo</h5>
-                                                <span className="font-12 mb-0">Developer</span>
-                                            </div>
-                                            </div>
-                                        </a>
-                                        </div>
                                     </div>
 
                                     <div className="Nav-Control-Layout-App-Container">
