@@ -11,7 +11,7 @@ import SuggestFriend from './SuggestFriend';
 function Newsfeed(props){
 
       const[PostList, setPostList] = useState([]);
-
+      console.log(PostList);
       const CancelToken = axios.CancelToken;
       
       const source = CancelToken.source();

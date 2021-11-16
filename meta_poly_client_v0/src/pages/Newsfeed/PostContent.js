@@ -67,8 +67,9 @@ function PostContent(props) {
             <div className="w-100">
               <h5 className="m-0">Sansa Stark </h5>
               <p className="text-muted mb-0"><small>2 mins ago</small></p>
-              <p className="my-1">This is awesome! Proud of sis :) Waiting for you to
-                come back to winterfall</p>
+              <p className="my-1">
+              {props.PostItem.comment_content}
+              </p>
               <div>
                 <a href="/#>" className="btn btn-sm btn-link text-muted p-0">
                   <i className="uil uil-heart me-1" /> Like
