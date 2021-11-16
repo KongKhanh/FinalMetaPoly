@@ -7,6 +7,8 @@
     require_once('./app/Http/Controllers/UserController.php');  
     require_once('./app/Http/Controllers/NewsfeedController.php');   
     require_once('./app/Http/Controllers/PostingController.php');  
+    require_once('./app/Http/Controllers/FriendController.php');  
+
 
 
     // ------------------------------Handle GET method------------------------------
@@ -19,9 +21,11 @@
     $router->post('/user/auth-using','UserController@__authUsingUser');
     $router->post('/user/profile-setting/{idUser}','UserController@__setProfileSetting');
     $router->post('/user/create-like','PostingController@__likePost');
+    $router->post('/friend/{idUser}','FriendController@__AddNewFriend');
 
 
     // ---------------------For Posting
     $router->post('/posting/single/create-new','PostingController@__handleCreateNewPost');
+    $router->post('/posting/single/create-comment','PostingController@__handleCreateNewComment');
 
 ?>

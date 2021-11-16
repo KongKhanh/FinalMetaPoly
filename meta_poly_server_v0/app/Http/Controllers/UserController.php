@@ -141,7 +141,7 @@ class UserController{
         $UsersAllList = $this->modelUserObj->getUser(base64_decode($idUser));
         $UserRecommend = [];
         for($i = 0; $i < 5; $i++){
-            if($UsersAllList[$i]){
+            if(isset($UsersAllList[$i])){
                 $UsersAllList[$i]['user_name'] = base64_decode($UsersAllList[$i]['user_name']);
                 array_push($UserRecommend, $UsersAllList[$i]);
             }
