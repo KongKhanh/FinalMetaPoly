@@ -39,9 +39,10 @@ function LikeButton(props){
               function (res) {
                       
                   if(res.status_insert === 1) {
-
                       setActiveToggleLike(false);
-                      
+                      props.PostItem({
+
+                      })
                   } 
                   else {
 

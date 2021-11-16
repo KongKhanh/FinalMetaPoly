@@ -184,6 +184,7 @@ function Newsfeed(props){
                           <div key={index}>
                               <PostContent 
                                 PostItem = {PostItem}
+                                setPostList={setPostList}
                                 UserInforClient = {props.UserInforClient}
                               />
                           </div>

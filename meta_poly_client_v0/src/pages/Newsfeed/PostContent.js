@@ -50,6 +50,7 @@ function PostContent(props) {
             <LikeButton
               UserInforClient={props.UserInforClient}
               PostID={props.PostItem.post_id}
+              PostItem={props.PostItem}
             />
             {
               props.PostItem.list_like.length
