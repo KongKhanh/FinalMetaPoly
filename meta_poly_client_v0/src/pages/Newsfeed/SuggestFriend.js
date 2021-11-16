@@ -6,27 +6,25 @@ function SuggestFriend(props){
      // @author KongKhanh
      const [UserList, setUserList] = useState([]);
 
-     console.log(UserList);
-
      function showUserRecommend(){
-        //  return UserList.map((item, index)=> {
-        //      return(
-        //          <div key={`user_recommend_${index}`}>
-        //              <div className="inbox-widget">
-        //               <div className="inbox-item">
-        //                 <div className="inbox-item-img"><img src="assets/images/users/avatar-2.jpg" className="rounded-circle" alt="" /></div>
-        //                 <p className="inbox-item-author">
-        //                 {item.user_name}
-        //                 </p>
-        //                 <p className="inbox-item-text">The first king in the North</p>
-        //                 <p className="inbox-item-date">
-        //                   <button type="button" className="btn btn-sm btn-outline-primary px-1 py-0"> <i className="uil uil-user-plus font-16" /> </button>
-        //                 </p>
-        //               </div>
-        //             </div>
-        //          </div>
-        //      )
-        //  })
+         return UserList.map((item, index)=> {
+             return(
+                 <div key={`user_recommend_${index}`}>
+                     <div className="inbox-widget">
+                      <div className="inbox-item">
+                        <div className="inbox-item-img"><img src="assets/images/users/avatar-2.jpg" className="rounded-circle" alt="" /></div>
+                        <p className="inbox-item-author">
+                        {item.user_name}
+                        </p>
+                        <p className="inbox-item-text">The first king in the North</p>
+                        <p className="inbox-item-date">
+                          <button type="button" className="btn btn-sm btn-outline-primary px-1 py-0"> <i className="uil uil-user-plus font-16" /> </button>
+                        </p>
+                      </div>
+                    </div>
+                 </div>
+             )
+         })
      }
  
      useEffect(function(){

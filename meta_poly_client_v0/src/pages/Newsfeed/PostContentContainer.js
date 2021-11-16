@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import {API_URL} from '../../settings/Api';
+import {BASE_API_URL, API_URL} from '../../settings/Api';
 
+//Components
 import LikeButton from './LikeButton';
 import CommentBox from './CommentBox';
 import ShowComments from './ShowComments';
+import PostingBox from '../../common/components/PostingBox/PostingBox';
 
 export default function PostContentContainer(props) {
 
@@ -60,8 +62,17 @@ export default function PostContentContainer(props) {
 
     return (
         <div className="post-content-container">
+
+            {/* @Auth VoVanHau */}
+            <PostingBox 
+                UserInforClient = {props.UserInforClient}
+                PostList = {PostList}
+                setPostList = {setPostList}
+            />
+
             {       
-            PostList.map((PostItem, index_xx) => {
+                PostList.map((PostItem, index_xx) => {
+
                     return (
                         <div key={`post_item_${index_xx}`}>
 
@@ -78,7 +89,7 @@ export default function PostContentContainer(props) {
                                         <div className="dropdown float-end text-muted">
 
                                             <a href="/#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i className="mdi mdi-dots-horizontal" />
+                                                <i className="mdi mdi-dots-horizontal" />
                                             </a>
 
                                             <div className="dropdown-menu dropdown-menu-end">
@@ -90,7 +101,7 @@ export default function PostContentContainer(props) {
 
                                         <h5 className="m-0">
                                             {
-                                                PostItem.user_name
+                                                PostItem.user_name ? PostItem.user_name : 'Loading...'
                                             }
                                         </h5>
 
@@ -106,14 +117,14 @@ export default function PostContentContainer(props) {
 
                                         <p>
                                             {
-                                            PostItem.pct_content
+                                                PostItem.pct_content ? PostItem.pct_content : 'Loading...'
                                             }
                                         </p>
 
                                         <div className="row">
 
                                         <div className="col-sm-8">
-                                            <img src="assets/images/small/small-4.jpg" alt="post_img" className="rounded me-1 mb-3 mb-sm-0 img-fluid" />
+                                            <img src={ PostItem.media_url ? `${BASE_API_URL + PostItem.media_url}` : 'assets/images/small/small-4.jpg' } alt="post_img" className="rounded me-1 mb-3 mb-sm-0 img-fluid" />
                                         </div>
 
                                         <div className="col">

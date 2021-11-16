@@ -3,6 +3,31 @@
         .posting-box-wrapper {
             .posting-box-inner-wrapper {
 
+                .card {
+                    .RichTextEditor-container {
+                        .RichTextEditor-inner-container {
+                            .RichTextEditor-wapper {
+                                .RichTextEditor-inner-wapper {
+                                    textarea {
+                                        /* width */
+                                        &::-webkit-scrollbar {
+                                            width: 6px;
+                                        }
+                                        /* Handle */
+                                        &::-webkit-scrollbar-thumb {
+                                            background: #BCC0C4; 
+                                            border-radius: 10px;
+                                        }
+                                        /* Handle on hover */
+                                        &::-webkit-scrollbar-thumb:hover {
+                                            background: #898b8c; 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
 
                 // AttachMediaBox Component
                 .AttachMediaBox-Container {
@@ -133,103 +158,133 @@
                                                     }
                                                 }
 
-                                                .Box-Body-Content-Text {
-                                                    .Box-Body-Content-Text-Inner {
-                                                        .Content-Text-Package {
-                                                            textarea {
-                                                                padding-left: 0;
-                                                                padding-right: 0;
-                                                            }
-                                                        }
+                                                .Content-Box-Container {
+                                                    max-height: 380px;
+                                                    overflow-y: scroll; 
+                                                    /* width */
+                                                    &::-webkit-scrollbar {
+                                                        width: 6px;
                                                     }
-                                                }
-                                                .Box-Body-Content-Media {
-                                                    .Box-Body-Content-Media-Inner {
-                                                        .Box-Body-Content-Media-Package {
-                                                            position: relative;
-                                                            .Post-Media_Images_Item {
-                                                                max-width: 100%;
-                                                            }
-                                                            .Media-Package-Btn-Cancel {
-                                                                width: 28px;
-                                                                height: 28px;
-                                                                border-radius: 50%;
-                                                                position: absolute;
-                                                                right: 8px;
-                                                                top: 8px;
-                                                                background-color: #FFFFFF;
-                                                                overflow: hidden;
-                                                                cursor: pointer;
-                                                                .Btn-Off-Media {
-                                                                    width: 100%;
-                                                                    height: 100%;
-                                                                    border-radius: 50%;
-                                                                    border: none;
-                                                                    padding: 0;
-                                                                    background-color: #FFFFFF;
-                                                                    .btn-icon-wapper {
-                                                                        width: 100%;
-                                                                        height: 100%;
-                                                                        .btn_icon {
-                                                                            max-width: 100%;
-                                                                            max-height: 100%;
-                                                                            border-radius: 50%; 
-                                                                        }
+                                                    /* Handle */
+                                                    &::-webkit-scrollbar-thumb {
+                                                        background: #BCC0C4; 
+                                                        border-radius: 10px;
+                                                    }
+                                                    /* Handle on hover */
+                                                    &::-webkit-scrollbar-thumb:hover {
+                                                        background: #898b8c; 
+                                                    }
+                                                    .Box-Body-Content-Text {
+                                                        .Box-Body-Content-Text-Inner {
+                                                            .Content-Text-Package {
+                                                                textarea {
+                                                                    padding-left: 0;
+                                                                    padding-right: 0;
+                                                                     /* width */
+                                                                    &::-webkit-scrollbar {
+                                                                        width: 6px;
+                                                                    }
+                                                                    /* Handle */
+                                                                    &::-webkit-scrollbar-thumb {
+                                                                        background: #BCC0C4; 
+                                                                        border-radius: 10px;
+                                                                    }
+                                                                    /* Handle on hover */
+                                                                    &::-webkit-scrollbar-thumb:hover {
+                                                                        background: #898b8c; 
                                                                     }
                                                                 }
                                                             }
                                                         }
-                                                        .Box-Body-Content-Media-Drag {
-                                                            height: 180px;
-                                                            background-color: #F7F8FA;
-                                                            border-radius: 8px;
-                                                            &:hover{
-                                                                background-color: #E4E6EB;
-                                                                cursor: pointer;
+                                                    }
+                                                    .Box-Body-Content-Media {
+                                                        .Box-Body-Content-Media-Inner {
+                                                            .Box-Body-Content-Media-Package {
+                                                                position: relative;
+                                                                .Post-Media_Images_Item {
+                                                                    max-width: 100%;
+                                                                }
+                                                                .Media-Package-Btn-Cancel {
+                                                                    width: 28px;
+                                                                    height: 28px;
+                                                                    border-radius: 50%;
+                                                                    position: absolute;
+                                                                    right: 8px;
+                                                                    top: 8px;
+                                                                    background-color: #FFFFFF;
+                                                                    overflow: hidden;
+                                                                    cursor: pointer;
+                                                                    .Btn-Off-Media {
+                                                                        width: 100%;
+                                                                        height: 100%;
+                                                                        border-radius: 50%;
+                                                                        border: none;
+                                                                        padding: 0;
+                                                                        background-color: #FFFFFF;
+                                                                        .btn-icon-wapper {
+                                                                            width: 100%;
+                                                                            height: 100%;
+                                                                            .btn_icon {
+                                                                                max-width: 100%;
+                                                                                max-height: 100%;
+                                                                                border-radius: 50%; 
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
                                                             }
-                                                            .labbel-select-container {
-                                                                &:hover {
+                                                            .Box-Body-Content-Media-Drag {
+                                                                height: 180px;
+                                                                background-color: #F7F8FA;
+                                                                border-radius: 8px;
+                                                                &:hover{
+                                                                    background-color: #E4E6EB;
                                                                     cursor: pointer;
                                                                 }
-                                                                .Media-Drag-Container {
-                                                                    height: 100%;
-                                                                    width: 100%;
-                                                                    .Media-Drag-Wrapper {
+                                                                .labbel-select-container {
+                                                                    &:hover {
+                                                                        cursor: pointer;
+                                                                    }
+                                                                    .Media-Drag-Container {
                                                                         height: 100%;
                                                                         width: 100%;
-                                                                        .Media-Drag-Box {
+                                                                        .Media-Drag-Wrapper {
                                                                             height: 100%;
                                                                             width: 100%;
-                                                                            .Media-Drag-Box-Content-Container {
+                                                                            .Media-Drag-Box {
                                                                                 height: 100%;
                                                                                 width: 100%;
-                                                                                .Media-Drag-Box-Content-Wrapper {
+                                                                                .Media-Drag-Box-Content-Container {
                                                                                     height: 100%;
                                                                                     width: 100%;
-                                                                                    display: flex;
-                                                                                    flex-direction: column;
-                                                                                    justify-content: center;
-                                                                                    align-items: center;
-                                                                                    .Box-Content-Icon {
-                                                                                        display: flex;
-                                                                                        justify-content: center;
-                                                                                        align-items: center;
-                                                                                        padding: 6px;
-                                                                                        border: 1px solid #E4E6EB;
-                                                                                        background-color: #E4E6EB;
-                                                                                        border-radius: 50%
-                                                                                    }
-                                                                                    .Box-Content-Title {
+                                                                                    .Media-Drag-Box-Content-Wrapper {
+                                                                                        height: 100%;
+                                                                                        width: 100%;
                                                                                         display: flex;
                                                                                         flex-direction: column;
                                                                                         justify-content: center;
                                                                                         align-items: center;
-                                                                                        .head-title {
-                                                                                            font-size: 16px;
-                                                                                            font-weight: 700;
+                                                                                        .Box-Content-Icon {
+                                                                                            display: flex;
+                                                                                            justify-content: center;
+                                                                                            align-items: center;
+                                                                                            padding: 6px;
+                                                                                            border: 1px solid #E4E6EB;
+                                                                                            background-color: #E4E6EB;
+                                                                                            border-radius: 50%
                                                                                         }
-                                                                                        .head-note {
-                                                                                            font-weight: lighter;
+                                                                                        .Box-Content-Title {
+                                                                                            display: flex;
+                                                                                            flex-direction: column;
+                                                                                            justify-content: center;
+                                                                                            align-items: center;
+                                                                                            .head-title {
+                                                                                                font-size: 16px;
+                                                                                                font-weight: 700;
+                                                                                            }
+                                                                                            .head-note {
+                                                                                                font-weight: lighter;
+                                                                                            }
                                                                                         }
                                                                                     }
                                                                                 }
@@ -237,9 +292,9 @@
                                                                         }
                                                                     }
                                                                 }
-                                                            }
-                                                            #imgInpPost {
-                                                                display: none;
+                                                                #imgInpPost {
+                                                                    display: none;
+                                                                }
                                                             }
                                                         }
                                                     }

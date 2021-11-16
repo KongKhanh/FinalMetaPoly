@@ -1,5 +1,4 @@
-//Component
-import PostingBox from '../../common/components/PostingBox/PostingBox';
+//Components
 import SuggestFriend from './SuggestFriend';
 import PostContentContainer from './PostContentContainer';
 
@@ -48,8 +47,7 @@ function Newsfeed(props) {
                       </div>
                     </div>
                   </div>
-                  {/* end profile info */}
-                  {/* event info */}
+
                   <div className="card">
                     <div className="card-body p-2">
                       <div className="list-group list-group-flush my-2">
@@ -59,8 +57,7 @@ function Newsfeed(props) {
                       </div>
                     </div>
                   </div>
-                  {/* end event info */}
-                  {/* news */}
+
                   <div className="card">
                     <div className="card-body">
                       <div className="dropdown float-end">
@@ -114,21 +111,18 @@ function Newsfeed(props) {
                       </div>
                     </div>
                   </div>
+
                 </div>
 
                 {/* Center Side */}
                 <div className="col-xxl-6 col-lg-12 order-lg-2 order-xxl-1">
 
-                  {/* @Auth VoVanHau */}
-                  <PostingBox 
-                      UserInforClient = {props.UserInforClient}
-                  />
+                    <PostContentContainer 
+                        UserInforClient = {props.UserInforClient}
+                        
+                    />
 
-                  <PostContentContainer 
-                      UserInforClient = {props.UserInforClient}
-                  />
-
-              </div>
+                </div>
 
               <SuggestFriend 
                   UserInforClient = {props.UserInforClient}
