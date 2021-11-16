@@ -11,6 +11,8 @@ export const API_URL = {
 
     GET_LIST_USER: BASE_API_URL + "/userlist",
 
+    GET_ADD_FRIEND: BASE_API_URL + "/friend",
+
     // @Auth VoVanHau
     CREATE_NEW_ACCOUNT: BASE_API_URL + '/user/create-new',
 

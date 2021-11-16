@@ -13,7 +13,9 @@ export default function ShowComments(props) {
                         style={{backgroundColor: '#F0F2F5', borderRadius: '16px',}}
                     >
                     <div className="d-flex align-items-end">
-                        <h5 className="m-0">Sansa Stark </h5>
+                        <h5 className="m-0">
+                            {CommentItem.user_name}
+                        </h5>
                         <small className="text-muted mb-0 align-text-bottom mx-2">
                         {
                             'Just now'

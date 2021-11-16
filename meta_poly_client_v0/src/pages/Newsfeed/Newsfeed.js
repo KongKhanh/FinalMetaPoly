@@ -119,7 +119,6 @@ function Newsfeed(props) {
 
                     <PostContentContainer 
                         UserInforClient = {props.UserInforClient}
-                        
                     />
 
                 </div>

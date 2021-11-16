@@ -14,6 +14,7 @@ function App() {
         userId: getCookie('user_id') ? getCookie('user_id') : undefined,
         access_token: getCookie('access_token') ? getCookie('access_token') : undefined,
         user_phone: '',
+        user_name: '',
     });
 
     // Mặc định trang chủ do case uGqXQpyJeFUoBqm bên phần ChangePage

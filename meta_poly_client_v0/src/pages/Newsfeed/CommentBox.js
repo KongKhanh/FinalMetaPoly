@@ -8,6 +8,7 @@ export default function CommentBox(props) {
 
     const [commentInfo, setCommentInfo] = useState({
         comment_content: '',
+        user_name: '',
         comment_fk_post_id: props.PostItem ? props.PostItem.post_id : false,
         comment_fk_user_id: props.UserInforClient ? props.UserInforClient.userId : false,
     });

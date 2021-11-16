@@ -142,7 +142,11 @@ export default function PostContentContainer(props) {
 
                                             <LikeButton
                                                 UserInforClient={props.UserInforClient}
-                                                PostID={PostItem.post_id}
+                                                PostID={PostItem.post_id}   
+                                                PostList = {PostList}
+                                                setPostList = {setPostList}
+                                                index_xx = {index_xx}
+                                                PostItem= {PostItem}
                                             />
 
                                             {

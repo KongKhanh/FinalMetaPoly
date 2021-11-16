@@ -6,7 +6,18 @@ import axios from 'axios';
 
 function LikeButton(props){
 
-    const [activeToggleLike, setActiveToggleLike] = useState(true);
+    const [activeToggleLike, setActiveToggleLike] = useState(
+      (
+        function(){
+          var status = props.PostItem.list_like.find(
+            (likeItem)=>{
+              return likeItem.pl_fk_user_id === props.UserInforClient.userId ;
+            }
+          )
+          return status ? false : true ;
+        }
+      )()
+    );
 
     const requestLikePost = async () => {
 
@@ -37,20 +48,32 @@ function LikeButton(props){
           requestLikePost().then(
 
               function (res) {
+
+                  var PostItem = props.PostList[props.index_xx];
                       
                   if(res.status_insert === 1) {
 
                       setActiveToggleLike(false);
-                      
+
+                      PostItem.list_like.push({});
+            
+                      const PostList_Ref = [...props.PostList];
+            
+                      props.setPostList(PostList_Ref);
                   } 
                   else {
 
                       setActiveToggleLike(true);
+
+                      PostItem.list_like.pop();
+            
+                      const PostList_Ref = [...props.PostList];
+            
+                      props.setPostList(PostList_Ref);
+
+                      
                   }
 
-
-                  console.log(res);
-                
               }
           );
 
