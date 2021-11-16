@@ -11,6 +11,7 @@
 
     // ------------------------------Handle GET method------------------------------
     $router->get('/user/{idUser}','UserController@__getIdUser');
+    $router->get('/userlist/{idUser}','UserController@__getUser');
     $router->get('/newsfeed','NewsfeedController@__getPostList');
 
     // ------------------------------Handle POST method------------------------------

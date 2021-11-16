@@ -13,6 +13,7 @@ function ConnectPages(props) {
                         {/* Header Page Here, For Fixed Header */}
                         <Header 
                             setCurrentPage = {props.setCurrentPage}
+                            UserInforClient = {props.UserInforClient}
                         />
 
                         {/*  Main Page Here, For Scroll Page */}

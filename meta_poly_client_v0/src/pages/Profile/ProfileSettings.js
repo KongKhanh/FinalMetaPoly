@@ -32,7 +32,7 @@ function ProfileSettings(props){
       
       DataRequestInfor.append('user_phone', props.ProfileSetting.UserPhone);
       
-      DataRequestInfor.append('user_phone', props.ProfileSetting.UserBirthday);
+      DataRequestInfor.append('user_date_of_birth', props.ProfileSetting.UserBirthday);
 
       const responseResult = await axios({
           headers: { 
@@ -89,7 +89,9 @@ function ProfileSettings(props){
     function ShowGender(DataGender){
        return DataGender.map((GenderItem, index)=>{
             return(
-                <div key={index} className={index === 0 ? 'me-2' : 'mx-2'}>
+
+                <div key = {index} className={index === 0 ? 'me-2' : 'mx-2'}>
+
                     <input 
                         type="radio" 
                         id={`Gender_${index}`} 

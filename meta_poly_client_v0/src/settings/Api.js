@@ -9,6 +9,8 @@ export const API_URL = {
 
     UPDATE_PROFILE_INFOR: BASE_API_URL + "/user/profile-setting",
 
+    GET_LIST_USER: BASE_API_URL + "/userlist",
+
     // @Auth VoVanHau
     CREATE_NEW_ACCOUNT: BASE_API_URL + '/user/create-new',
 

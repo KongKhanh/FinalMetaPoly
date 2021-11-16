@@ -1,5 +1,6 @@
 //Component
 import PostingBox from '../../common/components/PostingBox/PostingBox';
+import SuggestFriend from './SuggestFriend';
 import PostContentContainer from './PostContentContainer';
 
 function Newsfeed(props) {
@@ -127,75 +128,12 @@ function Newsfeed(props) {
                       UserInforClient = {props.UserInforClient}
                   />
 
-                  <div className="text-center mb-3">
-                    <a href="#/" className="text-danger"><i className="mdi mdi-spin mdi-loading me-1 font-16" /> Load more </a>
-                  </div>
-
-                </div>
-
-                {/* Right Side */}
-                <div className="col-xxl-3 col-lg-6 order-lg-1 order-xxl-2">
-                  <div className="card">
-                    <div className="card-body pb-0">
-                      <div className="dropdown float-end">
-                        <a href="/#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                          <i className="mdi mdi-dots-horizontal" />
-                        </a>
-                        <div className="dropdown-menu dropdown-menu-end">
-                          <a href="#/" className="dropdown-item">View All</a>
-                        </div>
-                      </div>
-                      <h4 className="header-title mb-3">People you may know</h4>
-                      <div className="inbox-widget">
-                        <div className="inbox-item">
-                          <div className="inbox-item-img"><img src="assets/images/users/avatar-2.jpg" className="rounded-circle" alt="" /></div>
-                          <p className="inbox-item-author">Robb Stark</p>
-                          <p className="inbox-item-text">The first king in the North</p>
-                          <p className="inbox-item-date">
-                            <button type="button" className="btn btn-sm btn-outline-primary px-1 py-0"> <i className="uil uil-user-plus font-16" /> </button>
-                          </p>
-                        </div>
-                        <div className="inbox-item">
-                          <div className="inbox-item-img"><img src="assets/images/users/avatar-3.jpg" className="rounded-circle" alt="" /></div>
-                          <p className="inbox-item-author">Stillnot David </p>
-                          <p className="inbox-item-text">Lady of winterfall</p>
-                          <p className="inbox-item-date">
-                            <button type="button" className="btn btn-sm btn-outline-primary px-1 py-0"> <i className="uil uil-user-plus font-16" /> </button>
-                          </p>
-                        </div>
-                        <div className="inbox-item">
-                          <div className="inbox-item-img"><img src="assets/images/users/avatar-4.jpg" className="rounded-circle" alt="" /></div>
-                          <p className="inbox-item-author">Cersei Lannister</p>
-                          <p className="inbox-item-text">Queen of the Seven Kingdoms</p>
-                          <p className="inbox-item-date">
-                            <button type="button" className="btn btn-sm btn-outline-primary px-1 py-0"> <i className="uil uil-user-plus font-16" /> </button>
-                          </p>
-                        </div>
-                        <div className="inbox-item">
-                          <div className="inbox-item-img"><img src="assets/images/users/avatar-5.jpg" className="rounded-circle" alt="" /></div>
-                          <p className="inbox-item-author">Daenerys Targaryen</p>
-                          <p className="inbox-item-text">Hey! there I'm available...</p>
-                          <p className="inbox-item-date">
-                            <button type="button" className="btn btn-sm btn-outline-primary px-1 py-0"> <i className="uil uil-user-plus font-16" /> </button>
-                          </p>
-                        </div>
-                        <div className="inbox-item">
-                          <div className="inbox-item-img"><img src="assets/images/users/avatar-6.jpg" className="rounded-circle" alt="" /></div>
-                          <p className="inbox-item-author">Adhamd Annaway</p>
-                          <p className="inbox-item-text">Queen Daenerys</p>
-                          <p className="inbox-item-date">
-                            <button type="button" className="btn btn-sm btn-outline-primary px-1 py-0"> <i className="uil uil-user-plus font-16" /> </button>
-                          </p>
-                        </div>
-                      </div>   
-                      <div className="mt-2 mb-3 text-center">
-                        <a href="/#">View More<i className="uil uil-arrow-right ms-1" /></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
               </div>
+
+              <SuggestFriend 
+                  UserInforClient = {props.UserInforClient}
+              />
+
             </div>
           </div>
 
@@ -215,6 +153,8 @@ function Newsfeed(props) {
               </div>
             </div>
           </footer>
+
+          </div>
 
       </div>
     )
