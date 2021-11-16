@@ -30,6 +30,8 @@ class NewsfeedController{
 
             $PostList[$i]['list_like'] = $PostLikeList;
 
+            $PostList[$i]['comment_list'] = [];
+
         };
 
         echo json_encode($PostList);

@@ -89,7 +89,7 @@ function ProfileSettings(props){
     function ShowGender(DataGender){
        return DataGender.map((GenderItem, index)=>{
             return(
-                <div key = {index} className={index == 0 ? 'me-2' : 'mx-2'}>
+                <div key={index} className={index === 0 ? 'me-2' : 'mx-2'}>
                     <input 
                         type="radio" 
                         id={`Gender_${index}`} 

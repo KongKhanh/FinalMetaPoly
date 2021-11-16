@@ -19,8 +19,8 @@
     $router->post('/user/profile-setting/{idUser}','UserController@__setProfileSetting');
     $router->post('/user/create-like','PostingController@__likePost');
 
-
     // ---------------------For Posting
     $router->post('/posting/single/create-new','PostingController@__handleCreateNewPost');
+    $router->post('/posting/single/create-comment','PostingController@__handleCreateNewComment');
 
 ?>

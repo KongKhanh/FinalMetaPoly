@@ -2,7 +2,7 @@ function NewsfeedProfile(props){
     return(
         <div className="border border-light rounded p-2 mb-3">
             <div className="d-flex">
-            <img className="me-2 rounded-circle" src="assets/images/users/avatar-3.jpg" alt="Generic placeholder image" height={32} />
+            <img className="me-2 rounded-circle" src="assets/images/users/avatar-3.jpg" alt="MetaPoly" height={32} />
             <div>
                 <h5 className="m-0">
                 {props.NewsfeedProfileItem.user_name}
