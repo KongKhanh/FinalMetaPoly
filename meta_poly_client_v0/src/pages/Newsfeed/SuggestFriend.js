@@ -48,7 +48,7 @@ function SuggestFriend(props){
                         <p className="inbox-item-text">The first king in the North</p>
                         <p className="inbox-item-date">
                           <button type="button" className="btn btn-sm border-0 px-1 py-0" 
-                          onClick={()=>onClickAddFriend(item.user_id)} > 
+                          onClick={()=>onClickAddFriend(item.user_id)}> 
                             <img src="./assets/icons/flaticon/24px/invite.png" alt=""/>
                           </button>
                         </p>

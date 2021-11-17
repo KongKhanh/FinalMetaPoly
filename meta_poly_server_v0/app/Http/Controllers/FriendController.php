@@ -16,7 +16,7 @@
                 $waddFriendObj = new wFriendMd();
 
                 $recordID = $waddFriendObj->insertFriend($blockInfoUser);
-        
+
                 echo json_encode([
                     'status_task' =>  1,
                     'message_task' => 'successful',
