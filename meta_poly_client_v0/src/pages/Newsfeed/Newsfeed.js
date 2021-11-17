@@ -1,5 +1,6 @@
 //Components
 import SuggestFriend from './SuggestFriend';
+
 import PostContentContainer from './PostContentContainer';
 
 function Newsfeed(props) {
