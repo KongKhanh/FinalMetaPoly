@@ -1,6 +1,4 @@
 import '../../assets/css/components/header/header.css';
-//Component 
-// End
 
 function Header (props) {
     return (
@@ -231,7 +229,7 @@ function Header (props) {
                                     {/* Form App Search Here */}
                                     <form>
                                         <div className="input-group">
-                                            <input type="text" className="form-control dropdown-toggle" placeholder="Tìm kiếm..." id="top-search"/>
+                                            <input type="text" className="form-control dropdown-toggle" placeholder="Search MetaPoly" id="top-search"/>
                                             <span className="mdi mdi-magnify search-icon" />
                                             <button className="input-group-text btn-primary" type="submit" id="Find">Tìm kiếm</button>
                                         </div>
@@ -286,7 +284,9 @@ function Header (props) {
                                                         </div>   
                                                     </div>  
                                                     <div className="Nav-Control-Layout-Item-Container mx-2">
-                                                        <div className="Nav-Control-Layout-Item">
+                                                        <div className="Nav-Control-Layout-Item"
+                                                            onClick = {()=> props.setCurrentPage('qT54LN6UKjYRd5x')}
+                                                        >
                                                             <img src="./assets/icons/flaticon/24px/chat_group.png" alt="icon"/>
                                                             <span className="Nav-Control-Layout-Item-Title">Nhóm</span>
                                                         </div>   
