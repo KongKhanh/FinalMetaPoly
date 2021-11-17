@@ -27,7 +27,7 @@ class PostingController {
         if($activeLike == true) {
 
             PostMd::likePost(base64_decode($idUser), $postID);
-
+            //chuyen mang sang chuoi 
             echo json_encode([
                 'status_insert' => 1, //like
                 'active ' => $activeLike
