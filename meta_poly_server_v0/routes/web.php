@@ -15,6 +15,7 @@
     $router->get('/user/{idUser}','UserController@__getIdUser');
     $router->get('/userlist/{idUser}','UserController@__getUser');
     $router->get('/newsfeed','NewsfeedController@__getPostList');
+    $router->get('/comfirm/{idUser}','NotificationController@__GetComfirmUserID');
 
     // ------------------------------Handle POST method------------------------------
     $router->post('/user/create-new','UserController@__CreateNewUser');

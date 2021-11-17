@@ -48,12 +48,12 @@ function LikeButton(props){
           requestLikePost().then(
 
               function (res) {
+
+                  var PostItem = props.PostList[props.index_xx];
                       
                   if(res.status_insert === 1) {
 
                       setActiveToggleLike(false);
-
-                      var PostItem = props.PostList[props.index_xx];
 
                       PostItem.list_like.push({});
             
@@ -62,9 +62,8 @@ function LikeButton(props){
                       props.setPostList(PostList_Ref);
                   } 
                   else {
-                      setActiveToggleLike(true);
 
-                     var PostItem = props.PostList[props.index_xx];
+                      setActiveToggleLike(true);
 
                       PostItem.list_like.pop();
             
@@ -75,9 +74,6 @@ function LikeButton(props){
                       
                   }
 
-
-                  console.log(res);
-                
               }
           );
 

@@ -1,6 +1,4 @@
 import '../../assets/css/components/header/header.css';
-//Component 
-// End
 
 function Header (props) {
     return (
