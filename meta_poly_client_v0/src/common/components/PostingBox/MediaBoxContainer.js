@@ -13,6 +13,7 @@ export default function MediaBoxContainer(props) {
         }
     }
 
+    // Cancel Selecting Media
     function handleClickCancelMedia(file) {
 
         URL.revokeObjectURL(file);
@@ -21,6 +22,11 @@ export default function MediaBoxContainer(props) {
 
         props.setMediaContentURL(false);
 
+        props.setPctMediaObj({
+            ...props.pctMediaObj,
+            ppt_name: false,
+        });
+    
 
     }
 

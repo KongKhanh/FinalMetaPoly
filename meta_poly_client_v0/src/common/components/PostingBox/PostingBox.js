@@ -18,6 +18,11 @@ export default function PostingBox(props) {
         pct_content: '',
     });
 
+    // For Single Media 
+    const [pctMediaObj, setPctMediaObj] = useState({
+        ppt_name: false,
+    });
+
     const [activeAttachMediaBox, setActiveAttachMediaBox] = useState({
         is_active: false,
     });
@@ -32,19 +37,26 @@ export default function PostingBox(props) {
             );
         };
 
+        dataRequest.append('ppt_name', pctMediaObj.ppt_name[0]);
+
         dataRequest.append('post_fk_user_id', props.UserInforClient.userId);
-        dataRequest.append('user_id',);
 
         const resultsReq = await axios({
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
             url: API_URL.CREATE_NEW_POST,
             method: 'POST',
             data: dataRequest,
+            contentType: false,
+            processData: false,
         });
 
         return resultsReq.data;
 
     };
 
+    // Xu ly su kien thay doi tren cac truong du lieu
     const handleOnChangeFieldPctContent = (event) => {
 
         setPctContentObj({
@@ -52,7 +64,6 @@ export default function PostingBox(props) {
             ...pctContentObj,
 
             [event.target.name]: event.target.value,
-
         });
     }
 
@@ -62,6 +73,8 @@ export default function PostingBox(props) {
         __requestCreateNewPost()
             .then((res) => {
 
+                console.log(res);
+
                 if (res.status_task === 1) {
 
                     // Tra ve trang thai ban dau cua Content Box
@@ -70,14 +83,34 @@ export default function PostingBox(props) {
                         pct_content: '',
                     });
 
+                    // Tat Popup Media Box
+                    setActiveAttachMediaBox({
+                        ...activeAttachMediaBox, 
+                        is_active: false,
+                    });
+
+                    const PostList_Ref = [...props.PostList];
+
+                    PostList_Ref.unshift({
+                        post_id: res.infoRes.post_id,
+                        pct_content: res.infoRes.pct_content,
+                        post_fk_user_id: res.infoRes.post_fk_user_id,
+                        media_url: res.infoRes.media_url,
+                        comment_list: [],
+                        list_like: [],
+                    });
+
+                    props.setPostList(PostList_Ref);
+
                 } else {
-                    alert('Đã xảy ra lỗi trong quá trình thực hiện !');
+                    // alert('Đã xảy ra lỗi trong quá trình thực hiện !');
                 }
 
             });
 
     };
 
+    // 
     const handleOpenDropBoxImage = () => {
         setActiveAttachMediaBox({
             ...activeAttachMediaBox,
@@ -151,12 +184,22 @@ export default function PostingBox(props) {
                         {/* AttachMediaBox Here */}
                         { activeAttachMediaBox.is_active ? 
 
+                            // Popup Posting Box
                             <AttachMediaBox 
-                                activeAttachMediaBox={activeAttachMediaBox}
-                                setActiveAttachMediaBox={setActiveAttachMediaBox}
-                                pctContentObj={pctContentObj}
-                                setPctContentObj={setPctContentObj}
-                                handleOnChangeFieldPctContent={handleOnChangeFieldPctContent}
+                                // Active Attach Media Box
+                                activeAttachMediaBox = {activeAttachMediaBox}
+                                // Set Active Attach Media Box
+                                setActiveAttachMediaBox = {setActiveAttachMediaBox}
+
+                                pctContentObj = {pctContentObj}
+
+                                pctMediaObj = {pctMediaObj}
+                                
+                                setPctMediaObj = {setPctMediaObj}
+
+                                handleOnChangeFieldPctContent = {handleOnChangeFieldPctContent}
+
+                                handleClickReqPosting = {handleClickReqPosting}
                             /> : '' 
                         }
 

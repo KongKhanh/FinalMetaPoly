@@ -9,16 +9,24 @@ export default function AttachMediaBox(props) {
 
     const [MediaContentURL, setMediaContentURL] = useState(false);
 
+    // Xu ly su kien onChange khi Select Media
      function hanldeOnChangeDragMedia(event){
 
-            const [file] = event.target.files;
+        const [file] = event.target.files;
 
-            if(file) {
+        if(file) {
 
-                setMediaContentURL(file);
+            // Set URL for Images
+            setMediaContentURL(file);
 
-                setActiveDragMediaBox(true);
-            }
+            // Set Active or Not An Empty Media
+            setActiveDragMediaBox(true);
+
+            props.setPctMediaObj({
+                ...props.pctMediaObj,
+                ppt_name: event.target.files,
+            });
+        }
      }
 
     return (
@@ -26,7 +34,7 @@ export default function AttachMediaBox(props) {
             <div className="AttachMediaBox-Inner-Container">
                 <div className="AttachMediaBox-Wrapper">
                     <div className="AttachMediaBox-Inner-Wrapper">
-                        <div className="AttachMediaBox-Box p-3">
+                        <div className="AttachMediaBox-Box p-2">
 
                             <div className="Box-Header border-bottom">
                                 <div className="Box-Header-Wrapper">
@@ -100,39 +108,47 @@ export default function AttachMediaBox(props) {
                                                 </div>
                                             </div>
                                         </div>
+                                        
+                                        <div className="Content-Box-Container">
 
-                                        <div className="Box-Body-Content-Text py-1">
-                                            <div className="Box-Body-Content-Text-Inner">
-                                                <div className="Content-Text-Package">
-                                                    <textarea 
-                                                        rows={2} 
-                                                        value={props.pctContentObj.pct_content} 
-                                                        className="form-control border-0 resize-none" 
-                                                        placeholder='Chia sẽ cảm nhận của bạn...' 
-                                                        name="pct_content"
-                                                        onChange={(event) => props.handleOnChangeFieldPctContent(event)}
-                                                    />
+                                            <div className="Box-Body-Content-Text py-1">
+                                                <div className="Box-Body-Content-Text-Inner">
+                                                    <div className="Content-Text-Package">
+                                                        <textarea 
+                                                            rows={2} 
+                                                            value={props.pctContentObj.pct_content} 
+                                                            className="form-control border-0 resize-none" 
+                                                            placeholder='Chia sẽ cảm nhận của bạn...' 
+                                                            name="pct_content"
+                                                            onChange={(event) => props.handleOnChangeFieldPctContent(event)}
+                                                        />
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div className="Box-Body-Content-Media mt-2">
-                                            <div className="Box-Body-Content-Media-Inner p-2 border">
-                                               
-                                               {
-                                                   activeDragMediaBox ? 
-                                                        <MediaBoxContainer 
-                                                            MediaContentURL={MediaContentURL}
-                                                            setActiveDragMediaBox={setActiveDragMediaBox}
-                                                            setMediaContentURL={setMediaContentURL}
-                                                        /> : 
-
-                                                        <BtnDragMedia 
-                                                            hanldeOnChangeDragMedia={hanldeOnChangeDragMedia}
-                                                        />
-                                               }
+                                            <div className="Box-Body-Content-Media mt-2">
+                                                <div className="Box-Body-Content-Media-Inner p-2 border">
                                                 
+                                                {
+                                                    activeDragMediaBox ? 
+                                                            // Not Empty Media Box
+                                                            <MediaBoxContainer 
+                                                                setActiveDragMediaBox = {setActiveDragMediaBox}
+                                                                MediaContentURL = {MediaContentURL}
+                                                                setMediaContentURL = {setMediaContentURL}
+                                                                pctMediaObj = {props.pctMediaObj}
+                                                                setPctMediaObj = {props.setPctMediaObj}
+                                                            /> : 
+
+                                                            // Empty Media Box
+                                                            <BtnDragMedia 
+                                                                hanldeOnChangeDragMedia = {hanldeOnChangeDragMedia}
+                                                            />
+                                                }
+                                                    
+                                                </div>
                                             </div>
+
                                         </div>
 
                                     </div>
@@ -142,7 +158,7 @@ export default function AttachMediaBox(props) {
                             <div className="Box-Footer my-2">
                                 <div className="Box-Footer-Container">
                                     <div className="Box-Footer-Wrapper">
-                                        <button type="button" id="btnPostToNewsFeed">
+                                        <button type="button" id="btnPostToNewsFeed" onClick={() => props.handleClickReqPosting()}>
                                             <div className="BtN-nAME">POST</div>
                                         </button>
                                     </div>
