@@ -1,22 +1,25 @@
 <?php
 
-class UserController{
-    
+class UserController
+{
+
     private $modelUserObj;
-    
+
     // @Author: @KongKhanh
-    function __construct(){
+    function __construct()
+    {
         require('./app/Models/readSide/UserMd/UserMd.php');
 
         $this->modelUserObj = new UserMd();
     }
 
-    public function __getIdUser($idUser){
+    public function __getIdUser($idUser)
+    {
 
         require('./app/Http/Controllers/NewsfeedProflieController.php');
 
         $NewsfeedControllerObj = new NewsfeedProflieController();
-        $UserPostListById = $NewsfeedControllerObj -> __getPostProfileList($idUser);
+        $UserPostListById = $NewsfeedControllerObj->__getPostProfileList($idUser);
 
         $UserInfor = $this->modelUserObj->getIdUser(base64_decode($idUser));
         $UserInfor['user_name'] = base64_decode($UserInfor['user_name']);
@@ -25,11 +28,13 @@ class UserController{
 
         $UserInfor['post_list_by_user_id'] =  $UserPostListById;
 
+
         echo json_encode($UserInfor);
     }
 
     // @Author: @VoVanHau
-    public function __CreateNewUser() {
+    public function __CreateNewUser()
+    {
 
         try {
             require_once('./Helpers/php/Random.php');
@@ -41,30 +46,29 @@ class UserController{
                 'user_password' => isset($_POST['user_password']) ? base64_encode(trim(strip_tags($_POST['user_password']))) : null,
                 'user_token' => base64_encode(Random::generateRandomString(50)),
             ];
-            
+
             require_once('./app/Models/writeSide/UserMd/wUserMd.php');
-    
+
             $wUserMd_Obj = new wUserMd();
-    
+
             $recordID = $wUserMd_Obj->_insertNewUser($blockInfoUser);
-    
+
             echo json_encode([
                 'status_task' =>  1,
                 'message_task' => 'successful',
                 'recordID' => $recordID,
             ]);
-        }
-        catch(Exception $err) {
+        } catch (Exception $err) {
             echo json_encode([
                 'status_task' => 2,
                 'message_task' => 'failed',
             ]);
         }
-
     }
 
     // @Author: @VoVanHau
-    public function __authUsingUser() {
+    public function __authUsingUser()
+    {
 
         try {
 
@@ -77,32 +81,30 @@ class UserController{
 
             $authStatus['user_id'] = base64_encode($authStatus['user_id']);
 
-            if($authStatus) {
+            if ($authStatus) {
                 echo json_encode([
                     'status_task' => 1,
                     'message_task' => 'successful',
                     'user_info' => $authStatus
                 ]);
-            } 
-            else {
+            } else {
                 echo json_encode([
                     'status_task' => 2,
                     'message_task' => 'failed',
                 ]);
             }
-        }
-        catch(Exception $err) {
+        } catch (Exception $err) {
             echo json_encode([
                 'status_task' => 2,
                 'message_task' => 'failed',
             ]);
         }
-
     }
 
     //@Author: @KongKhanh
-    public function __setProfileSetting($idUser){
-        try{
+    public function __setProfileSetting($idUser)
+    {
+        try {
             require('./app/Models/writeSide/UserMd/wUserMd.php');
             $blockUserSetting = [
 
@@ -121,14 +123,13 @@ class UserController{
 
             $idUser = base64_decode($idUser);
 
-            $wUserMdObj->setProfileSettingMd($blockUserSetting,$idUser);
+            $wUserMdObj->setProfileSettingMd($blockUserSetting, $idUser);
 
             echo json_encode([
                 'status_task' =>  1,
                 'message_task' => 'successful',
             ]);
-        }
-        catch(Exception $err) {
+        } catch (Exception $err) {
             echo json_encode([
                 'status_task' => 2,
                 'message_task' => 'failed',
@@ -136,17 +137,34 @@ class UserController{
         }
     }
 
-    public function __getUser($idUser){
+    public function __getUser($idUser)
+    {
+        try {
+            require('./app/Models/writeSide/UserMd/wUserMd.php');
 
-        $UsersAllList = $this->modelUserObj->getUser(base64_decode($idUser));
-        $UserRecommend = [];
-        for($i = 0; $i < 5; $i++){
-            if(isset($UsersAllList[$i])){
-                $UsersAllList[$i]['user_name'] = base64_decode($UsersAllList[$i]['user_name']);
-                array_push($UserRecommend, $UsersAllList[$i]);
+            $UsersAllList = $this->modelUserObj->getUser(base64_decode($idUser));
+            $UserRecommend = [];
+            for ($i = 0; $i < 5; $i++) {
+                if (isset($UsersAllList[$i])) {
+                    $UsersAllList[$i]['user_name'] = base64_decode($UsersAllList[$i]['user_name']);
+                    array_push($UserRecommend, $UsersAllList[$i]);
+                }
             }
+
+            echo json_encode($UserRecommend);
+        } catch (Exception $err) {
+            echo json_encode([
+                'status_task' => 2,
+                'message_task' => 'failed',
+            ]);
         }
-        echo json_encode($UserRecommend);
     }
+
+    public function __handleForgotPassword(){
+        
+
+    }
+
+
+   
 }
-?>

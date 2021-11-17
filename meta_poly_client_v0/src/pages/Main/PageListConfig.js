@@ -5,6 +5,7 @@ import Newsfeed from '../Newsfeed/Newsfeed';
 import Group from '../Group/Group';
 
 
+
 // Just for seeing, reading. No Export for using any task.
 const PageListConfig = [
     {
@@ -16,6 +17,11 @@ const PageListConfig = [
         id_page: '6VRiCktUwxaLAud',
         component: <SignUp />,
         note: 'Page nay la  page SignUp'
+    },
+    {
+        id_page: 'jdvwW87LnMUJB69',
+        component: <ForgotPassword />,
+        note: 'Page nay la  page quen pass'
     },
     {
         id_page: 'H8HBZbNuLNUkzTf',

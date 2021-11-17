@@ -49,6 +49,20 @@ class UserMd{
        
     }
 
+    public function getUserPhone($userPhone){
+        require('./app/Models/initialConnect/connectDatabase.php');
+        
+        $slq = "SELECT * FROM users WHERE user_phone = $userPhone";
+
+        $stmt = $conn->prepare($slq);
+
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+        $stmt->execute(); 
+
+        return $result = $stmt->fetch();
+    }
+
 }
 
 ?>

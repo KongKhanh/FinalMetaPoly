@@ -24,6 +24,8 @@ function Profile(props){
         UserEmail: '',
         UserBirthday: '',
     });
+    
+    const [PostList, setPostList] = useState([]);
 
     useEffect(function(){
         const requestData = async () => {
@@ -56,6 +58,8 @@ function Profile(props){
                     UserGender: res.user_gender,
                     UserBirthday: res.user_date_of_birth,
                 });
+
+                setPostList(res.post_list_by_user_id);
             }
         )
     }, []);
@@ -191,6 +195,10 @@ function Profile(props){
               ProfileSetting = {ProfileSetting}
               setProfileSetting = {setProfileSetting}
               idUserCoockie = {props.UserInforClient.userId}
+              UserInforClient= {props.UserInforClient}
+
+              PostList = {PostList}
+              setPostList = {setPostList}
           />;
 
       </div>
