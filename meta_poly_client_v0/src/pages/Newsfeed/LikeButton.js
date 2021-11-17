@@ -49,13 +49,15 @@ function LikeButton(props){
 
               function (res) {
 
-                  var PostItem = props.PostList[props.index_xx];
+                  var PostItem = props.PostList[parseInt(props.index_xx)];
                       
                   if(res.status_insert === 1) {
 
                       setActiveToggleLike(false);
 
-                      PostItem.list_like.push({});
+                      PostItem.list_like.push({}); 
+
+                      //cập nhật lại mảng
             
                       const PostList_Ref = [...props.PostList];
             

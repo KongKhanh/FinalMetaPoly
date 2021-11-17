@@ -26,5 +26,29 @@
               return $result;
 
         } 
+
+        public function getPostLikeList($id_Post){
+
+          try{
+
+              require('./app/Models/initialConnect/connectDatabase.php');
+              
+              $sql = "SELECT * FROM post_likes WHERE pl_fk_post_id = {$id_Post}";
+      
+              $stmt = $conn->prepare($sql);
+      
+              $stmt->setFetchMode(PDO::FETCH_ASSOC);
+      
+              $stmt->execute(); 
+      
+              return $result = $stmt->fetchAll();
+
+          }
+          catch (Exception $err){
+
+              return $err;
+              
+          }
+      }
     }
 ?>

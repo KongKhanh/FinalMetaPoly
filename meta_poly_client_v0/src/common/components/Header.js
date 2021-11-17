@@ -283,7 +283,7 @@ function Header(props) {
                                                         <div className="Nav-Control-Layout-Item">
                                                             <img src="./assets/icons/flaticon/24px/group.png" alt="icon" />
                                                             <span className="Nav-Control-Layout-Item-Title dropdown-toggle dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bạn bè</span>
-                                                            <div class="dropdown-menu dropdown-lg" id="friendReqbox" >
+                                                            <div className="dropdown-menu dropdown-lg" id="friendReqbox" >
                                                                 {/* item*/}
                                                                 <div className="dropdown-item">
                                                                     <h5 className="m-0 ">
@@ -302,8 +302,8 @@ function Header(props) {
                                                                         </div>
                                                                         <span className="notify-details"><span> Cristina Pride</span> đã gửi lời mời kết bạn</span>
                                                                         <div className="ms-4">
-                                                                            <button type="button" class="btn btn-success btn-sm me-2">Chấp nhận</button> 
-                                                                            <button type="button" class="btn btn-danger btn-sm">Từ chối</button>
+                                                                            <button type="button" className="btn btn-success btn-sm me-2">Chấp nhận</button> 
+                                                                            <button type="button" className="btn btn-danger btn-sm">Từ chối</button>
                                                                         </div>
 
                                                                     </a>

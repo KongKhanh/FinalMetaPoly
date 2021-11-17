@@ -1,11 +1,50 @@
 import { useState } from 'react';
 
+import axios from 'axios';
+
+import { API_URL } from '../../settings/Api';
+
+
+
 export default function ForgotPassword(props) {
 
     const [InputForgotPass, setInputForgotPass] = useState({
         user_phone: '',
-        user_email: '',
     });
+
+    const __requestCreateNewPassword = async(dataRequest) =>{
+        const responseResult = await axios({
+            url: API_URL.FORGOT_PASS,
+            method: 'POST',
+            data : dataRequest,
+        });
+
+        return responseResult;
+    }
+
+    const OnChangeForgotPassField = (event) => {
+        setInputForgotPass({
+            ...InputForgotPass,
+            user_phone : event.target.value
+        })
+        console.log(InputForgotPass);
+    };
+
+    const handleClickCreateNewPass = () =>{
+        const dataRequest = new FormData();
+
+        dataRequest.append('user_phone',InputForgotPass.user_phone);
+
+
+        __requestCreateNewPassword(dataRequest)
+        .then((res) => {
+            console.log(res);
+        });
+
+    };
+
+
+
 
     const Styles = {
         forgotPass: {
@@ -44,10 +83,19 @@ export default function ForgotPassword(props) {
                                     <form action="#">
                                         <div className="mb-3">
                                             <label htmlFor="phoneNunmber" className="form-label">Số điện thoại / Email: </label>
-                                            <input className="form-control" type="text" id="phoneNunmber" required placeholder="(+73)" />
+                                            <input 
+                                            className="form-control" 
+                                            type="text" 
+                                            id="phoneNunmber" 
+                                            required 
+                                            placeholder="(+73)" 
+                                            name="user_phone"
+                                            // value={InputForgotPass.user_phone ? InputForgotPass.user_phone: ''}
+                                            onChange={(event) => OnChangeForgotPassField(event)}
+                                            />
                                         </div>
                                         <div className="mb-0 text-center">
-                                            <button className="btn btn-primary" type="submit">Gửi yêu cầu</button>
+                                            <button className="btn btn-primary" type="button" >Gửi yêu cầu</button>
                                         </div>
                                     </form>
                                 </div> {/* end card-body*/}

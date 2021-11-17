@@ -15,6 +15,7 @@
     $router->get('/user/{idUser}','UserController@__getIdUser');
     $router->get('/userlist/{idUser}','UserController@__getUser');
     $router->get('/newsfeed','NewsfeedController@__getPostList');
+    
 
     // ------------------------------Handle POST method------------------------------
     $router->post('/user/create-new','UserController@__CreateNewUser');
@@ -22,6 +23,7 @@
     $router->post('/user/profile-setting/{idUser}','UserController@__setProfileSetting');
     $router->post('/user/create-like','PostingController@__likePost');
     $router->post('/friend/{idUser}','FriendController@__AddNewFriend');
+    $router->post('/user/forgotPass','UserController@__handleForgotPassword');
 
 
     // ---------------------For Posting

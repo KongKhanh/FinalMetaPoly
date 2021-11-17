@@ -25,4 +25,6 @@ export const API_URL = {
     // @Auth Mai Mai
     CREATE_NEW_LIKE: BASE_API_URL + '/user/create-like',
 
+    FORGOT_PASS: BASE_API_URL + '/user/forgotPass',
+
 };
