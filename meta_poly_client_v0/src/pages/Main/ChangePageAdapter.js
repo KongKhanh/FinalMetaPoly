@@ -2,7 +2,7 @@ import SignUp from '../Authentication/SignUp';
 import SignIn from '../Authentication/SignIn';
 import Profile from '../Profile/Profile';
 import Newsfeed from '../Newsfeed/Newsfeed';
-
+import ForgotPassword from '../Authentication/ForgotPassword';
 
 export function ChangePageAdapter(id_page, dataComp, props) {
 
@@ -23,6 +23,12 @@ export function ChangePageAdapter(id_page, dataComp, props) {
                 UserInforClient={props.UserInforClient}
             />
 
+        // This case for Forgot Password
+        case 'jdvwW87LnMUJB69':
+            return <ForgotPassword 
+                setCurrentPage={props.setCurrentPage}
+                UserInforClient={props.UserInforClient}
+            />
 
         // This case for Profile Page
         case 'H8HBZbNuLNUkzTf':

@@ -40,28 +40,28 @@ function SignIn(props) {
         const dataRequest = new FormData();
 
         // Them thuoc tinh vao formData de gui len server
-        for(let i = 0; i < Object.keys(InputSignInField).length; i++) {
+        for (let i = 0; i < Object.keys(InputSignInField).length; i++) {
 
             dataRequest.append(Object.keys(InputSignInField)[i], InputSignInField[Object.keys(InputSignInField)[i]]);
-            
+
         }
 
         __requestAuthSignIn(dataRequest)
-        .then((res) => {
+            .then((res) => {
 
-            if(res.status_task === 1) {
+                if (res.status_task === 1) {
 
-                // Chuyen ve trang NewsFeed khi dang nhap thanh cong
-                props.setCurrentPage('uGqXQpyJeFUoBqm');
+                    // Chuyen ve trang NewsFeed khi dang nhap thanh cong
+                    props.setCurrentPage('uGqXQpyJeFUoBqm');
 
-                setCookie('user_id', res.user_info.user_id, 30);
-                setCookie('access_token', res.user_info.user_token, 30);
+                    setCookie('user_id', res.user_info.user_id, 30);
+                    setCookie('access_token', res.user_info.user_token, 30);
 
-            }
-            else {
-                alert("Đăng nhập thất bại !");
-            }
-        });
+                }
+                else {
+                    alert("Đăng nhập thất bại !");
+                }
+            });
     };
 
 
@@ -92,13 +92,13 @@ function SignIn(props) {
                                 <div className="row justify-content-center">
                                     <div className="col-xxl-4 col-lg-5">
                                         <div className="card">
-                
+
                                             <div className="card-header pt-2 pb-2 text-center bg-primary">
-                                                <a href="/#" style={{color: '#FFFFFF', fontSize: '32px'}}>MetaPoly</a>
+                                                <a href="/#" style={{ color: '#FFFFFF', fontSize: '32px' }}>MetaPoly</a>
                                             </div>
 
                                             <div className="card-body p-3">
-                                                
+
                                                 <div className="text-center w-75 m-auto">
                                                     <h4 className="text-dark-50 text-center pb-0 fw-bold">Đăng nhập</h4>
                                                     <p className="text-muted mb-4">Kết nối - Sáng tạo - Giá trị</p>
@@ -108,28 +108,31 @@ function SignIn(props) {
 
                                                     <div className="mb-3">
                                                         <label htmlFor="user_phone" className="form-label">Số điện thoại</label>
-                                                        <input className="form-control" 
-                                                            type="number" 
-                                                            id="user_phone" 
+                                                        <input className="form-control"
+                                                            type="number"
+                                                            id="user_phone"
                                                             name="user_phone"
-                                                            required 
+                                                            required
                                                             value={InputSignInField.user_phone ? InputSignInField.user_phone : ''}
-                                                            placeholder="Nhập số điện thoại" 
-                                                            onChange={(event) => handleOnChangeSignInField(event)} 
+                                                            placeholder="Nhập số điện thoại"
+                                                            onChange={(event) => handleOnChangeSignInField(event)}
                                                         />
                                                     </div>
 
                                                     <div className="mb-3">
-                                                        <a href="pages-recoverpw.html" className="text-muted float-end"><small>Quên mật khẩu?</small></a>
+                                                        <a href="/#" className="text-muted float-end"
+                                                            // Chuyen qua trang SignUp khi chua co tai khoan
+                                                            onClick={() => props.setCurrentPage('jdvwW87LnMUJB69')}>
+                                                            <small>Quên mật khẩu?</small></a>
                                                         <label htmlFor="user_password" className="form-label">Mật khẩu</label>
                                                         <div className="input-group input-group-merge">
-                                                            <input 
-                                                                type="password" 
-                                                                id="user_password" 
+                                                            <input
+                                                                type="password"
+                                                                id="user_password"
                                                                 name="user_password"
-                                                                className="form-control" 
-                                                                placeholder="Nhập mật khẩu" 
-                                                                onChange={(event) => handleOnChangeSignInField(event)} 
+                                                                className="form-control"
+                                                                placeholder="Nhập mật khẩu"
+                                                                onChange={(event) => handleOnChangeSignInField(event)}
                                                             />
                                                             <div className="input-group-text" data-password="false" id="Eye_Password_Area">
                                                                 <span className="password-eye"></span>
@@ -145,8 +148,8 @@ function SignIn(props) {
                                                     </div>
 
                                                     <div className="mb-3 mb-0 text-end">
-                                                        <button 
-                                                            className="btn btn-primary" 
+                                                        <button
+                                                            className="btn btn-primary"
                                                             type="button"
                                                             onClick={() => handleOnClickSignIn()}
                                                         > ĐĂNG NHẬP </button>
@@ -158,13 +161,13 @@ function SignIn(props) {
 
                                         <div className="row mt-3">
                                             <div className="col-12 text-center">
-                                                <p className="text-white">Chưa có tài khoản 
-                                                    <a 
-                                                        href="/#" 
+                                                <p className="text-white">Chưa có tài khoản
+                                                    <a
+                                                        href="/#"
                                                         className="ms-1"
                                                         // Chuyen qua trang SignUp khi chua co tai khoan
                                                         onClick={() => props.setCurrentPage('6VRiCktUwxaLAud')}
-                                                    >   
+                                                    >
                                                         <b className="text-white">Tạo tài khoản</b>
                                                     </a>
                                                 </p>

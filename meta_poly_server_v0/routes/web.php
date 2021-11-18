@@ -23,6 +23,8 @@
     $router->post('/user/profile-setting/{idUser}','UserController@__setProfileSetting');
     $router->post('/user/create-like','PostingController@__likePost');
     $router->post('/friend/{idUser}','FriendController@__AddNewFriend');
+    $router->post('/confirm/friend/is-accept','FriendController@__ConfirmRequestFriend');
+
 
 
     // ---------------------For Posting

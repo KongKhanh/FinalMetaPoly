@@ -7,12 +7,12 @@ import LikeButton from './LikeButton';
 import CommentBox from './CommentBox';
 import ShowComments from './ShowComments';
 import PostingBox from '../../common/components/PostingBox/PostingBox';
+import {ccd} from '../../libs_3rd/CustomDate/CustomDate';
 
 export default function PostContentContainer(props) {
 
     // Danh sach cac bai Post
     const[PostList, setPostList] = useState([]); 
-
     useEffect(function(){
 
         const CancelToken = axios.CancelToken;
@@ -72,7 +72,8 @@ export default function PostContentContainer(props) {
 
             {       
                 PostList.map((PostItem, index_xx) => {
-
+                    const ccd_obj = new ccd(PostItem.post_created_at);
+                    const myr = ccd_obj.gs();
                     return (
                         <div key={`post_item_${index_xx}`}>
 
@@ -105,7 +106,11 @@ export default function PostContentContainer(props) {
                                             }
                                         </h5>
 
-                                        <p className="text-muted"><small>20 min ago <span className="mx-1">⚬</span> <span>Public</span></small></p>
+                                        <p className="text-muted"><small>
+                                        {  
+                                            myr.t + ' ' + myr.f + ' ago'
+                                        }
+                                        <span className="mx-1">⚬</span> <span>Public</span></small></p>
 
                                         </div>
 

@@ -14,7 +14,7 @@
 
         public function __GetComfirmUserID($idUser){
     
-            $ComfirmUserId =  $this->modelNotification -> GetComfirmUserID($idUser);
+            $ComfirmUserId =  $this->modelNotification -> GetComfirmUserID(base64_decode($idUser));
 
             for($i = 0; $i < count($ComfirmUserId); $i++){
 

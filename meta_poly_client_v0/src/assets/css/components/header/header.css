@@ -31,4 +31,8 @@
   margin-top: 4px;
 }
 
+#friendReqbox{
+  transform:translate(560px, 5px)!important;
+}
+
 /*# sourceMappingURL=header.css.map */
