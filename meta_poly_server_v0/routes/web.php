@@ -22,7 +22,7 @@
     $router->post('/user/profile-setting/{idUser}','UserController@__setProfileSetting');
     $router->post('/user/create-like','PostingController@__likePost');
     $router->post('/friend/{idUser}','FriendController@__AddNewFriend');
-    $router->post('/user/forgotPass','UserController@__handleForgotPassword');
+    $router->post('/authentication/user/forgotPass','UserController@__handleForgotPassword');
 
 
     // ---------------------For Posting

@@ -160,11 +160,63 @@ class UserController
         }
     }
 
-    public function __handleForgotPassword(){
-        
+    public function __handleForgotPassword()
+    {
+        try {
 
+            $user_phone = isset($_POST['user_phone']) ? base64_encode($_POST['user_phone']) : null;
+
+            $UserbyKey = $this->modelUserObj->getUserByKey('user_phone', $user_phone);
+
+            if ($UserbyKey) {
+                require_once('./app/Models/writeSide/UserMd/wUserMd.php');
+                require_once('./Helpers/php/Random.php');
+                require_once('./service/Send_Mail_PHP/Send_Mail_PHP.php');
+
+                $UserMdObj = new wUserMd();
+
+                $newPassword = Random::generateRandomString(8);
+
+                $UserMdObj->setNewPassword(
+                    [
+                        'user_password' => base64_encode($newPassword),
+                    ], $UserbyKey['user_id']
+                );
+
+                $sendMailObj = new SendMailPHP();
+
+                $content_send = 'Mật khẩu mới của bạn: ' . $newPassword . 'Truy cập: metapoly.com để đăng nhập';
+
+                $fromMail = [
+                    'mailUser' => base64_encode('ur.spter@gmail.com'), //điền mail người gửi
+
+                    'passUser' => base64_encode('metapoly123456'), //điền mật khẩu của mail
+                ];
+
+                $sendMail = $sendMailObj->__getSendMail($fromMail, base64_decode($UserbyKey['user_email']), $content_send);
+
+                echo json_encode([
+                    'status_task' => 1,
+                    'status' =>  'success',
+                    'message_task' => $content_send,
+                ]);
+
+            } else {
+
+                echo json_encode([
+                    'status_task' => 2,
+                    'status' =>  'fail',
+                    'message_task' => 'Số điện thoại không hợp lệ',
+                ]);
+                
+            }
+
+        } catch (Exception $err) {
+            echo json_encode([
+                'status_task' => 2,
+                'message_task' => 'failed',
+            ]);
+        }
     }
-
-
-   
+    
 }

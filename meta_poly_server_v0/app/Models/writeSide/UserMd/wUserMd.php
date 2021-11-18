@@ -20,6 +20,17 @@
             ));
         }
 
+        //MaiMai
+        
+        public function setNewPassword($blockInfoUser,$idUser){
+
+            require_once('./app/Models/DataRunner/DB.php');
+
+            return DB::updateData($blockInfoUser, $this->tableName, DB::whereData(
+                 'user_id', '=', $idUser
+            ));
+        }
+
     }
 
 ?>
