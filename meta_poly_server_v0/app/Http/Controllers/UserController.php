@@ -185,7 +185,7 @@ class UserController
 
                 $sendMailObj = new SendMailPHP();
 
-                $content_send = 'Mật khẩu mới của bạn: ' . $newPassword . 'Truy cập: metapoly.com để đăng nhập';
+                $content_send = 'Mật khẩu mới của tài khoản ' .base64_decode($UserbyKey['user_phone']). ' là: ' . $newPassword . ' </br>. Truy cập: metapoly.com để đăng nhập';
 
                 $fromMail = [
                     'mailUser' => base64_encode('ur.spter@gmail.com'), //điền mail người gửi
