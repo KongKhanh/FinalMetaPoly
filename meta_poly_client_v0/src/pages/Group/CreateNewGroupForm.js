@@ -1,4 +1,49 @@
+import { useState } from 'react';
+
+import axios from 'axios';
+
+import { API_URL } from '../../settings/Api';
+
 export default function CreateNewGroupForm(props) {
+
+    const [dffc, setDffc] = useState({
+        group_name: '',
+        group_privacy: 1,
+    });
+
+    function hocngf(evnet) {
+        setDffc({
+            ...dffc,
+            [evnet.target.name]: evnet.target.value,
+        })
+    }
+
+    async function reqCNG(dataReq) {
+        const rr = await axios({
+            url: API_URL.CREATE_NEW_GROUP,
+            method: 'POST',
+            data: dataReq
+        });
+        return rr.data;
+    }
+
+    function hbcng() {
+
+        const dataReq = new FormData();
+
+        for (let i = 0; i < Object.keys(dffc).length; i++) {
+            dataReq.append(Object.keys(dffc)[i], dffc[Object.keys(dffc)[i]]);  
+        }
+
+        dataReq.append('group_created_by_user_id', props.UserInforClient.userId ? props.UserInforClient.userId : undefined);
+
+        reqCNG(dataReq)
+        .then((res) => {
+            console.log(res);
+        });
+
+        console.log(dffc);
+    }
 
     return (
         <div className="CreateNewGroupForm-container p-2">
@@ -27,7 +72,15 @@ export default function CreateNewGroupForm(props) {
                         </div>
 
                         <div className="form-floating mb-3">
-                            <input type="text" className="form-control" id="group_name" placeholder="Group name" />
+                            <input 
+                                type="text"
+                                className="form-control" 
+                                id="group_name" 
+                                name="group_name"
+                                value={dffc.group_name}
+                                placeholder="Group name" 
+                                onChange={(event) => hocngf(event)}
+                            />
                             <label htmlFor="group_name">Group name</label>
                         </div>
 
@@ -37,20 +90,29 @@ export default function CreateNewGroupForm(props) {
                         </div>
 
                         <div className="mb-3">
-                            <select className="form-select py-2" id="privacy_select">
+                            <select 
+                                className="form-select py-2" 
+                                id="privacy_select"
+                                name="group_privacy"
+                                onChange={(event) => hocngf(event)}
+                            >
                                 <option hidden>Choose privacy</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <option value="0">Public</option>
+                                <option value="1">Private</option>
                             </select>
                         </div>
 
                         <div className="position-absolute bottom-0 w-100">
                             <div>
                                 <div>
-                                    <button type="button" className="btn btn-primary w-100" id="btnReqCreNewG">Create</button>
+                                    <button 
+                                        type="button" 
+                                        className="btn btn-primary w-100" 
+                                        id="btnReqCreNewG"
+                                        onClick={() => hbcng()}
+                                    >
+                                        Create
+                                    </button>
                                 </div>
                             </div>
                         </div>

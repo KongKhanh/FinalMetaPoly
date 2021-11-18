@@ -7,9 +7,8 @@
     require_once('./app/Http/Controllers/UserController.php');  
     require_once('./app/Http/Controllers/NewsfeedController.php');   
     require_once('./app/Http/Controllers/PostingController.php');  
-    require_once('./app/Http/Controllers/FriendController.php');  
-
-
+    require_once('./app/Http/Controllers/FriendController.php');
+    require_once('./app/Http/Controllers/GroupCtrl.php');  
 
     // ------------------------------Handle GET method------------------------------
     $router->get('/user/{idUser}','UserController@__getIdUser');
@@ -29,5 +28,8 @@
     // ---------------------For Posting
     $router->post('/posting/single/create-new','PostingController@__handleCreateNewPost');
     $router->post('/posting/single/create-comment','PostingController@__handleCreateNewComment');
+
+    // ---------------------For Group
+    $router->post('/group/single/create-new','GroupCtrl@__handleCreateNewGr');
 
 ?>

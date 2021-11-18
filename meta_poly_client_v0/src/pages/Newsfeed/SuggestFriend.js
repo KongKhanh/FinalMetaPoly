@@ -85,7 +85,7 @@ function SuggestFriend(props){
                     setUserList(res);
             }
         )
-     }, []);
+     }, [props]);
      //end
 
     return(
@@ -102,8 +102,15 @@ function SuggestFriend(props){
               </div>
               <h4 className="header-title mb-3">People you may know</h4>
               {showUserRecommend()}   
-              <div className="mt-2 mb-3 text-center">
-                <a href="/#">View More<i className="uil uil-arrow-right ms-1" /></a>
+              <div className="mt-2 mb-3 text-end">
+                <button className="text-end border-0 bg-white">
+                  <div className="d-flex align-items-center">
+                    <span className="me-1" style={{fontSize: '12px', color: '#1B74E4'}}>View More</span>
+                    <div>
+                        <img src="./assets/icons/flaticon/16px/arrow_right.png"/>
+                    </div>
+                  </div>
+                </button>
               </div>
             </div>
           </div>

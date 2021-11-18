@@ -118,7 +118,7 @@ function Header(props) {
                                             </a>
                                         </div>
                                         {/* All*/}
-                                        <a href="/#" className="dropdown-item text-center text-primary notify-item notify-all">
+                                        <a href="/#" className="dropdown-item text-end text-primary notify-item notify-all">
                                             View All
                                         </a>
                                     </div>
@@ -221,7 +221,11 @@ function Header(props) {
                                 </li>
                             </ul>
                             <button className="button-menu-mobile open-left">
-                                <i className="mdi mdi-menu" />
+                                <div className="">
+                                    <div className="">
+                                        <img src="./assets/images/brands/logo_header_default.jpg" alt="Logo" width="36px" height="36px"/>
+                                    </div>
+                                </div>
                             </button>
                             <div className="app-search dropdown d-none d-lg-block">
 
@@ -285,7 +289,7 @@ function Header(props) {
                                                             <span className="Nav-Control-Layout-Item-Title dropdown-toggle dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bạn bè</span>
                                                             
                                                             <div className="dropdown-menu dropdown-lg" id="friendReqbox" >
-                                                                <div className="dropdown-item px-2">
+                                                                <div className="dropdown-item p-2 border-bottom">
                                                                     <h5 className="m-0 ">
                                                                         <span className="float-end">
                                                                             <a href="/#" className="text-dark">

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import CreateNewGroupForm from './CreateNewGroupForm';
 
-export default function HomeGroup() {
+export default function HomeGroup(props) {
 
     const [activeCGForm, setActiveCGForm] =  useState(false);
 
@@ -292,6 +292,7 @@ export default function HomeGroup() {
                                         activeCGForm ?  
                                         <CreateNewGroupForm 
                                             setActiveCGForm = {setActiveCGForm}
+                                            UserInforClient = {props.UserInforClient ? props.UserInforClient : undefined}
                                         /> : ''
                                     }
                                 </div>
@@ -302,10 +303,10 @@ export default function HomeGroup() {
                                 <div className="card">
                                     <div className="card-body pb-1">
                                     <div className="d-flex">
-                                        <img className="me-2 rounded" src="assets/images/users/avatar-3.jpg" alt="Generic placeholder image" height={32} />
+                                        <img className="me-2 rounded" src="assets/images/users/avatar-3.jpg" alt="MPI" height={32} />
                                         <div className="w-100">
                                         <div className="dropdown float-end text-muted">
-                                            <a href="#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <a href="/#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
                                             <i className="mdi mdi-dots-horizontal" />
                                             </a>
                                             <div className="dropdown-menu dropdown-menu-end">
@@ -334,7 +335,7 @@ export default function HomeGroup() {
                                     <hr className="m-0" />
                                     <div className="mt-3">
                                         <div className="d-flex">
-                                        <img className="me-2 rounded" src="assets/images/users/avatar-9.jpg" alt="Generic placeholder image" height={32} />
+                                        <img className="me-2 rounded" src="assets/images/users/avatar-9.jpg" alt="MPI" height={32} />
                                         <div>
                                             <h5 className="m-0">Sansa Stark </h5>
                                             <p className="text-muted mb-0"><small>2 mins ago</small></p>
@@ -349,7 +350,7 @@ export default function HomeGroup() {
                                             </a>
                                             </div>
                                             <div className="d-flex mt-3">
-                                            <img className="me-2 rounded" src="assets/images/users/avatar-8.jpg" alt="Generic placeholder image" height={32} />
+                                            <img className="me-2 rounded" src="assets/images/users/avatar-8.jpg" alt="MPI" height={32} />
                                             <div>
                                                 <h5 className="m-0">Cersei Lannister </h5>
                                                 <p className="text-muted mb-0"><small>1 min ago</small></p>
@@ -372,10 +373,10 @@ export default function HomeGroup() {
                                 <div className="card">
                                     <div className="card-body pb-1">
                                         <div className="d-flex">
-                                            <img className="me-2 rounded" src="assets/images/users/avatar-5.jpg" alt="Generic placeholder image" height={32} />
+                                            <img className="me-2 rounded" src="assets/images/users/avatar-5.jpg" alt="MPI" height={32} />
                                             <div className="w-100">
                                             <div className="dropdown float-end text-muted">
-                                                <a href="#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <a href="/#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i className="mdi mdi-dots-horizontal" />
                                                 </a>
                                                 <div className="dropdown-menu dropdown-menu-end">
@@ -410,7 +411,7 @@ export default function HomeGroup() {
                                         <hr className="m-0" />
                                         <div className="mt-3">
                                             <div className="d-flex">
-                                            <img className="me-2 rounded" src="assets/images/users/avatar-9.jpg" alt="Generic placeholder image" height={32} />
+                                            <img className="me-2 rounded" src="assets/images/users/avatar-9.jpg" alt="MPI" height={32} />
                                             <div className="w-100">
                                                 <h5 className="m-0">Sansa Stark </h5>
                                                 <p className="text-muted mb-0"><small>2 mins ago</small></p>
@@ -448,7 +449,7 @@ export default function HomeGroup() {
                                     <div className="card">
                                         <div className="card-body pb-0">
                                         <div className="dropdown float-end">
-                                            <a href="#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <a href="/#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
                                             <i className="mdi mdi-dots-horizontal" />
                                             </a>
                                             <div className="dropdown-menu dropdown-menu-end">
@@ -458,7 +459,7 @@ export default function HomeGroup() {
                                         <h4 className="header-title mb-3">Suggested for you</h4>
                                             <div className="inbox-widget Suggested_for_you-G-container">
                                                 <div className="card d-block border">
-                                                    <img className="card-img-top" width="294px" height="165px" src="./assets/images/small/163475081_2818367451750510_936569814211423287534_n.jpg" alt="Card image cap" />
+                                                    <img className="card-img-top" width="294px" height="165px" src="./assets/images/small/163475081_2818367451750510_936569814211423287534_n.jpg" alt="MPI" />
                                                     <div className="card-body">
                                                         <h5 className="mb-1 mt-0 Suggested_for_you_title_brand">UI / UX Designers & Developers</h5>
                                                         <div className="d-flex align-items-center mb-2">
