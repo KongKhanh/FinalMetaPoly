@@ -1,0 +1,171 @@
+.Group-Container {
+    .Group-Inner-Container {
+        .Group-Wrapper {
+            .Group-Inner-Wrapper {
+                .HomeGroup-Container {
+                    .HomeGroup-Inner-Container {
+                        .HomeGroup-Wrapper {
+                            .HomeGroup-Inner-Wrapper {
+
+                                .left-Side-Wrapper {
+                                    left: 0;
+                                    width: 362px !important;
+                                    overflow: hidden !important;
+                                    background-color: #FFFFFF !important;
+                                    .GroupMain-title-container {
+                                        .GroupMain-title-wrapper {
+                                            .GroupMain-title {
+                                                .Gtitle {
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                    .GroupSearch-Field-container {
+
+                                    }
+                                    .btn-create-G-container {
+                                        #btnActiveCreateNewGrF {
+                                            background-color: #E7F3FF;
+                                            &:hover {
+                                                cursor: pointer;
+                                                background-color: #DBE7F2;
+                                            }
+                                            .btn-title {
+                                                .title {
+                                                    font-weight: 700;
+                                                    color: #1877F2;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    .G-list-container {
+                                        background-color: #FFFFFF !important;
+                                        height: 530px;
+                                        // height: 100vh;
+                                        overflow-y: scroll;
+                                        /* width */
+                                        &::-webkit-scrollbar {
+                                            width: 6px;
+                                        }
+                                        /* Handle */
+                                        &::-webkit-scrollbar-thumb {
+                                            background: #BCC0C4; 
+                                            border-radius: 10px;
+                                        }
+                                        /* Handle on hover */
+                                        &::-webkit-scrollbar-thumb:hover {
+                                            background: #898b8c; 
+                                        }
+                                        .G-list-wrapper {
+                                            background-color: #FFFFFF !important;
+                                            .G-list-title {
+    
+                                            }
+                                            .G-list-item-showing {
+                                                .G-list-item-wapper {
+                                                    .G-item { 
+                                                        cursor: pointer;
+                                                        &:hover {
+                                                            background-color: #F2F2F2;
+                                                            border-radius: 8px;
+                                                        }
+                                                        .logo-group-list-container {
+                                                            width: 60px;
+                                                            height: 60px;
+                                                            overflow: hidden;
+                                                            border-radius: 6px;
+                                                            .logo-group-list-wrapper {
+                                                                width: 100%;
+                                                                height: 100%;
+                                                                .logo-group-list-img {
+                                                                    width: 100%;
+                                                                    height: 100%;
+                                                                }
+                                                            }
+                                                        }
+                                                        .G-name {
+                                                            line-height: 1.6;
+                                                            overflow-wrap: break-word;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    .CreateNewGroupForm-container {
+                                        position: absolute;
+                                        top: 0;
+                                        left: 0;
+                                        width: 100%;
+                                        height: 100%;
+                                        background-color: #dfe4ea;
+                                        .CreateNewGroupForm-inner-container {
+                                            .CreateNewGroupForm-wrapper {
+                                                .CreateNewGroupForm-inner-wrapper {
+
+                                                    #FCG_title {
+                                                        color: #000000;
+                                                    }
+                                                    .form-control, select {
+                                                        &:focus {
+                                                            outline: 2px solid #e67e22;
+                                                            border: none;
+                                                        }
+                                                        &:focus ~ label {
+                                                            color: #e67e22;
+                                                        }
+                                                    }
+                                                    #btnReqCreNewG {
+                                                        background-color: #1B74E4;
+                                                        border-radius: 6px;
+                                                    }
+                                                    #btnCancelCNG {
+                                                        border: none;
+                                                        position: absolute;
+                                                        right: 0;
+                                                        top: 0;
+                                                        padding: 0;
+                                                        border-radius: 50%;
+                                                        overflow: hidden;
+                                                        .btn-icon {
+                                                            width: 32px;
+                                                            height: 32px;
+                                                            img {
+                                                                width: 100%;
+                                                                height: 100%;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .right-Side-Wrapper {
+
+                                    .Suggested_for_you-G-container {
+                                        .card {
+                                            border-radius: 8px;
+                                            overflow: hidden;
+                                            &:hover {
+                                                cursor: pointer;
+                                            }
+                                            .Suggested_for_you_title_brand {
+                                                &:hover {
+                                                    text-decoration: underline;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

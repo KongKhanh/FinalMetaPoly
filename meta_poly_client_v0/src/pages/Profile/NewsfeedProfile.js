@@ -27,22 +27,22 @@ function NewsfeedProfile(props) {
             <img src="assets/images/small/small-2.jpg" alt="post-img" className="rounded me-1" height={60} />
             <img src="assets/images/small/small-3.jpg" alt="post-img" className="rounded" height={60} />
             <div className="mt-2">
-                  {/* <a href="/#>" className="btn btn-sm btn-link text-muted ps-0">
+                   <a href="/#>" className="btn btn-sm btn-link text-muted ps-0">
                     <LikeButton
                         UserInforClient={props.UserInforClient}
                         PostID={props.NewsfeedProfileItem.post_id}
-                        PostList={props.PostProfile}
+                        PostList={props.PostList}
                         setPostList={props.setPostList}
                         index_xx={props.index}
                         PostItem={props.NewsfeedProfileItem}
                     />
 
-                     {
-                        props.PostItem.list_like.length
-                    } 
+                      {
+                        props.NewsfeedProfileItem.list_like.length
+                    }   
 
                     <span className="ms-1">Likes</span>
-                </a>   */}
+                </a>    
                 <a href="/#" className="btn btn-sm btn-link text-muted"><i className="mdi mdi-reply" /> Reply</a>
                 <a href="/#" className="btn btn-sm btn-link text-muted"><i className="mdi mdi-share-variant" /> Share</a>
             </div>

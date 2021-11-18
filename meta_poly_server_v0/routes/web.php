@@ -7,15 +7,15 @@
     require_once('./app/Http/Controllers/UserController.php');  
     require_once('./app/Http/Controllers/NewsfeedController.php');   
     require_once('./app/Http/Controllers/PostingController.php');  
-    require_once('./app/Http/Controllers/FriendController.php');  
-
-
+    require_once('./app/Http/Controllers/FriendController.php');
+    require_once('./app/Http/Controllers/GroupCtrl.php');  
 
     // ------------------------------Handle GET method------------------------------
     $router->get('/user/{idUser}','UserController@__getIdUser');
     $router->get('/userlist/{idUser}','UserController@__getUser');
     $router->get('/newsfeed','NewsfeedController@__getPostList');
     $router->get('/comfirm/{idUser}','NotificationController@__GetComfirmUserID');
+
 
     // ------------------------------Handle POST method------------------------------
     $router->post('/user/create-new','UserController@__CreateNewUser');
@@ -24,11 +24,14 @@
     $router->post('/user/create-like','PostingController@__likePost');
     $router->post('/friend/{idUser}','FriendController@__AddNewFriend');
     $router->post('/confirm/friend/is-accept','FriendController@__ConfirmRequestFriend');
-
+    $router->post('/user/forgotPass','UserController@__handleForgotPassword');
 
 
     // ---------------------For Posting
     $router->post('/posting/single/create-new','PostingController@__handleCreateNewPost');
     $router->post('/posting/single/create-comment','PostingController@__handleCreateNewComment');
+
+    // ---------------------For Group
+    $router->post('/group/single/create-new','GroupCtrl@__handleCreateNewGr');
 
 ?>

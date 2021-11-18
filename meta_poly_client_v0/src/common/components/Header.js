@@ -1,4 +1,5 @@
 import '../../assets/css/components/header/header.css';
+
 import FriendRequest from './FriendRequest'
 
 import { useState, useEffect } from 'react';
@@ -144,7 +145,7 @@ function Header(props) {
                                             </a>
                                         </div>
                                         {/* All*/}
-                                        <a href="/#" className="dropdown-item text-center text-primary notify-item notify-all">
+                                        <a href="/#" className="dropdown-item text-end text-primary notify-item notify-all">
                                             View All
                                         </a>
                                     </div>
@@ -247,7 +248,11 @@ function Header(props) {
                                 </li>
                             </ul>
                             <button className="button-menu-mobile open-left">
-                                <i className="mdi mdi-menu" />
+                                <div className="">
+                                    <div className="">
+                                        <img src="./assets/images/brands/logo_header_default.jpg" alt="Logo" width="36px" height="36px"/>
+                                    </div>
+                                </div>
                             </button>
                             <div className="app-search dropdown d-none d-lg-block">
 
@@ -255,7 +260,9 @@ function Header(props) {
                                     {/* Form App Search Here */}
                                     <form>
                                         <div className="input-group">
-                                            <input type="text" className="form-control dropdown-toggle" placeholder="Tìm kiếm..." id="top-search" />
+
+                                            <input type="text" className="form-control dropdown-toggle" placeholder="Search MetaPoly" id="top-search"/>
+
                                             <span className="mdi mdi-magnify search-icon" />
                                             <button className="input-group-text btn-primary" type="submit" id="Find">Tìm kiếm</button>
                                         </div>
@@ -307,9 +314,9 @@ function Header(props) {
                                                         <div className="Nav-Control-Layout-Item">
                                                             <img src="./assets/icons/flaticon/24px/group.png" alt="icon" />
                                                             <span className="Nav-Control-Layout-Item-Title dropdown-toggle dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bạn bè</span>
+                                                            
                                                             <div className="dropdown-menu dropdown-lg" id="friendReqbox" >
-                                                                {/* item*/}
-                                                                <div className="dropdown-item">
+                                                                <div className="dropdown-item p-2 border-bottom">
                                                                     <h5 className="m-0 ">
                                                                         <span className="float-end">
                                                                             <a href="/#" className="text-dark">
@@ -334,12 +341,17 @@ function Header(props) {
                                                                     Xem tất cả
                                                                 </a>
                                                             </div>
+
                                                         </div>
                                                     </div>
                                                     <div className="Nav-Control-Layout-Item-Container mx-2">
-                                                        <div className="Nav-Control-Layout-Item">
-                                                            <img src="./assets/icons/flaticon/24px/chat_group.png" alt="icon" />
-                                                            <span className="Nav-Control-Layout-Item-Title">Nhóm</span>
+                                                        <div className="Nav-Control-Layout-Item"
+                                                            onClick = {()=> props.setCurrentPage('qT54LN6UKjYRd5x')}
+                                                        >
+                                                            <div className="Nav-Control-Layout-Item">
+                                                                <img src="./assets/icons/flaticon/24px/chat_group.png" alt="icon" />
+                                                                <span className="Nav-Control-Layout-Item-Title">Nhóm</span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div className="Nav-Control-Layout-Item-Container mx-2">

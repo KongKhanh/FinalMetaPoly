@@ -1,0 +1,114 @@
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper {
+  left: 0;
+  width: 362px !important;
+  overflow: hidden !important;
+  background-color: #FFFFFF !important;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .btn-create-G-container #btnActiveCreateNewGrF {
+  background-color: #E7F3FF;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .btn-create-G-container #btnActiveCreateNewGrF:hover {
+  cursor: pointer;
+  background-color: #DBE7F2;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .btn-create-G-container #btnActiveCreateNewGrF .btn-title .title {
+  font-weight: 700;
+  color: #1877F2;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .G-list-container {
+  background-color: #FFFFFF !important;
+  height: 530px;
+  overflow-y: scroll;
+  /* width */
+  /* Handle */
+  /* Handle on hover */
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .G-list-container::-webkit-scrollbar {
+  width: 6px;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .G-list-container::-webkit-scrollbar-thumb {
+  background: #BCC0C4;
+  border-radius: 10px;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .G-list-container::-webkit-scrollbar-thumb:hover {
+  background: #898b8c;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .G-list-container .G-list-wrapper {
+  background-color: #FFFFFF !important;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .G-list-container .G-list-wrapper .G-list-item-showing .G-list-item-wapper .G-item {
+  cursor: pointer;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .G-list-container .G-list-wrapper .G-list-item-showing .G-list-item-wapper .G-item:hover {
+  background-color: #F2F2F2;
+  border-radius: 8px;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .G-list-container .G-list-wrapper .G-list-item-showing .G-list-item-wapper .G-item .logo-group-list-container {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 6px;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .G-list-container .G-list-wrapper .G-list-item-showing .G-list-item-wapper .G-item .logo-group-list-container .logo-group-list-wrapper {
+  width: 100%;
+  height: 100%;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .G-list-container .G-list-wrapper .G-list-item-showing .G-list-item-wapper .G-item .logo-group-list-container .logo-group-list-wrapper .logo-group-list-img {
+  width: 100%;
+  height: 100%;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .G-list-container .G-list-wrapper .G-list-item-showing .G-list-item-wapper .G-item .G-name {
+  line-height: 1.6;
+  overflow-wrap: break-word;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .CreateNewGroupForm-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #dfe4ea;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .CreateNewGroupForm-container .CreateNewGroupForm-inner-container .CreateNewGroupForm-wrapper .CreateNewGroupForm-inner-wrapper #FCG_title {
+  color: #000000;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .CreateNewGroupForm-container .CreateNewGroupForm-inner-container .CreateNewGroupForm-wrapper .CreateNewGroupForm-inner-wrapper .form-control:focus, .Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .CreateNewGroupForm-container .CreateNewGroupForm-inner-container .CreateNewGroupForm-wrapper .CreateNewGroupForm-inner-wrapper select:focus {
+  outline: 2px solid #e67e22;
+  border: none;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .CreateNewGroupForm-container .CreateNewGroupForm-inner-container .CreateNewGroupForm-wrapper .CreateNewGroupForm-inner-wrapper .form-control:focus ~ label, .Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .CreateNewGroupForm-container .CreateNewGroupForm-inner-container .CreateNewGroupForm-wrapper .CreateNewGroupForm-inner-wrapper select:focus ~ label {
+  color: #e67e22;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .CreateNewGroupForm-container .CreateNewGroupForm-inner-container .CreateNewGroupForm-wrapper .CreateNewGroupForm-inner-wrapper #btnReqCreNewG {
+  background-color: #1B74E4;
+  border-radius: 6px;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .CreateNewGroupForm-container .CreateNewGroupForm-inner-container .CreateNewGroupForm-wrapper .CreateNewGroupForm-inner-wrapper #btnCancelCNG {
+  border: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .CreateNewGroupForm-container .CreateNewGroupForm-inner-container .CreateNewGroupForm-wrapper .CreateNewGroupForm-inner-wrapper #btnCancelCNG .btn-icon {
+  width: 32px;
+  height: 32px;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .left-Side-Wrapper .CreateNewGroupForm-container .CreateNewGroupForm-inner-container .CreateNewGroupForm-wrapper .CreateNewGroupForm-inner-wrapper #btnCancelCNG .btn-icon img {
+  width: 100%;
+  height: 100%;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .right-Side-Wrapper .Suggested_for_you-G-container .card {
+  border-radius: 8px;
+  overflow: hidden;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .right-Side-Wrapper .Suggested_for_you-G-container .card:hover {
+  cursor: pointer;
+}
+.Group-Container .Group-Inner-Container .Group-Wrapper .Group-Inner-Wrapper .HomeGroup-Container .HomeGroup-Inner-Container .HomeGroup-Wrapper .HomeGroup-Inner-Wrapper .right-Side-Wrapper .Suggested_for_you-G-container .card .Suggested_for_you_title_brand:hover {
+  text-decoration: underline;
+}
+
+/*# sourceMappingURL=group.css.map */

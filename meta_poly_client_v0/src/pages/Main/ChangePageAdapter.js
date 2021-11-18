@@ -2,6 +2,7 @@ import SignUp from '../Authentication/SignUp';
 import SignIn from '../Authentication/SignIn';
 import Profile from '../Profile/Profile';
 import Newsfeed from '../Newsfeed/Newsfeed';
+import Group from '../Group/Group';
 import ForgotPassword from '../Authentication/ForgotPassword';
 
 export function ChangePageAdapter(id_page, dataComp, props) {
@@ -40,7 +41,12 @@ export function ChangePageAdapter(id_page, dataComp, props) {
         case 'uGqXQpyJeFUoBqm':
             return <Newsfeed 
                 UserInforClient={props.UserInforClient}
+            />
 
+        // This case for Group Page
+        case 'qT54LN6UKjYRd5x':
+            return <Group 
+                UserInforClient={props.UserInforClient}
             />
 
         default: return <Newsfeed />

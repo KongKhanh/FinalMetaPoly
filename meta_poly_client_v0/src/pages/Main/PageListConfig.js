@@ -2,6 +2,7 @@ import SignIn from '../Authentication/SignIn';
 import SignUp from '../Authentication/SignUp';
 import Profile from '../Profile/Profile';
 import Newsfeed from '../Newsfeed/Newsfeed';
+import Group from '../Group/Group';
 
 
 
@@ -31,5 +32,10 @@ const PageListConfig = [
         id_page: 'uGqXQpyJeFUoBqm',
         component: <Newsfeed />,
         note: 'Page nay la page newsfeed'
+    },
+    {
+        id_page: 'qT54LN6UKjYRd5x',
+        component: <Group />,
+        note: 'Page nay la page group'
     },
 ];
