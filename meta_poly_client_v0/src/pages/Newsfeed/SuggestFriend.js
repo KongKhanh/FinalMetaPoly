@@ -24,7 +24,6 @@ function SuggestFriend(props){
                 method: 'POST',
                 data: DataRequestFriend,
             });
-            
             return responseResult.data;
 
         }

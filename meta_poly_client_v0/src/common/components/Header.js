@@ -1,6 +1,33 @@
 import '../../assets/css/components/header/header.css';
 
+import FriendRequest from './FriendRequest'
+
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { API_URL } from '../../settings/Api';
+
 function Header(props) {
+
+        const [ComfUserInfor, setComfUserInfor] = useState([]);
+        useEffect(function(){
+            const requestData = async () => {
+                const responseResult = await axios({
+                    headers: { 
+                        'Access-Control-Allow-Origin' : '*',
+                    },
+                    url: `${API_URL.GET_FRIEND_REQUEST}/${props.UserInforClient.userId}`,
+                    method: 'GET',
+                });
+                return responseResult.data;
+            };
+            requestData()
+            .then(
+                function(res){
+                    setComfUserInfor(res);
+                }
+            )
+        }, []);
+
     return (
         <div className="Header-Container">
             <div className="Header-Inner-Container">
@@ -298,34 +325,21 @@ function Header(props) {
                                                                         </span>Lời mời kết bạn
                                                                     </h5>
                                                                 </div>
-
-                                                                <div style={{ maxHeight: '500px' }} data-simplebar>
-                                                                    <a href="/#" className="dropdown-item notify-item px-2 py-1">
-                                                                        <div className="notify-icon d-inline" style={{ height: '30px', width: '30px' }}>
-                                                                            <img src="assets/images/users/avatar-2.jpg" className="img-fluid rounded-circle me-1" alt="Avatar" width="30" height="30" />
-                                                                        </div>
-                                                                        <span className="notify-details">
-                                                                            <span style={{fontWeight: '700',}}>Cristina Pride</span> đã gửi lời mời kết bạn
-                                                                        </span>
-                                                                        <div className="d-flex justify-content-end align-items-center">
-                                                                            <button type="button" className="btn btn-info btn-sm me-2">Chấp nhận</button> 
-                                                                            <button type="button" className="btn btn-danger btn-sm">Từ chối</button>
-                                                                        </div>
-                                                                    </a>
-                                                                    <a href="/#" className="dropdown-item notify-item px-2 py-1">
-                                                                        <div className="notify-icon d-inline" style={{ height: '30px', width: '30px' }}>
-                                                                            <img src="assets/images/users/avatar-2.jpg" className="img-fluid rounded-circle me-1" alt="Avatar" width="30" height="30" />
-                                                                        </div>
-                                                                        <span className="notify-details">
-                                                                            <span style={{fontWeight: '700',}}>Cristina Pride</span> đã gửi lời mời kết bạn
-                                                                        </span>
-                                                                        <div className="d-flex justify-content-end align-items-center">
-                                                                            <button type="button" className="btn btn-info btn-sm me-2">Chấp nhận</button> 
-                                                                            <button type="button" className="btn btn-danger btn-sm">Từ chối</button>
-                                                                        </div>
-                                                                    </a>
-                                                                </div>
-                                                                <a href="/#" className="dropdown-item text-end text-primary notify-item notify-all">Xem tất cả</a>
+                                                                {
+                                                                    ComfUserInfor.map((FriendRQ, index) => {
+                                                                        return (
+                                                                            <div key={index}>
+                                                                                <FriendRequest 
+                                                                                    FriendRQ = {FriendRQ}
+                                                                                />
+                                                                            </div>
+                                                                        )
+                                                                    })
+                                                                }
+                                                                {/* All*/}
+                                                                <a href="/#" className="dropdown-item text-center text-primary notify-item notify-all">
+                                                                    Xem tất cả
+                                                                </a>
                                                             </div>
 
                                                         </div>
@@ -334,7 +348,6 @@ function Header(props) {
                                                         <div className="Nav-Control-Layout-Item"
                                                             onClick = {()=> props.setCurrentPage('qT54LN6UKjYRd5x')}
                                                         >
-
                                                             <div className="Nav-Control-Layout-Item">
                                                                 <img src="./assets/icons/flaticon/24px/chat_group.png" alt="icon" />
                                                                 <span className="Nav-Control-Layout-Item-Title">Nhóm</span>

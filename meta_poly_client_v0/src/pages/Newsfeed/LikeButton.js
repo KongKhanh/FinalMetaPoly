@@ -73,7 +73,6 @@ function LikeButton(props){
             
                       props.setPostList(PostList_Ref);
 
-                      
                   }
 
               }
