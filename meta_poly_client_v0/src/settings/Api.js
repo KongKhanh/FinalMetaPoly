@@ -30,6 +30,8 @@ export const API_URL = {
 
     CREATE_NEW_GROUP: BASE_API_URL + '/group/single/create-new',
 
+    GET_INFO_GROUP: BASE_API_URL + '/group/single/data-visu',
+
     // @Auth Mai Mai
     CREATE_NEW_LIKE: BASE_API_URL + '/user/create-like',
 

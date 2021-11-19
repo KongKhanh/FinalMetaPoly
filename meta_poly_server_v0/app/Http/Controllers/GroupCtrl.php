@@ -31,6 +31,21 @@
             }
         }
 
+        public function __getGrSingleInfo($id_Gr) {
+
+            require_once('./app/Models/readSide/Group/rGroupMd.php');
+
+            $id_Gr_S = isset($id_Gr) ? trim($id_Gr) : null;
+
+            $rGroupMd_vn = new rGroupMd();
+
+            // echo $gr_info = $rGroupMd_vn->__getSingleData() . "\n";
+            $gr_post_l = $rGroupMd_vn->__getPostLGr();
+
+            echo json_encode($gr_post_l);
+
+        }
+
     }
 
 ?>

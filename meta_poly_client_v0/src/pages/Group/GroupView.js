@@ -1,4 +1,33 @@
-export default function GroupView() {
+import { useState, useEffect } from 'react';
+
+import axios from 'axios';
+
+import { API_URL } from '../../settings/Api';
+
+export default function GroupView(props) {
+
+    const [GrViewVisu, setGrViewVisu] = useState(false);
+
+    useEffect(() =>{
+
+        async function xs() {
+            const dr = await axios({
+                url: `${API_URL.GET_INFO_GROUP}/${props.id_GrView ? props.id_GrView : undefined}`,
+                method: 'GET'
+            });
+            return dr.data;
+        }
+
+        xs()
+        .then((res) => {
+
+            setGrViewVisu(res);
+
+            console.log(res);
+
+        });
+
+    }, [props]);
 
     return (
         <div className="GroupView-container">
