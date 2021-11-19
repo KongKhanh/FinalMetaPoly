@@ -19,7 +19,7 @@ export default function ForgotPassword(props) {
             data : dataRequest,
         });
 
-        return responseResult;
+        return responseResult.data;
     }
 
     const OnChangeForgotPassField = (event) => {
@@ -27,7 +27,6 @@ export default function ForgotPassword(props) {
             ...InputForgotPass,
             user_phone : event.target.value
         })
-        console.log(InputForgotPass);
     };
 
     const handleClickCreateNewPass = () =>{
@@ -35,15 +34,12 @@ export default function ForgotPassword(props) {
 
         dataRequest.append('user_phone',InputForgotPass.user_phone);
 
-
         __requestCreateNewPassword(dataRequest)
         .then((res) => {
             console.log(res);
         });
 
     };
-
-
 
 
     const Styles = {
@@ -78,11 +74,11 @@ export default function ForgotPassword(props) {
                                 <div className="card-body p-4">
                                     <div className="text-center w-75 m-auto">
                                         <h4 className="text-dark-50 text-center mt-0 fw-bold">Bạn quên mật khẩu?</h4>
-                                        <p className="text-muted mb-4">Nhập số điện thoại hoặc email đã đăng ký tài khoản để nhận mật khẩu mới tại email của bạn.</p>
+                                        <p className="text-muted mb-4">Nhập số điện thoại đã đăng ký tài khoản để nhận mật khẩu mới tại email của bạn.</p>
                                     </div>
                                     <form action="#">
                                         <div className="mb-3">
-                                            <label htmlFor="phoneNunmber" className="form-label">Số điện thoại / Email: </label>
+                                            <label htmlFor="phoneNunmber" className="form-label">Số điện thoại: </label>
                                             <input 
                                             className="form-control" 
                                             type="text" 
@@ -95,7 +91,10 @@ export default function ForgotPassword(props) {
                                             />
                                         </div>
                                         <div className="mb-0 text-center">
-                                            <button className="btn btn-primary" type="button" >Gửi yêu cầu</button>
+                                            <button className="btn btn-primary" type="button"
+                                             onClick= {()=>handleClickCreateNewPass()}
+                                             >
+                                             Gửi yêu cầu</button>
                                         </div>
                                     </form>
                                 </div> {/* end card-body*/}

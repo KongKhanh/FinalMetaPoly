@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { API_URL } from '../../settings/Api';
+import { API_URL,BASE_API_URL} from '../../settings/Api';
 
 //Component 
 import PostProfile from './PostProfile';
@@ -71,7 +71,7 @@ function Profile(props){
               <div className="card text-center">
                   <div className="card-body">
                   
-                      <img src="assets/images/users/avatar-1.jpg" className="rounded-circle avatar-lg img-thumbnail" alt="MetaPoly" />
+                      <img src={BASE_API_URL+'/public/upload/images/user_avatar/2.5.jpg'} className="rounded-circle avatar-lg img-thumbnail" alt="MetaPoly" />
 
                       <h4 className="mb-0 mt-2"> 
                       {UserInfor.UserName} 

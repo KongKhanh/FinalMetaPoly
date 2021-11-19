@@ -1,6 +1,33 @@
 import '../../assets/css/components/header/header.css';
 
+import FriendRequest from './FriendRequest'
+import FindNewFriends from './FindNewFriends'
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { API_URL } from '../../settings/Api';
+
 function Header(props) {
+
+        const [ComfUserInfor, setComfUserInfor] = useState([]);
+        useEffect(function(){
+            const requestData = async () => {
+                const responseResult = await axios({
+                    headers: { 
+                        'Access-Control-Allow-Origin' : '*',
+                    },
+                    url: `${API_URL.GET_FRIEND_REQUEST}/${props.UserInforClient.userId}`,
+                    method: 'GET',
+                });
+                return responseResult.data;
+            };
+            requestData()
+            .then(
+                function(res){
+                    setComfUserInfor(   res);
+                }
+            )
+        }, []);
+
     return (
         <div className="Header-Container">
             <div className="Header-Inner-Container">
@@ -231,46 +258,10 @@ function Header(props) {
 
                                 <div className="app-search-block">
                                     {/* Form App Search Here */}
-                                    <form>
-                                        <div className="input-group">
-
-                                            <input type="text" className="form-control dropdown-toggle" placeholder="Search MetaPoly" id="top-search"/>
-
-                                            <span className="mdi mdi-magnify search-icon" />
-                                            <button className="input-group-text btn-primary" type="submit" id="Find">Tìm kiếm</button>
-                                        </div>
-                                    </form>
+                                    <FindNewFriends 
+                                    UserInforClient = {props.UserInforClient}
+                                    />
                                     {/* Result of Searching */}
-                                    <div className="dropdown-menu dropdown-menu-animated dropdown-lg" id="search-dropdown">
-                                        {/* item*/}
-                                        <div className="dropdown-header noti-title">
-                                            <h5 className="text-overflow mb-2">Found <span className="text-danger">17</span> results</h5>
-                                        </div>
-                                        {/* item*/}
-                                        <a href="/#" className="dropdown-item notify-item">
-                                            <i className="uil-notes font-16 me-1" />
-                                            <span>Analytics Report</span>
-                                        </a>
-                                        {/* item*/}
-                                        <a href="/#" className="dropdown-item notify-item">
-                                            <i className="uil-life-ring font-16 me-1" />
-                                            <span>How can I help you?</span>
-                                        </a>
-                                        {/* item*/}
-                                        <a href="/#" className="dropdown-item notify-item">
-                                            <i className="uil-cog font-16 me-1" />
-                                            <span>User profile settings</span>
-                                        </a>
-                                        {/* item*/}
-                                        <div className="dropdown-header noti-title">
-                                            <h6 className="text-overflow mb-2 text-uppercase">Users</h6>
-                                        </div>
-                                        {/* item*/}
-                                        {/* {ShowUsers(res)} */}
-                                        {/* {showUserRecommend()} */}
-                                        {/* item*/}
-                                    </div>
-
                                     <div className="Nav-Control-Layout-App-Container">
                                         <div className="Nav-Control-Layout-App-Inner-Container">
                                             <div className="Nav-Control-Layout-App-Wrapper">
@@ -298,34 +289,21 @@ function Header(props) {
                                                                         </span>Lời mời kết bạn
                                                                     </h5>
                                                                 </div>
-
-                                                                <div style={{ maxHeight: '500px' }} data-simplebar>
-                                                                    <a href="/#" className="dropdown-item notify-item px-2 py-1">
-                                                                        <div className="notify-icon d-inline" style={{ height: '30px', width: '30px' }}>
-                                                                            <img src="assets/images/users/avatar-2.jpg" className="img-fluid rounded-circle me-1" alt="Avatar" width="30" height="30" />
-                                                                        </div>
-                                                                        <span className="notify-details">
-                                                                            <span style={{fontWeight: '700',}}>Cristina Pride</span> đã gửi lời mời kết bạn
-                                                                        </span>
-                                                                        <div className="d-flex justify-content-end align-items-center">
-                                                                            <button type="button" className="btn btn-info btn-sm me-2">Chấp nhận</button> 
-                                                                            <button type="button" className="btn btn-danger btn-sm">Từ chối</button>
-                                                                        </div>
-                                                                    </a>
-                                                                    <a href="/#" className="dropdown-item notify-item px-2 py-1">
-                                                                        <div className="notify-icon d-inline" style={{ height: '30px', width: '30px' }}>
-                                                                            <img src="assets/images/users/avatar-2.jpg" className="img-fluid rounded-circle me-1" alt="Avatar" width="30" height="30" />
-                                                                        </div>
-                                                                        <span className="notify-details">
-                                                                            <span style={{fontWeight: '700',}}>Cristina Pride</span> đã gửi lời mời kết bạn
-                                                                        </span>
-                                                                        <div className="d-flex justify-content-end align-items-center">
-                                                                            <button type="button" className="btn btn-info btn-sm me-2">Chấp nhận</button> 
-                                                                            <button type="button" className="btn btn-danger btn-sm">Từ chối</button>
-                                                                        </div>
-                                                                    </a>
-                                                                </div>
-                                                                <a href="/#" className="dropdown-item text-end text-primary notify-item notify-all">Xem tất cả</a>
+                                                                {
+                                                                    ComfUserInfor.map((FriendRQ, index) => {
+                                                                        return (
+                                                                            <div key={index}>
+                                                                                <FriendRequest 
+                                                                                    FriendRQ = {FriendRQ}
+                                                                                />
+                                                                            </div>
+                                                                        )
+                                                                    })
+                                                                }
+                                                                {/* All*/}
+                                                                <a href="/#" className="dropdown-item text-center text-primary notify-item notify-all">
+                                                                    Xem tất cả
+                                                                </a>
                                                             </div>
 
                                                         </div>
@@ -334,7 +312,6 @@ function Header(props) {
                                                         <div className="Nav-Control-Layout-Item"
                                                             onClick = {()=> props.setCurrentPage('qT54LN6UKjYRd5x')}
                                                         >
-
                                                             <div className="Nav-Control-Layout-Item">
                                                                 <img src="./assets/icons/flaticon/24px/chat_group.png" alt="icon" />
                                                                 <span className="Nav-Control-Layout-Item-Title">Nhóm</span>

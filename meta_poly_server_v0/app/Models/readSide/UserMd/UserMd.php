@@ -49,6 +49,21 @@ class UserMd{
        
     }
 
+    public function getUserByKey($keyName,$keyValue){
+        require('./app/Models/initialConnect/connectDatabase.php');
+        
+        $sql = "SELECT * FROM users WHERE $keyName = '$keyValue' ";
+        
+        $stmt = $conn->prepare($sql);
+
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+        $stmt->execute(); 
+
+        return $result = $stmt->fetch();
+       
+    }
+
     public function getUserPhone($userPhone){
         require('./app/Models/initialConnect/connectDatabase.php');
         
@@ -62,7 +77,6 @@ class UserMd{
 
         return $result = $stmt->fetch();
     }
-
 }
 
 ?>

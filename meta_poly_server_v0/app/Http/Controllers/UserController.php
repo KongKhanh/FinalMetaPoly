@@ -160,11 +160,96 @@ class UserController
         }
     }
 
-    public function __handleForgotPassword(){
-        
+    //@Author: @MaiMai
+    public function __handleForgotPassword()
+    {
+        try {
 
+            $user_phone = isset($_POST['user_phone']) ? base64_encode($_POST['user_phone']) : null;
+
+            $UserbyKey = $this->modelUserObj->getUserByKey('user_phone', $user_phone);
+
+            if ($UserbyKey) {
+                require_once('./app/Models/writeSide/UserMd/wUserMd.php');
+                require_once('./Helpers/php/Random.php');
+                require_once('./service/Send_Mail_PHP/Send_Mail_PHP.php');
+
+                $UserMdObj = new wUserMd();
+
+                $newPassword = Random::generateRandomString(8);
+
+                $UserMdObj->setNewPassword(
+                    [
+                        'user_password' => base64_encode($newPassword),
+                    ], $UserbyKey['user_id']
+                );
+
+                $sendMailObj = new SendMailPHP();
+
+                $content_send = 'Mật khẩu mới của tài khoản ' .base64_decode($UserbyKey['user_phone']). ' là: ' . $newPassword . ' </br>. Truy cập: metapoly.com để đăng nhập';
+
+                $fromMail = [
+                    'mailUser' => base64_encode('ur.spter@gmail.com'), //điền mail người gửi
+
+                    'passUser' => base64_encode('metapoly123456'), //điền mật khẩu của mail
+                ];
+
+                $sendMail = $sendMailObj->__getSendMail($fromMail, base64_decode($UserbyKey['user_email']), $content_send);
+
+                echo json_encode([
+                    'status_task' => 1,
+                    'status' =>  'success',
+                    'message_task' => $content_send,
+                ]);
+
+            } else {
+
+                echo json_encode([
+                    'status_task' => 2,
+                    'status' =>  'fail',
+                    'message_task' => 'Số điện thoại không hợp lệ',
+                ]);
+                
+            }
+
+        } catch (Exception $err) {
+            echo json_encode([
+                'status_task' => 2,
+                'message_task' => 'failed',
+            ]);
+        }
     }
 
+    //@Author: @KongKhanh
+    function __FindUserController($idUser){
+        
+        require('./app/Models/writeSide/UserMd/wUserMd.php');
 
-   
+        $this->modelUserObj = new wUserMd();
+
+        $searchUser = ['user_name' => isset($_POST['user_name']) ? trim(strip_tags(base64_decode($_POST['user_name']))) : ''];
+
+        $FindUserList =  $this->modelUserObj->FindUser(base64_decode($idUser));
+
+        $yr = [];
+
+        require_once ('./Helpers/php/SlugMaker.php');
+        for($f = 0; $f < count($FindUserList); $f++) {
+
+            if(
+                strpos(
+                    SlugMaker::removeVietnameseTones($FindUserList[$f]['user_name']), 
+                    SlugMaker::removeVietnameseTones($searchUser['user_name']),
+                ) !== false
+            ) {
+
+                $FindUserList[$f]['user_name'] = base64_decode($FindUserList[$f]['user_name']);
+                array_push($yr, $FindUserList[$f]);
+
+            }
+        }
+
+        echo json_encode($yr);
+
+    }
 }

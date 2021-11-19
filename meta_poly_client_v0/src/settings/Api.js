@@ -13,6 +13,12 @@ export const API_URL = {
 
     GET_ADD_FRIEND: BASE_API_URL + "/friend",
 
+    GET_FRIEND_REQUEST: BASE_API_URL + "/comfirm",
+
+    COMFIRM_REQUEST_FRIEND: BASE_API_URL + '/confirm/friend/is-accept',
+
+    FIND_NEW_FRIENDS:BASE_API_URL + '/find',
+
     // @Auth VoVanHau
     CREATE_NEW_ACCOUNT: BASE_API_URL + '/user/create-new',
 
@@ -27,6 +33,6 @@ export const API_URL = {
     // @Auth Mai Mai
     CREATE_NEW_LIKE: BASE_API_URL + '/user/create-like',
 
-    FORGOT_PASS: BASE_API_URL + '/user/forgotPass',
+    FORGOT_PASS: BASE_API_URL + '/authentication/user/forgotPass',
 
 };

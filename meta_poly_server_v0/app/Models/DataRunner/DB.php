@@ -15,27 +15,27 @@
             $numItems = count($update_Block);
             $i = 0;
     
-            foreach($update_Block as $BlockKey => $BlockValue) {
+             foreach($update_Block as $BlockKey => $BlockValue) {
 
-                if(is_string($BlockValue)) {
+                 if(is_string($BlockValue)) {
 
-                    $BlockValue = "'$BlockValue'";
+                     $BlockValue = "'$BlockValue'";
                     
-                }
+                 }
 
-                if($numItems == ++$i) {
+                 if($numItems == ++$i) {
 
-                    $BlockItem = "$BlockKey = $BlockValue ";
+                     $BlockItem = "$BlockKey = $BlockValue ";
 
-                }else {
+                 }else {
 
-                    $BlockItem = "$BlockKey = $BlockValue, ";
+                     $BlockItem = "$BlockKey = $BlockValue, ";
 
-                }
+                 }
 
-                $sql .= $BlockItem;
+                 $sql .= $BlockItem;
     
-            }
+             }
 
             $sql .= $whereData;
 
@@ -43,7 +43,8 @@
 
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-            $stmt->execute(); 
+            return $stmt->execute();
+            
     
         }
 
