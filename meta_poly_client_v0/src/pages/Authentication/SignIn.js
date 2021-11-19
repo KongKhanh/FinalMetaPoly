@@ -65,7 +65,6 @@ function SignIn(props) {
     };
 
 
-
     const Styles = {
         SignIn_Container: {
             position: 'absolute',
