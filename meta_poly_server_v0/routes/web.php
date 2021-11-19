@@ -17,6 +17,7 @@
     $router->get('/comfirm/{idUser}','NotificationController@__GetComfirmUserID');
 
 
+
     // ------------------------------Handle POST method------------------------------
     $router->post('/user/create-new','UserController@__CreateNewUser');
     $router->post('/user/auth-using','UserController@__authUsingUser');
@@ -26,6 +27,9 @@
     $router->post('/authentication/user/forgotPass','UserController@__handleForgotPassword');
     $router->post('/confirm/friend/is-accept','FriendController@__ConfirmRequestFriend');
     $router->post('/user/forgotPass','UserController@__handleForgotPassword');
+    $router->post('/find/{idUser}','UserController@__FindUserController');
+
+
 
 
     // ---------------------For Posting

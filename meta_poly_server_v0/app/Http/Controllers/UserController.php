@@ -160,6 +160,7 @@ class UserController
         }
     }
 
+    //@Author: @MaiMai
     public function __handleForgotPassword()
     {
         try {
@@ -218,5 +219,37 @@ class UserController
             ]);
         }
     }
-    
+
+    //@Author: @KongKhanh
+    function __FindUserController($idUser){
+        
+        require('./app/Models/writeSide/UserMd/wUserMd.php');
+
+        $this->modelUserObj = new wUserMd();
+
+        $searchUser = ['user_name' => isset($_POST['user_name']) ? trim(strip_tags(base64_decode($_POST['user_name']))) : ''];
+
+        $FindUserList =  $this->modelUserObj->FindUser(base64_decode($idUser));
+
+        $yr = [];
+
+        require_once ('./Helpers/php/SlugMaker.php');
+        for($f = 0; $f < count($FindUserList); $f++) {
+
+            if(
+                strpos(
+                    SlugMaker::removeVietnameseTones($FindUserList[$f]['user_name']), 
+                    SlugMaker::removeVietnameseTones($searchUser['user_name']),
+                ) !== false
+            ) {
+
+                $FindUserList[$f]['user_name'] = base64_decode($FindUserList[$f]['user_name']);
+                array_push($yr, $FindUserList[$f]);
+
+            }
+        }
+
+        echo json_encode($yr);
+
+    }
 }

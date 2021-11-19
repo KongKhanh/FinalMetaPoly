@@ -22,12 +22,6 @@ function FriendRequest(props){
     }
     function onClickConfirm(x){
         RequestConfirm(x).then((res)=>{
-            // if(res.is_accpet === true){
-            //     alert("Đã đồng ý kết bạn")
-            // }
-            // else{
-            //     alert("Đã từ chối lời mời kết bạn")
-            // }
             console.log(res);
           });
     }

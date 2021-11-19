@@ -15,10 +15,10 @@ export default function Group(props) {
             <div className="Group-Inner-Container">
                 <div className="Group-Wrapper">
                     <div className="Group-Inner-Wrapper">
-                            {/* <HomeGroup 
+                            <HomeGroup 
                                 UserInforClient = {props.UserInforClient ? props.UserInforClient : undefined}
-                            /> */}
-                            <GroupView />
+                            />
+                            {/* <GroupView /> */}
                     </div>
                 </div>
             </div>

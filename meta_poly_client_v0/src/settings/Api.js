@@ -17,6 +17,8 @@ export const API_URL = {
 
     COMFIRM_REQUEST_FRIEND: BASE_API_URL + '/confirm/friend/is-accept',
 
+    FIND_NEW_FRIENDS:BASE_API_URL + '/find',
+
     // @Auth VoVanHau
     CREATE_NEW_ACCOUNT: BASE_API_URL + '/user/create-new',
 

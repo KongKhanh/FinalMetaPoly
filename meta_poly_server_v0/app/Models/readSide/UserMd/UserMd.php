@@ -64,9 +64,6 @@ class UserMd{
        
     }
 
-    
-
-
     public function getUserPhone($userPhone){
         require('./app/Models/initialConnect/connectDatabase.php');
         
@@ -80,7 +77,6 @@ class UserMd{
 
         return $result = $stmt->fetch();
     }
-
 }
 
 ?>
