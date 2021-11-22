@@ -227,29 +227,27 @@ class UserController
 
         $this->modelUserObj = new wUserMd();
 
-        $searchUser = ['user_name' => isset($_POST['user_name']) ? trim(strip_tags(base64_decode($_POST['user_name']))) : ''];
+        $searchUser = [
+            'user_name' => isset($_POST['user_name']) ? trim(strip_tags($_POST['user_name'])) : ''
+        ];
+
+        $pattern = "/{$searchUser['user_name']}/i";
 
         $FindUserList =  $this->modelUserObj->FindUser(base64_decode($idUser));
 
         $yr = [];
 
-        require_once ('./Helpers/php/SlugMaker.php');
         for($f = 0; $f < count($FindUserList); $f++) {
 
             if(
-                strpos(
-                    SlugMaker::removeVietnameseTones($FindUserList[$f]['user_name']), 
-                    SlugMaker::removeVietnameseTones($searchUser['user_name']),
-                ) !== false
+                preg_match($pattern, base64_decode($FindUserList[$f]['user_name'])) == 1
             ) {
 
                 $FindUserList[$f]['user_name'] = base64_decode($FindUserList[$f]['user_name']);
                 array_push($yr, $FindUserList[$f]);
-
             }
         }
 
         echo json_encode($yr);
-
     }
 }

@@ -110,7 +110,6 @@ export default function PostingBox(props) {
 
     };
 
-    // 
     const handleOpenDropBoxImage = () => {
         setActiveAttachMediaBox({
             ...activeAttachMediaBox,

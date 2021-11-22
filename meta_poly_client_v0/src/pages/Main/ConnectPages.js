@@ -12,8 +12,8 @@ function ConnectPages(props) {
 
                         {/* Header Page Here, For Fixed Header */}
                         <Header 
-                            setCurrentPage = {props.setCurrentPage}
-                            UserInforClient = {props.UserInforClient}
+                            setCurrentPage = {props.setCurrentPage ? props.setCurrentPage : undefined}
+                            UserInforClient = {props.UserInforClient ? props.UserInforClient : undefined}
                         />
 
                         {/*  Main Page Here, For Scroll Page */}
@@ -23,17 +23,17 @@ function ConnectPages(props) {
                                     {
                                         ChangePageAdapter(
                                             // Xac dinh id_page de tra ve view
-                                            props.currentPage, 
+                                            props.currentPage ? props.currentPage : undefined  , 
 
                                             // Du lieu tra ve cho view
                                             {
-                                                UserInforClient: props.UserInforClient
+                                                UserInforClient: props.UserInforClient ? props.UserInforClient : undefined,
                                             },
                                             // Props field 
                                             {
-                                                setCurrentPage: props.setCurrentPage,
-                                                UserInforClient: props.UserInforClient,
-                                                setUserInforClient: props.setUserInforClient
+                                                setCurrentPage: props.setCurrentPage ? props.setCurrentPage : undefined,
+                                                UserInforClient: props.UserInforClient ? props.UserInforClient : undefined,
+                                                setUserInforClient: props.setUserInforClient ? props.setUserInforClient : undefined,
                                             }
                                         )
                                     }

@@ -6,26 +6,55 @@ import { API_URL } from '../../settings/Api';
 
 export default function GroupView(props) {
 
+    // State thong tin co ban ve nhom ( server tra ve )
     const [GrViewVisu, setGrViewVisu] = useState(false);
+
+    // State ve danh sach cac posting trong nhom 
+    const [PostGrList, setPostGrList] = useState([]);
+
+    // State ve danh sach cac thanh vien trong nhom
+    const [MemberGrList, setMemberGrList] = useState([]);
 
     useEffect(() =>{
 
         async function xs() {
             const dr = await axios({
-                url: `${API_URL.GET_INFO_GROUP}/${props.id_GrView ? props.id_GrView : undefined}`,
+                url: `${API_URL.GET_INFO_SINGLE_GROUP}/${props.id_GrView ? props.id_GrView : undefined}`,
                 method: 'GET'
             });
             return dr.data;
         }
 
-        xs()
-        .then((res) => {
+        if(API_URL && API_URL.GET_INFO_SINGLE_GROUP && props.id_GrView) {
+            xs()
+            .then((res) => {
+    
+                if(res.status_task === 1) {
 
-            setGrViewVisu(res);
+                    // Thong tin co ban ve nhom ( server tra ve )
+                    if(res.gr_info) {
 
-            console.log(res);
+                        setGrViewVisu(res.gr_info);
+                    }
 
-        });
+                    // Danh sach cac posting trong nhom ( server tra ve )
+                    if(res.gr_post_l && Array.isArray(res.gr_post_l)) {
+
+                        setPostGrList(res.gr_post_l);
+                    }
+
+                    // Danh sach cac thanh vien trong nhom ( server tra ve )
+                    if(res.gr_members_l && Array.isArray(res.gr_members_l)) {
+                        setMemberGrList(res.gr_members_l);
+                    }
+                }
+    
+                console.log(res);
+    
+            });
+        } else {
+            console.log('Ok');
+        }
 
     }, [props]);
 
@@ -66,7 +95,9 @@ export default function GroupView(props) {
                                     <div className="row" style={{margin: 'auto 5rem'}}>
                                         <div className="col-12">
                                             <div className="page-title-box">
-                                                <h3 className="page-p-title">Supper MetaPoly</h3>
+                                                <h3 className="page-p-title">
+                                                    {GrViewVisu && GrViewVisu.group_name ? GrViewVisu.group_name.trim() : ''}
+                                                </h3>
                                                 <p className="mb-1 d-inline">
                                                     <span className="pe-2 text-nowrap mb-2 d-inline-block">
                                                         <i className="uil-globe text-muted" />
@@ -76,7 +107,12 @@ export default function GroupView(props) {
                                                 <p className="mb-1 d-inline">
                                                     <span className="pe-2 text-nowrap mb-2 d-inline-block">
                                                         <i className="mdi dripicons-user-group text-muted" />
-                                                        <b>200</b> thành viên
+                                                        <b className="me-1">
+                                                            {
+                                                                Array.isArray(MemberGrList) ? MemberGrList.length : 0
+                                                            }
+                                                        </b> 
+                                                        members
                                                     </span>
                                                 </p>
 
@@ -91,7 +127,9 @@ export default function GroupView(props) {
                                                         <img src="assets/images/users/avatar-8.jpg" className="rounded-circle avatar-xs" alt="friend" />
                                                     </a>
                                                     <a href="/#" className="d-inline-block text-muted fw-bold ms-2">
-                                                        +100 more
+                                                        {
+                                                            Array.isArray(MemberGrList) && MemberGrList.length > 3 ? `+${MemberGrList.length - 3} + ' more'` : ''
+                                                        }
                                                     </a>
                                                 </div>
                                             </div>
@@ -145,78 +183,6 @@ export default function GroupView(props) {
                                                 </div>
                                             </div>
 
-                                            <div className="card">
-                                                <div className="card-body pb-1">
-                                                <div className="d-flex">
-                                                    <img className="me-2 rounded" src="assets/images/users/avatar-3.jpg" alt="MPI" height={32} />
-                                                    <div className="w-100">
-                                                    <div className="dropdown float-end text-muted">
-                                                        <a href="/#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i className="mdi mdi-dots-horizontal" />
-                                                        </a>
-                                                        <div className="dropdown-menu dropdown-menu-end">
-                                                        {/* item*/}
-                                                        <a href="/#" className="dropdown-item">Edit</a>
-                                                        {/* item*/}
-                                                        <a href="/#" className="dropdown-item">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                    <h5 className="m-0">Jeremy Tomlinson</h5>
-                                                    <p className="text-muted"><small>about 2 minuts ago <span className="mx-1">⚬</span>
-                                                        <span>Public</span></small></p>
-                                                    </div>
-                                                </div>
-                                                <hr className="m-0" />
-                                                <div className="font-16 text-center text-dark my-3">
-                                                    <i className="mdi mdi-format-quote-open font-20" /> Leave one wolf alive and the
-                                                    sheep are never safe. When people ask you
-                                                    what happened here, tell them the North remembers. Tell them winter came for
-                                                    House Frey.
-                                                </div>
-                                                <hr className="m-0" />
-                                                <div className="my-1">
-                                                    <a href="/#" className="btn btn-sm btn-link text-muted ps-0"><i className="mdi mdi-heart text-danger" /> 2k Likes</a>
-                                                    <a href="/#" className="btn btn-sm btn-link text-muted"><i className="uil uil-comments-alt" /> 200 Comments</a>
-                                                    <a href="/#" className="btn btn-sm btn-link text-muted"><i className="uil uil-share-alt" /> Share</a>
-                                                </div>
-                                                <hr className="m-0" />
-                                                <div className="mt-3">
-                                                    <div className="d-flex">
-                                                    <img className="me-2 rounded" src="assets/images/users/avatar-9.jpg" alt="MPI" height={32} />
-                                                    <div>
-                                                        <h5 className="m-0">Sansa Stark </h5>
-                                                        <p className="text-muted mb-0"><small>2 mins ago</small></p>
-                                                        <p className="my-1">This is awesome! Proud of sis :) Waiting for you to
-                                                        come back to winterfall</p>
-                                                        <div>
-                                                        <a href="/#" className="btn btn-sm btn-link text-muted p-0">
-                                                            <i className="uil uil-heart me-1" /> Like
-                                                        </a>
-                                                        <a href="/#" className="btn btn-sm btn-link text-muted p-0 ps-2">
-                                                            <i className="uil uil-comments-alt me-1" /> Reply
-                                                        </a>
-                                                        </div>
-                                                        <div className="d-flex mt-3">
-                                                        <img className="me-2 rounded" src="assets/images/users/avatar-8.jpg" alt="MPI" height={32} />
-                                                        <div>
-                                                            <h5 className="m-0">Cersei Lannister </h5>
-                                                            <p className="text-muted mb-0"><small>1 min ago</small></p>
-                                                            <p className="my-1">I swear! She won't be able to reach to
-                                                            winterfall</p>
-                                                        </div>
-                                                        </div> {/* end d-flex*/}
-                                                    </div> {/* end div */}
-                                                    </div> {/* end d-flex*/}
-                                                    <hr />
-                                                    <div className="d-flex mb-2">
-                                                    <img src="assets/images/users/avatar-1.jpg" height={32} className="align-self-start rounded me-2" alt="Arya Stark" />
-                                                    <div className="w-100">
-                                                        <input type="text" className="form-control border-0 form-control-sm" placeholder="Write a comment" />
-                                                    </div> {/* end w-100 */}
-                                                    </div> {/* end d-flex */}
-                                                </div>
-                                                </div> {/* end card-body */}
-                                            </div>
                                             <div className="card">
                                                 <div className="card-body pb-1">
                                                 <div className="d-flex">
@@ -321,7 +287,11 @@ export default function GroupView(props) {
                                                 </p><p className="mb-1 d-inline">
                                                 <span className="pe-2 text-nowrap mb-2 d-inline-block">
                                                     <i className="mdi dripicons-user-group text-muted" />
-                                                    <b>200</b> thành viên
+                                                    <b>  
+                                                        {
+                                                            Array.isArray(MemberGrList) ? MemberGrList.length : 0
+                                                        }
+                                                    </b> thành viên
                                                 </span>
                                                 </p>
                                                 <div id="tooltip-container">
@@ -335,7 +305,9 @@ export default function GroupView(props) {
                                                     <img src="assets/images/users/avatar-8.jpg" className="img-fluid img-thumbnail rounded-circle" width={40} alt="friend" />
                                                 </a>
                                                 <a href="/#" className="d-inline-block text-muted fw-bold ms-2">
-                                                    +100 more
+                                                    {
+                                                        Array.isArray(MemberGrList) && MemberGrList.length > 3 ? `+${MemberGrList.length - 3} + ' more'` : ''
+                                                    }
                                                 </a>
                                                 </div>
                                                 <p />
