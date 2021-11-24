@@ -122,7 +122,6 @@ export default function PostingBox(props) {
             <div className="posting-box-inner-container">
                 <div className="posting-box-wrapper">
                     <div className="posting-box-inner-wrapper">
-
                         <div className="card">
                             <div className="card-body p-0">
                                 <ul className="nav nav-tabs nav-bordered">
@@ -199,6 +198,8 @@ export default function PostingBox(props) {
                                 handleOnChangeFieldPctContent = {handleOnChangeFieldPctContent}
 
                                 handleClickReqPosting = {handleClickReqPosting}
+
+                                UserInforClient ={props.UserInforClient}
                             /> : '' 
                         }
 

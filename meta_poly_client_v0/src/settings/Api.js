@@ -39,4 +39,6 @@ export const API_URL = {
 
     FORGOT_PASS: BASE_API_URL + '/authentication/user/forgotPass',
 
+    FRIEND_LIST: BASE_API_URL + '/friendlist',
+
 };
