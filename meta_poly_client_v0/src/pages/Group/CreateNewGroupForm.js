@@ -15,7 +15,7 @@ export default function CreateNewGroupForm(props) {
         setDffc({
             ...dffc,
             [evnet.target.name]: evnet.target.value,
-        })
+        });
     }
 
     async function reqCNG(dataReq) {
@@ -39,10 +39,26 @@ export default function CreateNewGroupForm(props) {
 
         reqCNG(dataReq)
         .then((res) => {
-            console.log(res);
+
+            if(res.status_task && res.status_task === 1 && res.recordID) {
+
+                setDffc({
+                    ...dffc,
+                    group_name: '',
+                    group_privacy: 1,
+                });
+
+                if(props.setIdGrView) 
+                    props.setIdGrView(res.recordID.trim());
+
+                if(props.setActiveCGForm)
+                    props.setActiveCGForm(false);
+
+                if(props.setActiveGroupView) 
+                    props.setActiveGroupView(true);
+            }
         });
 
-        console.log(dffc);
     }
 
     return (

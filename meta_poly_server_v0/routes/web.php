@@ -16,7 +16,14 @@
     $router->get('/userlist/{idUser}','UserController@__getUser');
     $router->get('/newsfeed','NewsfeedController@__getPostList');
     $router->get('/comfirm/{idUser}','NotificationController@__GetComfirmUserID');
+
+    // lay du lieu ve chi tiet Group ma User da tham gia
+    // -----------## Postings
+    // -----------## Members
     $router->get('/group/single/data-visu/{id_GrView}','GroupCtrl@__getGrSingleInfo');
+
+    // lay du lieu cac Groups ma User da tham gia
+    $router->get('/group/user/joined/{id_User}','GroupCtrl@__getGrUserJoin');
 
     // ------------------------------Handle POST method------------------------------
     $router->post('/user/create-new','UserController@__CreateNewUser');

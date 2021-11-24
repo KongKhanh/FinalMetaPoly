@@ -101,9 +101,10 @@
 
         //  $proField: is a array of field names in table of database
         //  $joinXS: is a array of join statement
-        public static function selectData($table_Name, $proField = false, $whereData = false, $joinXS = false) {
+        //  $mro: is boolean for geting One or get Many record
+        public static function selectData($table_Name, $proField = false, $whereData = false, $joinXS = false, $mro = true) {
 
-            require_once('./app/Models/initialConnect/connectDatabase.php');
+            require('./app/Models/initialConnect/connectDatabase.php');
 
             $sql = "SELECT ";
 
@@ -142,16 +143,18 @@
                 $sql .= " {$whereData}";
             }
 
-            // return $sql;
-
             $stmt = $conn->prepare($sql);
 
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
             $stmt->execute();
 
-            return $stmt->fetchAll();
+            if($mro) {
+                
+                return $stmt->fetchAll();
+            } 
 
+            return $stmt->fetch();
         }
 
         public static function innerJoinZ($a, $b, $c, $d, $e, $f = false) {

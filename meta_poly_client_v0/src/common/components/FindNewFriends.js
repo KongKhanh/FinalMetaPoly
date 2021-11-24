@@ -28,7 +28,7 @@ function FindNewFriends(props){
         }
         else{
         FindFriend(event.target.value).then((res)=>{
-            
+            console.log(res);
             setResultsFiding(res);
           });
         }

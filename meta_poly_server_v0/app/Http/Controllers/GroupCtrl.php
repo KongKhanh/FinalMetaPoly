@@ -31,19 +31,81 @@
             }
         }
 
+        public function __getGrUserJoin($id_User) {
+            
+            try {
+
+                if($id_User) {
+
+                    require_once('./app/Models/readSide/Group/rGroupMd.php');
+    
+                    $rGroupMd_vn = new rGroupMd();
+
+                    $glHasJoined = $rGroupMd_vn->__getGrListForJoined($id_User);
+
+                    if($glHasJoined) {
+
+                        echo json_encode([
+                            'status_task' =>  1,
+                            'message_task' => 'successful',
+                            'glHasJoined' => $glHasJoined,
+                        ]);
+                    } 
+                    else {
+                        echo json_encode([
+                            'status_task' =>  2,
+                            'message_task' => 'fail',
+                        ]);
+                    }
+                }
+                else {
+                    echo json_encode([
+                        'status_task' =>  2,
+                        'message_task' => 'fail',
+                    ]);
+                }
+              
+            }
+            catch (Exception $e) {
+                echo json_encode([
+                    'status_task' =>  2,
+                    'message_task' => 'fail',
+                ]);
+            }
+        }
+
+        // Ham hanle voi Group Item (chi tiet Group)
         public function __getGrSingleInfo($id_Gr) {
 
-            require_once('./app/Models/readSide/Group/rGroupMd.php');
+            try {
 
-            $id_Gr_S = isset($id_Gr) ? trim($id_Gr) : null;
+                require_once('./app/Models/readSide/Group/rGroupMd.php');
 
-            $rGroupMd_vn = new rGroupMd();
+                $id_Gr_S = isset($id_Gr) ? trim($id_Gr) : null;
+    
+                $rGroupMd_vn = new rGroupMd();
+    
+                // Thong tin ve 1 group
+                $gr_info = $rGroupMd_vn->__getSingleData($id_Gr);
+                // Cac bai post trong group
+                $gr_post_l = $rGroupMd_vn->__getPostLGr($id_Gr);
+                // Cac thanh vien cua nhom
+                $gr_members_l = $rGroupMd_vn->__getMembersGr($id_Gr);
 
-            // echo $gr_info = $rGroupMd_vn->__getSingleData() . "\n";
-            $gr_post_l = $rGroupMd_vn->__getPostLGr();
-
-            echo json_encode($gr_post_l);
-
+                echo json_encode([
+                    'status_task' =>  1,
+                    'message_task' => 'successful',
+                    'gr_info' => $gr_info,
+                    'gr_post_l' => $gr_post_l,
+                    'gr_members_l' => $gr_members_l,
+                ]);
+            }
+            catch (Exception $e) {
+                echo json_encode([
+                    'status_task' =>  2,
+                    'message_task' => 'fail',
+                ]);
+            }
         }
 
     }

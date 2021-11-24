@@ -15,7 +15,9 @@
         }
 
         public function post(string $url, $action) {
+
             $this->__request($url, 'POST', $action);
+            
         }
 
         public function __request(string $url, string $method, $action) {

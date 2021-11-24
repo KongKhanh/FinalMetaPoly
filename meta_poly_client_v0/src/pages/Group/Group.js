@@ -8,7 +8,7 @@ import GroupView from './GroupView';
 
 export default function Group(props) {
 
-    const [activeGroupView, setActiveGroupView] = useState(true);
+    const [activeGroupView, setActiveGroupView] = useState(false);
     const [id_GrView, setIdGrView] = useState(false);
 
     return (
@@ -18,7 +18,7 @@ export default function Group(props) {
                     <div className="Group-Inner-Wrapper">
 
                             {
-                                activeGroupView ? 
+                                activeGroupView && id_GrView !== false ? 
 
                                 <GroupView 
                                     id_GrView={id_GrView}

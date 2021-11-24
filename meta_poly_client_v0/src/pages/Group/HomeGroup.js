@@ -1,10 +1,98 @@
-import { useState } from "react";
+import { useState, useEffect} from 'react';
+
+import axios from 'axios';
+
+import { API_URL } from '../../settings/Api';
 
 import CreateNewGroupForm from './CreateNewGroupForm';
 
 export default function HomeGroup(props) {
 
+    // Thuoc tinh show/hide Form tao Group
     const [activeCGForm, setActiveCGForm] =  useState(false);
+
+    // Danh sach cac groups ma User da tham gia
+    const [GrSingleList, setGrSingleList] =  useState([]);
+
+    function accessGrItemView(id_GR) {
+
+        if(
+            id_GR &&
+            props.setIdGrView && typeof props.setIdGrView === 'function' && props.setIdGrView instanceof Function &&
+            props.setActiveGroupView && typeof props.setActiveGroupView === 'function' && props.setActiveGroupView instanceof Function
+        ) {
+            props.setIdGrView(id_GR.trim());
+            props.setActiveGroupView(true);
+        }
+    }
+
+    useEffect(function (){
+
+        // Ham lay du lieu cac groups User da tham gia tu server
+        async function reqGetGrPoLi(userId) {
+
+            const resData = await axios({
+
+                url: API_URL && API_URL.GET_INFO_META_GROUP ?  `${API_URL.GET_INFO_META_GROUP}/${userId}` : undefined,
+                method: 'GET',
+            });
+
+            if(resData && resData.data && Array.isArray(resData.data.glHasJoined)) {
+
+                if(resData.data.status_task === 1) {
+
+                    setGrSingleList(resData.data.glHasJoined);
+    
+                    return resData.data;
+                }
+
+                return false;
+            }
+
+            console.log(resData);
+
+            return false;
+        }
+
+        if(props.UserInforClient && props.UserInforClient.userId) {
+
+            reqGetGrPoLi(props.UserInforClient.userId);
+        }
+    }, [props]);
+
+    function showListGr(Grl) {
+
+        if(Array.isArray(Grl) && Grl) {
+            return Grl.map((GrI, index) => {
+                return (
+                    <div className="card px-2 mb-1 G-item" key={`gr_item_${index}`} 
+                        onClick={() => accessGrItemView(GrI.group_id ? GrI.group_id.trim() : undefined)}
+                    >
+                        <div className="g-0 d-flex align-items-center">
+                            <div className="col-item">
+                                <div className="logo-group-list-container">
+                                    <div className="logo-group-list-wrapper">
+                                        <img src="assets/images/small/240534399_177978834466181_1494248905447182784_n.jpg" className="logo-group-list-img" alt="..." />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-item">
+                                <div className="px-2 py-1">
+                                <h5 className="G-name my-0">
+                                    {
+                                        // Name of group
+                                        GrI.group_name
+                                    }
+                                </h5>
+                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            })
+        }
+    }
 
     return (
         <div className="HomeGroup-Container">
@@ -66,223 +154,7 @@ export default function HomeGroup(props) {
                                             </div>
                                             <div className="G-list-item-showing pb-2">
                                                 <div className="G-list-item-wapper">
-
-                                                    <div className="card px-2 mb-1 G-item">
-                                                        <div className="g-0 d-flex align-items-center">
-                                                            <div className="col-item">
-                                                                <div className="logo-group-list-container">
-                                                                    <div className="logo-group-list-wrapper">
-                                                                        <img src="assets/images/small/240534399_177978834466181_1494248905447182784_n.jpg" className="logo-group-list-img" alt="..." />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-item">
-                                                                <div className="px-2 py-1">
-                                                                <h5 className="G-name my-0">Cộng đồng người dùng Sổ Bán Hàng</h5>
-                                                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="card px-2 mb-1 G-item">
-                                                        <div className="g-0 d-flex align-items-center">
-                                                            <div className="col-item">
-                                                                <div className="logo-group-list-container">
-                                                                    <div className="logo-group-list-wrapper">
-                                                                        <img src="assets/images/small/116687302_959241714549285_318408173653384421_n.jpg" className="logo-group-list-img" alt="..." />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-item">
-                                                                <div className="px-2 py-1">
-                                                                <h5 className="G-name my-0">HỘI CHIA SẺ KỸ THUẬT NÔNG NGHIỆP VIỆT NAM</h5>
-                                                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div className="card px-2 mb-1 G-item">
-                                                        <div className="g-0 d-flex align-items-center">
-                                                            <div className="col-item">
-                                                                <div className="logo-group-list-container">
-                                                                    <div className="logo-group-list-wrapper">
-                                                                        <img src="assets/images/small/66403296_2451045161806627_5728049208087281664_n.jpg" className="logo-group-list-img" alt="..." />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-item">
-                                                                <div className="px-2 py-1">
-                                                                <h5 className="G-name my-0">Hiệp Hội Máy Xúc Đào</h5>
-                                                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>   
-
-                                                                                                        <div className="card px-2 mb-1 G-item">
-                                                        <div className="g-0 d-flex align-items-center">
-                                                            <div className="col-item">
-                                                                <div className="logo-group-list-container">
-                                                                    <div className="logo-group-list-wrapper">
-                                                                        <img src="assets/images/small/240534399_177978834466181_1494248905447182784_n.jpg" className="logo-group-list-img" alt="..." />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-item">
-                                                                <div className="px-2 py-1">
-                                                                <h5 className="G-name my-0">Cộng đồng người dùng Sổ Bán Hàng</h5>
-                                                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="card px-2 mb-1 G-item">
-                                                        <div className="g-0 d-flex align-items-center">
-                                                            <div className="col-item">
-                                                                <div className="logo-group-list-container">
-                                                                    <div className="logo-group-list-wrapper">
-                                                                        <img src="assets/images/small/116687302_959241714549285_318408173653384421_n.jpg" className="logo-group-list-img" alt="..." />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-item">
-                                                                <div className="px-2 py-1">
-                                                                <h5 className="G-name my-0">HỘI CHIA SẺ KỸ THUẬT NÔNG NGHIỆP VIỆT NAM</h5>
-                                                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div className="card px-2 mb-1 G-item">
-                                                        <div className="g-0 d-flex align-items-center">
-                                                            <div className="col-item">
-                                                                <div className="logo-group-list-container">
-                                                                    <div className="logo-group-list-wrapper">
-                                                                        <img src="assets/images/small/66403296_2451045161806627_5728049208087281664_n.jpg" className="logo-group-list-img" alt="..." />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-item">
-                                                                <div className="px-2 py-1">
-                                                                <h5 className="G-name my-0">Hiệp Hội Máy Xúc Đào</h5>
-                                                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>   
-
-                                                                                                        <div className="card px-2 mb-1 G-item">
-                                                        <div className="g-0 d-flex align-items-center">
-                                                            <div className="col-item">
-                                                                <div className="logo-group-list-container">
-                                                                    <div className="logo-group-list-wrapper">
-                                                                        <img src="assets/images/small/240534399_177978834466181_1494248905447182784_n.jpg" className="logo-group-list-img" alt="..." />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-item">
-                                                                <div className="px-2 py-1">
-                                                                <h5 className="G-name my-0">Cộng đồng người dùng Sổ Bán Hàng</h5>
-                                                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="card px-2 mb-1 G-item">
-                                                        <div className="g-0 d-flex align-items-center">
-                                                            <div className="col-item">
-                                                                <div className="logo-group-list-container">
-                                                                    <div className="logo-group-list-wrapper">
-                                                                        <img src="assets/images/small/116687302_959241714549285_318408173653384421_n.jpg" className="logo-group-list-img" alt="..." />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-item">
-                                                                <div className="px-2 py-1">
-                                                                <h5 className="G-name my-0">HỘI CHIA SẺ KỸ THUẬT NÔNG NGHIỆP VIỆT NAM</h5>
-                                                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div className="card px-2 mb-1 G-item">
-                                                        <div className="g-0 d-flex align-items-center">
-                                                            <div className="col-item">
-                                                                <div className="logo-group-list-container">
-                                                                    <div className="logo-group-list-wrapper">
-                                                                        <img src="assets/images/small/66403296_2451045161806627_5728049208087281664_n.jpg" className="logo-group-list-img" alt="..." />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-item">
-                                                                <div className="px-2 py-1">
-                                                                <h5 className="G-name my-0">Hiệp Hội Máy Xúc Đào</h5>
-                                                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>   
-
-                                                                                                        <div className="card px-2 mb-1 G-item">
-                                                        <div className="g-0 d-flex align-items-center">
-                                                            <div className="col-item">
-                                                                <div className="logo-group-list-container">
-                                                                    <div className="logo-group-list-wrapper">
-                                                                        <img src="assets/images/small/240534399_177978834466181_1494248905447182784_n.jpg" className="logo-group-list-img" alt="..." />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-item">
-                                                                <div className="px-2 py-1">
-                                                                <h5 className="G-name my-0">Cộng đồng người dùng Sổ Bán Hàng</h5>
-                                                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="card px-2 mb-1 G-item">
-                                                        <div className="g-0 d-flex align-items-center">
-                                                            <div className="col-item">
-                                                                <div className="logo-group-list-container">
-                                                                    <div className="logo-group-list-wrapper">
-                                                                        <img src="assets/images/small/116687302_959241714549285_318408173653384421_n.jpg" className="logo-group-list-img" alt="..." />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-item">
-                                                                <div className="px-2 py-1">
-                                                                <h5 className="G-name my-0">HỘI CHIA SẺ KỸ THUẬT NÔNG NGHIỆP VIỆT NAM</h5>
-                                                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div className="card px-2 mb-1 G-item">
-                                                        <div className="g-0 d-flex align-items-center">
-                                                            <div className="col-item">
-                                                                <div className="logo-group-list-container">
-                                                                    <div className="logo-group-list-wrapper">
-                                                                        <img src="assets/images/small/66403296_2451045161806627_5728049208087281664_n.jpg" className="logo-group-list-img" alt="..." />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-item">
-                                                                <div className="px-2 py-1">
-                                                                <h5 className="G-name my-0">Hiệp Hội Máy Xúc Đào</h5>
-                                                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>                                                    
-
+                                                    {showListGr && Array.isArray(GrSingleList) && GrSingleList ? showListGr(GrSingleList) : ''}
                                                 </div>
                                             </div>
                                         </div>
@@ -292,6 +164,8 @@ export default function HomeGroup(props) {
                                         activeCGForm ?  
                                         <CreateNewGroupForm 
                                             setActiveCGForm = {setActiveCGForm}
+                                            setActiveGroupView = {props.setActiveGroupView ? props.setActiveGroupView : undefined}
+                                            setIdGrView = {props.setIdGrView ? props.setIdGrView : undefined}
                                             UserInforClient = {props.UserInforClient ? props.UserInforClient : undefined}
                                         /> : ''
                                     }
@@ -367,7 +241,7 @@ export default function HomeGroup(props) {
                                         </div> {/* end w-100 */}
                                         </div> {/* end d-flex */}
                                     </div>
-                                    </div> {/* end card-body */}
+                                    </div>
                                 </div>
 
                                 <div className="card">
