@@ -131,9 +131,6 @@ ccd.prototype.gs = function() {
    return this.sccd();
 }
 
-// const ccd_obj = new ccd('2019-1-10 22:24:25');
-
-// const myr = ccd_obj.gs();
 
 
 
