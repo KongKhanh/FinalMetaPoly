@@ -90,7 +90,18 @@
                 true,
             );
 
-            return $p;
+            if(is_array($p) == 1) {
+
+                for ($i = 0; $i < count($p) ; $i++) {
+                    $p[$i]['user_name'] = base64_decode($p[$i]['user_name']);
+                }
+                return $p;
+            }
+            else {
+
+                return false;
+            }
+
         }
 
         // Select cac thanh vien trong 1 Group

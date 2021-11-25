@@ -29,10 +29,12 @@ export function ccd(dtd) {
         
                 dsf.map((fi) => { // first item
                     rf.push(fi);
+                    return false;
                 });
         
                 dss.map((si) => { // second item
                     rf.push(si);
+                    return false;
                 });
         
                 return rf && Array.isArray(rf) ? rf : [];

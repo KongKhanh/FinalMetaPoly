@@ -12,7 +12,7 @@
                     posts INNER JOIN users ON posts.post_fk_user_id = users.user_id
                     LEFT JOIN post_photos ON post_photos.ppt_fk_post_id = posts.post_id
                     LEFT JOIN post_content ON post_content.pct_fk_post_id = posts.post_id
-                    ) ORDER BY posts.post_id DESC";
+                ) ORDER BY posts.post_id DESC";
 
                 $stmt = $conn->prepare($sql);
         

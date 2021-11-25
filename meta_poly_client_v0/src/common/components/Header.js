@@ -27,7 +27,7 @@ function Header(props) {
                     setComfUserInfor(res);
                 }
             )
-        }, []);
+        }, [props.UserInforClient.userId]);
 
     return (
         <div className="Header-Container">
@@ -187,7 +187,7 @@ function Header(props) {
                                             <h6 className="text-overflow m-0">Welcome !</h6>
                                         </div>
                                         {/* item*/}
-                                        <a href="/#" className="dropdown-item notify-item" onClick={() => props.setCurrentPage('H8HBZbNuLNUkzTf')}>
+                                        <a href="/" className="dropdown-item notify-item" onClick={() => props.setCurrentPage('H8HBZbNuLNUkzTf')}>
                                             <i className="mdi mdi-account-circle me-1" />
                                             <span>My Account</span>
                                         </a>
@@ -216,8 +216,8 @@ function Header(props) {
                             </ul>
                             <button className="button-menu-mobile open-left">
                                 <div className="">
-                                    <div className="">
-                                        <img src="./assets/images/brands/logo_header_default.jpg" alt="Logo" width="36px" height="36px"/>
+                                    <div>
+                                        <img className="rounded-circle overflow-hidden" src="./assets/images/brands/logo_header_default.png" alt="Logo" width="36px" height="36px"/>
                                     </div>
                                 </div>
                             </button>
@@ -259,7 +259,7 @@ function Header(props) {
                                                                     </h5>
                                                                 </div>
                                                                 {
-                                                                    ComfUserInfor.map((FriendRQ, index) => {
+                                                                    ComfUserInfor && Array.isArray(ComfUserInfor) ? ComfUserInfor.map((FriendRQ, index) => {
                                                                         return (
                                                                             <div key={index}>
                                                                                 <FriendRequest 
@@ -267,7 +267,7 @@ function Header(props) {
                                                                                 />
                                                                             </div>
                                                                         )
-                                                                    })
+                                                                    }) : ''
                                                                 }
                                                                 {/* All*/}
                                                                 <a href="/#" className="dropdown-item text-center text-primary notify-item notify-all">
@@ -307,7 +307,6 @@ function Header(props) {
             </div>
         </div>
     )
-
 }
 
 export default Header;

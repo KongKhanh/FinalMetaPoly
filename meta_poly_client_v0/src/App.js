@@ -1,6 +1,9 @@
 
 import { useState, useEffect } from "react";
-import React from "react";
+
+import axios from 'axios';
+
+import { API_URL } from './settings/Api';
 
 // Custom Function
 import { getCookie } from "./libs_3rd/Cookie/handleCookie";
@@ -24,13 +27,34 @@ function App() {
     useEffect(() => {
 
         // -----------------------NOT DONE-----------------------
-        const __AuthPermissionUsingApp = () => {
+        const __AuthPermissionUsingApp = async () => {
 
-            if(!UserInforClient.userId) {
+            if(!UserInforClient.userId && !UserInforClient.access_token) {
                 // Neu khong thoa man dieu kien Auth thi tro ve trang SignIn
                 setCurrentPage('gh7Gv46kZYuhrAP');
+            }
+            else {
+
+                const resR = await axios({
+                    url: `${API_URL.AUTH_ACCOUNT_ACCESS_TOKEN}`,
+                    method: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer ' + UserInforClient.access_token.trim(),
+                    }
+                });
+
+                if(resR.data && resR.data.rft) {
+
+                    if(resR.data.rft.user_name && resR.data.rft.user_phone) {
+                        
+                        setUserInforClient({
+                            ...UserInforClient,
+                            user_phone: resR.data.rft.user_phone,
+                            user_name: resR.data.rft.user_name,
+                        });
+                    }
+                }
             };
-    
         };
 
         __AuthPermissionUsingApp();

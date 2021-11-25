@@ -12,7 +12,8 @@ import {ccd} from '../../libs_3rd/CustomDate/CustomDate';
 export default function PostContentContainer(props) {
 
     // Danh sach cac bai Post
-    const[PostList, setPostList] = useState([]); 
+    const[PostList, setPostList] = useState([]);
+
     useEffect(function(){
 
         const CancelToken = axios.CancelToken;
@@ -58,7 +59,7 @@ export default function PostContentContainer(props) {
             source.cancel('Operation canceled by the user.');
         }
 
-    }, [props]);
+    }, []);
 
     return (
         <div className="post-content-container">
@@ -71,9 +72,11 @@ export default function PostContentContainer(props) {
             />
 
             {       
-                PostList.map((PostItem, index_xx) => {
+                PostList && Array.isArray(PostList) ? PostList.map((PostItem, index_xx) => {
+
                     const ccd_obj = new ccd(PostItem.post_created_at);
                     const myr = ccd_obj.gs();
+
                     return (
                         <div key={`post_item_${index_xx}`}>
 
@@ -198,7 +201,7 @@ export default function PostContentContainer(props) {
 
                         </div>
                     )
-                })
+                }) : ''
             }
         </div>
     )

@@ -39,6 +39,7 @@ function SuggestFriend(props){
     }
 
      function showUserRecommend(){
+
          return UserList.map((item, index)=> {
              return(
                  <div key={`user_recommend_${index}`}>
@@ -100,13 +101,15 @@ function SuggestFriend(props){
                 </div>
               </div>
               <h4 className="header-title mb-3">People you may know</h4>
-              {showUserRecommend()}   
+
+              {UserList && Array.isArray(UserList) ? showUserRecommend() : ''}   
+              
               <div className="mt-2 mb-3 text-end">
                 <button className="text-end border-0 bg-white">
                   <div className="d-flex align-items-center">
                     <span className="me-1" style={{fontSize: '12px', color: '#1B74E4'}}>View More</span>
                     <div>
-                        <img src="./assets/icons/flaticon/16px/arrow_right.png"/>
+                        <img src="./assets/icons/flaticon/16px/arrow_right.png" alt="MPI"/>
                     </div>
                   </div>
                 </button>
