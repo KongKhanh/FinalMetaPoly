@@ -6,7 +6,7 @@
 
     define('PATH_ROOT', __DIR__);   
 
-    require_once('./redirect.php');
+    require_once('./Kernel/App.php'); 
 
     $App = new App();
 

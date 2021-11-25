@@ -74,7 +74,7 @@ function Profile(props){
                       <img src={BASE_API_URL+'/public/upload/images/user_avatar/2.5.jpg'} className="rounded-circle avatar-lg img-thumbnail" alt="MetaPoly" />
 
                       <h4 className="mb-0 mt-2"> 
-                      {UserInfor.UserName} 
+                        {UserInfor.UserName} 
                       </h4>
 
                       <p className="text-muted font-14">Founder</p>
@@ -196,8 +196,7 @@ function Profile(props){
               setProfileSetting = {setProfileSetting}
               idUserCoockie = {props.UserInforClient.userId}
               UserInforClient= {props.UserInforClient}
-
-              PostList = {PostList}
+              PostList = {PostList && Array.isArray(PostList) ? PostList : []}
               setPostList = {setPostList}
           />;
 

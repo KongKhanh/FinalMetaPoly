@@ -31,6 +31,7 @@
             }
         }
 
+        // Ham lay thong tin nhung Group user da tham gia
         public function __getGrUserJoin($id_User) {
             
             try {
@@ -106,6 +107,64 @@
                     'message_task' => 'fail',
                 ]);
             }
+        }
+
+        // Ham goi y Groups user chua tham gia
+        public  function __getRecommendGr($id_User) {
+
+            try {
+
+                $payload_GrJoinL = isset($_POST['payload_GrJoinL']) ? json_decode($_POST['payload_GrJoinL']) : null;
+
+                if($payload_GrJoinL && is_array($payload_GrJoinL)) {
+
+                    $ta = [];
+
+                    foreach($payload_GrJoinL as $payload_GrJoini) {
+
+                        array_push($ta, $payload_GrJoini->group_id);
+                    }
+
+                    require_once('./app/Models/readSide/Group/rGroupMd.php');
+
+                    $rGroupMd_vn = new rGroupMd();
+
+                    $rgr = $rGroupMd_vn->__recommedGrSystemCore($ta);
+
+                    if($rgr) {
+
+                        echo json_encode([
+                            'status_task' =>  1,
+                            'message_task' => 'successful',
+                            'rgr' => $rgr,
+                        ]);
+                    }
+                    else {
+                        echo json_encode([
+                            'status_task' =>  2,
+                            'message_task' => 'fail',
+                        ]);
+                    }
+                }
+
+                else {
+
+                    echo json_encode([
+                        'status_task' =>  2,
+                        'message_task' => 'fail',
+                    ]);
+                }
+            }
+            catch (Exception $err) {
+                echo json_encode([
+                    'status_task' =>  2,
+                    'message_task' => 'fail',
+                ]);
+            }
+        }
+
+        public function __handleJoinGrRequest($id_User) {
+
         }
 
     }

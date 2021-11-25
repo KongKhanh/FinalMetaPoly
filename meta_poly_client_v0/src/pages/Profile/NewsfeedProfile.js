@@ -1,9 +1,5 @@
 
 //Components
-import PostProfile from './PostProfile';
-
-import ProfileSettings from './ProfileSettings';
-
 import LikeButton from '../Newsfeed/LikeButton';
 
 function NewsfeedProfile(props) {

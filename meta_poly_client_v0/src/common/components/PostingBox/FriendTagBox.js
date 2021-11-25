@@ -66,14 +66,9 @@ export default function FriendTagBox(props) {
     }
 
     useEffect(() => {
+        
         responeListFriend();
     }, []);
-
-    function handleClick(){
-
-        //CheckFriendTag();  
-    }
-
 
 
     return (
@@ -145,8 +140,7 @@ export default function FriendTagBox(props) {
                                                                             <img src="./assets/images/users/avatar-9.jpg" className="Avatar-Item" alt="MetaPoly_Avatar" width="30"></img>
                                                                         </div>
                                                                         <div className="Info-Relative-Area d-inline">{Fi.user_name}</div>
-                                                                        <button className="Friend-tag-select btn border-0 d-inline float-end"
-                                                                                onClick={ () => handleClick() } >
+                                                                        <button className="Friend-tag-select btn border-0 d-inline float-end">
                                                                                  <img src="./assets/icons/flaticon/24px/circle.png" alt="MetaPoly_Icon" width="24" className="btn_icon"></img> 
                                                                         </button>
                                                                     </div>

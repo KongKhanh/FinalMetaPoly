@@ -24,6 +24,8 @@ export const API_URL = {
 
     AUTH_ACCOUNT_USING: BASE_API_URL + '/user/auth-using',
 
+    AUTH_ACCOUNT_ACCESS_TOKEN: BASE_API_URL + '/accessing/checking/token',
+
     CREATE_NEW_POST: BASE_API_URL + '/posting/single/create-new',
 
     CREATE_NEW_COMMENT: BASE_API_URL + '/posting/single/create-comment',
@@ -33,6 +35,8 @@ export const API_URL = {
     GET_INFO_SINGLE_GROUP: BASE_API_URL + '/group/single/data-visu',
 
     GET_INFO_META_GROUP: BASE_API_URL + '/group/user/joined',
+
+    GET_GROUP_RECOMMEND: BASE_API_URL + '/group/recommend',
 
     // @Auth Mai Mai
     CREATE_NEW_LIKE: BASE_API_URL + '/user/create-like',

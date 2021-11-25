@@ -41,7 +41,7 @@ function FindNewFriends(props){
                         onChange={(event) =>onChangeUser(event)}
                     />
                     {/* <span className="mdi mdi-magnify search-icon" /> */}
-                    <button className="input-group-text btn-warning" type="button" id="btnFindFriends">
+                    <button className="input-group-text btn-primary" type="button" id="btnFindFriends">
                         <div>
                             <img src="./assets/icons/flaticon/16px/magnifying_glass.png" alt="MPI"/>
                         </div>
@@ -59,7 +59,7 @@ function FindNewFriends(props){
                     <div className="notification-list" key={index}>
                         <a href="/#" className="dropdown-item notify-item">
                         <div className="d-flex">
-                            <img className="d-flex me-2 rounded-circle" src="assets/images/users/avatar-2.jpg" alt="Generic placeholder image" height={32} />
+                            <img className="d-flex me-2 rounded-circle" src="assets/images/users/avatar-2.jpg" alt="MPI" height={32} />
                             <div className="w-100">
                             <h5 className="m-0 font-14">
                             {userItem.user_name}
