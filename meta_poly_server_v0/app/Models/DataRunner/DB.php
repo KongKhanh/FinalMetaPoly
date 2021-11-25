@@ -3,7 +3,7 @@
     class DB {
 
         public static function whereData($compareKey, $syntaxKey, $compareValue) {
-            return "WHERE {$compareKey}  $syntaxKey $compareValue";
+            return "WHERE {$compareKey} $syntaxKey $compareValue";
         }
 
         public static function updateData($update_Block, $table_Name, $whereData) {
@@ -45,7 +45,6 @@
 
             return $stmt->execute();
             
-    
         }
 
         public static function deleteData($table_Name, $whereData) {
@@ -98,6 +97,97 @@
             
             return $conn->lastInsertId();
 
+        }
+
+        //  $proField: is a array of field names in table of database
+        //  $joinXS: is a array of join statement
+        //  $mro: is boolean for geting One or get Many record
+        public static function selectData($table_Name, $proField = false, $whereData = false, $joinXS = false, $mro = true) {
+
+            require('./app/Models/initialConnect/connectDatabase.php');
+
+            $sql = "SELECT ";
+
+            if($proField && is_array($proField) && count($proField) != 0) {
+
+                $m = "";
+
+                $q = 0;
+                foreach($proField as $proFKey => $proFieldValue) {
+
+                    $m .= "$proFieldValue, ";
+
+                }
+
+                // PHP substr_replace() function to remove the last character from a string in PHP.
+                $m = substr_replace($m, "", -2);
+
+                $sql .= $m;
+
+            }  
+            else {
+
+                $sql .= "*";
+            }
+
+            $sql .= " FROM " . $table_Name;
+
+            if($joinXS && is_array($joinXS) == 1) {
+
+                foreach($joinXS as $jXSI) {
+                    $sql .= "{$jXSI}";
+                }
+            }
+
+            if($whereData) {
+                $sql .= " {$whereData}";
+            }
+
+            $stmt = $conn->prepare($sql);
+
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+            $stmt->execute();
+
+            if($mro) {
+                
+                return $stmt->fetchAll();
+            } 
+
+            return $stmt->fetch();
+        }
+
+        public static function innerJoinZ($a, $b, $c, $d, $e, $f = false) {
+            // $a: table A
+            // $b: key_a
+            // $c: key_c
+            // $d: table B
+            // $e: key_b
+
+            $ft = "";
+            if($f) {
+                switch($f) {
+                    case "rightJoin":
+                        $ft = "RIGHT JOIN";
+                        break;
+                    case "leftJoin":
+                        $ft = "LEFT JOIN";
+                        break;
+                    case "innerJoin":
+                        $ft = "INNER JOIN";
+                        break;
+                    case "fullOuterJoin":
+                        $ft = "FULL OUTER JOIN";
+                        break;
+                    default: $ft = "INNER JOIN";
+                }
+            } else {
+                $ft = "INNER JOIN";
+            }
+           
+            $x = " {$ft} {$d} ON {$a}.{$b} {$c} {$d}.{$e}";
+
+            return $x;
         }
 
     }

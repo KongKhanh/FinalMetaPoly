@@ -1,5 +1,5 @@
 <?php
-class PostMd{
+class PostMd {
 
     public static function likePost($useriD,$postID){
         require('./app/Models/initialConnect/connectDatabase.php');

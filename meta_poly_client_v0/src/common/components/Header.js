@@ -9,6 +9,7 @@ import { API_URL } from '../../settings/Api';
 function Header(props) {
 
         const [ComfUserInfor, setComfUserInfor] = useState([]);
+
         useEffect(function(){
             const requestData = async () => {
                 const responseResult = await axios({
@@ -23,7 +24,7 @@ function Header(props) {
             requestData()
             .then(
                 function(res){
-                    setComfUserInfor(   res);
+                    setComfUserInfor(res);
                 }
             )
         }, []);
@@ -37,40 +38,6 @@ function Header(props) {
                         {/* -------------------------Nav Custom Header-------------------------*/}
                         <div className="navbar-custom">
                             <ul className="list-unstyled topbar-menu float-end mb-0">
-                                <li className="dropdown notification-list d-lg-none">
-                                    <a className="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="/#" role="button" aria-haspopup="false" aria-expanded="false">
-                                        <i className="dripicons-search noti-icon" />
-                                    </a>
-                                    <div className="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
-                                        <form className="p-3">
-                                            <input type="text" className="form-control" placeholder="Search ..." aria-label="Recipient's username" />
-                                        </form>
-                                    </div>
-                                </li>
-                                <li className="dropdown notification-list topbar-dropdown">
-                                    <a className="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="/#" role="button" aria-haspopup="false" aria-expanded="false">
-                                        <img src="./assets/images/flags/us.jpg" alt="metapoly" className="me-0 me-sm-1" height={12} />
-                                        <span className="align-middle d-none d-sm-inline-block">English</span> <i className="mdi mdi-chevron-down d-none d-sm-inline-block align-middle" />
-                                    </a>
-                                    <div className="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu">
-                                        {/* item*/}
-                                        <a href="/#" className="dropdown-item notify-item">
-                                            <img src="assets/images/flags/germany.jpg" alt="metapoly" className="me-1" height={12} /> <span className="align-middle">German</span>
-                                        </a>
-                                        {/* item*/}
-                                        <a href="/#" className="dropdown-item notify-item">
-                                            <img src="assets/images/flags/italy.jpg" alt="metapoly" className="me-1" height={12} /> <span className="align-middle">Italian</span>
-                                        </a>
-                                        {/* item*/}
-                                        <a href="/#" className="dropdown-item notify-item">
-                                            <img src="assets/images/flags/spain.jpg" alt="metapoly" className="me-1" height={12} /> <span className="align-middle">Spanish</span>
-                                        </a>
-                                        {/* item*/}
-                                        <a href="/#" className="dropdown-item notify-item">
-                                            <img src="assets/images/flags/russia.jpg" alt="metapoly" className="me-1" height={12} /> <span className="align-middle">Russian</span>
-                                        </a>
-                                    </div>
-                                </li>
                                 <li className="dropdown notification-list">
                                     <a className="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="/#" role="button" aria-haspopup="false" aria-expanded="false">
                                         <i className="dripicons-bell noti-icon" />
@@ -257,10 +224,12 @@ function Header(props) {
                             <div className="app-search dropdown d-none d-lg-block">
 
                                 <div className="app-search-block">
+
                                     {/* Form App Search Here */}
                                     <FindNewFriends 
-                                    UserInforClient = {props.UserInforClient}
+                                        UserInforClient = {props.UserInforClient}
                                     />
+
                                     {/* Result of Searching */}
                                     <div className="Nav-Control-Layout-App-Container">
                                         <div className="Nav-Control-Layout-App-Inner-Container">

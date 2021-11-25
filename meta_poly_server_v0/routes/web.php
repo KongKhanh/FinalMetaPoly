@@ -8,15 +8,23 @@
     require_once('./app/Http/Controllers/NewsfeedController.php');   
     require_once('./app/Http/Controllers/PostingController.php');  
     require_once('./app/Http/Controllers/FriendController.php');
-    require_once('./app/Http/Controllers/GroupCtrl.php');  
+    require_once('./app/Http/Controllers/GroupCtrl.php');
+
 
     // ------------------------------Handle GET method------------------------------
     $router->get('/user/{idUser}','UserController@__getIdUser');
     $router->get('/userlist/{idUser}','UserController@__getUser');
     $router->get('/newsfeed','NewsfeedController@__getPostList');
     $router->get('/comfirm/{idUser}','NotificationController@__GetComfirmUserID');
+    $router->get('/friendlist/{idUser}','FriendController@__ListFriend');
 
+    // lay du lieu ve chi tiet Group ma User da tham gia
+    // -----------## Postings
+    // -----------## Members
+    $router->get('/group/single/data-visu/{id_GrView}','GroupCtrl@__getGrSingleInfo');
 
+    // lay du lieu cac Groups ma User da tham gia
+    $router->get('/group/user/joined/{id_User}','GroupCtrl@__getGrUserJoin');
 
     // ------------------------------Handle POST method------------------------------
     $router->post('/user/create-new','UserController@__CreateNewUser');
@@ -28,7 +36,6 @@
     $router->post('/confirm/friend/is-accept','FriendController@__ConfirmRequestFriend');
     $router->post('/user/forgotPass','UserController@__handleForgotPassword');
     $router->post('/find/{idUser}','UserController@__FindUserController');
-
 
 
 

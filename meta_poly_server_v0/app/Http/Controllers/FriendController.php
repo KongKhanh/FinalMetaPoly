@@ -39,27 +39,35 @@
         }
 
         //MaiMai
-        // public function __ListFriend(){
-        //     try {
-        //         $blockInfoUser = [
-        //             'fb_fk_user_req_id' => isset($_POST['fb_fk_user_req_id']) ? (base64_decode($_POST['fb_fk_user_req_id'])) : null,
-        //             'fb_fk_user_comf_id' => isset($_POST['fb_fk_user_comf_id']) ? ($_POST['fb_fk_user_comf_id']) : null,
-        //             'active_friend' => isset($_POST['fb_active']) ? ($_POST['fb_active']) : null,
-        //         ];
-                
-        //         require_once('./app/Models/readSide/FriendMd/FriendMd.php');
+        public function __ListFriend($userID){
+            try {
+                require_once('./app/Models/readSide/FriendMd/FriendMd.php');
         
-        //         $listFriend = new FriendMd();
+                $listFriend_Obj = new FriendMd();
 
-        //         $recordID = $listFriend->getListFriend($blockInfoUser);
-        
-        //         echo json_encode([
-        //             'status_task' =>  1,
-        //             'message_task' => 'successful',
-        //             'recordID' => $recordID,
-        //         ]);
-        //     }
-        // }
+                $listFriend = $listFriend_Obj->getListFriend(base64_decode($userID));
+
+                if($listFriend && is_array($listFriend)){
+                    for($i=0; $i< count($listFriend); $i++){
+                        $listFriend[$i]['user_name'] = base64_decode($listFriend[$i]['user_name']);
+                    }
+
+                    echo json_encode([
+                        'status_task' =>  1,
+                        'friendlist' => $listFriend,
+                        'message_task' => 'successful',
+                    ]);
+
+                }
+            }
+            
+            catch(Exception $err) {
+                echo json_encode([
+                    'status_task' => 2,
+                    'message_task' => 'failed',
+                ]);
+            }
+        } 
     
         public function __ConfirmRequestFriend(){
             try {
