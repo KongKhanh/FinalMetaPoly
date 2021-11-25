@@ -143,7 +143,7 @@ export default function FriendTagBox(props) {
                                                             <div className="input-group">
                                                                 <input type="text" className="form-control" placeholder="Tìm kiếm bạn bè ..." />
                                                                 <span className="mdi mdi-magnify search-icon"></span>
-                                                                <button className="input-group-text btn-danger" type="submit">Search</button>
+                                                                <button className="input-group-text btn-primary" type="submit">Tìm bạn</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -166,52 +166,14 @@ export default function FriendTagBox(props) {
                                                                             <img src="./assets/images/users/avatar-9.jpg" className="Avatar-Item" alt="MetaPoly_Avatar" width="30"></img>
                                                                         </div>
                                                                         <div className="Info-Relative-Area d-inline">{Fi.user_name}</div>
-                                                                        <button className="Friend-tag-select btn border-0 d-inline float-end" onClick={ () => activeButton(index,Fi) } >
+                                                                        <div className="Friend-tag-select btn border-0 d-inline float-end" onClick={ () => activeButton(index,Fi) } >
                                                                                  <img src="./assets/icons/flaticon/24px/circle.png"  data-toggle='0' id={`checkTag_${index}`} alt="MetaPoly_Icon" width="24" className="btn_icon"></img> 
                                                                                   
-                                                                        </button>
+                                                                        </div>
                                                                     </div>
                                                                 )
                                                             })
                                                         }
-
-
-                                                        <div className="Friend-items p-2">
-                                                            <div className="Avatar-Area-Custom me-2 d-inline">
-                                                                <img src="./assets/images/users/avatar-4.jpg" className="Avatar-Item" alt="MetaPoly_Avatar" width="30"></img>
-                                                            </div>
-                                                            <div className="Info-Relative-Area d-inline ">Hoài Phương test </div>
-                                                            <div className="Friend-tag-select btn border-0 d-inline float-end">
-                                                                <img src="./assets/icons/flaticon/24px/circle.png" alt="MetaPoly_Icon" width="24" className="btn_icon"></img>
-                                                            </div>
-                                                        </div>
-                                                        <div className="Friend-items p-2">
-                                                            <div className="Avatar-Area-Custom me-2 d-inline">
-                                                                <img src="./assets/images/users/avatar-3.jpg" className="Avatar-Item" alt="MetaPoly_Avatar" width="30"></img>
-                                                            </div>
-                                                            <div className="Info-Relative-Area d-inline">Kong Khanh </div>
-                                                            <div className="Friend-tag-select btn border-0 d-inline float-end">
-                                                                <img src="./assets/icons/flaticon/24px/circle.png" alt="MetaPoly_Icon" width="24" className="btn_icon"></img>
-                                                            </div>
-                                                        </div>
-                                                        <div className="Friend-items p-2">
-                                                            <div className="Avatar-Area-Custom me-2 d-inline">
-                                                                <img src="./assets/images/users/avatar-5.jpg" className="Avatar-Item" alt="MetaPoly_Avatar" width="30"></img>
-                                                            </div>
-                                                            <div className="Info-Relative-Area d-inline">Quốc Huy </div>
-                                                            <div className="Friend-tag-select btn border-0 d-inline float-end">
-                                                                <img src="./assets/icons/flaticon/24px/circle.png" alt="MetaPoly_Icon" width="24" className="btn_icon"></img>
-                                                            </div>
-                                                        </div>
-                                                        <div className="Friend-items p-2">
-                                                            <div className="Avatar-Area-Custom me-2 d-inline">
-                                                                <img src="./assets/images/users/avatar-2.jpg" className="Avatar-Item" alt="MetaPoly_Avatar" width="30"></img>
-                                                            </div>
-                                                            <div className="Info-Relative-Area d-inline">Mai Mai </div>
-                                                            <div className="Friend-tag-select btn border-0 d-inline float-end">
-                                                                <img src="./assets/icons/flaticon/24px/circle.png" alt="MetaPoly_Icon" width="24" className="btn_icon"></img>
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -232,8 +194,9 @@ export default function FriendTagBox(props) {
                             <div className="Box-Footer my-2">
                                 <div className="Box-Footer-Container">
                                     <div className="Box-Footer-Wrapper float-end">
-                                        <button type="button" className="btn btn-light me-2"><span>Cancel</span> </button>
-                                        <button type="button" className="btn btn-warning"><i className="mdi mdi-rocket me-1"></i> <span> Save changes</span> </button>
+                                        <button type="button" className="btn btn-light me-2"><span>Hủy</span> </button> 
+                                        <button type="button" className="btn btn-warning"><i className="mdi mdi-rocket me-1"></i> <span> Gắn thẻ </span> </button>
+                                        
                                     </div>
                                 </div>
                             </div>

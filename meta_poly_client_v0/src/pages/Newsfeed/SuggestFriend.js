@@ -49,16 +49,25 @@ function SuggestFriend(props){
                         <p className="inbox-item-author">
                         {item.user_name}
                         </p>
-                        <p className="inbox-item-text">The first king in the North</p>
+                        <p className="inbox-item-text"></p>
                         <p className="inbox-item-date">
 
                           <button 
                               type="button"
-                              className="btn btn-sm border-0 px-1 py-0" 
+                              className="btn btn-sm  border-0 px-1 py-0" 
                               onClick={()=>onClickAddFriend(item.user_id)} 
                           > 
-                              <img src="./assets/icons/flaticon/24px/invite.png" alt=""/>
+                              <img src="./assets/icons/flaticon/24px/add-friend.png" width="30" alt=""/>
                           </button>
+
+                          <button 
+                              type="button"
+                              className="btn btn-sm  border-0 px-1 py-0" 
+                          > 
+                              <img src="./assets/icons/flaticon/24px/follow.png" alt=""/>
+                          </button>
+
+                          
 
                         </p>
                       </div>
@@ -100,14 +109,14 @@ function SuggestFriend(props){
                   <a href="#/" className="dropdown-item">View All</a>
                 </div>
               </div>
-              <h4 className="header-title mb-3">People you may know</h4>
+              <h4 className="header-title mb-3">Đề xuất kết bạn</h4>
 
               {UserList && Array.isArray(UserList) ? showUserRecommend() : ''}   
               
               <div className="mt-2 mb-3 text-end">
                 <button className="text-end border-0 bg-white">
                   <div className="d-flex align-items-center">
-                    <span className="me-1" style={{fontSize: '12px', color: '#1B74E4'}}>View More</span>
+                    <span className="me-1 text-primary" style={{fontSize: '12px'}}>Xem thêm</span>
                     <div>
                         <img src="./assets/icons/flaticon/16px/arrow_right.png" alt="MPI"/>
                     </div>

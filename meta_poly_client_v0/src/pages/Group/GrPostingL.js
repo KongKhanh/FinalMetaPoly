@@ -24,8 +24,8 @@ export default function GrPostingL(props) {
                                                 <i className="mdi mdi-dots-horizontal" />
                                             </a>
                                             <div className="dropdown-menu dropdown-menu-end">
-                                                <a href="/#" className="dropdown-item">Edit</a>
-                                                <a href="/#" className="dropdown-item">Delete</a>
+                                                <a href="/#" className="dropdown-item">Chỉnh sửa</a>
+                                                <a href="/#" className="dropdown-item">Xóa</a>
                                             </div>
                                         </div>
                                         <h5 className="m-0">
@@ -37,7 +37,7 @@ export default function GrPostingL(props) {
                                             <small>
                                                 {myr.t} {myr.f} ago 
                                                 <span className="mx-1">⚬</span>
-                                                <span>Public</span>
+                                                <span>Công khai</span>
                                             </small>
                                         </p>
                                         </div>

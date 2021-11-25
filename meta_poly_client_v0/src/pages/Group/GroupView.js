@@ -89,7 +89,7 @@ export default function GroupView(props) {
                                                                     <div className="me-1">
                                                                         <img src="./assets/icons/flaticon/24px/edit.png" alt="MPI"/>
                                                                     </div>
-                                                                    <span className="fs-5 fw-bold">Edit</span>
+                                                                    <span className="fs-5 fw-bold">Chỉnh sửa</span>
                                                                 </div>
                                                             </button>
                                                         </div>
@@ -170,7 +170,7 @@ export default function GroupView(props) {
                                             }
 
                                             <div className="text-center mb-3">
-                                                <a href="/#" className="text-danger"><i className="mdi mdi-spin mdi-loading me-1 font-16" /> Load more </a>
+                                                <a href="/#" className="text-danger"><i className="mdi mdi-spin mdi-loading me-1 font-16" /> Xem thêm </a>
                                             </div>
 
                                         </div>
@@ -183,7 +183,7 @@ export default function GroupView(props) {
                                                         <div className="me-1">
                                                             <img src="./assets/icons/flaticon/24px/letter.png" alt="MPI"/>
                                                         </div>
-                                                        <h5 className="mb-0">Introduction</h5>
+                                                        <h5 className="mb-0">Giới thiệu</h5>
                                                     </div>
                                                     <p className="text-muted mb-2">
                                                         With supporting text below as a natural lead-in to additional
@@ -198,7 +198,7 @@ export default function GroupView(props) {
                                                         <div className="me-1">
                                                             <img src="./assets/icons/flaticon/24px/global.png" alt="MPI"/>
                                                         </div>
-                                                        <h5 className="mb-0">Public</h5>
+                                                        <h5 className="mb-0">Công khai</h5>
                                                     </div>
                                                     <p className="text-muted mb-2">
                                                         Bất kỳ ai cũng có thể nhìn thấy mọi người trong nhóm và những gì họ đăng.
@@ -209,7 +209,7 @@ export default function GroupView(props) {
                                                         <div className="me-1">
                                                             <img src="./assets/icons/flaticon/24px/group.png" alt="MPI"/>
                                                         </div>
-                                                        <h5 className="mb-0">Members</h5>
+                                                        <h5 className="mb-0">Thành viên</h5>
                                                     </div>
                                                     <p className="text-muted mb-2">
                                                         <img src="assets/images/users/avatar-4.jpg" alt="MPI" className="img-fluid img-thumbnail rounded-circle" width={50} />
@@ -222,7 +222,7 @@ export default function GroupView(props) {
                                                                     Array.isArray(MemberGrList) ? MemberGrList.length : 0
                                                                 }
                                                             </b> 
-                                                            <span className="ms-1">members</span>
+                                                            <span className="ms-1">Thành viên</span>
                                                         </span>
                                                     </p>
                                                     <div id="tooltip-container">

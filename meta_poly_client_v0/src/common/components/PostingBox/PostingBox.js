@@ -128,19 +128,19 @@ export default function PostingBox(props) {
                                     <li className="nav-item">
                                         <a href="#newpost" data-bs-toggle="tab" aria-expanded="false" className="nav-link active px-3 py-2">
                                             <i className="mdi mdi-pencil-box-multiple font-18 d-md-none d-block" />
-                                            <span className="d-none d-md-block">Create Post</span>
+                                            <span className="d-none d-md-block">Tạo bài viết</span>
                                         </a>
                                     </li>
                                     <li className="nav-item">
                                         <a href="#photo-video" data-bs-toggle="tab" aria-expanded="true" className="nav-link px-3 py-2">
                                             <i className="mdi mdi-image font-18 d-md-none d-block" />
-                                            <span className="d-none d-md-block">Photos/Videos</span>
+                                            <span className="d-none d-md-block">Hình ảnh / Videos</span>
                                         </a>
                                     </li>
                                     <li className="nav-item">
                                         <a href="#story" data-bs-toggle="tab" aria-expanded="true" className="nav-link px-3 py-2">
                                             <i className="mdi mdi-book-open-variant font-18 d-md-none d-block" />
-                                            <span className="d-none d-md-block">Story</span>
+                                            <span className="d-none d-md-block">Video trực tiếp</span>
                                         </a>
                                     </li>
                                 </ul>

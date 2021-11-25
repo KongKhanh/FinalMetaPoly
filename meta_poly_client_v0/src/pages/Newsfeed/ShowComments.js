@@ -16,7 +16,7 @@ export default function ShowComments(props) {
                         </h5>
                         <small className="text-muted mb-0 align-text-bottom mx-2">
                         {
-                            'Just now'
+                            'Vừa đăng'
                         }
                         </small>
                     </div>
@@ -27,11 +27,11 @@ export default function ShowComments(props) {
                     </div>
                     <div className="d-flex">
                         <a href="/#>" className="btn btn-sm btn-link text-muted py-0 px-1">
-                            👍 Like
+                            👍 Thích
                         </a>
                         <a href="/#>" className="btn btn-sm btn-link text-muted py-0 px-1 d-flex align-items-end mx-1">
                             <img src="./assets/icons/flaticon/24px/reply_all.png" alt="MPI" className="me-1"/>
-                            Reply 
+                            Trả lời 
                         </a>
                     </div>
                     </div>

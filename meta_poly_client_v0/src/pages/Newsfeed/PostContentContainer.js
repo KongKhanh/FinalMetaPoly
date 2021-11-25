@@ -97,8 +97,8 @@ export default function PostContentContainer(props) {
                                             </a>
 
                                             <div className="dropdown-menu dropdown-menu-end">
-                                            <a href="/#" className="dropdown-item">Edit</a>
-                                            <a href="/#" className="dropdown-item">Delete</a>
+                                            <a href="/#" className="dropdown-item">Chỉnh sửa</a>
+                                            <a href="/#" className="dropdown-item">Xóa</a>
                                             </div>
                                             
                                         </div>
@@ -111,9 +111,9 @@ export default function PostContentContainer(props) {
 
                                         <p className="text-muted"><small>
                                         {  
-                                            myr.t + ' ' + myr.f + ' ago'
+                                            myr.t + ' ' + myr.f + ' trước'
                                         }
-                                        <span className="mx-1">⚬</span> <span>Public</span></small></p>
+                                        <span className="mx-1"></span><i className="dripicons-rocket "> </i><span>Công khai</span></small></p>
 
                                         </div>
 
@@ -161,12 +161,12 @@ export default function PostContentContainer(props) {
                                                 PostItem.list_like.length
                                             }
 
-                                            <span className="ms-1">Likes</span>
+                                            <span className="ms-1">Thích</span>
                                         </a>
 
-                                        <a href="/#>" className="btn btn-sm btn-link text-muted"><i className="uil uil-comments-alt" /> 148 Comments</a>
+                                        <a href="/#>" className="btn btn-sm btn-link text-muted"><i className="mdi mdi-comment-processing-outline me-1" /> 148 Bình luận</a>
 
-                                        <a href="/#>" className="btn btn-sm btn-link text-muted"><i className="uil uil-share-alt" /> Share</a>
+                                        <a href="/#>" className="btn btn-sm btn-link text-muted"><i className="mdi mdi-share me-1" /> Chia sẻ</a>
 
                                     </div>
 

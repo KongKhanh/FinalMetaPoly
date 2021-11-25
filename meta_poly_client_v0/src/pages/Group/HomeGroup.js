@@ -84,7 +84,7 @@ export default function HomeGroup(props) {
                                         GrI.group_name
                                     }
                                 </h5>
-                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                <p className="card-text"><small className="text-muted">Chỉnh sửa lần cuối 3 phút trước</small></p>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +108,7 @@ export default function HomeGroup(props) {
                                             <div className="GroupMain-title-container mb-2">
                                                 <div className="GroupMain-title-wrapper">
                                                     <div className="GroupMain-title">
-                                                        <h3 className="Gtitle text-dark m-0">Groups</h3>
+                                                        <h3 className="Gtitle text-dark m-0">Nhóm</h3>
                                                     </div>
                                                 </div>
                                             </div>
@@ -116,7 +116,7 @@ export default function HomeGroup(props) {
                                                 <div className="GroupSearch-Field-wrapper">
                                                     <form>
                                                         <div className="input-group">
-                                                            <input type="text" className="form-control rounded-start" placeholder="Search groups"/>
+                                                            <input type="text" className="form-control rounded-start" placeholder="Tìm nhóm"/>
                                                             <button className="input-group-text" type="button">
                                                                 <div className="btn-icon">
                                                                     <img src="./assets/icons/flaticon/24px/loupe.png" alt="MPI"></img>
@@ -142,7 +142,7 @@ export default function HomeGroup(props) {
                                                             <img src="./assets/icons/flaticon/24px/tabs.png" alt="MPI"/>
                                                         </div>
                                                         <div className="btn-title mx-1">
-                                                            <span className="title">Create new group</span>
+                                                            <span className="title">Tạo nhóm mới</span>
                                                         </div>
                                                     </button>
                                                 </div>
@@ -150,7 +150,7 @@ export default function HomeGroup(props) {
                                         </div>
                                         <div className="G-list-wrapper">
                                             <div className="G-list-title px-2 py-1">
-                                                <h4>Groups you've joined</h4>
+                                                <h4>Nhóm bạn đã tham gia</h4>
                                             </div>
                                             <div className="G-list-item-showing pb-2">
                                                 <div className="G-list-item-wapper">

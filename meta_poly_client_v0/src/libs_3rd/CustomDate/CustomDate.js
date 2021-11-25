@@ -69,7 +69,7 @@ export function ccd(dtd) {
             
             var rst_o = { // rst_o: result time object
                 t: 0,
-                f: 'seconds',
+                f: 'giây',
             };
 
             // return ss;
@@ -78,42 +78,42 @@ export function ccd(dtd) {
                 rst_o = {
                     ...rst_o,
                     t: ss,
-                    f: 'seconds',
+                    f: 'giây',
                 }
             }
             if(ss > 60 && ss < 3600) { // (show number of minutes )
                 rst_o = {
                     ...rst_o,
                     t: (ss/60),
-                    f: 'minutes',
+                    f: 'phút',
                 }
             }
             if(ss > 3600 && ss < 86400) { // ( show number of hours )
                 rst_o = {
                     ...rst_o,
                     t: (ss/60)/60,
-                    f: 'hours',
+                    f: 'giờ',
                 }
             }
             if(ss > 86400 && ss < 2592000) { // ( show number of days )
                 rst_o = {
                     ...rst_o,
                     t: (ss/60)/60/24,
-                    f: 'days',
+                    f: 'ngày',
                 }
             }
             if(ss > 2592000 && ss < 31104000) { // ( show number of months )
                 rst_o = {
                     ...rst_o,
                     t: (ss/60)/60/24/30,
-                    f: 'months',
+                    f: 'tháng',
                 }
             }
             if(ss > 31104000) { // ( show number of years )
                 rst_o = {
                     ...rst_o,
                     t: (parseInt(this.cd.getFullYear() - this.sd.getFullYear())),
-                    f: 'years',
+                    f: 'năm',
                 }
             }    
     

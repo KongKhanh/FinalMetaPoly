@@ -9,7 +9,7 @@ function RichTextEditor(props) {
                             id="pct_content"
                             rows={4} 
                             className="form-control border-0 resize-none" 
-                            placeholder='Chia sẽ cảm nhận của bạn...' 
+                            placeholder='Chia sẻ cảm nhận của bạn...' 
                             value={props.pctContentObj.pct_content} 
                             name="pct_content"
                             onChange={(event) => props.handleOnChangeFieldPctContent(event)}

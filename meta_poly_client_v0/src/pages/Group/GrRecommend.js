@@ -107,10 +107,10 @@ export default function GrRecommend(props) {
                                 <i className="mdi mdi-dots-horizontal" />
                                 </a>
                                 <div className="dropdown-menu dropdown-menu-end">
-                                <a href="/#" className="dropdown-item">See more</a>
+                                <a href="/#" className="dropdown-item">Xem thêm</a>
                                 </div>
                             </div>
-                            <h4 className="header-title mb-3">Suggested for you</h4>
+                            <h4 className="header-title mb-3">Nhóm đề xuất</h4>
 
                             <Slider {...settings}>
 
@@ -129,10 +129,10 @@ export default function GrRecommend(props) {
                                                         </div>
                                                         <button 
                                                             type="button" 
-                                                            className="btn btn-info w-100 text-white"
+                                                            className="btn btn-blue w-100 text-white"
                                                             onClick={() => handleReqToJoinGr(GrRecommendi.group_id)}
                                                         >
-                                                            Join group
+                                                            Tham gia
                                                         </button>
                                                     </div> 
                                                 </div>
