@@ -8,40 +8,64 @@ export default function FriendTagBox(props) {
     //LF:list friend
     const [LF, setLF] = useState([]);
 
-    // const [activeFT,setActiveFT] = useState(
-    //     (
-    //         function(){
-    //           var status = requestCheckFriend.find(
-    //             (checkI)=>{
-    //               return checkI.pl_fk_user_id === props.UserInforClient.userId ;
-    //             }
-    //           )
-    //           return status ? false : true ;
-    //         }
-    //       )()
-    // );
+    const [activeFT,setActiveFT] = useState([
+        
+    ]
+    );
 
-    // const requestCheckFriend = async () => {
+    const requestCheckFriend = async () => {
 
-    //     var formData = new FormData();
+        var formData = new FormData();
 
-    //     formData.append('userID', props.UserInforClient.userId);
+        formData.append('userID', props.UserInforClient.userId);
     
-    //     formData.append('postID', props.PostID);
+        formData.append('postID', props.PostID);
 
-    //     formData.append('activeFriendTag', activeFT);
+        formData.append('activeFriendTag', activeFT);
 
-    //     const responseResultCF = await axios({
-    //       headers: {
-    //         'Access-Control-Allow-Origin': '*',
-    //       },
-    //       url: `${API_URL.FRIEND_LIST}/${props.UserInforClient.userId}`,
-    //       method: 'POST',
-    //       data: formData,
-    //     });
+        const responseResultCF = await axios({
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+          },
+          url: `${API_URL.FRIEND_LIST}/${props.UserInforClient.userId}`,
+          method: 'POST',
+          data: formData,
+        });
 
-    //     return responseResultCF.data;
-    //   }
+        return responseResultCF.data;
+      }
+    
+    function activeButton(index,Fi){
+        var checkTag= document.getElementById(`checkTag_${index}`);
+        
+        if(checkTag.getAttribute('data-toggle') === '0'){
+
+            activeFT.push(Fi);
+
+            checkTag.src = "./assets/icons/flaticon/24px/accept.png";
+            
+            checkTag.setAttribute('data-toggle','1');
+
+
+        }else{
+
+            activeFT.find((ATi,indexx)=>{
+                if(ATi.fb_fk_user_comf_id == Fi.fb_fk_user_comf_id ){
+                    activeFT.splice(indexx,1);
+                }
+            })
+
+            checkTag.src = "./assets/icons/flaticon/24px/circle.png";
+            
+            checkTag.setAttribute('data-toggle','0');
+        }
+
+        
+        console.log(index);
+        console.log(activeFT);
+
+
+    }
 
     // const CheckFriendTag = () => {
 
@@ -69,6 +93,8 @@ export default function FriendTagBox(props) {
         
         responeListFriend();
     }, []);
+
+
 
 
     return (
@@ -135,13 +161,14 @@ export default function FriendTagBox(props) {
                                                         {
                                                             LF.map((Fi, index) => {
                                                                 return (
-                                                                    <div className="Friend-items p-2">
+                                                                    <div className="Friend-items p-2" key={`FTi_${index}`}>
                                                                         <div className="Avatar-Area-Custom me-2 d-inline">
                                                                             <img src="./assets/images/users/avatar-9.jpg" className="Avatar-Item" alt="MetaPoly_Avatar" width="30"></img>
                                                                         </div>
                                                                         <div className="Info-Relative-Area d-inline">{Fi.user_name}</div>
-                                                                        <button className="Friend-tag-select btn border-0 d-inline float-end">
-                                                                                 <img src="./assets/icons/flaticon/24px/circle.png" alt="MetaPoly_Icon" width="24" className="btn_icon"></img> 
+                                                                        <button className="Friend-tag-select btn border-0 d-inline float-end" onClick={ () => activeButton(index,Fi) } >
+                                                                                 <img src="./assets/icons/flaticon/24px/circle.png"  data-toggle='0' id={`checkTag_${index}`} alt="MetaPoly_Icon" width="24" className="btn_icon"></img> 
+                                                                                  
                                                                         </button>
                                                                     </div>
                                                                 )
