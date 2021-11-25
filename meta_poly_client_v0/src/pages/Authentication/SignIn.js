@@ -102,7 +102,7 @@ function SignIn(props) {
                                                     <h4 className="text-dark-50 text-center pb-0 fw-bold">Đăng nhập</h4>
                                                     <p className="text-muted mb-1">Kết nối - Sáng tạo - Giá trị</p>
                                                     <div>
-                                                        <img className="rounded-circle mb-2" src="./assets/images/brands/logo_header.png" alt="Logo" width="200" height="200" />
+                                                        <img className="mb-2" src="./assets/images/brands/logo_header_default_v0.jpg" alt="Logo" width="200" height="200" />
                                                     </div>
                                                 </div>
 
