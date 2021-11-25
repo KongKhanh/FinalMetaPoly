@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAEQ,iBAFS,CACb,kBAAkB,AACb,MAAM,CAAC;EACJ,MAAM,EAAE,OAAO;CAClB",
+    "sources": [
+        "auth_form.scss"
+    ],
+    "names": [],
+    "file": "auth_form.css"
+}

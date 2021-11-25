@@ -40,6 +40,7 @@ function App() {
                     method: 'GET',
                     headers: {
                         'Authorization': 'Bearer ' + UserInforClient.access_token.trim(),
+                        'Access-Control-Allow-Origin': '*',
                     }
                 });
 
@@ -47,11 +48,11 @@ function App() {
 
                     if(resR.data.rft.user_name && resR.data.rft.user_phone) {
                         
-                        setUserInforClient({
-                            ...UserInforClient,
-                            user_phone: resR.data.rft.user_phone,
-                            user_name: resR.data.rft.user_name,
-                        });
+                        // setUserInforClient({
+                        //     ...UserInforClient,
+                        //     user_phone: resR.data.rft.user_phone,
+                        //     user_name: resR.data.rft.user_name,
+                        // });
                     }
                 }
             };

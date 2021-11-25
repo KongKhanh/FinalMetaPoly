@@ -125,6 +125,42 @@
             return $mg;
         }
 
+        public function __recommedGrSystemCore($ta) {
+
+            try {
+
+                require('./app/Models/initialConnect/connectDatabase.php');
+
+                $s = "";
+                if(is_array($ta)) {
+    
+                    for($i = 0; $i < count($ta); $i++) {
+    
+                        if($i == count($ta) - 1) {
+    
+                            $s .= "NOT group_id = {$ta[$i]}";
+                        } else {
+    
+                            $s .= "NOT group_id = {$ta[$i]} AND ";
+                        }
+                    }
+                }
+    
+                $sql = "SELECT group_id, group_name, COUNT(user_group_id ) AS num_of_members FROM groups LEFT JOIN user_groups ON groups.group_id = user_groups.user_group_fk_group_id WHERE {$s} GROUP BY group_id"; 
+
+                $stmt = $conn->prepare($sql);
+    
+                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    
+                $stmt->execute();
+    
+                return $stmt->fetchAll();
+            }
+            catch (Exception $err) {
+
+                return false;
+            }
+        }
     }
 
 ?>

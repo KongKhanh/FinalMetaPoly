@@ -9,9 +9,10 @@
     require_once('./app/Http/Controllers/PostingController.php');  
     require_once('./app/Http/Controllers/FriendController.php');
     require_once('./app/Http/Controllers/GroupCtrl.php');
-    
+
     // Middleware Virtual Path Here
     require_once('./app/Http/Middleware/Authorization.php');
+
 
     // ------------------------------Handle GET method------------------------------
     $router->get('/user/{idUser}','UserController@__getIdUser');
@@ -21,6 +22,7 @@
     $router->get('/newsfeed','NewsfeedController@__getPostList');
 
     $router->get('/comfirm/{idUser}','NotificationController@__GetComfirmUserID');
+    $router->get('/friendlist/{idUser}','FriendController@__ListFriend');
 
     // lay du lieu ve chi tiet Group ma User da tham gia
     // -----------## Postings
@@ -29,6 +31,7 @@
 
     // lay du lieu cac Groups ma User da tham gia
     $router->get('/group/user/joined/{id_User}','GroupCtrl@__getGrUserJoin');
+
 
     // ------------------------------Handle POST method------------------------------
     $router->post('/user/create-new','UserController@__CreateNewUser');
@@ -50,6 +53,12 @@
     $router->post('/user/forgotPass','UserController@__handleForgotPassword');
 
     $router->post('/find/{idUser}','UserController@__FindUserController');
+
+    // lay du lieu cac Groups goi y cho User tham gia
+    $router->post('/group/recommend/{id_User}','GroupCtrl@__getRecommendGr');
+
+    // lay du lieu cac Groups goi y cho User tham gia
+    $router->post('/group/join-request/accept/{id_User}','GroupCtrl@__handleJoinGrRequest');
 
 
     // ---------------------For Posting

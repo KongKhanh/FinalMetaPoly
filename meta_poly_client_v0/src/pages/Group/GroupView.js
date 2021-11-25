@@ -8,6 +8,7 @@ import { API_URL } from '../../settings/Api';
 import PostingBox from '../../common/components/PostingBox/PostingBox';
 import GrPostingL from './GrPostingL';
 
+
 export default function GroupView(props) {
 
     // State thong tin co ban ve nhom ( server tra ve )

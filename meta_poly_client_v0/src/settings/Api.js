@@ -36,9 +36,13 @@ export const API_URL = {
 
     GET_INFO_META_GROUP: BASE_API_URL + '/group/user/joined',
 
+    GET_GROUP_RECOMMEND: BASE_API_URL + '/group/recommend',
+
     // @Auth Mai Mai
     CREATE_NEW_LIKE: BASE_API_URL + '/user/create-like',
 
     FORGOT_PASS: BASE_API_URL + '/authentication/user/forgotPass',
+
+    FRIEND_LIST: BASE_API_URL + '/friendlist',
 
 };

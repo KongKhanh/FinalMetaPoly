@@ -5,6 +5,8 @@ import axios from 'axios';
 import { API_URL } from '../../settings/Api';
 
 import CreateNewGroupForm from './CreateNewGroupForm';
+import GrRecommend from './GrRecommend';
+
 
 export default function HomeGroup(props) {
 
@@ -39,7 +41,7 @@ export default function HomeGroup(props) {
 
             if(resData && resData.data && Array.isArray(resData.data.glHasJoined)) {
 
-                if(resData.data.status_task === 1) {
+                if(resData.data.status_task && resData.data.status_task === 1) {
 
                     setGrSingleList(resData.data.glHasJoined);
     
@@ -48,8 +50,6 @@ export default function HomeGroup(props) {
 
                 return false;
             }
-
-            console.log(resData);
 
             return false;
         }
@@ -319,33 +319,10 @@ export default function HomeGroup(props) {
                             </div>
 
                             <div className="col-xxl-3 col-lg-6 order-lg-1 order-xxl-2">
-                                <div className="mt-2 right-Side-Wrapper">
-                                    <div className="card">
-                                        <div className="card-body pb-0">
-                                        <div className="dropdown float-end">
-                                            <a href="/#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i className="mdi mdi-dots-horizontal" />
-                                            </a>
-                                            <div className="dropdown-menu dropdown-menu-end">
-                                            <a href="/#" className="dropdown-item">See more</a>
-                                            </div>
-                                        </div>
-                                        <h4 className="header-title mb-3">Suggested for you</h4>
-                                            <div className="inbox-widget Suggested_for_you-G-container">
-                                                <div className="card d-block border">
-                                                    <img className="card-img-top" width="294px" height="165px" src="./assets/images/small/163475081_2818367451750510_936569814211423287534_n.jpg" alt="MPI" />
-                                                    <div className="card-body">
-                                                        <h5 className="mb-1 mt-0 Suggested_for_you_title_brand">UI / UX Designers & Developers</h5>
-                                                        <div className="d-flex align-items-center mb-2">
-                                                            <span className="fs-6">179K members</span>
-                                                        </div>
-                                                        <button type="button" className="btn btn-info w-100 text-white">Join group</button>
-                                                    </div> 
-                                                </div>
-                                            </div> 
-                                        </div>
-                                    </div>
-                                </div>
+                                <GrRecommend 
+                                    UserInforClient = {props.UserInforClient ? props.UserInforClient : undefined}
+                                    GrSingleList = {GrSingleList ? GrSingleList : undefined}
+                                />
                             </div>
                         </div>
 
