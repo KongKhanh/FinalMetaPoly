@@ -164,7 +164,7 @@ function ProfileSettings(props){
                     className="form-control" 
                     id="Date"
                     name='UserBirthday' 
-                    value={props.ProfileSetting.UserBirthday} 
+                    value={props.ProfileSetting.UserBirthday.split(' ')[0]} 
                     onChange={(event) => OnChangeSettingProfile(event)}
                     />
                   </div>

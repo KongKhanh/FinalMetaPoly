@@ -61,7 +61,7 @@ export function ccd(dtd) {
             this.sd.setMinutes(this.mnd()[4]);
 
             this.sd.setSeconds(this.mnd()[5]);
-    
+
             // ss: subseconds
             var ss = parseInt(this.cd.getTime() - this.sd.getTime()) / 1000; // the number of seconds 
             
@@ -79,7 +79,7 @@ export function ccd(dtd) {
                     f: 'seconds',
                 }
             }
-            if(ss > 60 && ss < 3600) { // (show number of minutes )
+            if(ss >= 60 && ss < 3600) { // (show number of minutes )
                 rst_o = {
                     ...rst_o,
                     t: (ss/60),
@@ -131,9 +131,9 @@ ccd.prototype.gs = function() {
    return this.sccd();
 }
 
-const ccd_obj = new ccd('2019-1-10 22:24:25');
+// const ccd_obj = new ccd('2019-1-10 22:24:25');
 
-const myr = ccd_obj.gs();
+// const myr = ccd_obj.gs();
 
 
 
