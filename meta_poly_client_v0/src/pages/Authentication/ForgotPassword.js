@@ -12,11 +12,11 @@ export default function ForgotPassword(props) {
         user_phone: '',
     });
 
-    const __requestCreateNewPassword = async(dataRequest) =>{
+    const __requestCreateNewPassword = async (dataRequest) => {
         const responseResult = await axios({
             url: API_URL.FORGOT_PASS,
             method: 'POST',
-            data : dataRequest,
+            data: dataRequest,
         });
 
         return responseResult.data;
@@ -25,19 +25,19 @@ export default function ForgotPassword(props) {
     const OnChangeForgotPassField = (event) => {
         setInputForgotPass({
             ...InputForgotPass,
-            user_phone : event.target.value
+            user_phone: event.target.value
         })
     };
 
-    const handleClickCreateNewPass = () =>{
+    const handleClickCreateNewPass = () => {
         const dataRequest = new FormData();
 
-        dataRequest.append('user_phone',InputForgotPass.user_phone);
+        dataRequest.append('user_phone', InputForgotPass.user_phone);
 
         __requestCreateNewPassword(dataRequest)
-        .then((res) => {
-            console.log(res);
-        });
+            .then((res) => {
+                console.log(res);
+            });
 
     };
 
@@ -67,34 +67,37 @@ export default function ForgotPassword(props) {
                                         <span><img src="assets/images/logo.png" alt="" height={18} />METAPOLY</span>
                                     </a>
                                 </div> */}
-                                <div className="card-header pt-2 pb-2 text-center bg-primary">
+                                <div className="card-header pt-2 pb-2 text-center bg-blue">
                                     <a href="/#" style={{ color: '#FFFFFF', fontSize: '32px' }}>MetaPoly</a>
                                 </div>
 
                                 <div className="card-body p-4">
                                     <div className="text-center w-75 m-auto">
+                                        <div>
+                                            <img className="rounded-circle mb-2" src="./assets/images/brands/logo_header.png" alt="Logo" width="200" height="200" />
+                                        </div>
                                         <h4 className="text-dark-50 text-center mt-0 fw-bold">Bạn quên mật khẩu?</h4>
                                         <p className="text-muted mb-4">Nhập số điện thoại đã đăng ký tài khoản để nhận mật khẩu mới tại email của bạn.</p>
                                     </div>
                                     <form action="#">
                                         <div className="mb-3">
                                             <label htmlFor="phoneNunmber" className="form-label">Số điện thoại: </label>
-                                            <input 
-                                            className="form-control" 
-                                            type="text" 
-                                            id="phoneNunmber" 
-                                            required 
-                                            placeholder="(+73)" 
-                                            name="user_phone"
-                                            // value={InputForgotPass.user_phone ? InputForgotPass.user_phone: ''}
-                                            onChange={(event) => OnChangeForgotPassField(event)}
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                id="phoneNunmber"
+                                                required
+                                                placeholder="(+73)"
+                                                name="user_phone"
+                                                // value={InputForgotPass.user_phone ? InputForgotPass.user_phone: ''}
+                                                onChange={(event) => OnChangeForgotPassField(event)}
                                             />
                                         </div>
                                         <div className="mb-0 text-center">
-                                            <button className="btn btn-primary" type="button"
-                                             onClick= {()=>handleClickCreateNewPass()}
-                                             >
-                                             Gửi yêu cầu</button>
+                                            <button className="btn btn-blue" type="button"
+                                                onClick={() => handleClickCreateNewPass()}
+                                            >
+                                                Gửi yêu cầu</button>
                                         </div>
                                     </form>
                                 </div> {/* end card-body*/}
