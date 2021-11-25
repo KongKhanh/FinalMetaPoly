@@ -7,7 +7,50 @@ import { API_URL } from "../../../settings/Api";
 export default function FriendTagBox(props) {
     //LF:list friend
     const [LF, setLF] = useState([]);
-    console.log(LF);
+
+    // const [activeFT,setActiveFT] = useState(
+    //     (
+    //         function(){
+    //           var status = requestCheckFriend.find(
+    //             (checkI)=>{
+    //               return checkI.pl_fk_user_id === props.UserInforClient.userId ;
+    //             }
+    //           )
+    //           return status ? false : true ;
+    //         }
+    //       )()
+    // );
+
+    // const requestCheckFriend = async () => {
+
+    //     var formData = new FormData();
+
+    //     formData.append('userID', props.UserInforClient.userId);
+    
+    //     formData.append('postID', props.PostID);
+
+    //     formData.append('activeFriendTag', activeFT);
+
+    //     const responseResultCF = await axios({
+    //       headers: {
+    //         'Access-Control-Allow-Origin': '*',
+    //       },
+    //       url: `${API_URL.FRIEND_LIST}/${props.UserInforClient.userId}`,
+    //       method: 'POST',
+    //       data: formData,
+    //     });
+
+    //     return responseResultCF.data;
+    //   }
+
+    // const CheckFriendTag = () => {
+
+    //     requestCheckFriend().then(
+
+           
+    //     );
+
+    // }
 
     async function responeListFriend() {
         const responeResult = await axios({
@@ -25,6 +68,11 @@ export default function FriendTagBox(props) {
     useEffect(() => {
         responeListFriend();
     }, []);
+
+    function handleClick(){
+
+        //CheckFriendTag();  
+    }
 
 
 
@@ -97,9 +145,10 @@ export default function FriendTagBox(props) {
                                                                             <img src="./assets/images/users/avatar-9.jpg" className="Avatar-Item" alt="MetaPoly_Avatar" width="30"></img>
                                                                         </div>
                                                                         <div className="Info-Relative-Area d-inline">{Fi.user_name}</div>
-                                                                        <div className="Friend-tag-select d-inline float-end">
-                                                                            <img src="./assets/icons/flaticon/24px/accept.png" alt="MetaPoly_Icon" width="24" className="btn_icon"></img>
-                                                                        </div>
+                                                                        <button className="Friend-tag-select btn border-0 d-inline float-end"
+                                                                                onClick={ () => handleClick() } >
+                                                                                 <img src="./assets/icons/flaticon/24px/circle.png" alt="MetaPoly_Icon" width="24" className="btn_icon"></img> 
+                                                                        </button>
                                                                     </div>
                                                                 )
                                                             })
@@ -111,7 +160,7 @@ export default function FriendTagBox(props) {
                                                                 <img src="./assets/images/users/avatar-4.jpg" className="Avatar-Item" alt="MetaPoly_Avatar" width="30"></img>
                                                             </div>
                                                             <div className="Info-Relative-Area d-inline ">Hoài Phương test </div>
-                                                            <div className="Friend-tag-select d-inline float-end">
+                                                            <div className="Friend-tag-select btn border-0 d-inline float-end">
                                                                 <img src="./assets/icons/flaticon/24px/circle.png" alt="MetaPoly_Icon" width="24" className="btn_icon"></img>
                                                             </div>
                                                         </div>
@@ -120,7 +169,7 @@ export default function FriendTagBox(props) {
                                                                 <img src="./assets/images/users/avatar-3.jpg" className="Avatar-Item" alt="MetaPoly_Avatar" width="30"></img>
                                                             </div>
                                                             <div className="Info-Relative-Area d-inline">Kong Khanh </div>
-                                                            <div className="Friend-tag-select d-inline float-end">
+                                                            <div className="Friend-tag-select btn border-0 d-inline float-end">
                                                                 <img src="./assets/icons/flaticon/24px/circle.png" alt="MetaPoly_Icon" width="24" className="btn_icon"></img>
                                                             </div>
                                                         </div>
@@ -129,7 +178,7 @@ export default function FriendTagBox(props) {
                                                                 <img src="./assets/images/users/avatar-5.jpg" className="Avatar-Item" alt="MetaPoly_Avatar" width="30"></img>
                                                             </div>
                                                             <div className="Info-Relative-Area d-inline">Quốc Huy </div>
-                                                            <div className="Friend-tag-select d-inline float-end">
+                                                            <div className="Friend-tag-select btn border-0 d-inline float-end">
                                                                 <img src="./assets/icons/flaticon/24px/circle.png" alt="MetaPoly_Icon" width="24" className="btn_icon"></img>
                                                             </div>
                                                         </div>
@@ -138,7 +187,7 @@ export default function FriendTagBox(props) {
                                                                 <img src="./assets/images/users/avatar-2.jpg" className="Avatar-Item" alt="MetaPoly_Avatar" width="30"></img>
                                                             </div>
                                                             <div className="Info-Relative-Area d-inline">Mai Mai </div>
-                                                            <div className="Friend-tag-select d-inline float-end">
+                                                            <div className="Friend-tag-select btn border-0 d-inline float-end">
                                                                 <img src="./assets/icons/flaticon/24px/circle.png" alt="MetaPoly_Icon" width="24" className="btn_icon"></img>
                                                             </div>
                                                         </div>
