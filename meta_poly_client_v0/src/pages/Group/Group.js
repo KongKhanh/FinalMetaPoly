@@ -22,6 +22,7 @@ export default function Group(props) {
 
                                 <GroupView 
                                     id_GrView={id_GrView}
+                                    UserInforClient = {props.UserInforClient ? props.UserInforClient : undefined}
                                 /> :  
 
                                 <HomeGroup 

@@ -92,7 +92,7 @@ function SignIn(props) {
                                     <div className="col-xxl-4 col-lg-5">
                                         <div className="card">
 
-                                            <div className="card-header pt-2 pb-2 text-center bg-primary">
+                                            <div className="card-header pt-2 pb-2 text-center bg-blue">
                                                 <a href="/#" style={{ color: '#FFFFFF', fontSize: '32px' }}>MetaPoly</a>
                                             </div>
 
@@ -100,7 +100,10 @@ function SignIn(props) {
 
                                                 <div className="text-center w-75 m-auto">
                                                     <h4 className="text-dark-50 text-center pb-0 fw-bold">Đăng nhập</h4>
-                                                    <p className="text-muted mb-4">Kết nối - Sáng tạo - Giá trị</p>
+                                                    <p className="text-muted mb-1">Kết nối - Sáng tạo - Giá trị</p>
+                                                    <div>
+                                                        <img className="mb-2" src="./assets/images/brands/logo_header_default_v0.jpg" alt="Logo" width="200" height="200" />
+                                                    </div>
                                                 </div>
 
                                                 <form action="#">
@@ -141,14 +144,14 @@ function SignIn(props) {
 
                                                     <div className="mb-3 mb-3">
                                                         <div className="form-check">
-                                                            <input type="checkbox" className="form-check-input" id="checkbox-signin" defaultChecked />
+                                                            <input type="checkbox" className="form-check-input bg-blue" id="checkbox-signin" defaultChecked />
                                                             <label className="form-check-label" htmlFor="checkbox-signin">Lưu tài khoản</label>
                                                         </div>
                                                     </div>
 
                                                     <div className="mb-3 mb-0 text-end">
                                                         <button
-                                                            className="btn btn-primary"
+                                                            className="btn btn-blue"
                                                             type="button"
                                                             onClick={() => handleOnClickSignIn()}
                                                         > ĐĂNG NHẬP </button>

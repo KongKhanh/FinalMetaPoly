@@ -1,4 +1,3 @@
-import {useState, useEffect} from 'react';
 import {API_URL} from '../../settings/Api';
 import axios from 'axios';
 
@@ -20,16 +19,15 @@ function FriendRequest(props){
             });
             return responseResult.data;
     }
+
     function onClickConfirm(x){
         RequestConfirm(x).then((res)=>{
             console.log(res);
-          });
+        });
     }
 
-console.log(props.FriendRQ);
-        return(
-            <div style={{ maxHeight: '500px' }} data-simplebar>
-            {/* item*/}
+    return(
+        <div style={{ maxHeight: '500px' }} data-simplebar>
             <a href="/#" className="dropdown-item notify-item ">
                 <div className="notify-icon d-inline">
                     <img src="assets/images/users/avatar-2.jpg" className="img-fluid rounded-circle" alt="" width="30" />
@@ -41,16 +39,20 @@ console.log(props.FriendRQ);
                 </span> đã gửi lời mời kết bạn</span>
                 <div className="ms-4">
                     <button type="button" className="btn btn-success btn-sm me-2" 
-
-                    onClick={() =>onClickConfirm(true)}>Chấp nhận</button> 
+                        onClick={() =>onClickConfirm(true)}
+                    >
+                        Chấp nhận
+                    </button> 
 
                     <button type="button" className="btn btn-danger btn-sm"
-
-                    onClick={() =>onClickConfirm(false)}>Từ chối</button>
+                        onClick={() =>onClickConfirm(false)}
+                    >
+                        Từ chối
+                    </button>
                 </div>
 
             </a>
         </div>
-        )
+    )
 }
 export default FriendRequest;

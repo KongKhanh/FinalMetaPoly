@@ -27,7 +27,7 @@ function Header(props) {
                     setComfUserInfor(res);
                 }
             )
-        }, []);
+        }, [props.UserInforClient.userId]);
 
     return (
         <div className="Header-Container">
@@ -113,7 +113,7 @@ function Header(props) {
                                         </div>
                                         {/* All*/}
                                         <a href="/#" className="dropdown-item text-end text-primary notify-item notify-all">
-                                            View All
+                                            Xem tất cả
                                         </a>
                                     </div>
                                 </li>
@@ -177,47 +177,48 @@ function Header(props) {
                                             <img src="assets/images/users/avatar-1.jpg" alt="metapoly" className="rounded-circle" />
                                         </span>
                                         <span>
-                                            <span className="account-user-name">Soeng Souy</span>
-                                            <span className="account-position">Founder</span>
+                                            <span className="account-user-name">Võ Văn Hậu</span>
+                                            <span className="account-position">Backend Developer</span>
                                         </span>
                                     </a>
                                     <div className="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
                                         {/* item*/}
                                         <div className=" dropdown-header noti-title">
-                                            <h6 className="text-overflow m-0">Welcome !</h6>
+                                            <h6 className="text-overflow m-0">Xin chào !</h6>
                                         </div>
                                         {/* item*/}
-                                        <a href="/#" className="dropdown-item notify-item" onClick={() => props.setCurrentPage('H8HBZbNuLNUkzTf')}>
+                                        <a href="/" className="dropdown-item notify-item" onClick={() => props.setCurrentPage('H8HBZbNuLNUkzTf')}>
                                             <i className="mdi mdi-account-circle me-1" />
-                                            <span>My Account</span>
+                                            <span>Tài khoản của tôi</span>
                                         </a>
                                         {/* item*/}
                                         <a href="/#" className="dropdown-item notify-item">
                                             <i className="mdi mdi-account-edit me-1" />
-                                            <span>Settings</span>
+                                            <span>Cài đặt</span>
                                         </a>
                                         {/* item*/}
                                         <a href="/#" className="dropdown-item notify-item">
                                             <i className="mdi mdi-lifebuoy me-1" />
-                                            <span>Support</span>
+                                            <span>Hỗ trợ</span>
                                         </a>
                                         {/* item*/}
                                         <a href="/#" className="dropdown-item notify-item">
                                             <i className="mdi mdi-lock-outline me-1" />
-                                            <span>Lock Screen</span>
+                                            <span>Bảo mật</span>
                                         </a>
                                         {/* item*/}
                                         <a href="/#" className="dropdown-item notify-item">
                                             <i className="mdi mdi-logout me-1" />
-                                            <span>Logout</span>
+                                            <span>Đăng xuất</span>
                                         </a>
                                     </div>
                                 </li>
                             </ul>
-                            <button className="button-menu-mobile open-left">
+                            <button className="button-menu-mobile open-left" 
+                                    onClick={() => props.setCurrentPage('uGqXQpyJeFUoBqm')}>
                                 <div className="">
-                                    <div className="">
-                                        <img src="./assets/images/brands/logo_header_default.jpg" alt="Logo" width="36px" height="36px"/>
+                                    <div>
+                                        <img className="rounded-circle overflow-hidden ms-3" src="./assets/images/brands/logo_header.png" alt="Logo" width="40px" height="40px"/>
                                     </div>
                                 </div>
                             </button>
@@ -259,7 +260,7 @@ function Header(props) {
                                                                     </h5>
                                                                 </div>
                                                                 {
-                                                                    ComfUserInfor.map((FriendRQ, index) => {
+                                                                    ComfUserInfor && Array.isArray(ComfUserInfor) ? ComfUserInfor.map((FriendRQ, index) => {
                                                                         return (
                                                                             <div key={index}>
                                                                                 <FriendRequest 
@@ -267,7 +268,7 @@ function Header(props) {
                                                                                 />
                                                                             </div>
                                                                         )
-                                                                    })
+                                                                    }) : ''
                                                                 }
                                                                 {/* All*/}
                                                                 <a href="/#" className="dropdown-item text-center text-primary notify-item notify-all">
@@ -307,7 +308,6 @@ function Header(props) {
             </div>
         </div>
     )
-
 }
 
 export default Header;

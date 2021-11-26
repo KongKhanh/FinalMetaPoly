@@ -13,8 +13,7 @@ class UserController
         $this->modelUserObj = new UserMd();
     }
 
-    public function __getIdUser($idUser)
-    {
+    public function __getIdUser($idUser) {
 
         require('./app/Http/Controllers/NewsfeedProflieController.php');
 
@@ -67,8 +66,7 @@ class UserController
     }
 
     // @Author: @VoVanHau
-    public function __authUsingUser()
-    {
+    public function __authUsingUser(){
 
         try {
 
@@ -79,9 +77,12 @@ class UserController
 
             $authStatus = $this->modelUserObj->__authUser($blockInfoUser);
 
-            $authStatus['user_id'] = base64_encode($authStatus['user_id']);
-
             if ($authStatus) {
+
+                $authStatus['user_id'] = base64_encode($authStatus['user_id']);
+
+                $authStatus['user_token'] = base64_encode($authStatus['user_token']);
+
                 echo json_encode([
                     'status_task' => 1,
                     'message_task' => 'successful',
@@ -101,9 +102,46 @@ class UserController
         }
     }
 
+    // @Author: @VoVanHau
+    public function __checkingExistingToken() {
+
+        try {
+            require_once('./app/Http/Middleware/Authorization.php');
+
+            $Authorization_vn = new Authorization();
+            $token = $Authorization_vn->getBearerToken(); // get token from request of Client
+
+            if($token) {
+
+                $rft = $this->modelUserObj->getUserByKey('user_token', base64_decode($token));
+
+                if($rft) { // Token is existing
+
+                    $rft['user_name'] = base64_decode($rft['user_name']);
+                    echo json_encode([
+                        'status_task' =>  1,
+                        'message_task' => 'successful',
+                        'rft' => $rft,
+                    ]);
+                } 
+                else {
+                    echo json_encode([
+                        'status_task' => 2,
+                        'message_task' => 'failed',
+                    ]);
+                }
+            }
+        }
+        catch (Exception $err) {
+            echo json_encode([
+                'status_task' => 2,
+                'message_task' => 'failed',
+            ]);
+        }
+    }
+
     //@Author: @KongKhanh
-    public function __setProfileSetting($idUser)
-    {
+    public function __setProfileSetting($idUser){
         try {
             require('./app/Models/writeSide/UserMd/wUserMd.php');
             $blockUserSetting = [
@@ -137,8 +175,7 @@ class UserController
         }
     }
 
-    public function __getUser($idUser)
-    {
+    public function __getUser($idUser){
         try {
             require('./app/Models/writeSide/UserMd/wUserMd.php');
 
@@ -161,8 +198,7 @@ class UserController
     }
 
     //@Author: @MaiMai
-    public function __handleForgotPassword()
-    {
+    public function __handleForgotPassword(){
         try {
 
             $user_phone = isset($_POST['user_phone']) ? base64_encode($_POST['user_phone']) : null;
@@ -221,7 +257,7 @@ class UserController
     }
 
     //@Author: @KongKhanh
-    function __FindUserController($idUser){
+    public function __FindUserController($idUser){
         
         require('./app/Models/writeSide/UserMd/wUserMd.php');
 

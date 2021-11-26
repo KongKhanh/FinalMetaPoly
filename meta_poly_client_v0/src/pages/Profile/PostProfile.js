@@ -139,26 +139,25 @@ function PostProfile(props){
                             <button type="submit" className="btn btn-sm btn-dark waves-effect">Post</button>
                           </div>
                         </form>
-                      </div> {/* end .border*/}
-                      {/* end comment box */}
-                      {/* Story Box*/}
+                      </div>
+
                       {
-                        props.PostList.map((NewsfeedProfileItem, index) => {
-                          return (
-                            <div key={index}>
-                              <NewsfeedProfile 
-                                NewsfeedProfileItem = {NewsfeedProfileItem}
-                                index = {index}
-                                UserInforClient= {props.UserInforClient}
-                                UserInfor = {props.UserInfor}
-                                setUserInfor = {props.setUserInfor}
-                                
-                                PostList={props.PostList}
-                                setPostList = {props.setPostList}
-                              />
-                            </div>
-                          )
-                        })
+                          props.PostList.map((NewsfeedProfileItem, index) => {
+                            return (
+                              <div key={index}>
+                                <NewsfeedProfile 
+                                  NewsfeedProfileItem = {NewsfeedProfileItem}
+                                  index = {index}
+                                  UserInforClient= {props.UserInforClient}
+                                  UserInfor = {props.UserInfor}
+                                  setUserInfor = {props.setUserInfor}
+                                  
+                                  PostList={props.PostList}
+                                  setPostList = {props.setPostList}
+                                />
+                              </div>
+                            )
+                          })
                       }
                       <div className="text-center">
                         <a href="/#" className="text-danger"><i className="mdi mdi-spin mdi-loading me-1" /> Load more </a>
@@ -173,8 +172,7 @@ function PostProfile(props){
                         idUserCoockie = {props.idUserCoockie}
                     />
                     
-                    {/* end timeline content*/}
-                    {/* end timeline content*/}
+
                     <div className="tab-pane" id="settings">
                       <form>
                         <h5 className="mb-4 text-uppercase"><i className="mdi mdi-account-circle me-1" /> Personal Info</h5>
@@ -297,7 +295,7 @@ function PostProfile(props){
                         </div>
                       </form>
                     </div>
-                    {/* end settings content*/}
+
                   </div>
               </div>
           </div>

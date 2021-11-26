@@ -34,10 +34,10 @@ function FindNewFriends(props){
         }
     }
     return(
-        <div className="SeachFriendEngine-Container col-4">
+        <div className="SeachFriendEngine-Container col-4 ps-4 pe-5">
             <form className="w-100">
                 <div className="input-group f-flex align-items-stretch justify-content-center">
-                    <input type="text" className="form-control dropdown-toggle px-2" placeholder="Search MetaPoly" id="top-search" 
+                    <input type="text" className="form-control dropdown-toggle px-2" placeholder="Tìm kiếm bạn bè ..." id="top-search" 
                         onChange={(event) =>onChangeUser(event)}
                     />
                     {/* <span className="mdi mdi-magnify search-icon" /> */}
@@ -50,16 +50,16 @@ function FindNewFriends(props){
             </form>
             <div className="dropdown-menu dropdown-menu-animated dropdown-lg" id="search-dropdown">
                 <div className="dropdown-header noti-title">
-                    <h5 className="text-overflow mb-2">Found <span className="text-danger me-1">
+                    <h5 className="text-overflow mb-2">Tìm thấy <span className="text-danger me-1">
                         {ResultsFiding.length} 
-                    </span>results</h5>
+                    </span>bạn bè</h5>
                 </div>
                 {ResultsFiding.map((userItem,index)=> {
                 return(
                     <div className="notification-list" key={index}>
                         <a href="/#" className="dropdown-item notify-item">
                         <div className="d-flex">
-                            <img className="d-flex me-2 rounded-circle" src="assets/images/users/avatar-2.jpg" alt="Generic placeholder image" height={32} />
+                            <img className="d-flex me-2 rounded-circle" src="assets/images/users/avatar-2.jpg" alt="MPI" height={32} />
                             <div className="w-100">
                             <h5 className="m-0 font-14">
                             {userItem.user_name}
