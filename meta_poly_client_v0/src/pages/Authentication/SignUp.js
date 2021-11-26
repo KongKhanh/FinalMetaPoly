@@ -87,7 +87,7 @@ function SignUp(props) {
                                 <div className="row justify-content-center">
                                     <div className="col-xxl-4 col-lg-5">
                                         <div className="card">
-                                            <div className="card-header pt-2 pb-2 text-center bg-primary">
+                                            <div className="card-header pt-2 pb-2 text-center bg-blue">
                                                 <a href="/#" style={{color: '#FFFFFF', fontSize: '32px'}}>MetaPoly</a>
                                             </div>
 
@@ -95,7 +95,10 @@ function SignUp(props) {
                                                 
                                                 <div className="text-center w-75 m-auto">
                                                     <h4 className="text-dark-50 text-center mt-0 fw-bold">Đăng ký miễn phí</h4>
-                                                    <p className="text-muted mb-4">Kết nối - Sáng tạo - Giá trị</p>
+                                                    <p className="text-muted mb-1">Kết nối - Sáng tạo - Giá trị</p>
+                                                    <div>
+                                                        <img className="mb-2" src="./assets/images/brands/logo_header_default_v0.jpg" alt="Logo" width="200" height="200" />
+                                                    </div>
                                                 </div>
 
                                                 <form action="#">
@@ -156,14 +159,14 @@ function SignUp(props) {
 
                                                     <div className="mb-3">
                                                         <div className="form-check">
-                                                            <input type="checkbox" className="form-check-input" id="checkbox-signup" />
+                                                            <input type="checkbox" className="form-check-input bg-blue" id="checkbox-signup" />
                                                             <small>Bằng việc nhấn vào nút đăng ký, bạn đồng ý với chúng tôi về các điều khoản và điều kiện sử dụng dịch vụ.</small>
                                                         </div>
                                                     </div>
 
                                                     <div className="mb-3 text-end">
                                                         <button 
-                                                            className="btn btn-primary" 
+                                                            className="btn btn-blue" 
                                                             type="button"
                                                             onClick={() => handleClickCreateNewAccount()}
                                                         > 

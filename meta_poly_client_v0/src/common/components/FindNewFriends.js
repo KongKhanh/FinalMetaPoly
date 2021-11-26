@@ -34,14 +34,14 @@ function FindNewFriends(props){
         }
     }
     return(
-        <div className="SeachFriendEngine-Container col-4">
+        <div className="SeachFriendEngine-Container col-4 ps-4 pe-5">
             <form className="w-100">
                 <div className="input-group f-flex align-items-stretch justify-content-center">
-                    <input type="text" className="form-control dropdown-toggle px-2" placeholder="Search MetaPoly" id="top-search" 
+                    <input type="text" className="form-control dropdown-toggle px-2" placeholder="Tìm kiếm bạn bè ..." id="top-search" 
                         onChange={(event) =>onChangeUser(event)}
                     />
                     {/* <span className="mdi mdi-magnify search-icon" /> */}
-                    <button className="input-group-text btn-primary" type="button" id="btnFindFriends">
+                    <button className="input-group-text btn-warning" type="button" id="btnFindFriends">
                         <div>
                             <img src="./assets/icons/flaticon/16px/magnifying_glass.png" alt="MPI"/>
                         </div>
@@ -50,9 +50,9 @@ function FindNewFriends(props){
             </form>
             <div className="dropdown-menu dropdown-menu-animated dropdown-lg" id="search-dropdown">
                 <div className="dropdown-header noti-title">
-                    <h5 className="text-overflow mb-2">Found <span className="text-danger me-1">
+                    <h5 className="text-overflow mb-2">Tìm thấy <span className="text-danger me-1">
                         {ResultsFiding.length} 
-                    </span>results</h5>
+                    </span>bạn bè</h5>
                 </div>
                 {ResultsFiding.map((userItem,index)=> {
                 return(

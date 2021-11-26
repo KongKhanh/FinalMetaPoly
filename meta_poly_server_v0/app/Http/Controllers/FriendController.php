@@ -68,6 +68,7 @@
                 ]);
             }
         } 
+
     
         public function __ConfirmRequestFriend(){
             try {

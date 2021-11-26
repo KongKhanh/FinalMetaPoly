@@ -52,7 +52,7 @@ export default function AttachMediaBox(props) {
                                     <div className="Box-Header-Wrapper">
                                         <div className="Box-Header-Wrapper-Inner">
                                             <div className="Box-Header-Title py-1">
-                                                <span>Create post</span>
+                                                <span>Tạo bài viết mới</span>
                                             </div>
                                             <div className="Box-Header-Btn-Off">
                                                 <button
@@ -102,7 +102,7 @@ export default function AttachMediaBox(props) {
                                                                                                     <img src="./assets/icons/flaticon/16px/group_tags.png" alt="MetaPoly_Icon" className="btn_icon"></img>
                                                                                                 </div>
                                                                                                 <div className="Tags-Box-Content">
-                                                                                                    <p className="Tags-Content">Tag friends</p>
+                                                                                                    <p className="Tags-Content">Gắn thẻ bạn bè</p>
                                                                                                 </div>
 
                                                                                             </div>
@@ -173,7 +173,7 @@ export default function AttachMediaBox(props) {
                                     <div className="Box-Footer-Container">
                                         <div className="Box-Footer-Wrapper">
                                             <button type="button" id="btnPostToNewsFeed" onClick={() => props.handleClickReqPosting()}>
-                                                <div className="BtN-nAME">POST</div>
+                                                <div className="BtN-nAME">ĐĂNG TẢI</div>
                                             </button>
                                         </div>
                                     </div>

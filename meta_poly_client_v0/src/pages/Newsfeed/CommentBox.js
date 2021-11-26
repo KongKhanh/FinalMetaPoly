@@ -71,7 +71,7 @@ export default function CommentBox(props) {
             <input 
                 type="text" 
                 className="form-control border-end-0 rounded-start py-1 form-control-sm" 
-                placeholder="Write a comment..." 
+                placeholder="Viết bình luận..." 
                 value={commentInfo.comment_content}
                 name="comment_content"
                 onChange={(event) => handleOnChangeCommentContextField(event)}

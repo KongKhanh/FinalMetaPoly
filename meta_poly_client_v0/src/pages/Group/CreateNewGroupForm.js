@@ -70,7 +70,7 @@ export default function CreateNewGroupForm(props) {
                         <div className="mb-3">
                             <div>
                                 <div>
-                                    <h4 className="my-0" id="FCG_title">Create group</h4>
+                                    <h4 className="my-0" id="FCG_title">Tạo nhóm</h4>
                                 </div>
                             </div>
                         </div>
@@ -79,10 +79,10 @@ export default function CreateNewGroupForm(props) {
                             <img src="assets/images/users/avatar-9.jpg" className="me-2 rounded-circle" height={36} alt="Arya Stark" />
                             <div className="w-100">
                                 <h5 className="mt-0 mb-0">
-                                    Arya Stark
+                                    Võ Văn Hậu
                                 </h5>
                                 <p className="mb-0 text-muted">
-                                    Admin
+                                    Quản trị viên
                                 </p>
                             </div>
                         </div>
@@ -97,12 +97,12 @@ export default function CreateNewGroupForm(props) {
                                 placeholder="Group name" 
                                 onChange={(event) => hocngf(event)}
                             />
-                            <label htmlFor="group_name">Group name</label>
+                            <label htmlFor="group_name">Tên nhóm</label>
                         </div>
 
                         <div className="form-floating mb-3">
                             <input type="text" className="form-control" id="group_add_members" placeholder="Invite friends"/>
-                            <label htmlFor="group_add_members">Invite friends</label>
+                            <label htmlFor="group_add_members">Mời bạn bè tham gia</label>
                         </div>
 
                         <div className="mb-3">
@@ -112,9 +112,9 @@ export default function CreateNewGroupForm(props) {
                                 name="group_privacy"
                                 onChange={(event) => hocngf(event)}
                             >
-                                <option hidden>Choose privacy</option>
-                                <option value="0">Public</option>
-                                <option value="1">Private</option>
+                                <option hidden>Tùy chọn công khai</option>
+                                <option value="0">Công khai</option>
+                                <option value="1">Riêng tư</option>
                             </select>
                         </div>
 
@@ -127,7 +127,7 @@ export default function CreateNewGroupForm(props) {
                                         id="btnReqCreNewG"
                                         onClick={() => hbcng()}
                                     >
-                                        Create
+                                        Tạo nhóm
                                     </button>
                                 </div>
                             </div>

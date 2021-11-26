@@ -3,6 +3,10 @@ import SuggestFriend from './SuggestFriend';
 
 import PostContentContainer from './PostContentContainer';
 
+import { API_URL } from '../../settings/Api';
+
+import App from '../../App';
+
 function Newsfeed(props) {
 
     return(
@@ -24,9 +28,9 @@ function Newsfeed(props) {
                         </a>
                         <div className="dropdown-menu dropdown-menu-end">
                           {/* item*/}
-                          <a href="#/" className="dropdown-item">Edit Profile</a>
+                          <a href="#/" className="dropdown-item">Chỉnh sửa thông tin</a>
                           {/* item*/}
-                          <a href="#/" className="dropdown-item">Settings</a>
+                          <a href="#/" className="dropdown-item">Cài đặt</a>
                         </div>
                       </div>
                       <div className="d-flex align-self-start">
@@ -35,21 +39,21 @@ function Newsfeed(props) {
                           <h5 className="mt-1 mb-0">
                           {/* {PostItem.user_name} */}
                           </h5>
-                          <h5 className="mt-1 mb-0">Soeng Souy</h5>
-                          <p className="mb-1 mt-1 text-muted">California, USA</p>
+                          <h5 className="mt-1 mb-0">Võ Văn Hậu</h5>
+                          <p className="mb-1 mt-1 text-muted">TP.Hồ Chí Minh, Việt Nam</p>
                         </div>
                       </div>
-                      <div className="list-group list-group-flush mt-2">
-                        <a href="#/" className="list-group-item list-group-item-action text-primary border-0"><i className="uil uil-images me-1" /> News Feed</a>
-                        <a href="#/" className="list-group-item list-group-item-action border-0"><i className="uil uil-comment-alt-message me-1" /> Messages</a>
-                        <a href="#/" className="list-group-item list-group-item-action border-0"><i className="uil uil-calendar-alt me-1" /> Events</a>
-                        <a href="#/" className="list-group-item list-group-item-action border-0"><i className="uil uil-users-alt me-1" /> Groups</a>
-                        <a href="#/" className="list-group-item list-group-item-action border-0"><i className="uil uil-copy me-1" /> Pages</a>
+                      <div className="list-group list-group-flush mt-3">
+                        <a href="#/" className="list-group-item list-group-item-action text-blue border-0"><img className="me-2" src="./assets/icons/flaticon/24px/home.png" alt="icon" /> Trang chủ</a>
+                        <a href="/" className="list-group-item list-group-item-action border-0" onClick={() => props.setCurrentPage('H8HBZbNuLNUkzTf')} ><img className="me-2" src="./assets/icons/flaticon/24px/user.png" alt="icon" />Trang cá nhân</a>
+                        <a href="/" className="list-group-item list-group-item-action border-0" onClick={() => props.setCurrentPage('qT54LN6UKjYRd5x')} ><img className="me-2" src="./assets/icons/flaticon/24px/chat_group.png" alt="icon"  /> Nhóm</a>
+                        <a href="#/" className="list-group-item list-group-item-action border-0" ><img className="me-2" src="./assets/icons/flaticon/24px/chat.png" alt="icon" /> Tin nhắn</a>
+                        <a href="#/" className="list-group-item list-group-item-action border-0" ><img className="me-2" src="./assets/icons/flaticon/24px/group.png" alt="icon" /> Bạn bè</a>
                       </div>
                     </div>
                   </div>
 
-                  <div className="card">
+                  {/* <div className="card">
                     <div className="card-body p-2">
                       <div className="list-group list-group-flush my-2">
                         <a href="#/" className="list-group-item list-group-item-action border-0"><i className="uil uil-calendar-alt me-1" /> 3 events this week</a>
@@ -57,7 +61,7 @@ function Newsfeed(props) {
                         <a href="#/" className="list-group-item list-group-item-action border-0"><i className="uil uil-bookmark me-1" /> Jenny's wedding tomorrow</a>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="card">
                     <div className="card-body">
@@ -67,45 +71,44 @@ function Newsfeed(props) {
                         </a>
                         <div className="dropdown-menu dropdown-menu-end">
                           {/* item*/}
-                          <a href="#/" className="dropdown-item">Today</a>
+                          <a href="#/" className="dropdown-item">Hôm nay</a>
                           {/* item*/}
-                          <a href="#/" className="dropdown-item">Yesterday</a>
+                          <a href="#/" className="dropdown-item">Hôm qua</a>
                           {/* item*/}
-                          <a href="#/" className="dropdown-item">Last Week</a>
+                          <a href="#/" className="dropdown-item">Tuần trước</a>
                           {/* item*/}
-                          <a href="#/" className="dropdown-item">Last Month</a>
+                          <a href="#/" className="dropdown-item">Tháng trước</a>
                         </div>
                       </div>
-                      <h4 className="header-title mb-1">Trending</h4>
+                      <h4 className="header-title text-blue mb-1 ">Bản tin MetaPoly</h4>
                       <div className="d-flex mt-3">
-                        <i className="uil uil-arrow-growth me-2 font-18 text-primary" />
+                      <img src="./assets/icons/flaticon/24px/speaker.png" height="24" className="me-2" alt="icon" />
                         <div>
                           <a className="mt-1 font-14" href="#/">
-                            <strong>Golden Globes:</strong>
+                            <strong className="text-blue">TÂM SỰ CỦA CÁC CỰU POLY-ER: </strong>
                             <span className="text-muted">
-                              The 27 Best moments from the Golden Globe Awards
+                               "Tuổi trẻ ta hết mình với thứ gọi là deadline"
                             </span>
                           </a>
                         </div>
                       </div>
                       <div className="d-flex mt-3">
-                        <i className="uil uil-arrow-growth me-2 font-18 text-primary" />
+                      <img src="./assets/icons/flaticon/24px/speaker.png" height="24" className="me-2" alt="icon" />
                         <div>
                           <a className="mt-1 font-14" href="#/">
-                            <strong>World Cricket:</strong>
+                            <strong className="text-blue">SỰ TRỞ LẠI CỦA NHỮNG CHÚ ONG:  </strong> 
                             <span className="text-muted">
-                              India has won ICC T20 World Cup Yesterday
+                               Ong Chăm đã trở lại và lợi hại hơn xưa cùng những người anh em sinh năm của mình...
                             </span>
                           </a>
                         </div>
                       </div>
                       <div className="d-flex mt-3">
-                        <i className="uil uil-arrow-growth me-2 font-18 text-primary" />
+                      <img src="./assets/icons/flaticon/24px/speaker.png" height="24" className="me-2" alt="icon" />
                         <div>
                           <a className="mt-1 font-14" href="#/">
-                            <strong>Antartica:</strong>
-                            <span className="text-muted">
-                              Metling of Totten Glacier could cause high risk to areas near by sea
+                            <strong className="text-blue">LẮNG NGHE TÂM SỰ TỪ THẦY GIÁO FPOLY</strong>
+                            <span className="text-muted"> Sáng lên lớp truyền kiến thức cho học trò, tối về nhà quay "tóp tóp"
                             </span>
                           </a>
                         </div>
@@ -135,13 +138,13 @@ function Newsfeed(props) {
             <div className="container-fluid">
               <div className="row">
                 <div className="col-md-6">
-                  2021 © Hyper - Coderthemes.com
+                  2021 © MetaPoly Team
                 </div>
                 <div className="col-md-6">
                   <div className="text-md-end footer-links d-none d-md-block">
-                    <a href="#/">About</a>
-                    <a href="#/">Support</a>
-                    <a href="#/">Contact Us</a>
+                    <a href="#/">Về chúng tôi</a>
+                    <a href="#/">Hỗ trợ</a>
+                    <a href="#/">Liên hệ chúng tôi</a>
                   </div>
                 </div>
               </div>
