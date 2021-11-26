@@ -21,7 +21,7 @@ function App() {
     });
 
     // Mặc định trang chủ do case uGqXQpyJeFUoBqm bên phần ChangePage
-    const [currentPage, setCurrentPage] = useState('uGqXQpyJeFUoBqm')  //-------------This is default page;
+    const [currentPage, setCurrentPage] = useState('uGqXQpyJeFUoBqm');  //-------------This is default page;
 
 
     useEffect(() => {
@@ -58,7 +58,7 @@ function App() {
             };
         };
 
-        __AuthPermissionUsingApp();
+        // __AuthPermissionUsingApp();
 
     }, [UserInforClient]);
 
