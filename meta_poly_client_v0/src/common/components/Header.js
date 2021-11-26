@@ -187,7 +187,7 @@ function Header(props) {
                                             <h6 className="text-overflow m-0">Xin chào !</h6>
                                         </div>
                                         {/* item*/}
-                                        <a href="/" className="dropdown-item notify-item" onClick={() => props.setCurrentPage('H8HBZbNuLNUkzTf')}>
+                                        <a href="/#" className="dropdown-item notify-item" onClick={() => props.setCurrentPage('H8HBZbNuLNUkzTf')}>
                                             <i className="mdi mdi-account-circle me-1" />
                                             <span>Tài khoản của tôi</span>
                                         </a>

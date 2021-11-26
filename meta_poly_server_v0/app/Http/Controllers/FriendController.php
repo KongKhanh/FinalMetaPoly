@@ -69,7 +69,7 @@
             }
         } 
 
-    
+        //@Author: @KongKhanh
         public function __ConfirmRequestFriend(){
             try {
 
