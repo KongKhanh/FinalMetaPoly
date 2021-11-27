@@ -79,12 +79,12 @@ function Profile(props){
 
                       <p className="text-muted font-14">Founder</p>
 
-                      <button type="button" className="btn btn-success btn-sm mb-2">Follow</button>
+                      <button type="button" className="btn btn-blue btn-sm mb-2 me-1">Theo dõi</button>
                       
-                      <button type="button" className="btn btn-danger btn-sm mb-2">Message</button>
+                      <button type="button" className="btn btn-danger btn-sm mb-2">Tin nhắn</button>
 
                       <div className="text-start mt-3">
-                        <h4 className="font-13 text-uppercase">About Me :</h4>
+                        <h4 className="font-13 text-uppercase">Giới thiệu :</h4>
                         <p className="text-muted font-13 mb-3">
                           Hi I'm Johnathn Deo,has been the industry's standard dummy text ever since the
                           1500s, when an unknown printer took a galley of type.
@@ -141,7 +141,7 @@ function Profile(props){
                         <a href="/#" className="dropdown-item">Action</a>
                       </div>
                     </div>
-                    <h4 className="header-title mb-3">Messages</h4>
+                    <h4 className="header-title mb-3">Danh sách bạn bè</h4>
                     <div className="inbox-widget">
                       <div className="inbox-item">
                         <div className="inbox-item-img"><img src="assets/images/users/avatar-2.jpg" className="rounded-circle" alt="" /></div>
