@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import {BASE_API_URL, API_URL} from '../../settings/Api';
+import { BASE_API_URL, API_URL, PATH_MEDIA_CDN } from '../../settings/Api';
 
 //Components
 import LikeButton from './LikeButton';
@@ -34,12 +34,13 @@ export default function PostContentContainer(props) {
                 method: 'GET',
                 cancelToken: source.token,
             }).catch(function (thrown) {
+
                 if (axios.isCancel(thrown)) {
 
-                console.log('Request canceled', thrown.message);
-
-                } else {
-                // handle error
+                    console.log('Request canceled', thrown.message);
+                } 
+                else {
+                    // handle error
                 }
             });
 
@@ -54,7 +55,17 @@ export default function PostContentContainer(props) {
             requestPost()
             .then(
                 function(res) {
-                    setPostList(res); 
+
+                    if(res) {
+
+                        console.log(res.PostList);
+
+                        if(res.PostList && Array.isArray(res.PostList)) {
+
+                            setPostList(res.PostList); 
+                        }
+                    }
+
                     console.log("OverFlow");
                 }
             );
@@ -76,51 +87,55 @@ export default function PostContentContainer(props) {
                 setPostList = {setPostList}
             />
 
+            {/* @Auth KongKhanh */}
             {       
                 PostList && Array.isArray(PostList) ? PostList.map((PostItem, index_xx) => {
 
+                    // Time Handler for Post_Create_At
                     const ccd_obj = new ccd(PostItem.post_created_at);
                     const myr = ccd_obj.gs();
 
                     return (
                         <div key={`post_item_${index_xx}`}>
-
                             <div className="card">
-
                                 <div className="card-body pb-1">
-
                                     <div className="d-flex">
 
                                         <img className="me-2 rounded" src="assets/images/users/avatar-5.jpg" alt="metapoly" height={32} />
 
                                         <div className="w-100">
 
-                                        <div className="dropdown float-end text-muted">
+                                            <div className="dropdown float-end text-muted">
 
-                                            <a href="/#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i className="mdi mdi-dots-horizontal" />
-                                            </a>
+                                                <a href="/#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i className="mdi mdi-dots-horizontal" />
+                                                </a>
 
-                                            <div className="dropdown-menu dropdown-menu-end">
-                                            <a href="/#" className="dropdown-item">Chỉnh sửa</a>
-                                            <a href="/#" className="dropdown-item">Xóa</a>
+                                                <div className="dropdown-menu dropdown-menu-end">
+                                                    <a href="/#" className="dropdown-item">Chỉnh sửa</a>
+                                                    <a href="/#" className="dropdown-item">Xóa</a>
+                                                </div>
+                                                
                                             </div>
-                                            
-                                        </div>
 
-                                        <h5 className="m-0">
-                                            <a href = "/#" onClick={() => ViewProfileUser(PostItem.user_id) }>
-                                            {
-                                                PostItem.user_name ? PostItem.user_name : 'Loading...'
-                                            }
-                                            </a>
-                                        </h5>
+                                            <h5 className="m-0">
+                                                <a href = "/#" onClick={() => ViewProfileUser(PostItem.user_id) }>
+                                                    {
+                                                        PostItem.user_name && typeof PostItem.user_name === 'string' ? PostItem.user_name.trim() : 'Undefined'
+                                                    }
+                                                </a>
+                                            </h5>
 
-                                        <p className="text-muted"><small>
-                                        {  
-                                            myr.t + ' ' + myr.f + ' trước'
-                                        }
-                                        <span className="mx-1"></span><i className="dripicons-rocket "> </i><span>Công khai</span></small></p>
+                                            <p className="text-muted">
+                                                <small>
+                                                    {  
+                                                        myr.t + ' ' + myr.f + ' trước'
+                                                    }
+                                                    <span className="mx-1"></span>
+                                                    <i className="dripicons-rocket "> </i>
+                                                    <span>Công khai</span>
+                                                </small>
+                                            </p>
 
                                         </div>
 
@@ -132,20 +147,15 @@ export default function PostContentContainer(props) {
 
                                         <p>
                                             {
-                                                PostItem.pct_content ? PostItem.pct_content : 'Loading...'
+                                                PostItem.pct_content ? PostItem.pct_content : 'Undefined'
                                             }
                                         </p>
 
                                         <div className="row">
 
-                                        <div className="col-sm-8">
-                                            <img src={ PostItem.media_url ? `${BASE_API_URL + PostItem.media_url}` : 'assets/images/small/small-4.jpg' } alt="post_img" className="rounded me-1 mb-3 mb-sm-0 img-fluid" />
-                                        </div>
-
-                                        <div className="col">
-                                            <img src="assets/images/small/small-2.jpg" alt="post_img" className="rounded me-1 img-fluid mb-3" />
-                                            <img src="assets/images/small/small-3.jpg" alt="post_img" className="rounded me-1 img-fluid" />
-                                        </div>
+                                            <div className="col-sm-12 d-flex align-items-center justify-content-center">
+                                                <img src={ PostItem.media_url ? `${BASE_API_URL + PostItem.media_url}` : `${PATH_MEDIA_CDN.IMAGES_STORE_PATH}/no_default_thumbnail_1.png` } alt="post_img" className="rounded mb-3 mb-sm-0 img-fluid" />
+                                            </div>
 
                                         </div>
 
@@ -201,11 +211,9 @@ export default function PostContentContainer(props) {
                                         </div>
 
                                     </div>
-
                                 </div>
 
                             </div>
-
                         </div>
                     )
                 }) : ''

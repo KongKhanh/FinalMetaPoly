@@ -27,7 +27,7 @@
 
                     self::whereDataMultiCondition(
                         [
-                            ['user_group_fk_user_id', '=', isset($id_User) ? base64_decode($id_User) : null, 'AND'],
+                            ['user_group_fk_user_id', '=', isset($id_User) ? $id_User : null, 'AND'],
                             ['user_group_accept', '=', 1], // Permission: 1 for joined, 0 for waiting accept to join
                         ]
                     ),
@@ -154,8 +154,6 @@
     
                 $sql = "SELECT group_id, group_name, COUNT(user_group_id ) AS num_of_members FROM groups LEFT JOIN user_groups ON groups.group_id = user_groups.user_group_fk_group_id WHERE {$s} GROUP BY group_id"; 
 
-                return $sql;
-
                 $stmt = $conn->prepare($sql);
     
                 $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -174,6 +172,7 @@
         public function __GrWaitingAcceptingL($id_User) {
 
             try {
+
                 $grlw = self::selectData(
 
                     $this->linkTable[4],
@@ -182,29 +181,26 @@
 
                     self::whereDataMultiCondition(
                         [
-                            ['user_group_fk_user_id', '=', isset($id_User) ? base64_decode($id_User) : null, 'AND'],
-                            ['user_group_accept', '=', 1], // Permission: 1 for joined, 0 for waiting accept to join
+                            ['user_group_fk_user_id', '=', isset($id_User) ? $id_User : null, 'AND'],
+                            ['user_group_accept', '=', 0], // Permission: 1 for joined, 0 for waiting accept to join
                         ]
                     ),
 
-                    [
-                        self::innerJoinZ($this->linkTable[4], 'user_group_fk_group_id', '=', $this->tableName, 'group_id', 'innerJoin'),
-                    ],
+                    false,
 
                     true,
                 );
 
-                return $grlw;
+                if($grlw && is_array($grlw)) {
 
-                // if($grlw && is_array($grlw)) {
-
-                //     return $grlw;
-                // }
-                // else {
-                //     return false;
-                // }
+                    return $grlw;
+                }
+                else {
+                    return false;
+                }
             }
             catch (Exception $err) {
+
                 return false;
             }
         }

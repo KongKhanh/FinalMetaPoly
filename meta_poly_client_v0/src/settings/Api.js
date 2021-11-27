@@ -48,3 +48,9 @@ export const API_URL = {
     FRIEND_LIST: BASE_API_URL + '/friendlist',
 
 };
+
+export const PATH_MEDIA_CDN = {
+
+    IMAGES_STORE_PATH: BASE_API_URL + '/public/upload/images/posting_store',
+
+};

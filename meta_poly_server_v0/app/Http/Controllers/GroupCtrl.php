@@ -42,7 +42,7 @@
     
                     $rGroupMd_vn = new rGroupMd();
 
-                    $glHasJoined = $rGroupMd_vn->__getGrListForJoined($id_User);
+                    $glHasJoined = $rGroupMd_vn->__getGrListForJoined(base64_decode($id_User));
 
                     if($glHasJoined) {
 
@@ -109,12 +109,20 @@
             }
         }
 
+        
+        /*---------------------------------------RECOMMEND GROUP SYSTEM-----------------------------------
+
+            ***__getRecommendGr = 
+            Groups (tat ca cac Groups) - hasJoinedGroups (Danh sach nhung Group da tham gia) + hasRequestAcceptGroups (Danh sach nhung Group da goi yeu cau tham gia)
+
+        */ 
+
         // Ham goi y Groups user chua tham gia
         public  function __getRecommendGr($id_User) {
 
             try {
 
-                $payload_GrJoinL = isset($_POST['payload_GrJoinL']) ? json_decode($_POST['payload_GrJoinL']) : null;
+                $payload_GrJoinL = isset($_POST['payload_GrJoinL']) ? json_decode($_POST['payload_GrJoinL']) : null; // Danh sach cac Groups da tham gia
 
                 if($payload_GrJoinL && is_array($payload_GrJoinL)) {
 
@@ -130,16 +138,27 @@
 
                     $rGroupMd_vn = new rGroupMd();
 
-                    $rgr = $rGroupMd_vn->__recommedGrSystemCore($ta, base64_decode($id_User));
-                    $rgrwl = $rGroupMd_vn->__GrWaitingAcceptingL(base64_decode($id_User));
+                    $rgrwl = $rGroupMd_vn->__GrWaitingAcceptingL(base64_decode($id_User)); // $rgrwl: nhung Group ma User da goi yeu cau tham gia nhung dang trong giai doan duyet
 
-                    if($rgr && $rgrwl) {
+                    if($rgrwl && is_array($rgrwl)) {
+
+                        foreach($rgrwl as $rgrwl_i) {
+
+                            if(isset($rgrwl_i['user_group_fk_group_id'])) {
+
+                                array_push($ta, $rgrwl_i['user_group_fk_group_id']);
+                            }
+                        }
+                    }
+                    
+                    $rgr = $rGroupMd_vn->__recommedGrSystemCore($ta, base64_decode($id_User)); // $rgr: goi y Groups user chua tham gia
+                    
+                    if($rgr && is_array($rgr)) {
 
                         echo json_encode([
                             'status_task' =>  1,
                             'message_task' => 'successful',
                             'rgr' => $rgr,
-                            'rgrwl' => $rgrwl,
                         ]);
                     }
                     else {

@@ -36,7 +36,7 @@
 
             require('./app/Models/initialConnect/connectDatabase.php');
             
-            $slq = "SELECT * FROM users WHERE user_id != $idUser";
+            $slq = "SELECT * FROM users WHERE NOT user_id = $idUser";
     
             $stmt = $conn->prepare($slq);
     

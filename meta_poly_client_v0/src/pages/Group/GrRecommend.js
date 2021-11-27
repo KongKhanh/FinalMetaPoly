@@ -93,8 +93,6 @@ export default function GrRecommend(props) {
                 data: fd_GrJoinL,
             });
 
-            console.log(rsq.data); 
-
             if(rsq.data && Array.isArray(rsq.data.rgr)) {
 
                 if(rsq.data.status_task && rsq.data.status_task === 1) {

@@ -1,6 +1,8 @@
 <?php 
 
-    class NewsfeedMd {
+    require_once('./app/Models/DataRunner/DB.php');
+
+    class NewsfeedMd extends DB {
 
         public function getPostList(){
 
@@ -74,6 +76,35 @@
                 return $err;
                 
             }
+        }
+
+        public static function __getPostInfoByUniq($uniqID) {
+
+            try{
+
+                return self::selectData(
+
+                    'posts',
+
+                    false,
+
+                    self::whereData('post_id', '=', $uniqID),
+
+                    [
+                        self::innerJoinZ('posts', 'post_fk_user_id', '=', 'users', 'user_id', 'innerJoin'),
+                        self::innerJoinZ('posts', 'post_id', '=', 'post_content', 'pct_fk_post_id', 'leftJoin'),
+                        self::innerJoinZ('posts', 'post_id', '=', 'post_photos', 'ppt_fk_post_id', 'leftJoin'),
+                    ],
+
+                    false,
+                );
+
+            }
+            catch (Exception $err){
+
+                return false;
+            }
+
         }
 
     }

@@ -5,68 +5,86 @@ class PostingController {
     public function __handleCreateNewPost() {
 
         try {
+
             $blockPostingInfo = [
                 'post_fk_user_id' => isset($_POST['post_fk_user_id']) ? trim(strip_tags($_POST['post_fk_user_id'])): null,
                 'pct_content' => isset($_POST['pct_content']) ?  trim(strip_tags($_POST['pct_content'])): null,
                 'ppt_name' => isset($_FILES["ppt_name"]) ? ($_FILES["ppt_name"]) : null,
             ];
     
-            require('./Helpers/php/UploadImage.php');
+            require_once('./Helpers/php/UploadImage.php');
 
             $target_info = isset($blockPostingInfo['ppt_name']) ? $blockPostingInfo['ppt_name'] : null;
 
-            $target_info = array_merge($target_info, ['path_sto' => './public/upload/images/posting_store/']);
-    
-            // Module for uploading images to store
-            $Status_Store_Media = UploadImageModule::__upLoad($target_info);
+            $path = require_once('./Config/path.php');
 
-            if($Status_Store_Media) {
+            if($path && is_array($path)) {
 
-                require('./app/Models/writeSide/PostingMd/PostingMd.php');
-
-                $PostingMd_vn = new PostingMd();
-
-                $LastRecordPosting = $PostingMd_vn->_insertNewSinglePost([
-                    'post_fk_user_id' => base64_decode($blockPostingInfo['post_fk_user_id']),
+                $target_info = array_merge($target_info, [
+                    'path_sto' => $path['store_media_images'],
                 ]);
+    
+                // Module for uploading images to store
+                $Status_Store_Media = UploadImageModule::__upLoad($target_info);
+    
+                if($Status_Store_Media) {
 
-                if($LastRecordPosting) {
+                    require_once('./app/Models/writeSide/PostingMd/PostingMd.php');
 
-                    $PostingMd_vn->_insertPostContent([
-                        'pct_content' => $blockPostingInfo['pct_content'],
-                        'pct_fk_post_id' => $LastRecordPosting,
+                    $PostingMd_vn = new PostingMd();
+    
+                    // After Inserting Into ##posts Table, Run Code Below
+                    $LastRecordPosting = $PostingMd_vn->_insertNewSinglePost([
+                        'post_fk_user_id' => base64_decode($blockPostingInfo['post_fk_user_id']),
                     ]);
+    
+                    if($LastRecordPosting) {
+    
+                        // Insert Content Of Posting
+                        $PostingMd_vn->_insertPostContent([
+                            'pct_content' => $blockPostingInfo['pct_content'],
+                            'pct_fk_post_id' => $LastRecordPosting,
+                        ]);
+    
+                        // Insert Images Of Posting
+                        $PostingMd_vn->_insertPostMedia([
+                            'ppt_name' => $target_info['name'],
+                            'ppt_fk_post_id' => $LastRecordPosting,
+                        ]);
 
-                    $LastRecordPostingMedia = $PostingMd_vn->_insertPostMedia([
-                        'ppt_name' => $target_info['name'],
-                        'ppt_fk_post_id' => $LastRecordPosting,
-                    ]);
+                        // Select Info Of Current Record
+                        require_once('./app/Models/readSide/Newsfeed/NewsfeedMd.php');
 
-                    $target_info['path_sto'] = ltrim($target_info['path_sto'], '.');
-                    $infoRes = [
-                        'media_url' => $target_info['path_sto'] . $target_info['name'],
-                        'post_id' => $LastRecordPosting,
-                        'pct_content' => $blockPostingInfo['pct_content'],
-                        'post_fk_user_id' => $blockPostingInfo['post_fk_user_id'],
-                    ];
+                        $infoCurPost = NewsfeedMd::__getPostInfoByUniq($LastRecordPosting);
 
-                    echo json_encode([
-                        'status_task' => 1,
-                        'message_task' => 'successful',
-                        'infoRes' => $infoRes,
-                    ]);
+                        if(isset($infoCurPost)) {
+
+                            $target_info['path_sto'] = ltrim($target_info['path_sto'], '.');
+
+                            $infoCurPost['media_url'] = $target_info['path_sto'] . $target_info['name'];
+
+                            $infoCurPost['user_name'] = base64_decode($infoCurPost['user_name']);
+        
+                            echo json_encode([
+                                'status_task' => 1,
+                                'message_task' => 'successful',
+                                'infoCurPost' => $infoCurPost,
+                            ]);
+
+                        }
+                    }
+                    else{ 
+                        echo json_encode([
+                            'status_task' => 2,
+                            'message_task' => 'failed',
+                        ]);
+                    }
+    
                 }
-                else{ 
-                    echo json_encode([
-                        'status_task' => 2,
-                        'message_task' => 'failed',
-                    ]);
-                }
-
             }
-
         }
         catch (Exception $err) {
+
             echo json_encode([
                 'status_task' => 2,
                 'message_task' => 'failed',

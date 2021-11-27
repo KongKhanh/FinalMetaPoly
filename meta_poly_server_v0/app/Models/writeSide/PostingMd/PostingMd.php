@@ -26,7 +26,7 @@
             return DB::addBlockRunner($blockPostContInfo, $this->linkTable[0]);
         }
 
-        // Just for ##Posting Photo Table in Database
+        // Just for ##Posting Media ( Images ) Table in Database
         public function _insertPostMedia($blockPostMediaInfo) {
 
             // Khong can @@require('./app/Models/DataRunner/DB.php'); vi ham @@_insertNewSinglePost() da require()

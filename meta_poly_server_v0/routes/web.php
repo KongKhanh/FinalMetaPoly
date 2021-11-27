@@ -22,6 +22,7 @@
     $router->get('/newsfeed','NewsfeedController@__getPostList');
 
     $router->get('/comfirm/{idUser}','NotificationController@__GetComfirmUserID');
+    
     $router->get('/friendlist/{idUser}','FriendController@__ListFriend');
 
     // lay du lieu ve chi tiet Group ma User da tham gia

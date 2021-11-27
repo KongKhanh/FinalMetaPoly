@@ -1,17 +1,24 @@
 <?php 
 
-    $database_engine = require('./Config/database.php');
+    try {
 
-    $servername = $database_engine['connections']['mysql']['driver'];
+        $database_engine = require('./Config/database.php');
 
-    $database_host = $database_engine['connections']['mysql']['host'];
+        $servername = $database_engine['connections']['mysql']['driver'];
+    
+        $database_host = $database_engine['connections']['mysql']['host'];
+    
+        $database_username = $database_engine['connections']['mysql']['username'];
+    
+        $database_password = $database_engine['connections']['mysql']['password'];
+    
+        $database_name = $database_engine['connections']['mysql']['database'];
+    
+        $conn = new PDO("mysql:host=$database_host;dbname=$database_name", $database_username, $database_password);
+    }
+    catch (PDOException $err) {
 
-    $database_username = $database_engine['connections']['mysql']['username'];
-
-    $database_password = $database_engine['connections']['mysql']['password'];
-
-    $database_name = $database_engine['connections']['mysql']['database'];
-
-    $conn = new PDO("mysql:host=$database_host;dbname=$database_name", $database_username, $database_password);
+        echo "Connection failed: " . $e->getMessage();
+    }
     
 ?>

@@ -1,13 +1,12 @@
 <?php
 
-class UserController
-{
+class UserController {
 
     private $modelUserObj;
 
     // @Author: @KongKhanh
-    function __construct()
-    {
+    function __construct(){
+
         require('./app/Models/readSide/UserMd/UserMd.php');
 
         $this->modelUserObj = new UserMd();
@@ -284,6 +283,9 @@ class UserController
             }
         }
 
-        echo json_encode($yr);
+        if($yr && is_array($yr)) {
+            
+            echo json_encode($yr);
+        }
     }
 }

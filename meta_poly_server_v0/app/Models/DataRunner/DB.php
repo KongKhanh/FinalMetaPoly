@@ -3,35 +3,51 @@
     class DB {
 
         public static function whereData($compareKey, $syntaxKey, $compareValue) {
-            return "WHERE {$compareKey} $syntaxKey $compareValue";
+
+            if(isset($compareKey) && isset($syntaxKey) && isset($compareValue)) {
+
+                return "WHERE {$compareKey} $syntaxKey $compareValue";
+            }
+
+            else {
+
+                return "";
+            }
         }
 
         // $cl: is a sub-array of array -> condition for query data
         public static function whereDataMultiCondition($cl) {
 
-            $temp_sql = "WHERE ";
+            try {
 
-            if(is_array($cl)) {
+                $temp_sql = "WHERE ";
 
-                for ($c = 0; $c < count($cl); $c++) { 
-
-                    $tq = "";
-                    // --------------##cl[$c] is sub-array
-                    if(isset($cl[$c][3])) {
-
-                        $tq .= "{$cl[$c][0]} {$cl[$c][1]} {$cl[$c][2]} {$cl[$c][3]} "; 
-                    } 
-                    else {
-
-                        $tq .= "{$cl[$c][0]} {$cl[$c][1]} {$cl[$c][2]}"; 
-                    }         
-
-                    $temp_sql .= $tq;
+                if(is_array($cl)) {
+    
+                    for ($c = 0; $c < count($cl); $c++) { 
+    
+                        $tq = "";
+                        // --------------##cl[$c] is sub-array
+                        if(isset($cl[$c][3])) {
+    
+                            $tq .= "{$cl[$c][0]} {$cl[$c][1]} {$cl[$c][2]} {$cl[$c][3]} "; 
+                        } 
+                        else {
+    
+                            $tq .= "{$cl[$c][0]} {$cl[$c][1]} {$cl[$c][2]}"; 
+                        }         
+    
+                        $temp_sql .= $tq;
+                    }
+    
+                    return $temp_sql;
                 }
-
-                return $temp_sql;
+                else {
+    
+                    return false;
+                }
             }
-            else {
+            catch (Exception $err) {
 
                 return false;
             }
@@ -39,59 +55,79 @@
 
         public static function updateData($update_Block, $table_Name, $whereData) {
 
-            require('./app/Models/initialConnect/connectDatabase.php');
+            try {
 
-            $sql = "UPDATE {$table_Name} SET ";
+                require('./app/Models/initialConnect/connectDatabase.php');
 
-            $numItems = count($update_Block);
-            $i = 0;
+                $sql = "UPDATE {$table_Name} SET ";
     
-             foreach($update_Block as $BlockKey => $BlockValue) {
-
-                 if(is_string($BlockValue)) {
-
-                     $BlockValue = "'$BlockValue'";
-                    
-                 }
-
-                 if($numItems == ++$i) {
-
-                     $BlockItem = "$BlockKey = $BlockValue ";
-
-                 }else {
-
-                     $BlockItem = "$BlockKey = $BlockValue, ";
-
-                 }
-
-                 $sql .= $BlockItem;
+                $numItems = count($update_Block);
+                $i = 0;
+        
+                 foreach($update_Block as $BlockKey => $BlockValue) {
     
-             }
+                     if(is_string($BlockValue)) {
+    
+                         $BlockValue = "'$BlockValue'";
+                        
+                     }
+    
+                     if($numItems == ++$i) {
+    
+                         $BlockItem = "$BlockKey = $BlockValue ";
+    
+                     }else {
+    
+                         $BlockItem = "$BlockKey = $BlockValue, ";
+    
+                     }
+    
+                     $sql .= $BlockItem;
+        
+                 }
+    
+                $sql .= $whereData;
+    
+                $stmt = $conn->prepare($sql);
+    
+                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    
+                return $stmt->execute();
+            }
 
-            $sql .= $whereData;
+            catch(PDOException $err) {
 
-            $stmt = $conn->prepare($sql);
+                $es = $err->getMessage();
 
-            $stmt->setFetchMode(PDO::FETCH_ASSOC);
-
-            return $stmt->execute();
-            
+                return false;
+            } 
         }
 
         public static function deleteData($table_Name, $whereData) {
 
-            require('./app/Models/initialConnect/connectDatabase.php');
+            try {
 
-            $sql = "DELETE FROM {$table_Name} " . $whereData;
+                if(isset($table_Name) && isset($whereData)) {
 
-            $stmt = $conn->prepare($sql);
+                    require('./app/Models/initialConnect/connectDatabase.php');
 
-            $stmt->setFetchMode(PDO::FETCH_ASSOC);
-
-            $stmt->execute(); 
+                    $sql = "DELETE FROM {$table_Name} " . $whereData;
     
+                    $stmt = $conn->prepare($sql);
+    
+                    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    
+                    $stmt->execute(); 
+                }
+            }
+            catch(PDOException $err) {
+
+                $es = $err->getMessage();
+                return false;
+            }
         }
 
+        // Return last unique ID of Record
         public static function addBlockRunner($add_Block, $table_Name) {
 
             require('./app/Models/initialConnect/connectDatabase.php');
@@ -135,57 +171,66 @@
         //  $mro: is boolean for geting One (FALSE) or get Many (TRUE) record
         public static function selectData($table_Name, $proField = false, $whereData = false, $joinXS = false, $mro = true) {
 
-            require('./app/Models/initialConnect/connectDatabase.php');
+            try {
 
-            $sql = "SELECT ";
+                require('./app/Models/initialConnect/connectDatabase.php');
 
-            if($proField && is_array($proField) && count($proField) != 0) {
-
-                $m = "";
-
-                $q = 0;
-                foreach($proField as $proFKey => $proFieldValue) {
-
-                    $m .= "$proFieldValue, ";
-
+                $sql = "SELECT ";
+    
+                if($proField && is_array($proField) && count($proField) != 0) {
+    
+                    $m = "";
+    
+                    $q = 0;
+                    foreach($proField as $proFKey => $proFieldValue) {
+    
+                        $m .= "$proFieldValue, ";
+    
+                    }
+    
+                    // PHP substr_replace() function to remove the last character from a string in PHP.
+                    $m = substr_replace($m, "", -2);
+    
+                    $sql .= $m;
+    
+                }  
+                else {
+    
+                    $sql .= "*";
                 }
-
-                // PHP substr_replace() function to remove the last character from a string in PHP.
-                $m = substr_replace($m, "", -2);
-
-                $sql .= $m;
-
-            }  
-            else {
-
-                $sql .= "*";
-            }
-
-            $sql .= " FROM " . $table_Name;
-
-            if($joinXS && is_array($joinXS) == 1) {
-
-                foreach($joinXS as $jXSI) {
-                    $sql .= "{$jXSI}";
+    
+                $sql .= " FROM " . $table_Name;
+    
+                if($joinXS && is_array($joinXS) == 1) {
+    
+                    foreach($joinXS as $jXSI) {
+                        $sql .= "{$jXSI}";
+                    }
                 }
+    
+                if($whereData) {
+                    $sql .= " {$whereData}";
+                }
+    
+                $stmt = $conn->prepare($sql);
+    
+                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    
+                $stmt->execute();
+    
+                if($mro) {
+                    
+                    return $stmt->fetchAll();
+                } 
+    
+                return $stmt->fetch();
             }
+            catch (PDOException $err) {
 
-            if($whereData) {
-                $sql .= " {$whereData}";
+                $es = $err->getMessage();
+
+                return false;
             }
-            
-            $stmt = $conn->prepare($sql);
-
-            $stmt->setFetchMode(PDO::FETCH_ASSOC);
-
-            $stmt->execute();
-
-            if($mro) {
-                
-                return $stmt->fetchAll();
-            } 
-
-            return $stmt->fetch();
         }
 
         public static function innerJoinZ($a, $b, $c, $d, $e, $f = false) {
@@ -195,30 +240,42 @@
             // $d: table B
             // $e: key_b
 
-            $ft = "";
-            if($f) {
-                switch($f) {
-                    case "rightJoin":
-                        $ft = "RIGHT JOIN";
-                        break;
-                    case "leftJoin":
-                        $ft = "LEFT JOIN";
-                        break;
-                    case "innerJoin":
-                        $ft = "INNER JOIN";
-                        break;
-                    case "fullOuterJoin":
-                        $ft = "FULL OUTER JOIN";
-                        break;
-                    default: $ft = "INNER JOIN";
-                }
-            } else {
-                $ft = "INNER JOIN";
-            }
-           
-            $x = " {$ft} {$d} ON {$a}.{$b} {$c} {$d}.{$e}";
+            try {
 
-            return $x;
+                $ft = "";
+
+                if($f) {
+                    
+                    switch($f) {
+                        case "rightJoin":
+                            $ft = "RIGHT JOIN";
+                            break;
+                        case "leftJoin":
+                            $ft = "LEFT JOIN";
+                            break;
+                        case "innerJoin":
+                            $ft = "INNER JOIN";
+                            break;
+                        case "fullOuterJoin":
+                            $ft = "FULL OUTER JOIN";
+                            break;
+                        default: $ft = "INNER JOIN";
+                    }
+                } 
+
+                else {
+
+                    $ft = "INNER JOIN";
+                }
+               
+                $x = " {$ft} {$d} ON {$a}.{$b} {$c} {$d}.{$e}";
+    
+                return $x;
+            }
+            catch (Exception $err) {
+
+                return false;
+            }
         }
 
     }
