@@ -38,6 +38,8 @@ export const API_URL = {
 
     GET_GROUP_RECOMMEND: BASE_API_URL + '/group/recommend',
 
+    REQUEST_TO_JOIN_GROUP: BASE_API_URL + '/group/request/sending/accept-join',
+
     // @Auth Mai Mai
     CREATE_NEW_LIKE: BASE_API_URL + '/user/create-like',
 

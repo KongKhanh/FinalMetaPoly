@@ -19,17 +19,19 @@
 
             try {
 
-                // SELECT * FROM user_groups
-                // INNER JOIN groups ON user_groups.user_group_fk_group_id = groups.group_id
-                // WHERE user_groups.user_group_fk_user_id = {$id_User}
-
                 $gl = self::selectData(
 
                     $this->linkTable[4],
                      
                     false, 
 
-                    self::whereData('user_group_fk_user_id', '=', isset($id_User) ? base64_decode($id_User) : null),
+                    self::whereDataMultiCondition(
+                        [
+                            ['user_group_fk_user_id', '=', isset($id_User) ? base64_decode($id_User) : null, 'AND'],
+                            ['user_group_accept', '=', 1], // Permission: 1 for joined, 0 for waiting accept to join
+                        ]
+                    ),
+
                     [
                         self::innerJoinZ($this->linkTable[4], 'user_group_fk_group_id', '=', $this->tableName, 'group_id', 'innerJoin'),
                     ],
@@ -40,6 +42,7 @@
                 return $gl;
             }
             catch (Exception $err) {
+
                 return false;
             }
         }
@@ -125,7 +128,8 @@
             return $mg;
         }
 
-        public function __recommedGrSystemCore($ta) {
+        // Tra ve cac Group goi y cho User
+        public function __recommedGrSystemCore($ta, $id_User) {
 
             try {
 
@@ -145,8 +149,12 @@
                         }
                     }
                 }
+
+                $s .= " AND NOT group_created_by_user_id = {$id_User}";
     
                 $sql = "SELECT group_id, group_name, COUNT(user_group_id ) AS num_of_members FROM groups LEFT JOIN user_groups ON groups.group_id = user_groups.user_group_fk_group_id WHERE {$s} GROUP BY group_id"; 
+
+                return $sql;
 
                 $stmt = $conn->prepare($sql);
     
@@ -161,6 +169,46 @@
                 return false;
             }
         }
+
+        // Select cac thong tin ve cac Group ma User chua tham gia
+        public function __GrWaitingAcceptingL($id_User) {
+
+            try {
+                $grlw = self::selectData(
+
+                    $this->linkTable[4],
+                     
+                    false, 
+
+                    self::whereDataMultiCondition(
+                        [
+                            ['user_group_fk_user_id', '=', isset($id_User) ? base64_decode($id_User) : null, 'AND'],
+                            ['user_group_accept', '=', 1], // Permission: 1 for joined, 0 for waiting accept to join
+                        ]
+                    ),
+
+                    [
+                        self::innerJoinZ($this->linkTable[4], 'user_group_fk_group_id', '=', $this->tableName, 'group_id', 'innerJoin'),
+                    ],
+
+                    true,
+                );
+
+                return $grlw;
+
+                // if($grlw && is_array($grlw)) {
+
+                //     return $grlw;
+                // }
+                // else {
+                //     return false;
+                // }
+            }
+            catch (Exception $err) {
+                return false;
+            }
+        }
+
     }
 
 ?>

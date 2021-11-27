@@ -118,6 +118,7 @@
 
                 if($payload_GrJoinL && is_array($payload_GrJoinL)) {
 
+                    // Danh sach cac Group da tham gia
                     $ta = [];
 
                     foreach($payload_GrJoinL as $payload_GrJoini) {
@@ -129,14 +130,16 @@
 
                     $rGroupMd_vn = new rGroupMd();
 
-                    $rgr = $rGroupMd_vn->__recommedGrSystemCore($ta);
+                    $rgr = $rGroupMd_vn->__recommedGrSystemCore($ta, base64_decode($id_User));
+                    $rgrwl = $rGroupMd_vn->__GrWaitingAcceptingL(base64_decode($id_User));
 
-                    if($rgr) {
+                    if($rgr && $rgrwl) {
 
                         echo json_encode([
                             'status_task' =>  1,
                             'message_task' => 'successful',
                             'rgr' => $rgr,
+                            'rgrwl' => $rgrwl,
                         ]);
                     }
                     else {
@@ -163,8 +166,89 @@
             }
         }
 
+        public function __getGrWaitingForAccepting($id_User) {
+
+            try {
+
+                if(isset($id_User)) {
+
+                    require_once('./app/Models/readSide/Group/rGroupMd.php');
+
+                    $rGroupMd_vn = new rGroupMd();
+    
+                    $rGroupMd_vn->__GrWaitingAcceptingL($id_User);
+    
+                    echo json_encode([
+                        'status_task' =>  1,
+                        'message_task' => 'successful',
+                    ]);
+                }
+                else {
+                    echo json_encode([
+                        'status_task' =>  2,
+                        'message_task' => 'fail',
+                    ]); 
+                }
+            }
+            catch (Exception $err) {
+
+                echo json_encode([
+                    'status_task' =>  2,
+                    'message_task' => 'fail',
+                ]); 
+            }
+        }
+
         public function __handleJoinGrRequest($id_User) {
 
+            try {
+                
+                $gr_ID = isset($_POST['user_group_fk_group_id']) ? trim($_POST['user_group_fk_group_id']) : null;
+
+                if($id_User && $gr_ID) {
+
+                    require_once('./app/Models/writeSide/Group/GroupMd.php');
+
+                    $wGroupMd_vn = new GroupMd();
+
+                    $add_Block = [
+                        'user_group_fk_group_id' => $gr_ID,
+                        'user_group_fk_user_id' => base64_decode($id_User),
+                        'user_group_accept' => 0,
+                    ];
+
+                    $Gr_Sta = $wGroupMd_vn->__ReqToJoinGroup($add_Block, $id_User);
+
+                    if($Gr_Sta) {
+
+                        echo json_encode([
+                            'status_task' =>  1,
+                            'message_task' => 'successful',
+                            'Gr_Sta' => $Gr_Sta,
+                        ]);
+                    } else {
+
+                        echo json_encode([
+                            'status_task' =>  2,
+                            'message_task' => 'fail',
+                        ]);
+                    }
+                }
+                else {
+
+                    echo json_encode([
+                        'status_task' =>  2,
+                        'message_task' => 'fail',
+                    ]);
+                }
+            }
+            catch (Exception $err) {
+
+                echo json_encode([
+                    'status_task' =>  2,
+                    'message_task' => 'fail',
+                ]);
+            }
         }
 
     }

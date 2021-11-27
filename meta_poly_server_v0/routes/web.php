@@ -60,6 +60,9 @@
     // lay du lieu cac Groups goi y cho User tham gia
     $router->post('/group/join-request/accept/{id_User}','GroupCtrl@__handleJoinGrRequest');
 
+    // 
+    $router->post('/group/request/sending/accept-join/{id_User}','GroupCtrl@__handleJoinGrRequest');
+
 
     // ---------------------For Posting
     $router->post('/posting/single/create-new','PostingController@__handleCreateNewPost');

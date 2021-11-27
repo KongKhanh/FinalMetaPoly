@@ -48,12 +48,29 @@ export default function GrRecommend(props) {
         />
     };
 
+    async function __reqToJoinGr(User_id, Gr_id) {
+
+        if(User_id && Gr_id) {
+
+            let reqJInf = new FormData();
+
+            reqJInf.append('user_group_fk_group_id', Gr_id);
+    
+            const resR = await axios({
+                url: `${API_URL.REQUEST_TO_JOIN_GROUP}/${User_id ? User_id : undefined}`,
+                method: 'POST',
+                data: reqJInf,
+            });
+
+            console.log(resR.data);
+        }
+    }
+
     function handleReqToJoinGr(gr_id) {
 
         if(props.UserInforClient && props.UserInforClient.userId) {
 
-            console.log(gr_id, props.UserInforClient.userId);
-            // __reqRecGr(props.UserInforClient.userId, props.GrSingleList);
+            __reqToJoinGr(props.UserInforClient.userId, gr_id);
         }
     }
 
@@ -75,6 +92,8 @@ export default function GrRecommend(props) {
                 method: 'POST',
                 data: fd_GrJoinL,
             });
+
+            console.log(rsq.data); 
 
             if(rsq.data && Array.isArray(rsq.data.rgr)) {
 

@@ -6,6 +6,37 @@
             return "WHERE {$compareKey} $syntaxKey $compareValue";
         }
 
+        // $cl: is a sub-array of array -> condition for query data
+        public static function whereDataMultiCondition($cl) {
+
+            $temp_sql = "WHERE ";
+
+            if(is_array($cl)) {
+
+                for ($c = 0; $c < count($cl); $c++) { 
+
+                    $tq = "";
+                    // --------------##cl[$c] is sub-array
+                    if(isset($cl[$c][3])) {
+
+                        $tq .= "{$cl[$c][0]} {$cl[$c][1]} {$cl[$c][2]} {$cl[$c][3]} "; 
+                    } 
+                    else {
+
+                        $tq .= "{$cl[$c][0]} {$cl[$c][1]} {$cl[$c][2]}"; 
+                    }         
+
+                    $temp_sql .= $tq;
+                }
+
+                return $temp_sql;
+            }
+            else {
+
+                return false;
+            }
+        }
+
         public static function updateData($update_Block, $table_Name, $whereData) {
 
             require('./app/Models/initialConnect/connectDatabase.php');
@@ -101,7 +132,7 @@
 
         //  $proField: is a array of field names in table of database
         //  $joinXS: is a array of join statement
-        //  $mro: is boolean for geting One or get Many record
+        //  $mro: is boolean for geting One (FALSE) or get Many (TRUE) record
         public static function selectData($table_Name, $proField = false, $whereData = false, $joinXS = false, $mro = true) {
 
             require('./app/Models/initialConnect/connectDatabase.php');
@@ -142,7 +173,7 @@
             if($whereData) {
                 $sql .= " {$whereData}";
             }
-
+            
             $stmt = $conn->prepare($sql);
 
             $stmt->setFetchMode(PDO::FETCH_ASSOC);

@@ -58,7 +58,7 @@ function App() {
             };
         };
 
-        // __AuthPermissionUsingApp();
+        __AuthPermissionUsingApp();
 
     }, [UserInforClient]);
 
