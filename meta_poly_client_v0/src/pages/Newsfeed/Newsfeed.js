@@ -122,6 +122,7 @@ function Newsfeed(props) {
                 <div className="col-xxl-6 col-lg-12 order-lg-2 order-xxl-1">
 
                     <PostContentContainer 
+                        setCurrentPage={props.setCurrentPage}
                         UserInforClient = {props.UserInforClient}
                     />
 

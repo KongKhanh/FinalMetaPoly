@@ -14,6 +14,11 @@ export default function PostContentContainer(props) {
     // Danh sach cac bai Post
     const[PostList, setPostList] = useState([]);
 
+    function ViewProfileUser(ua){
+        console.log(ua);
+        props.setCurrentPage('ywHfYcKTYtkfREz');
+    }
+
     useEffect(function(){
 
         const CancelToken = axios.CancelToken;
@@ -104,9 +109,11 @@ export default function PostContentContainer(props) {
                                         </div>
 
                                         <h5 className="m-0">
+                                            <a href = "/#" onClick={() => ViewProfileUser(PostItem.user_id) }>
                                             {
                                                 PostItem.user_name ? PostItem.user_name : 'Loading...'
                                             }
+                                            </a>
                                         </h5>
 
                                         <p className="text-muted"><small>
