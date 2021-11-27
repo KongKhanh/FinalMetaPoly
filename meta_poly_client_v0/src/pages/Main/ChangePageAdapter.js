@@ -37,10 +37,22 @@ export function ChangePageAdapter(id_page, dataComp, props) {
                 UserInforClient={dataComp.UserInforClient}
             />
 
+         // This case for Profile Any User Page
+         case 'ywHfYcKTYtkfREz':
+            return <Profile 
+                UserInforClient={
+                   { userId: 'Ng==',
+                    access_token: '',
+                    user_phone: '',
+                    user_name: '',}
+                }
+            />
+
         // This case for Newsfeed Page
         case 'uGqXQpyJeFUoBqm':
             return <Newsfeed 
                 UserInforClient={props.UserInforClient}
+                setCurrentPage={props.setCurrentPage}
             />
 
         // This case for Group Page

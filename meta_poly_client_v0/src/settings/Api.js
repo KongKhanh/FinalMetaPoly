@@ -1,4 +1,4 @@
-export const BASE_API_URL = 'localhost:4000';
+export const BASE_API_URL = 'http://localhost:4000';
 
 export const API_URL = {
 
@@ -38,11 +38,19 @@ export const API_URL = {
 
     GET_GROUP_RECOMMEND: BASE_API_URL + '/group/recommend',
 
+    REQUEST_TO_JOIN_GROUP: BASE_API_URL + '/group/request/sending/accept-join',
+
     // @Auth Mai Mai
     CREATE_NEW_LIKE: BASE_API_URL + '/user/create-like',
 
     FORGOT_PASS: BASE_API_URL + '/authentication/user/forgotPass',
 
     FRIEND_LIST: BASE_API_URL + '/friendlist',
+
+};
+
+export const PATH_MEDIA_CDN = {
+
+    IMAGES_STORE_PATH: BASE_API_URL + '/public/upload/images/posting_store',
 
 };

@@ -8,32 +8,33 @@ export default function FriendTagBox(props) {
     //LF:list friend
     const [LF, setLF] = useState([]);
 
-    const [activeFT,setActiveFT] = useState([
-        
-    ]
-    );
+    const [activeFT,setActiveFT] = useState([]);
 
-    const requestCheckFriend = async () => {
+    function stg(){
+        props.setTagList(activeFT);
+    }
 
-        var formData = new FormData();
+    // const requestCheckFriend = async () => {
 
-        formData.append('userID', props.UserInforClient.userId);
+    //     var formData = new FormData();
+
+    //     formData.append('userID', props.UserInforClient.userId);
     
-        formData.append('postID', props.PostID);
+    //     formData.append('postID', props.PostID);
 
-        formData.append('activeFriendTag', activeFT);
+    //     formData.append('activeFriendTag', activeFT);
 
-        const responseResultCF = await axios({
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-          },
-          url: `${API_URL.FRIEND_LIST}/${props.UserInforClient.userId}`,
-          method: 'POST',
-          data: formData,
-        });
+    //     const responseResultCF = await axios({
+    //       headers: {
+    //         'Access-Control-Allow-Origin': '*',
+    //       },
+    //       url: `${API_URL.FRIEND_LIST}/${props.UserInforClient.userId}`,
+    //       method: 'POST',
+    //       data: formData,
+    //     });
 
-        return responseResultCF.data;
-      }
+    //     return responseResultCF.data;
+    //   }
     
     function activeButton(index,Fi){
         var checkTag= document.getElementById(`checkTag_${index}`);
@@ -48,9 +49,8 @@ export default function FriendTagBox(props) {
 
 
         }else{
-
             activeFT.find((ATi,indexx)=>{
-                if(ATi.fb_fk_user_comf_id == Fi.fb_fk_user_comf_id ){
+                if(ATi.user_id == Fi.user_id ){
                     activeFT.splice(indexx,1);
                 }
             })
@@ -59,22 +59,7 @@ export default function FriendTagBox(props) {
             
             checkTag.setAttribute('data-toggle','0');
         }
-
-        
-        console.log(index);
-        console.log(activeFT);
-
-
     }
-
-    // const CheckFriendTag = () => {
-
-    //     requestCheckFriend().then(
-
-           
-    //     );
-
-    // }
 
     async function responeListFriend() {
         const responeResult = await axios({
@@ -93,9 +78,6 @@ export default function FriendTagBox(props) {
         
         responeListFriend();
     }, []);
-
-
-
 
     return (
         <div className="AttachMediaBox-Container p-3">
@@ -123,11 +105,9 @@ export default function FriendTagBox(props) {
                                                 </div>
                                             </button>
                                         </div>
-
                                         <div className="Box-Header-Title py-1">
                                             <span>Gắn thẻ bạn bè</span>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -195,7 +175,9 @@ export default function FriendTagBox(props) {
                                 <div className="Box-Footer-Container">
                                     <div className="Box-Footer-Wrapper float-end">
                                         <button type="button" className="btn btn-light me-2"><span>Hủy</span> </button> 
-                                        <button type="button" className="btn btn-warning"><i className="mdi mdi-rocket me-1"></i> <span> Gắn thẻ </span> </button>
+                                        <button type="button" className="btn btn-warning"
+                                                onClick ={()=> stg()}
+                                        ><i className="mdi mdi-rocket me-1"></i> <span> Gắn thẻ </span> </button>
                                         
                                     </div>
                                 </div>

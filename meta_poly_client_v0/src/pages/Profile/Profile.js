@@ -4,6 +4,7 @@ import { API_URL,BASE_API_URL} from '../../settings/Api';
 
 //Component 
 import PostProfile from './PostProfile';
+import FriendListProfile from './FriendListProfile';
 
 function Profile(props){
 
@@ -14,7 +15,6 @@ function Profile(props){
         UserBirthday: '',
         UserGender: '',
         UserEmail: '',
-        PostList: []
     });
     const [ProfileSetting, setProfileSetting] = useState({
         UserName: '',
@@ -107,7 +107,7 @@ function Profile(props){
                             }
                           </span>
                         </p>
-                        <p className="text-muted mb-2 font-13"><strong>Ngày sinh :</strong> <span className="ms-2 ">{UserInfor.UserBirthday}</span></p>
+                        <p className="text-muted mb-2 font-13"><strong>Ngày sinh :</strong> <span className="ms-2 ">{UserInfor.UserBirthday.split(' ')[0]}</span></p>
                       </div>
 
                       <ul className="social-list list-inline mt-3 mb-0">
@@ -187,6 +187,9 @@ function Profile(props){
                   </div>
               </div>
 
+          <FriendListProfile 
+            UserInforClient= {props.UserInforClient}
+          />
           </div>
 
           <PostProfile 

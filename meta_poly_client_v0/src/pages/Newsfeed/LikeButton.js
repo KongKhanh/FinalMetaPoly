@@ -89,7 +89,7 @@ function LikeButton(props){
     return(
         <div className="p-1 d-inline"> 
             {/* () trước khi chạy hàm */}
-              <button className="border-0">
+              <button className="border-0 bg-white" type="button">
                 <i className= { !activeToggleLike ? 'mdi mdi-heart text-danger' : 'mdi mdi-heart' } onClick={ () => handleClick() }/>
               </button>
         </div>

@@ -14,14 +14,17 @@ import '../../../assets/css/components/post_box/postbox.css';
 
 export default function PostingBox(props) {
 
+    // For Single Content ( for detail: Text )
     const [pctContentObj, setPctContentObj] = useState({
         pct_content: '',
     });
 
-    // For Single Media 
+    // For Single Media ( for detail: Images )
     const [pctMediaObj, setPctMediaObj] = useState({
         ppt_name: false,
     });
+
+    const [tagList,setTagList] = useState([]);
 
     const [activeAttachMediaBox, setActiveAttachMediaBox] = useState({
         is_active: false,
@@ -40,6 +43,8 @@ export default function PostingBox(props) {
         dataRequest.append('ppt_name', pctMediaObj.ppt_name[0]);
 
         dataRequest.append('post_fk_user_id', props.UserInforClient.userId);
+
+        dataRequest.append('post_tag_list', JSON.stringify(tagList));
 
         const resultsReq = await axios({
             headers: {
@@ -68,14 +73,11 @@ export default function PostingBox(props) {
     }
 
     // Xu ly su kien gui thong tin bai POST len server
-    const handleClickReqPosting = () => {
+    function handleClickReqPosting(){
 
         __requestCreateNewPost()
             .then((res) => {
-
-                console.log(res);
-
-                if (res.status_task === 1) {
+                if (res && res.status_task === 1 && res.infoCurPost) {
 
                     // Tra ve trang thai ban dau cua Content Box
                     setPctContentObj({
@@ -83,34 +85,64 @@ export default function PostingBox(props) {
                         pct_content: '',
                     });
 
-                    // Tat Popup Media Box
+                    // TurnOff Popup Media Box
                     setActiveAttachMediaBox({
                         ...activeAttachMediaBox, 
                         is_active: false,
                     });
 
-                    const PostList_Ref = [...props.PostList];
+                    if(props.PostList && Array.isArray(props.PostList)) {
 
-                    PostList_Ref.unshift({
-                        post_id: res.infoRes.post_id,
-                        pct_content: res.infoRes.pct_content,
-                        post_fk_user_id: res.infoRes.post_fk_user_id,
-                        media_url: res.infoRes.media_url,
-                        comment_list: [],
-                        list_like: [],
-                    });
+                        const PostList_Ref = [
+                            ...props.PostList
+                        ];
 
-                    props.setPostList(PostList_Ref);
+                        if(PostList_Ref && Array.isArray(PostList_Ref)) {
 
-                } else {
-                    // alert('Đã xảy ra lỗi trong quá trình thực hiện !');
+                            // ***------------MUST Synchronize ( with Properties ) with State Of PostingList-----------***
+                            const nPi = {
+
+                                comment_list: [],
+
+                                list_like: [],
+
+                                media_url: res.infoCurPost.media_url,
+
+                                pct_content: res.infoCurPost.pct_content,
+
+                                pct_id: res.infoCurPost.pct_id,
+
+                                post_created_at: res.infoCurPost.post_created_at,
+
+                                post_id: res.infoCurPost.post_id,
+
+                                ppt_name: res.infoCurPost.ppt_name,
+
+                                user_id: res.infoCurPost.post_fk_user_id,
+                                
+                                user_name: res.infoCurPost.user_name,
+                            };
+
+                            PostList_Ref.unshift(nPi);
+
+                            if(props.setPostList && typeof props.setPostList === 'function' && props.setPostList instanceof Function) {
+
+                                props.setPostList(PostList_Ref);
+                            }
+                        }
+                    }
+                } 
+
+                else {
+
+                    alert('Đã xảy ra lỗi trong quá trình thực hiện !');
                 }
-
             });
 
     };
 
     const handleOpenDropBoxImage = () => {
+
         setActiveAttachMediaBox({
             ...activeAttachMediaBox,
             is_active: true,
@@ -168,8 +200,10 @@ export default function PostingBox(props) {
                                                             <img src="./assets/icons/flaticon/24px/add_link.png" alt="metapoly" />
                                                         </a>
                                                     </div>
+
+                                                    {/* Btn Click for Posting  */}
                                                     <BtnRequestPost
-                                                        handleClickReqPosting={handleClickReqPosting}
+                                                        handleClickReqPosting = { handleClickReqPosting && typeof handleClickReqPosting === 'function' && handleClickReqPosting instanceof Function ? handleClickReqPosting : undefined }
                                                     />
                                                 </div>
                                             </form>
@@ -200,6 +234,8 @@ export default function PostingBox(props) {
                                 handleClickReqPosting = {handleClickReqPosting}
 
                                 UserInforClient ={props.UserInforClient}
+
+                                setTagList = {setTagList}
                             /> : '' 
                         }
 

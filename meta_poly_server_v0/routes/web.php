@@ -22,6 +22,7 @@
     $router->get('/newsfeed','NewsfeedController@__getPostList');
 
     $router->get('/comfirm/{idUser}','NotificationController@__GetComfirmUserID');
+    
     $router->get('/friendlist/{idUser}','FriendController@__ListFriend');
 
     // lay du lieu ve chi tiet Group ma User da tham gia
@@ -60,11 +61,16 @@
     // lay du lieu cac Groups goi y cho User tham gia
     $router->post('/group/join-request/accept/{id_User}','GroupCtrl@__handleJoinGrRequest');
 
+    // 
+    $router->post('/group/request/sending/accept-join/{id_User}','GroupCtrl@__handleJoinGrRequest');
+
 
     // ---------------------For Posting
     $router->post('/posting/single/create-new','PostingController@__handleCreateNewPost');
 
     $router->post('/posting/single/create-comment','PostingController@__handleCreateNewComment');
+
+    $router->post('/posting/friendTag','PostingController@__handleCreateFriendTagList');
 
     // ---------------------For Group
     $router->post('/group/single/create-new','GroupCtrl@__handleCreateNewGr');
