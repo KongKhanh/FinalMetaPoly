@@ -236,6 +236,8 @@ export default function PostingBox(props) {
                                 UserInforClient ={props.UserInforClient}
 
                                 setTagList = {setTagList}
+
+                                tagList = {tagList} 
                             /> : '' 
                         }
 

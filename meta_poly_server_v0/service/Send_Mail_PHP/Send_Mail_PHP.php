@@ -41,7 +41,7 @@ class SendMailPHP
 
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
-            $mail->Subject = 'PHP_Send_Mail_System';
+            $mail->Subject = 'Metapoly - Thay đổi mật khẩu';
             $mail->Body    = $content_send;
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 

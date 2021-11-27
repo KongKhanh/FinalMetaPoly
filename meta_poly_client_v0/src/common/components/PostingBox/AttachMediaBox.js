@@ -119,12 +119,21 @@ export default function AttachMediaBox(props) {
                                                             </div>
                                                         </div>
                                                         <div className="Avatar-Area align-items-center m-3 mb-0">
-                                                            <div className=""> cùng với 
-                                                                <ul className="d-inline ms-1 p-1">
-                                                                    <li className ="badge badge-outline-dark me-1 p-1">Võ Văn Hậu</li>
-                                                                    <li className ="badge badge-outline-dark me-1 p-1">Võ Văn Hậu</li>
-                                                                </ul>
-                                                            </div>
+                                                            {
+                                                                (props.tagList.length != 0 && Array.isArray(props.tagList)) ?
+                                                                    <div className=""> cùng với
+                                                                        <ul className="d-inline ms-1 p-1">
+                                                                            {
+                                                                                props.tagList.map((TLi, index) => {
+                                                                                    return (
+                                                                                        <li className="badge badge-outline-dark me-1 p-1">{TLi.user_name}</li>
+                                                                                    )
+                                                                                })
+                                                                            }
+                                                                        </ul>
+                                                                    </div> : ''
+                                                            }
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -193,6 +202,8 @@ export default function AttachMediaBox(props) {
         )
     }
 
+
+
     return (
         <div className="">
             {
@@ -210,7 +221,9 @@ export default function AttachMediaBox(props) {
 
                         UserInforClient={props.UserInforClient}
 
-                        setTagList = {props.setTagList}
+                        setTagList={props.setTagList}
+
+                        tagList={props.tagList}
 
                     />
 
