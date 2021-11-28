@@ -123,7 +123,11 @@ export default function PostingBox(props) {
 
                             PostList_Ref.unshift(nPi);
 
-                            if(props.setPostLis && typeof props.setPost === 'function' && props.setPostLis instanceof Function) {
+                            if(
+                                props.setPostList && typeof props.setPostList === 'function' && props.setPostList instanceof Function &&
+
+                                Array.isArray(PostList_Ref)
+                            ) {
 
                                 props.setPostList(PostList_Ref);
                             }

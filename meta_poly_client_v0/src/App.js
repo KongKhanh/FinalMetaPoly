@@ -10,6 +10,7 @@ import { getCookie } from "./libs_3rd/Cookie/handleCookie";
 
 //Components
 import ConnectPages from './pages/Main/ConnectPages';
+import { SpinnerLoader } from './common/components/SpinnerLoader';
 
 function App() {
 
@@ -74,6 +75,8 @@ function App() {
                             currentPage={currentPage}
                             setCurrentPage={setCurrentPage}
                         />
+
+                        {/* <SpinnerLoader /> */}
 
                     </div>
                 </div>

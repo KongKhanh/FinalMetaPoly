@@ -3,10 +3,6 @@ import SuggestFriend from './SuggestFriend';
 
 import PostContentContainer from './PostContentContainer';
 
-import { API_URL } from '../../settings/Api';
-
-import App from '../../App';
-
 function Newsfeed(props) {
 
     return(

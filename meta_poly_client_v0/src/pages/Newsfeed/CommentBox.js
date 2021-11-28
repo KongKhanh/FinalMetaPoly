@@ -66,19 +66,31 @@ export default function CommentBox(props) {
         });
     }
 
+    const Styles = {
+        CommentField: {
+            borderRadius: '18px 0 0 18px',
+            fontSize: '0.9375em',
+        },
+        BtnSendingComment: {
+            borderRadius: '0 18px 18px 0',
+        }
+    };
+
     return (
         <div className="w-100 d-flex align-items-stretch">
             <input 
                 type="text" 
-                className="form-control border-end-0 rounded-start py-1 form-control-sm" 
+                className="form-control border-end-0 py-1 form-control-sm" 
                 placeholder="Viết bình luận..." 
                 value={commentInfo.comment_content}
                 name="comment_content"
                 onChange={(event) => handleOnChangeCommentContextField(event)}
+                style={Styles.CommentField}
             />
             <button 
-                className="border border-start-0 rounded-end py-1" 
+                className="border border-start-0 py-1" 
                 onClick={() => handleOnClickReqComment()}
+                style={Styles.BtnSendingComment}
             >
                 <div>
                     <img src="./assets/icons/flaticon/24px/btn_send.png" alt="MPI"/>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { API_URL } from '../../settings/Api';
+import { API_URL } from '../../../settings/Api';
 
 import axios from 'axios';
 
@@ -8,14 +8,24 @@ function LikeButton(props){
 
     const [activeToggleLike, setActiveToggleLike] = useState(
       (
-        function(){
-          var status = props.PostItem.list_like.find(
-            (likeItem)=>{
-              return likeItem.pl_fk_user_id === props.UserInforClient.userId ;
-            }
-          )
-          return status ? false : true ;
-        }
+          function(){
+              if(props.PostItem && props.PostItem.list_like && Array.isArray(props.PostItem.list_like)) {
+
+                  var status = props.PostItem.list_like.find(
+
+                      (likeItem)=>{
+
+                        return likeItem.pl_fk_user_id === props.UserInforClient.userId ;
+                      }
+                  )
+                  
+                  return status ? false : true;
+
+              } else {
+
+                return undefined;
+              }
+          }
       )()
     );
 
@@ -80,17 +90,20 @@ function LikeButton(props){
 
       }
 
-    function handleClick(){
+    function handleClickLike(){
 
         likePostMM();
-
     }
 
     return(
-        <div className="p-1 d-inline"> 
-            {/* () trước khi chạy hàm */}
-              <button className="border-0 bg-white" type="button">
-                <i className= { !activeToggleLike ? 'mdi mdi-heart text-danger' : 'mdi mdi-heart' } onClick={ () => handleClick() }/>
+        <div className="d-inline Wrapper-ControlBtnPost"> 
+              <button 
+                className={`border-0 Like_Posting_Btn ControlBtnPost p-1 ${!activeToggleLike ? 'text-danger' : 'text-muted'}`}
+                type="button" 
+                disabled={activeToggleLike === undefined}
+                onClick={ () => handleClickLike() }
+              >
+                  <i className="mdi mdi-heart"/> { props.PostItem && props.PostItem.list_like && Array.isArray(props.PostItem.list_like) ? props.PostItem.list_like.length : 0 } Thích
               </button>
         </div>
     )
