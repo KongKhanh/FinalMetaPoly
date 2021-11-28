@@ -24,6 +24,7 @@ export default function PostingBox(props) {
         ppt_name: false,
     });
 
+    const [tagList,setTagList] = useState([]);
 
     const [activeAttachMediaBox, setActiveAttachMediaBox] = useState({
         is_active: false,
@@ -42,6 +43,8 @@ export default function PostingBox(props) {
         dataRequest.append('ppt_name', pctMediaObj.ppt_name[0]);
 
         dataRequest.append('post_fk_user_id', props.UserInforClient.userId);
+
+        dataRequest.append('post_tag_list', JSON.stringify(tagList));
 
         const resultsReq = await axios({
             headers: {
@@ -74,7 +77,6 @@ export default function PostingBox(props) {
 
         __requestCreateNewPost()
             .then((res) => {
-
                 if (res && res.status_task === 1 && res.infoCurPost) {
 
                     // Tra ve trang thai ban dau cua Content Box
@@ -119,11 +121,13 @@ export default function PostingBox(props) {
                                 user_id: res.infoCurPost.post_fk_user_id,
                                 
                                 user_name: res.infoCurPost.user_name,
+
+                                user_avatar: res.infoCurPost.user_avatar,
                             };
 
                             PostList_Ref.unshift(nPi);
 
-                            if(props.setPostLis && typeof props.setPost === 'function' && props.setPostLis instanceof Function) {
+                            if(props.setPostList && typeof props.setPostList === 'function' && props.setPostList instanceof Function) {
 
                                 props.setPostList(PostList_Ref);
                             }
@@ -232,6 +236,10 @@ export default function PostingBox(props) {
                                 handleClickReqPosting = {handleClickReqPosting}
 
                                 UserInforClient ={props.UserInforClient}
+
+                                setTagList = {setTagList}
+
+                                tagList = {tagList} 
                             /> : '' 
                         }
 

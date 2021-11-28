@@ -157,7 +157,7 @@ class UserController {
 
                 // 'user_date_of_birth' => isset($_POST['user_date_of_birth']) ? trim(strip_tags(base64_encode($_POST['user_date_of_birth']))) : '',
             ];
-         
+
             require_once('./Helpers/php/UploadImage.php');
             
             $target_infor = isset($blockUserSetting['user_avatar']) ? $blockUserSetting['user_avatar'] : null;
@@ -165,14 +165,16 @@ class UserController {
             $path = require_once('./Config/path.php');
 
             if($path && is_array($path)){
+                if($target_infor){
 
-                $target_infor = array_merge($target_infor, [
-                    'path_sto' => $path['store_media_avatar'],
-                ]);
-              
-                $Status_Store_Media = UploadImageModule::__upLoad($target_infor);
-
-                if($Status_Store_Media){
+                    $target_infor = array_merge($target_infor, [
+                        'path_sto' => $path['store_media_avatar'],
+                    ]);
+                  
+                    $Status_Store_Media = UploadImageModule::__upLoad($target_infor); // Ảnh từ Client chuyển đến thư mục Upload
+    
+                }
+                // if($Status_Store_Media){
 
                     require('./app/Models/writeSide/UserMd/wUserMd.php');
 
@@ -182,13 +184,17 @@ class UserController {
                     
                     $idUser = base64_decode($idUser);
 
-                    $blockUserSetting['user_avatar'] = $target_infor['name'];
+                    $blockUserSetting['user_avatar'] = $target_infor['name']; //Lấy tên hình ảnh lưu vào DB
                     
                     $Uafu = $wUserMdObj->setProfileSettingMd($blockUserSetting, $idUser);
                     
                     if(isset($Uafu)){
 
                         $Uinu =  $this->modelUserObj->getIdUser($idUser);
+                        
+                        $Uinu['user_name'] = base64_decode($Uinu['user_name']);
+
+                        $Uinu['user_phone'] = base64_decode($Uinu['user_phone']);
 
                         // $target_infor['path_sto'] = ltrim($target_infor['path_sto'], '.');
 
@@ -200,7 +206,7 @@ class UserController {
                             'message_task' => 'successful',
                             'Uinu' => $Uinu,
                         ]);
-                    }
+
                 }
             }
         } catch (Exception $err) {

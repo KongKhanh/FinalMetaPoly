@@ -8,73 +8,92 @@ export default function FriendTagBox(props) {
     //LF:list friend
     const [LF, setLF] = useState([]);
 
-    const [activeFT,setActiveFT] = useState([
-        
-    ]
-    );
+    const [activeFT, setActiveFT] = useState((
+        function () {
+            if (props.tagList && Array.isArray(props.tagList) && props.tagList.length > 0) {
+                if (props.tagList.length > 0) {
+                    return props.tagList;
+                }
+                else {
+                    return [];
+                }
+            }
+            else {
+                return [];
+            }
+        }()
+    ));
 
-    const requestCheckFriend = async () => {
+    // const [activeFTL, setActiveFTL] = useState(
+    //     (
+    //         function () {
+    //             var status = props.tagList.map(
+    //                 (TLi) => {
+    //                     LF.map((Fi, index) => {
+    //                         return TLi.user_id == Fi.user_id;
+    //                     })
+    //                 }
+    //             )
+    //             return status ? true : false;
+    //         }
+    //     )()
+    // );
 
-        var formData = new FormData();
+    function stg() {
+        props.setTagList(activeFT);
 
-        formData.append('userID', props.UserInforClient.userId);
-    
-        formData.append('postID', props.PostID);
+        props.setActiveFriendTagBox(
+            {
+                ...props.activeFriendTagBox,
+                active_box: false,
+            }
+        )
+    }
 
-        formData.append('activeFriendTag', activeFT);
+    function activeButton(index, Fi) {
+        var checkTag = document.getElementById(`checkTag_${index}`);
 
-        const responseResultCF = await axios({
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-          },
-          url: `${API_URL.FRIEND_LIST}/${props.UserInforClient.userId}`,
-          method: 'POST',
-          data: formData,
-        });
+        // const f = activeFT.find(
+        //     (ATf) => {
+        //         return ATf.user_id === Fi.user_id
+        //     })
 
-        return responseResultCF.data;
-      }
-    
-    function activeButton(index,Fi){
-        var checkTag= document.getElementById(`checkTag_${index}`);
-        
-        if(checkTag.getAttribute('data-toggle') === '0'){
+        if (checkTag.getAttribute('data-toggle') === '0') {
 
             activeFT.push(Fi);
 
             checkTag.src = "./assets/icons/flaticon/24px/accept.png";
-            
-            checkTag.setAttribute('data-toggle','1');
 
+            checkTag.setAttribute('data-toggle', '1');
 
-        }else{
+        } else {
+            const indexx = undefined;
+            const f = activeFT.find((ATi, indexx) => {
+                // if (ATi.user_id === Fi.user_id) {
+                //     activeFT.splice(indexx, 1);
+                // }
 
-            activeFT.find((ATi,indexx)=>{
-                if(ATi.fb_fk_user_comf_id == Fi.fb_fk_user_comf_id ){
-                    activeFT.splice(indexx,1);
-                }
+                return ATi.user_id === Fi.user_id;
+
+                console.log(ATi);
+                console.log(Fi);
             })
 
-            checkTag.src = "./assets/icons/flaticon/24px/circle.png";
-            
-            checkTag.setAttribute('data-toggle','0');
+            if(f){
+
+                activeFT.splice(indexx, 1);
+
+                checkTag.src = "./assets/icons/flaticon/24px/circle.png";
+
+                checkTag.setAttribute('data-toggle', '0');
+
+            }
+
+            // console.log(activeFT);
+            // console.log(Fi);
         }
 
-        
-        console.log(index);
-        console.log(activeFT);
-
-
     }
-
-    // const CheckFriendTag = () => {
-
-    //     requestCheckFriend().then(
-
-           
-    //     );
-
-    // }
 
     async function responeListFriend() {
         const responeResult = await axios({
@@ -90,12 +109,9 @@ export default function FriendTagBox(props) {
     }
 
     useEffect(() => {
-        
+
         responeListFriend();
     }, []);
-
-
-
 
     return (
         <div className="AttachMediaBox-Container p-3">
@@ -123,11 +139,9 @@ export default function FriendTagBox(props) {
                                                 </div>
                                             </button>
                                         </div>
-
                                         <div className="Box-Header-Title py-1">
-                                            <span>Gắn thẻ bạn bè</span>
+                                            <span >Gắn thẻ bạn bè</span>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -152,7 +166,6 @@ export default function FriendTagBox(props) {
                                         </div>
 
                                         <div className="Content-Box-Container">
-
                                             <div className="Box-Body-Content-Text py-1">
                                                 <div className="Box-Body-Content-Text-Inner">
                                                     <div className="Content-Text-Package">
@@ -160,15 +173,23 @@ export default function FriendTagBox(props) {
 
                                                         {
                                                             LF.map((Fi, index) => {
+
+                                                                let Fis = undefined;
+
+                                                                Fis = props.tagList.find((TLi) => {
+
+                                                                    return TLi.user_id === Fi.user_id;
+
+                                                                })
+
                                                                 return (
                                                                     <div className="Friend-items p-2" key={`FTi_${index}`}>
                                                                         <div className="Avatar-Area-Custom me-2 d-inline">
                                                                             <img src="./assets/images/users/avatar-9.jpg" className="Avatar-Item" alt="MetaPoly_Avatar" width="30"></img>
                                                                         </div>
                                                                         <div className="Info-Relative-Area d-inline">{Fi.user_name}</div>
-                                                                        <div className="Friend-tag-select btn border-0 d-inline float-end" onClick={ () => activeButton(index,Fi) } >
-                                                                                 <img src="./assets/icons/flaticon/24px/circle.png"  data-toggle='0' id={`checkTag_${index}`} alt="MetaPoly_Icon" width="24" className="btn_icon"></img> 
-                                                                                  
+                                                                        <div className="Friend-tag-select btn border-0 d-inline float-end" onClick={() => activeButton(index, Fi)} >
+                                                                            <img src={`./assets/icons/flaticon/24px/${Fis ? 'accept.png' : 'circle.png'}`} data-toggle={`${Fis ? '1' : '0'}`} id={`checkTag_${index}`} alt="MetaPoly_Icon" width="24" className="btn_icon"></img>
                                                                         </div>
                                                                     </div>
                                                                 )
@@ -194,9 +215,19 @@ export default function FriendTagBox(props) {
                             <div className="Box-Footer my-2">
                                 <div className="Box-Footer-Container">
                                     <div className="Box-Footer-Wrapper float-end">
-                                        <button type="button" className="btn btn-light me-2"><span>Hủy</span> </button> 
-                                        <button type="button" className="btn btn-warning"><i className="mdi mdi-rocket me-1"></i> <span> Gắn thẻ </span> </button>
-                                        
+                                        <button type="button" className="btn btn-light me-2"
+                                            onClick={() => props.setActiveFriendTagBox(
+                                                {
+                                                    ...props.activeFriendTagBox,
+                                                    active_box: false,
+                                                }
+                                            )}>
+                                            <span>Hủy</span>
+                                        </button>
+
+                                        <button type="button" className="btn btn-warning"
+                                            onClick={() => stg()}
+                                        ><i className="mdi mdi-rocket me-1"></i> <span> Gắn thẻ </span> </button>
                                     </div>
                                 </div>
                             </div>

@@ -104,20 +104,36 @@ export default function AttachMediaBox(props) {
                                                                                                 <div className="Tags-Box-Content">
                                                                                                     <p className="Tags-Content">Gắn thẻ bạn bè</p>
                                                                                                 </div>
-
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
+
                                                                                     <div className="btn-DropDown-icon ms-1">
                                                                                         <img src="./assets/icons/flaticon/16px/caret_down.png" alt="MetaPoly_Icon" className="btn_icon" />
                                                                                     </div>
                                                                                 </button>
-
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                        <div className="Avatar-Area align-items-center m-3 mb-0">
+                                                            {
+                                                                (props.tagList.length != 0 && Array.isArray(props.tagList)) ?
+                                                                    <div className=""> cùng với
+                                                                        <ul className="d-inline ms-1 p-1">
+                                                                            {
+                                                                                props.tagList.map((TLi, index) => {
+                                                                                    return (
+                                                                                        <li className="badge badge-outline-dark me-1 p-1"  key={`hasTagFriends_${index}`}>{TLi.user_name}</li>
+                                                                                    )
+                                                                                })
+                                                                            }
+                                                                        </ul>
+                                                                    </div> : ''
+                                                            }
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -186,24 +202,30 @@ export default function AttachMediaBox(props) {
         )
     }
 
+
+
     return (
         <div className="">
             {
-                activeFriendTagBox.active_box === false ? handleChangeFriendTagBox() : 
+                activeFriendTagBox.active_box === false ? handleChangeFriendTagBox() :
 
-                <FriendTagBox
-                // Active Friend Tag Box
-                activeFriendTagBox={activeFriendTagBox}
-                // Set Active Friend Tag Box
-                setActiveFriendTagBox={setActiveFriendTagBox}
-    
-                handleOpenFriendTagBox = {handleOpenFriendTagBox}
-    
-                setActiveAttachMediaBox= {props.setActiveAttachMediaBox}
+                    <FriendTagBox
+                        // Active Friend Tag Box
+                        activeFriendTagBox={activeFriendTagBox}
+                        // Set Active Friend Tag Box
+                        setActiveFriendTagBox={setActiveFriendTagBox}
 
-                UserInforClient ={props.UserInforClient}
-    
-                /> 
+                        handleOpenFriendTagBox={handleOpenFriendTagBox}
+
+                        setActiveAttachMediaBox={props.setActiveAttachMediaBox}
+
+                        UserInforClient={props.UserInforClient}
+
+                        setTagList={props.setTagList}
+
+                        tagList={props.tagList}
+
+                    />
 
             }
         </div>

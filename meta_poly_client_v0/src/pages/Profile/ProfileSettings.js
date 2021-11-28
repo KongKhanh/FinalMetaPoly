@@ -24,32 +24,58 @@ function ProfileSettings(props){
      
       var DataRequestInfor = new FormData(); // Currently empty
 
-      DataRequestInfor.append('user_name', props.ProfileSetting.UserName);
+      if(props && props.ProfileSetting && props.ProfileSetting.UserName !== '')
+      {
+        DataRequestInfor.append('user_name', props.ProfileSetting.UserName.trim());
+      }
 
-      DataRequestInfor.append('user_email', props.ProfileSetting.UserEmail);
+      if(props && props.ProfileSetting && props.ProfileSetting.UserEmail !== '')
+      {
+      DataRequestInfor.append('user_email', props.ProfileSetting.UserEmail.trim());
+      }
 
-      DataRequestInfor.append('user_gender', props.ProfileSetting.UserGender);
+      if(props && props.ProfileSetting && props.ProfileSetting.UserGender !== '')
+      {
+      DataRequestInfor.append('user_gender', props.ProfileSetting.UserGender.trim());
+      }
+
+      if(props && props.ProfileSetting && props.ProfileSetting.UserPhone !== '')
+      {
+      DataRequestInfor.append('user_phone', props.ProfileSetting.UserPhone.trim());
+      }
+
+      if(props.ProfileSetting.UserAvatar !== '')
+      {
+        DataRequestInfor.append('user_avatar',props.ProfileSetting.UserAvatar[0]);
+      }
       
-      DataRequestInfor.append('user_phone', props.ProfileSetting.UserPhone);
+      if(props && props.ProfileSetting && props.ProfileSetting.UserBirthday !== '')
+      {
+      DataRequestInfor.append('user_date_of_birth', props.ProfileSetting.UserBirthday.trim());
+      }
 
-      DataRequestInfor.append('user_avatar',props.ProfileSetting.UserAvatar[0]);
-      
-      DataRequestInfor.append('user_date_of_birth', props.ProfileSetting.UserBirthday);
-
-      const responseResult = await axios({
+      if(props && props.idUserCoockie && typeof props.idUserCoockie === 'string')
+      {
+        const responseResult = await axios({
           headers: { 
               'Access-Control-Allow-Origin' : '*',
               'Content-Type': 'multipart/form-data'
           },
-          url: `${API_URL.UPDATE_PROFILE_INFOR}/${props.idUserCoockie}`,
+          url: `${API_URL && API_URL.UPDATE_PROFILE_INFOR ? API_URL.UPDATE_PROFILE_INFOR : undefined}/${props.idUserCoockie}`,
           method: 'POST',
          
           contentType: false,
           processData: false,
 
           data: DataRequestInfor,
-      });
-      return responseResult.data;
+        });
+        if(responseResult && responseResult.data){
+          return responseResult.data;
+        }
+        else {
+          return false;
+        }
+      }
   };
 
     function OnChangeSettingProfile(event){
@@ -85,26 +111,28 @@ function ProfileSettings(props){
     }
     
     function OnClickSaveSettingProfile(){
-
+      
         requestInforProfileSetting().then((res)=>{
+         
+          if (res && res.status_task === 1 && res.Uinu){
+            if(props.setUserInfor && typeof props.setUserInfor === 'function' && props.setUserInfor instanceof Function)
+            {
+              props.setUserInfor({
 
-          if (res.status_task === 1){
-
-            props.setUserInfor({
-
-              ...props.UserInfor,
-
-              UserName: props.ProfileSetting.UserName,
-              
-              UserPhone: props.ProfileSetting.UserPhone,
-
-              UserGender: props.ProfileSetting.UserGender,
-
-              UserBirthday: props.ProfileSetting.UserBirthday,
-
-              UserAvatar: res.Uinu.user_avatar,
-
-            })
+                ...props.UserInfor,
+  
+                UserName: res.Uinu.user_name && typeof res.Uinu.user_name === 'string' ? res.Uinu.user_name : undefined,
+                
+                UserPhone: res.Uinu.user_phone ? res.Uinu.user_phone : undefined,
+  
+                UserGender: res.Uinu.user_gender ? res.Uinu.user_gender : undefined,
+  
+                UserBirthday: res.Uinu.user_date_of_birth ? res.Uinu.user_date_of_birth : undefined,
+  
+                UserAvatar: res.Uinu.user_avatar && typeof res.Uinu.user_avatar === 'string' ? res.Uinu.user_avatar : undefined,
+  
+              })
+            }
             alert("Cập nhập thành công")
           }
           else{

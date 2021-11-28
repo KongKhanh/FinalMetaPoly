@@ -7,6 +7,7 @@
             'post_content',
             'comments',
             'post_photos',
+            'post_tags',
         ];
 
         // Just for ##Posting Table in Database
@@ -41,6 +42,13 @@
             require('./app/Models/DataRunner/DB.php');
 
             return DB::addBlockRunner($blockCommentInfo, $this->linkTable[1]);
+        }
+        
+        public function _insertFriendTagList($blockFriendTagList){
+
+            require_once('./app/Models/DataRunner/DB.php');
+
+            return DB::addBlockRunner($blockFriendTagList, $this->linkTable[3]);
         }
 
     }

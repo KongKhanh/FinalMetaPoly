@@ -70,6 +70,8 @@
 
     $router->post('/posting/single/create-comment','PostingController@__handleCreateNewComment');
 
+    $router->post('/posting/friendTag','PostingController@__handleCreateFriendTagList');
+
     // ---------------------For Group
     $router->post('/group/single/create-new','GroupCtrl@__handleCreateNewGr');
 
