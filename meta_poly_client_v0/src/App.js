@@ -21,6 +21,7 @@ function App() {
         access_token: getCookie('access_token') ? getCookie('access_token') : undefined,
         user_phone: '',
         user_name: '',
+        user_avatar: '',
     });
 
     // Mặc định trang chủ do case uGqXQpyJeFUoBqm bên phần ChangePage

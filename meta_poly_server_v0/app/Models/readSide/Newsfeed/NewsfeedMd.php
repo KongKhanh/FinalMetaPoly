@@ -8,7 +8,7 @@
 
                 require('./app/Models/initialConnect/connectDatabase.php');
                 
-                $sql = "SELECT posts.post_id, posts.post_created_at, users.user_id, users.user_name, 
+                $sql = "SELECT users.user_avatar, posts.post_id, posts.post_created_at, users.user_id, users.user_name, 
                 post_content.pct_id, post_content.pct_content, post_photos.ppt_id, post_photos.ppt_name
                 FROM (
                     posts INNER JOIN users ON posts.post_fk_user_id = users.user_id

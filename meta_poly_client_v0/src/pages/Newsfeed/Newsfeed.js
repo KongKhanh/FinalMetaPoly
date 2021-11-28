@@ -46,8 +46,8 @@ function Newsfeed(props) {
                       </div>
                       <div className="list-group list-group-flush mt-3">
                         <a href="#/" className="list-group-item list-group-item-action text-blue border-0"><img className="me-2" src="./assets/icons/flaticon/24px/home.png" alt="icon" /> Trang chủ</a>
-                        <a href="/" className="list-group-item list-group-item-action border-0" onClick={() => props.setCurrentPage('H8HBZbNuLNUkzTf')} ><img className="me-2" src="./assets/icons/flaticon/24px/user.png" alt="icon" />Trang cá nhân</a>
-                        <a href="/" className="list-group-item list-group-item-action border-0" onClick={() => props.setCurrentPage('qT54LN6UKjYRd5x')} ><img className="me-2" src="./assets/icons/flaticon/24px/chat_group.png" alt="icon"  /> Nhóm</a>
+                        <a href="/#" className="list-group-item list-group-item-action border-0" onClick={() => props.setCurrentPage('H8HBZbNuLNUkzTf')} ><img className="me-2" src="./assets/icons/flaticon/24px/user.png" alt="icon" />Trang cá nhân</a>
+                        <a href="/#" className="list-group-item list-group-item-action border-0" onClick={() => props.setCurrentPage('qT54LN6UKjYRd5x')} ><img className="me-2" src="./assets/icons/flaticon/24px/chat_group.png" alt="icon"  /> Nhóm</a>
                         <a href="#/" className="list-group-item list-group-item-action border-0" ><img className="me-2" src="./assets/icons/flaticon/24px/chat.png" alt="icon" /> Tin nhắn</a>
                         <a href="#/" className="list-group-item list-group-item-action border-0" ><img className="me-2" src="./assets/icons/flaticon/24px/group.png" alt="icon" /> Bạn bè</a>
                       </div>

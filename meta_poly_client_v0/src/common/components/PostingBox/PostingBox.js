@@ -126,6 +126,8 @@ export default function PostingBox(props) {
                                 user_id: res.infoCurPost.post_fk_user_id,
                                 
                                 user_name: res.infoCurPost.user_name,
+
+                                user_avatar: res.infoCurPost.user_avatar,
                             };
 
                             PostList_Ref.unshift(nPi);

@@ -142,7 +142,7 @@ class UserController {
     //@Author: @KongKhanh
     public function __setProfileSetting($idUser){
         try {
-            require('./app/Models/writeSide/UserMd/wUserMd.php');
+
             $blockUserSetting = [
 
                 'user_name' => isset($_POST['user_name']) ? trim(strip_tags(base64_encode($_POST['user_name']))) : '',
@@ -153,19 +153,62 @@ class UserController {
 
                 'user_phone' => isset($_POST['user_phone']) ? trim(strip_tags(base64_encode($_POST['user_phone']))) : '',
 
+                'user_avatar' => isset($_FILES["user_avatar"]) ? ($_FILES["user_avatar"]) : null,
+
                 // 'user_date_of_birth' => isset($_POST['user_date_of_birth']) ? trim(strip_tags(base64_encode($_POST['user_date_of_birth']))) : '',
             ];
 
-            $wUserMdObj = new wUserMd();
+            require_once('./Helpers/php/UploadImage.php');
+            
+            $target_infor = isset($blockUserSetting['user_avatar']) ? $blockUserSetting['user_avatar'] : null;
+            
+            $path = require_once('./Config/path.php');
 
-            $idUser = base64_decode($idUser);
+            if($path && is_array($path)){
+                if($target_infor){
 
-            $wUserMdObj->setProfileSettingMd($blockUserSetting, $idUser);
+                    $target_infor = array_merge($target_infor, [
+                        'path_sto' => $path['store_media_avatar'],
+                    ]);
+                  
+                    $Status_Store_Media = UploadImageModule::__upLoad($target_infor); // Ảnh từ Client chuyển đến thư mục Upload
+    
+                }
+                // if($Status_Store_Media){
 
-            echo json_encode([
-                'status_task' =>  1,
-                'message_task' => 'successful',
-            ]);
+                    require('./app/Models/writeSide/UserMd/wUserMd.php');
+
+                    $wUserMdObj = new wUserMd();
+
+                    // After Update Run code below
+                    
+                    $idUser = base64_decode($idUser);
+
+                    $blockUserSetting['user_avatar'] = $target_infor['name']; //Lấy tên hình ảnh lưu vào DB
+                    
+                    $Uafu = $wUserMdObj->setProfileSettingMd($blockUserSetting, $idUser);
+                    
+                    if(isset($Uafu)){
+
+                        $Uinu =  $this->modelUserObj->getIdUser($idUser);
+                        
+                        $Uinu['user_name'] = base64_decode($Uinu['user_name']);
+
+                        $Uinu['user_phone'] = base64_decode($Uinu['user_phone']);
+
+                        // $target_infor['path_sto'] = ltrim($target_infor['path_sto'], '.');
+
+                        // $Uinu['media_url'] = $target_infor['path_sto'] . $Uinu['user_avatar'];
+                        
+
+                        echo json_encode([
+                            'status_task' =>  1,
+                            'message_task' => 'successful',
+                            'Uinu' => $Uinu,
+                        ]);
+
+                }
+            }
         } catch (Exception $err) {
             echo json_encode([
                 'status_task' => 2,

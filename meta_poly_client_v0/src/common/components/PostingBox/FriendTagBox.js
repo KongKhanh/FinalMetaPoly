@@ -26,6 +26,8 @@ export default function FriendTagBox(props) {
         }()
     ));
 
+    console.log(activeFT);
+
     function stg() {
 
         props.setTagList(activeFT);
@@ -38,35 +40,17 @@ export default function FriendTagBox(props) {
         )
     }
 
-    // const requestCheckFriend = async () => {
-
-    //     var formData = new FormData();
-
-    //     formData.append('userID', props.UserInforClient.userId);
-
-    //     formData.append('postID', props.PostID);
-
-    //     formData.append('activeFriendTag', activeFT);
-
-    //     const responseResultCF = await axios({
-    //       headers: {
-    //         'Access-Control-Allow-Origin': '*',
-    //       },
-    //       url: `${API_URL.FRIEND_LIST}/${props.UserInforClient.userId}`,
-    //       method: 'POST',
-    //       data: formData,
-    //     });
-
-    //     return responseResultCF.data;
-    //   }
-
     function activeButton(index, Fi) {
 
         var checkTag = document.getElementById(`checkTag_${index}`);
 
+        const rs = [...activeFT];
+
         if (checkTag.getAttribute('data-toggle') === '0') {
 
-            activeFT.push(Fi);
+            rs.push(Fi);
+
+            setActiveFT(rs);
 
             checkTag.src = "./assets/icons/flaticon/24px/accept.png";
 
@@ -75,18 +59,20 @@ export default function FriendTagBox(props) {
         
         else {
 
-            activeFT.find((ATi, indexx) => {
+            activeFT.find((ATi, index) => {
+
                 if (ATi.user_id === Fi.user_id) {
-                    activeFT.splice(indexx, 1);
+
+                    rs.splice(index, 1);
+
+                    setActiveFT(rs);
+
+                    checkTag.src = "./assets/icons/flaticon/24px/circle.png";
+
+                    checkTag.setAttribute('data-toggle', '0');
                 }
-            })
-
-            checkTag.src = "./assets/icons/flaticon/24px/circle.png";
-
-            checkTag.setAttribute('data-toggle', '0');
+            });
         }
-
-        console.log(activeFT);
     }
 
     async function responeListFriend() {
@@ -171,7 +157,9 @@ export default function FriendTagBox(props) {
                                                                 let Fimm = null;
 
                                                                 if(props.tagList && Array.isArray(props.tagList)) {
+
                                                                     Fimm = props.tagList.find((tfi) => {
+
                                                                         return tfi.user_id === Fi.user_id
                                                                     });
                                                                 }

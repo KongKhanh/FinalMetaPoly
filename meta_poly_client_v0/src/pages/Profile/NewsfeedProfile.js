@@ -1,6 +1,7 @@
 //Components
 import LikeButton from '../Newsfeed/ControlBtnPost/LikeButton';
 
+//Components
 function NewsfeedProfile(props) {
 
     return (

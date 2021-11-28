@@ -12,7 +12,7 @@ class PostingController {
                 'ppt_name' => isset($_FILES["ppt_name"]) ? ($_FILES["ppt_name"]) : null,
                 'post_tag_list' => isset($_POST['post_tag_list']) ? json_decode($_POST['post_tag_list']) : null,
             ];
-
+            
             require_once('./Helpers/php/UploadImage.php');
 
             $target_info = isset($blockPostingInfo['ppt_name']) ? $blockPostingInfo['ppt_name'] : null;
@@ -80,7 +80,6 @@ class PostingController {
                             $target_info['path_sto'] = ltrim($target_info['path_sto'], '.');
 
                             $infoCurPost['media_url'] = $target_info['path_sto'] . $target_info['name'];
-
                             $infoCurPost['user_name'] = base64_decode($infoCurPost['user_name']);
 
                             echo json_encode([

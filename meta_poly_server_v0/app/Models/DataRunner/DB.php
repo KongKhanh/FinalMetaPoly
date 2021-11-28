@@ -65,25 +65,25 @@
                 $i = 0;
         
                  foreach($update_Block as $BlockKey => $BlockValue) {
+                    if(isset($BlockValue)){
+                        if(is_string($BlockValue)) {
     
-                     if(is_string($BlockValue)) {
-    
-                         $BlockValue = "'$BlockValue'";
-                        
-                     }
-    
-                     if($numItems == ++$i) {
-    
-                         $BlockItem = "$BlockKey = $BlockValue ";
-    
-                     }else {
-    
-                         $BlockItem = "$BlockKey = $BlockValue, ";
-    
-                     }
-    
-                     $sql .= $BlockItem;
-        
+                            $BlockValue = "'$BlockValue'";
+                           
+                        }
+       
+                        if($numItems == ++$i) {
+       
+                            $BlockItem = "$BlockKey = $BlockValue ";
+       
+                        }else {
+       
+                            $BlockItem = "$BlockKey = $BlockValue, ";
+       
+                        }
+       
+                        $sql .= $BlockItem;
+                    }
                  }
     
                 $sql .= $whereData;

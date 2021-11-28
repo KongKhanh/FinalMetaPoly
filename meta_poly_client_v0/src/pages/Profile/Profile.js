@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { API_URL,BASE_API_URL} from '../../settings/Api';
+import { API_URL,BASE_API_URL,PATH_MEDIA_CDN} from '../../settings/Api';
 
 //Component 
 import PostProfile from './PostProfile';
@@ -11,7 +11,7 @@ function Profile(props){
     const [UserInfor, setUserInfor] = useState({
         UserName: '',
         UserPhone: '',
-        UserImg: '',
+        UserAvatar: '',
         UserBirthday: '',
         UserGender: '',
         UserEmail: '',
@@ -19,7 +19,7 @@ function Profile(props){
     const [ProfileSetting, setProfileSetting] = useState({
         UserName: '',
         UserPhone: '',
-        UserImg: '',
+        UserAvatar: '',
         UserGender: '',
         UserEmail: '',
         UserBirthday: '',
@@ -47,6 +47,7 @@ function Profile(props){
                     UserPhone: res.user_phone,
                     UserEmail: res.user_email,
                     UserGender: res.user_gender,
+                    UserAvatar: res.user_avatar,
                     UserBirthday: res.user_date_of_birth,
                     PostList: res.post_list_by_user_id
                 });  
@@ -55,14 +56,15 @@ function Profile(props){
                     UserName: res.user_name,
                     UserPhone: res.user_phone,
                     UserEmail: res.user_email,
+                    // UserAvatar: res.user_avatar,
                     UserGender: res.user_gender,
                     UserBirthday: res.user_date_of_birth,
                 });
-
                 setPostList(res.post_list_by_user_id);
             }
         )
     }, []);
+    
 
     return(
         <div className="row">
@@ -71,7 +73,7 @@ function Profile(props){
               <div className="card text-center">
                   <div className="card-body">
                   
-                      <img src={BASE_API_URL+'/public/upload/images/user_avatar/2.5.jpg'} className="rounded-circle avatar-lg img-thumbnail" alt="MetaPoly" />
+                      <img src={`${PATH_MEDIA_CDN.USER_AVATAR_STORE_PATH}/${UserInfor.UserAvatar}`} className="rounded-circle avatar-lg img-thumbnail" alt="MetaPoly" />
 
                       <h4 className="mb-0 mt-2"> 
                         {UserInfor.UserName} 
