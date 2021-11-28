@@ -21,7 +21,7 @@ function ProfileSettings(props){
     ];
 
     const requestInforProfileSetting = async() => {
-
+     
       var DataRequestInfor = new FormData(); // Currently empty
 
       DataRequestInfor.append('user_name', props.ProfileSetting.UserName);
@@ -31,15 +31,22 @@ function ProfileSettings(props){
       DataRequestInfor.append('user_gender', props.ProfileSetting.UserGender);
       
       DataRequestInfor.append('user_phone', props.ProfileSetting.UserPhone);
+
+      DataRequestInfor.append('user_avatar',props.ProfileSetting.UserAvatar[0]);
       
       DataRequestInfor.append('user_date_of_birth', props.ProfileSetting.UserBirthday);
 
       const responseResult = await axios({
           headers: { 
               'Access-Control-Allow-Origin' : '*',
+              'Content-Type': 'multipart/form-data'
           },
           url: `${API_URL.UPDATE_PROFILE_INFOR}/${props.idUserCoockie}`,
           method: 'POST',
+         
+          contentType: false,
+          processData: false,
+
           data: DataRequestInfor,
       });
       return responseResult.data;
@@ -47,13 +54,34 @@ function ProfileSettings(props){
 
     function OnChangeSettingProfile(event){
 
-        props.setProfileSetting({
+        if(event.target.id === 'user_avatar_0'){
+         
+          const [file] = event.target.files;
+
+          if (file) {
+
+            props.setProfileSetting({
+
+              ...props.ProfileSetting,
+    
+              UserAvatar: event.target.files,
+    
+              });
+    
+          }
+        }
+        else{
+        
+          props.setProfileSetting({
 
           ...props.ProfileSetting,
 
           [event.target.name]: event.target.value,
 
-        });
+          });
+
+        }
+        
     }
     
     function OnClickSaveSettingProfile(){
@@ -61,6 +89,7 @@ function ProfileSettings(props){
         requestInforProfileSetting().then((res)=>{
 
           if (res.status_task === 1){
+
             props.setUserInfor({
 
               ...props.UserInfor,
@@ -73,7 +102,7 @@ function ProfileSettings(props){
 
               UserBirthday: props.ProfileSetting.UserBirthday,
 
-              UserEmail: props.ProfileSetting.UserEmail
+              UserAvatar: res.Uinu.user_avatar,
 
             })
             alert("Cập nhập thành công")
@@ -174,6 +203,19 @@ function ProfileSettings(props){
                     <label className="form-label">Giới tính:</label>
                     <div className="d-flex">
                       {ShowGender(DataGender)}
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="mb-3 d-flex flex-column">
+                    <label className="form-label">Ảnh đại hiện</label>
+                    <div className="d-flex">
+                      <input type="file" accept="image/*"
+                      className="form-control" 
+                      id="user_avatar_0"
+                      name="UserAvatar" 
+                      onChange={(event) =>OnChangeSettingProfile(event)}
+                      />
                     </div>
                   </div>
                 </div>

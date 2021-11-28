@@ -101,7 +101,7 @@ export default function PostContentContainer(props) {
                                 <div className="card-body pb-1">
                                     <div className="d-flex">
 
-                                        <img className="me-2 rounded" src="assets/images/users/avatar-5.jpg" alt="metapoly" height={32} />
+                                        <img className="me-2 rounded" src={`${PATH_MEDIA_CDN.USER_AVATAR_STORE_PATH}/${PostItem.user_avatar}`} alt="metapoly" height={32} />
 
                                         <div className="w-100">
 
