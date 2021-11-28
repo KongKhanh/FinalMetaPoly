@@ -53,5 +53,7 @@ export const PATH_MEDIA_CDN = {
 
     IMAGES_STORE_PATH: BASE_API_URL + '/public/upload/images/posting_store',
 
+    VIDEOS_STORE_PATH: BASE_API_URL + '/public/upload/videos/posting_store',
+
     USER_AVATAR_STORE_PATH: BASE_API_URL + '/public/upload/images/user_avatar',
 };

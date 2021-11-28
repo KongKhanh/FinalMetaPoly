@@ -24,7 +24,9 @@ function App() {
         user_avatar: '',
     });
 
-    // Mặc định trang chủ do case uGqXQpyJeFUoBqm bên phần ChangePage
+    const [hasSpinnerLoader, setHasSpinnerLoader] = useState(true);
+
+    // Mặc định trang chủ do case @@uGqXQpyJeFUoBqm bên phần ChangePage
     const [currentPage, setCurrentPage] = useState('uGqXQpyJeFUoBqm');  //-------------This is default page;
 
     useEffect(() => {
@@ -47,26 +49,31 @@ function App() {
                     }
                 });
 
-                if(resR.data && resR.data.rft && resR.data.status_task === 1) { // Authorization Successfullly
+                if(resR && resR.data) {
 
-                    if(
-                        resR.data.rft.user_name && 
-                        resR.data.rft.user_phone && 
-                        resR.data.rft.user_avatar
-                    ) {
-                        
-                        setUserInforClient({
-                            ...UserInforClient,
-                            user_phone: resR.data.rft.user_phone,
-                            user_name: resR.data.rft.user_name,
-                            user_avatar: resR.data.rft.user_avatar
-                        });
+                    setHasSpinnerLoader(false);
+
+                    if(resR.data && resR.data.rft && resR.data.status_task === 1) { // Authorization Successfullly
+
+                        if(
+                            resR.data.rft.user_name && 
+                            resR.data.rft.user_phone && 
+                            resR.data.rft.user_avatar
+                        ) {
+                            
+                            setUserInforClient({
+                                ...UserInforClient,
+                                user_phone: resR.data.rft.user_phone,
+                                user_name: resR.data.rft.user_name,
+                                user_avatar: resR.data.rft.user_avatar
+                            });
+                        }
                     }
-                }
-
-                else { // Authorization Fail
-
-                    setCurrentPage('gh7Gv46kZYuhrAP');
+    
+                    else { // Authorization Fail
+    
+                        setCurrentPage('gh7Gv46kZYuhrAP');
+                    }
                 }
             };
         };
@@ -88,7 +95,9 @@ function App() {
                             setCurrentPage={setCurrentPage && typeof setCurrentPage === 'function' && setCurrentPage instanceof Function ? setCurrentPage : undefined}
                         />
 
-                        {/* <SpinnerLoader /> */}
+                        {
+                            hasSpinnerLoader ? <SpinnerLoader /> : ''
+                        }
 
                     </div>
                 </div>

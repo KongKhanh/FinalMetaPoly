@@ -19,7 +19,7 @@ export default function PostingBox(props) {
         pct_content: '',
     });
 
-    // For Single Media ( for detail: Images )
+    // For Single Media ( for detail: Images, Videos )
     const [pctMediaObj, setPctMediaObj] = useState({
         ppt_name: false,
     });
@@ -78,10 +78,6 @@ export default function PostingBox(props) {
         __requestCreateNewPost()
             .then((res) => {
 
-                console.log(res)
-
-                return;
-
                 if (res && res.status_task === 1 && res.infoCurPost) {
 
                     // Tra ve trang thai ban dau cua Content Box
@@ -123,6 +119,8 @@ export default function PostingBox(props) {
 
                                 ppt_name: res.infoCurPost.ppt_name,
 
+                                pvdo_name: res.infoCurPost.pvdo_name,
+
                                 user_id: res.infoCurPost.post_fk_user_id,
                                 
                                 user_name: res.infoCurPost.user_name,
@@ -149,7 +147,6 @@ export default function PostingBox(props) {
                     alert('Đã xảy ra lỗi trong quá trình thực hiện !');
                 }
             });
-
     };
 
     const handleOpenDropBoxImage = () => {

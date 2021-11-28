@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
+
 import axios from 'axios';
+
 import { BASE_API_URL, API_URL, PATH_MEDIA_CDN } from '../../settings/Api';
+
+import {ccd} from '../../libs_3rd/CustomDate/CustomDate';
+
 
 //Components
 import LikeButton from './ControlBtnPost/LikeButton';
@@ -10,7 +15,7 @@ import BtnSharePost from './ControlBtnPost/BtnSharePost';
 import CommentBox from './CommentBox';
 import ShowComments from './ShowComments';
 import PostingBox from '../../common/components/PostingBox/PostingBox';
-import {ccd} from '../../libs_3rd/CustomDate/CustomDate';
+
 
 export default function PostContentContainer(props) {
 
@@ -20,6 +25,30 @@ export default function PostContentContainer(props) {
     function ViewProfileUser(ua){
         console.log(ua);
         props.setCurrentPage('ywHfYcKTYtkfREz');
+    }
+
+    function renderMediaType(mtr, PostItem) {
+
+        if(mtr === 'i') {
+            return (
+                <img src={ PostItem.ppt_name ? `${PATH_MEDIA_CDN.IMAGES_STORE_PATH}/${PostItem.ppt_name}` : `${PATH_MEDIA_CDN.IMAGES_STORE_PATH}/no_default_thumbnail_1.png` } alt="post_img" className="rounded mb-3 mb-sm-0 img-fluid" />
+            )
+        }
+
+        else if(mtr === 'v') {
+            return (
+                <video 
+                    className="w-100"
+                    controls 
+                    autoPlay
+                    muted
+                    poster={`${PATH_MEDIA_CDN.IMAGES_STORE_PATH}/video_default_loading_v0.jpg`}
+                >
+                    <source src={PostItem.pvdo_name ? `${PATH_MEDIA_CDN.VIDEOS_STORE_PATH}/${PostItem.pvdo_name}` : ''} type="video/mp4" />
+                    <source src={PostItem.pvdo_name ? `${PATH_MEDIA_CDN.VIDEOS_STORE_PATH}/${PostItem.pvdo_name}` : ''} type="video/ogg" />
+                </video>
+            )
+        }
     }
 
     useEffect(function(){
@@ -98,6 +127,8 @@ export default function PostContentContainer(props) {
                         const ccd_obj = new ccd(PostItem.post_created_at);
                         const myr = ccd_obj.gs();
 
+                        const mtr = PostItem.ppt_name && PostItem.ppt_name !== null ? 'i' : PostItem.pvdo_name && PostItem.pvdo_name !== null ? 'v' : false;
+
                         return (
                             <div key={`post_item_${index_xx}`}>
                                 <div className="card">
@@ -167,7 +198,11 @@ export default function PostContentContainer(props) {
                                             <div className="row">
 
                                                 <div className="col-sm-12 d-flex align-items-center justify-content-center">
-                                                    <img src={ PostItem.media_url ? `${BASE_API_URL + PostItem.media_url}` : `${PATH_MEDIA_CDN.IMAGES_STORE_PATH}/no_default_thumbnail_1.png` } alt="post_img" className="rounded mb-3 mb-sm-0 img-fluid" />
+
+                                                    {
+                                                        renderMediaType && typeof renderMediaType === 'function' && renderMediaType instanceof Function ? renderMediaType(mtr, PostItem) : ''
+                                                    }
+                                                
                                                 </div>
 
                                             </div>
@@ -220,12 +255,12 @@ export default function PostContentContainer(props) {
                                                     />
                                                 </div>
                                                 <CommentBox 
-                                                    PostItem = {PostItem ? PostItem : undefined}
-                                                    UserInforClient = {props.UserInforClient ? props.UserInforClient : undefined}
-                                                    PostList = {PostList}
-                                                    setPostList = {setPostList}
-                                                    index_xx = {index_xx}
-                                                    CommentList = {PostItem.comment_list ? PostItem.comment_list : undefined}
+                                                    PostItem = { PostItem && typeof PostItem === 'object' ? PostItem : undefined }
+                                                    UserInforClient = { props.UserInforClient ? props.UserInforClient : undefined }
+                                                    PostList = { PostList && Array.isArray(PostList) ? PostList : undefined }
+                                                    setPostList = { setPostList && typeof setPostList === 'function' && setPostList instanceof Function ? setPostList : undefined }
+                                                    index_xx = { index_xx ? index_xx : undefined }
+                                                    CommentList = { PostItem.comment_list ? PostItem.comment_list : undefined }
                                                 />
                                             </div>
 

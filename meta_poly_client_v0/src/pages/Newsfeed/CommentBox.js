@@ -8,9 +8,8 @@ export default function CommentBox(props) {
 
     const [commentInfo, setCommentInfo] = useState({
         comment_content: '',
-        user_name: '',
-        comment_fk_post_id: props.PostItem ? props.PostItem.post_id : false,
-        comment_fk_user_id: props.UserInforClient ? props.UserInforClient.userId : false,
+        comment_fk_post_id: props.PostItem && props.PostItem.post_id ? props.PostItem.post_id : false,
+        comment_fk_user_id: props.UserInforClient && props.UserInforClient.userId? props.UserInforClient.userId : false,
     });
 
     function handleOnChangeCommentContextField(event) {
@@ -44,13 +43,22 @@ export default function CommentBox(props) {
         reqCommenttoServer()
         .then((res) => {
 
-            if(res.status_task === 1) {
+            if(res && res.status_task === 1 && res.lci) {
 
                 if(props.PostList && Array.isArray(props.PostList[props.index_xx].comment_list)) {
 
                     var PostItem = props.PostList[props.index_xx];
 
-                    PostItem.comment_list.push(commentInfo);
+                    var commentInfo_Ref = {
+                        ...commentInfo,
+                        comment_id: res.lci.comment_id ? res.lci.comment_id : undefined,
+                        user_id: res.lci.user_id ? res.lci.user_id : undefined,
+                        user_name: res.lci.user_name ? res.lci.user_name : undefined,
+                        user_avatar: res.lci.user_avatar ? res.lci.user_avatar : undefined,
+                        comment_created_at: res.lci.comment_created_at ? res.lci.comment_created_at : undefined,
+                    }
+
+                    PostItem.comment_list.push(commentInfo_Ref);
             
                     const PostList_Ref = [...props.PostList];
             
@@ -60,7 +68,6 @@ export default function CommentBox(props) {
                         ...commentInfo,
                         comment_content: '',
                     });
-
                 }
             }
         });

@@ -13,6 +13,8 @@ export default function AttachMediaBox(props) {
 
     const [MediaContentURL, setMediaContentURL] = useState(false);
 
+    const [MediaType, setMediaType] = useState(false);
+
     const [activeFriendTagBox, setActiveFriendTagBox] = useState({
         active_box: false,
     });
@@ -34,6 +36,21 @@ export default function AttachMediaBox(props) {
                 ...props.pctMediaObj,
                 ppt_name: event.target.files,
             });
+
+
+            if(file.type.match('image.*')) {
+
+                setMediaType('image');
+
+                return;
+            }
+        
+            if(file.type.match('video.*')) {
+
+                setMediaType('video');
+
+                return;
+            }
         }
     }
 
@@ -179,11 +196,18 @@ export default function AttachMediaBox(props) {
                                                             activeDragMediaBox ?
                                                                 // Not Empty Media Box
                                                                 <MediaBoxContainer
-                                                                    setActiveDragMediaBox={setActiveDragMediaBox}
-                                                                    MediaContentURL={MediaContentURL}
-                                                                    setMediaContentURL={setMediaContentURL}
-                                                                    pctMediaObj={props.pctMediaObj}
-                                                                    setPctMediaObj={props.setPctMediaObj}
+
+                                                                    setActiveDragMediaBox = { setActiveDragMediaBox ? setActiveDragMediaBox : undefined }
+
+                                                                    MediaContentURL = { MediaContentURL ? MediaContentURL : undefined }
+
+                                                                    setMediaContentURL = { setMediaContentURL ? setMediaContentURL : undefined }
+
+                                                                    pctMediaObj = { props.pctMediaObj ? props.pctMediaObj : undefined }
+
+                                                                    setPctMediaObj = { props.setPctMediaObj ? props.setPctMediaObj : undefined} 
+
+                                                                    MediaType = { MediaType ? MediaType : false }
                                                                 /> :
 
                                                                 // Empty Media Box
