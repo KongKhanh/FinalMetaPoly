@@ -126,7 +126,7 @@ export default function AttachMediaBox(props) {
                                                                             {
                                                                                 props.tagList.map((TLi, index) => {
                                                                                     return (
-                                                                                        <li className="badge badge-outline-dark me-1 p-1">{TLi.user_name}</li>
+                                                                                        <li className="badge badge-outline-dark me-1 p-1"  key={`hasTagFriends_${index}`}>{TLi.user_name}</li>
                                                                                     )
                                                                                 })
                                                                             }

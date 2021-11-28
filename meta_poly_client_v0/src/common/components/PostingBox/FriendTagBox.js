@@ -8,7 +8,36 @@ export default function FriendTagBox(props) {
     //LF:list friend
     const [LF, setLF] = useState([]);
 
-    const [activeFT, setActiveFT] = useState([]);
+    const [activeFT, setActiveFT] = useState((
+        function () {
+            if (props.tagList && Array.isArray(props.tagList) && props.tagList.length > 0) {
+                if (props.tagList.length > 0) {
+                    return props.tagList;
+                }
+                else {
+                    return [];
+                }
+            }
+            else {
+                return [];
+            }
+        }()
+    ));
+
+    // const [activeFTL, setActiveFTL] = useState(
+    //     (
+    //         function () {
+    //             var status = props.tagList.map(
+    //                 (TLi) => {
+    //                     LF.map((Fi, index) => {
+    //                         return TLi.user_id == Fi.user_id;
+    //                     })
+    //                 }
+    //             )
+    //             return status ? true : false;
+    //         }
+    //     )()
+    // );
 
     function stg() {
         props.setTagList(activeFT);
@@ -21,30 +50,13 @@ export default function FriendTagBox(props) {
         )
     }
 
-    // const requestCheckFriend = async () => {
-
-    //     var formData = new FormData();
-
-    //     formData.append('userID', props.UserInforClient.userId);
-
-    //     formData.append('postID', props.PostID);
-
-    //     formData.append('activeFriendTag', activeFT);
-
-    //     const responseResultCF = await axios({
-    //       headers: {
-    //         'Access-Control-Allow-Origin': '*',
-    //       },
-    //       url: `${API_URL.FRIEND_LIST}/${props.UserInforClient.userId}`,
-    //       method: 'POST',
-    //       data: formData,
-    //     });
-
-    //     return responseResultCF.data;
-    //   }
-
     function activeButton(index, Fi) {
         var checkTag = document.getElementById(`checkTag_${index}`);
+
+        // const f = activeFT.find(
+        //     (ATf) => {
+        //         return ATf.user_id === Fi.user_id
+        //     })
 
         if (checkTag.getAttribute('data-toggle') === '0') {
 
@@ -55,15 +67,30 @@ export default function FriendTagBox(props) {
             checkTag.setAttribute('data-toggle', '1');
 
         } else {
-            activeFT.find((ATi, indexx) => {
-                if (ATi.user_id == Fi.user_id) {
-                    activeFT.splice(indexx, 1);
-                }
+            const indexx = undefined;
+            const f = activeFT.find((ATi, indexx) => {
+                // if (ATi.user_id === Fi.user_id) {
+                //     activeFT.splice(indexx, 1);
+                // }
+
+                return ATi.user_id === Fi.user_id;
+
+                console.log(ATi);
+                console.log(Fi);
             })
 
-            checkTag.src = "./assets/icons/flaticon/24px/circle.png";
+            if(f){
 
-            checkTag.setAttribute('data-toggle', '0');
+                activeFT.splice(indexx, 1);
+
+                checkTag.src = "./assets/icons/flaticon/24px/circle.png";
+
+                checkTag.setAttribute('data-toggle', '0');
+
+            }
+
+            // console.log(activeFT);
+            // console.log(Fi);
         }
 
     }
@@ -146,6 +173,15 @@ export default function FriendTagBox(props) {
 
                                                         {
                                                             LF.map((Fi, index) => {
+
+                                                                let Fis = undefined;
+
+                                                                Fis = props.tagList.find((TLi) => {
+
+                                                                    return TLi.user_id === Fi.user_id;
+
+                                                                })
+
                                                                 return (
                                                                     <div className="Friend-items p-2" key={`FTi_${index}`}>
                                                                         <div className="Avatar-Area-Custom me-2 d-inline">
@@ -153,7 +189,7 @@ export default function FriendTagBox(props) {
                                                                         </div>
                                                                         <div className="Info-Relative-Area d-inline">{Fi.user_name}</div>
                                                                         <div className="Friend-tag-select btn border-0 d-inline float-end" onClick={() => activeButton(index, Fi)} >
-                                                                            <img src="./assets/icons/flaticon/24px/circle.png" data-toggle='0' id={`checkTag_${index}`} alt="MetaPoly_Icon" width="24" className="btn_icon"></img>
+                                                                            <img src={`./assets/icons/flaticon/24px/${Fis ? 'accept.png' : 'circle.png'}`} data-toggle={`${Fis ? '1' : '0'}`} id={`checkTag_${index}`} alt="MetaPoly_Icon" width="24" className="btn_icon"></img>
                                                                         </div>
                                                                     </div>
                                                                 )

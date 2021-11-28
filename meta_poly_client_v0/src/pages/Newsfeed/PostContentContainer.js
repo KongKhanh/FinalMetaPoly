@@ -154,7 +154,7 @@ export default function PostContentContainer(props) {
                                         <div className="row">
 
                                             <div className="col-sm-12 d-flex align-items-center justify-content-center">
-                                                <img src={ PostItem.media_url ? `${BASE_API_URL + PostItem.media_url}` : `${PATH_MEDIA_CDN.IMAGES_STORE_PATH}/no_default_thumbnail_1.png` } alt="post_img" className="rounded mb-3 mb-sm-0 img-fluid" />
+                                                <img src={ PostItem.media_url ? `${BASE_API_URL + PostItem.media_url}` : `${PATH_MEDIA_CDN.IMAGES_STORE_PATH}/no_default_thumbnail_1.png` } alt="post_img"  className="rounded mb-3 mb-sm-0 img-fluid" />
                                             </div>
 
                                         </div>
