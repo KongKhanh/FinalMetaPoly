@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { API_URL } from '../../settings/Api';
 
-function SuggestFriend(props){
+import axios from 'axios';
+
+import { API_URL, PATH_MEDIA_CDN } from '../../settings/Api';
+
+function RightSide(props){
      // @author KongKhanh
     const [UserList, setUserList] = useState([]);
 
@@ -46,37 +48,53 @@ function SuggestFriend(props){
 
      function showUserRecommend(){
 
-         return UserList.map((item, index)=> {
+         return UserList.map((URecI, index)=> {
              return(
-                 <div key={`user_recommend_${index}`}>
+                 <div key={`user_recommend_${index}`} className="mb-2">
                      <div className="inbox-widget">
-                      <div className="inbox-item">
-                        <div className="inbox-item-img"><img src="assets/images/users/avatar-2.jpg" className="rounded-circle" alt="" /></div>
-                        <p className="inbox-item-author">
-                          {item && item.user_name ? item.user_name : ''}
-                        </p>
-                        <p className="inbox-item-text"></p>
-                        <p className="inbox-item-date">
+                        <div className="inbox-URecI d-flex align-items-center justify-content-between">
 
-                          <button 
-                              type="button"
-                              className="btn btn-sm  border-0 px-1 py-0" 
-                              onClick={()=>onClickAddFriend(item && item.user_id ? item.user_id : undefined)} 
-                          > 
-                              <img src="./assets/icons/flaticon/24px/add-friend.png" width="30" alt=""/>
-                          </button>
+                          <div className="w-75 d-flex align-items-center">
+                              <div className="inbox-URecI-img me-2">
+                                  <img 
+                                    src={
+                                        `${URecI && URecI.user_avatar && URecI.user_avatar !== '' ? 
+                                            PATH_MEDIA_CDN.USER_AVATAR_STORE_PATH + '/' + URecI.user_avatar : 
+                                            './assets/icons/flaticon/128px/user_avatar_default_v0.png'
+                                        }`
+                                    } 
+                                    height="32px"
+                                    width="32px"
+                                    className="rounded-circle" 
+                                    alt="MTP_Avatar" 
+                                  />
+                              </div>
 
-                          <button 
-                              type="button"
-                              className="btn btn-sm  border-0 px-1 py-0" 
-                          > 
-                              <img src="./assets/icons/flaticon/24px/follow.png" alt=""/>
-                          </button>
+                              <div>
+                                  <p className="inbox-URecI-author mb-0 fw-bolder">
+                                    {URecI && URecI.user_name ? URecI.user_name : ''}
+                                  </p>
+                              </div>
+                          </div>
+                        
+                          <div className="w-25 d-flex justify-content-end">
+                            <button 
+                                type="button"
+                                className="btn btn-sm  border-0 px-1 py-0" 
+                                onClick={()=>onClickAddFriend(URecI && URecI.user_id ? URecI.user_id : undefined)} 
+                            > 
+                                <img src="./assets/icons/flaticon/24px/add-friend.png" width="30" alt=""/>
+                            </button>
 
-                          
+                            <button 
+                                type="button"
+                                className="btn btn-sm  border-0 px-1 py-0" 
+                            > 
+                                <img src="./assets/icons/flaticon/24px/follow.png" alt=""/>
+                            </button>
+                          </div>
 
-                        </p>
-                      </div>
+                        </div>
                     </div>
                  </div>
              )
@@ -112,24 +130,24 @@ function SuggestFriend(props){
      }, [props]);
 
     return(
-        <div className="col-xxl-3 col-lg-6 order-lg-1 order-xxl-2">
+        <div className="col-xxl-3 col-lg-6 order-lg-1 order-xxl-2 position-fixed top-0 end-0 pt-5 h-100  NewsFedd-RightSide-Container">
           <div className="card">
-            <div className="card-body pb-0">
+            <div className="p-3">
               <div className="dropdown float-end">
                 <a href="/#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
                   <i className="mdi mdi-dots-horizontal" />
                 </a>
-                <div className="dropdown-menu dropdown-menu-end">
-                  <a href="#/" className="dropdown-item">View All</a>
+                <div className="dropdown-menu dropdown-menu-end p-2">
+                  <a href="#/" className="dropdown-URecI">Xem thêm</a>
                 </div>
               </div>
-              <h4 className="header-title mb-3">Đề xuất kết bạn</h4>
+              <h5 className="mb-3 fs-6 text-uppercase">Đề xuất kết bạn</h5>
 
               { UserList && Array.isArray(UserList) ? showUserRecommend() : '' }   
               
-              <div className="mt-2 mb-3 text-end">
+              <div className="my-1 text-end">
                 <button className="text-end border-0 bg-white">
-                  <div className="d-flex align-items-center">
+                  <div className="d-flex align-URecIs-center">
                     <span className="me-1 text-primary" style={{fontSize: '12px'}}>Xem thêm</span>
                     <div>
                         <img src="./assets/icons/flaticon/16px/arrow_right.png" alt="MPI"/>
@@ -142,4 +160,4 @@ function SuggestFriend(props){
         </div>
     )
 }
-export default SuggestFriend;
+export default RightSide;

@@ -68,5 +68,46 @@
     transform: rotate(360deg);
   }
 }
+.NewsFedd-LeftSide-Container {
+  overflow-y: scroll;
+  /* width */
+  /* Handle */
+  /* Handle on hover */
+}
+.NewsFedd-LeftSide-Container::-webkit-scrollbar {
+  width: 6px;
+}
+.NewsFedd-LeftSide-Container::-webkit-scrollbar-thumb {
+  background: #BCC0C4;
+  border-radius: 10px;
+  display: none;
+}
+.NewsFedd-LeftSide-Container::-webkit-scrollbar-thumb:hover {
+  background: #898b8c;
+}
+.NewsFedd-LeftSide-Container:hover::-webkit-scrollbar-thumb {
+  display: block;
+}
+
+.NewsFedd-RightSide-Container {
+  overflow-y: scroll;
+  /* width */
+  /* Handle */
+  /* Handle on hover */
+}
+.NewsFedd-RightSide-Container::-webkit-scrollbar {
+  width: 6px;
+}
+.NewsFedd-RightSide-Container::-webkit-scrollbar-thumb {
+  background: #BCC0C4;
+  border-radius: 10px;
+  display: none;
+}
+.NewsFedd-RightSide-Container::-webkit-scrollbar-thumb:hover {
+  background: #898b8c;
+}
+.NewsFedd-RightSide-Container:hover::-webkit-scrollbar-thumb {
+  display: block;
+}
 
 /*# sourceMappingURL=custom.css.map */

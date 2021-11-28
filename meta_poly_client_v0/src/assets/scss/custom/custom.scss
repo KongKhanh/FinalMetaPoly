@@ -75,4 +75,52 @@
     }
 }
 // -------------------------------------Spinner Loader-------------------------------------
-  
+
+
+// -------------------------------------------NEWSFEDD-------------------------------
+.NewsFedd-LeftSide-Container {
+    overflow-y: scroll;
+    /* width */
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: #BCC0C4; 
+        border-radius: 10px;
+        display: none;
+    }
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: #898b8c; 
+    }
+    &:hover {
+        &::-webkit-scrollbar-thumb {
+            display: block;
+        }
+    }
+}
+
+.NewsFedd-RightSide-Container {
+    overflow-y: scroll;
+    /* width */
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: #BCC0C4; 
+        border-radius: 10px;
+        display: none;
+    }
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: #898b8c; 
+    }
+    &:hover {
+        &::-webkit-scrollbar-thumb {
+            display: block;
+        }
+    }
+}
+// -------------------------------------------NEWSFEDD-------------------------------

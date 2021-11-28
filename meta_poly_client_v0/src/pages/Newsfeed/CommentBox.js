@@ -81,7 +81,14 @@ export default function CommentBox(props) {
             <input 
                 type="text" 
                 className="form-control border-end-0 py-1 form-control-sm" 
-                placeholder="Viết bình luận..." 
+                placeholder={
+                    `${props.PostItem.comment_list && Array.isArray(props.PostItem.comment_list) ? 
+                            props.PostItem.comment_list.length < 1 ? 
+                            'Hãy là người đầu tiên bình luận...' :
+                            'Viết bình luận...' :
+                            'Error System...'
+                    }`
+                } 
                 value={commentInfo.comment_content}
                 name="comment_content"
                 onChange={(event) => handleOnChangeCommentContextField(event)}

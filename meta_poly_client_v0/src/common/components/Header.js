@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 import axios from 'axios';
 
-import { API_URL } from '../../settings/Api';
+import { API_URL, PATH_MEDIA_CDN } from '../../settings/Api';
 
 import { deleteCookie } from '../../libs_3rd/Cookie/handleCookie';
 
@@ -210,7 +210,16 @@ function Header(props) {
                                 <li className="dropdown notification-list">
                                     <a className="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="/#" role="button" aria-haspopup="false" aria-expanded="false">
                                         <span className="account-user-avatar">
-                                            <img src="assets/images/users/avatar-1.jpg" alt="metapoly" className="rounded-circle" />
+                                            <img 
+                                                src={
+                                                    `${props.UserInforClient && props.UserInforClient.user_avatar && props.UserInforClient.user_avatar !== '' ? 
+                                                        PATH_MEDIA_CDN.USER_AVATAR_STORE_PATH + '/' + props.UserInforClient.user_avatar : 
+                                                        './assets/icons/flaticon/128px/user_avatar_default_v0.png'
+                                                    }`
+                                                } 
+                                                alt="metapoly" 
+                                                className="rounded-circle" 
+                                            />
                                         </span>
                                         <span>
                                             <span className="account-user-name">
