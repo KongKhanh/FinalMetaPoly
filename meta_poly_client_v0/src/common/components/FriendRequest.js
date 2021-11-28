@@ -21,6 +21,7 @@ function FriendRequest(props){
     }
 
     function onClickConfirm(x){
+        
         RequestConfirm(x).then((res)=>{
             console.log(res);
         });

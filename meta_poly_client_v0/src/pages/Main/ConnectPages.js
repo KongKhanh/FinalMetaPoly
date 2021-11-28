@@ -12,8 +12,9 @@ function ConnectPages(props) {
 
                         {/* Header Page Here, For Fixed Header */}
                         <Header 
-                            setCurrentPage = {props.setCurrentPage ? props.setCurrentPage : undefined}
-                            UserInforClient = {props.UserInforClient ? props.UserInforClient : undefined}
+                            setCurrentPage = { props.setCurrentPage && typeof props.setCurrentPage === 'function' && props.setCurrentPage instanceof Function ? props.setCurrentPage : undefined }
+                            UserInforClient = { props.UserInforClient && typeof props.UserInforClient === 'object' ? props.UserInforClient : undefined }
+                            setUserInforClient = { props.setUserInforClient && typeof props.setUserInforClient === 'function' && props.setUserInforClient instanceof Function ? props.setUserInforClient : undefined }
                         />
 
                         {/*  Main Page Here, For Scroll Page */}
@@ -27,13 +28,13 @@ function ConnectPages(props) {
 
                                             // Du lieu tra ve cho view
                                             {
-                                                UserInforClient: props.UserInforClient ? props.UserInforClient : undefined,
+                                                UserInforClient: props.UserInforClient && typeof props.UserInforClient === 'object' ? props.UserInforClient : undefined,
                                             },
                                             // Props field 
                                             {
-                                                setCurrentPage: props.setCurrentPage ? props.setCurrentPage : undefined,
-                                                UserInforClient: props.UserInforClient ? props.UserInforClient : undefined,
-                                                setUserInforClient: props.setUserInforClient ? props.setUserInforClient : undefined,
+                                                setCurrentPage: props.setCurrentPage && typeof props.setCurrentPage === 'function' && props.setCurrentPage instanceof Function ? props.setCurrentPage : undefined,
+                                                UserInforClient: props.UserInforClient && typeof props.UserInforClient === 'object' ? props.UserInforClient : undefined,
+                                                setUserInforClient: props.setUserInforClient && typeof props.setUserInforClient === 'function' && props.setUserInforClient instanceof Function ? props.setUserInforClient : undefined,
                                             }
                                         )
                                     }

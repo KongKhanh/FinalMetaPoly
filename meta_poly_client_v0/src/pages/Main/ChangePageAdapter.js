@@ -12,29 +12,29 @@ export function ChangePageAdapter(id_page, dataComp, props) {
         // This case for SignUp Page
         case '6VRiCktUwxaLAud':
             return <SignUp 
-                setCurrentPage={props.setCurrentPage}
-                UserInforClient={props.UserInforClient}
-                setUserInforClient={props.setUserInforClient}
+                setCurrentPage={ props.setCurrentPage && typeof props.setCurrentPage === 'function' && props.setCurrentPage instanceof Function ? props.setCurrentPage : undefined }
+                UserInforClient={ props && props.UserInforClient && typeof props.UserInforClient === 'object' ? props.UserInforClient : undefined }
+                setUserInforClient={ props &&  props.setUserInforClient && typeof props.setUserInforClient === 'function' && props.setUserInforClient instanceof Function ? props.setUserInforClient : undefined }
             />
 
         // This case for SignIn Page
         case 'gh7Gv46kZYuhrAP':
             return <SignIn 
-                setCurrentPage={props.setCurrentPage}
-                UserInforClient={props.UserInforClient}
+                setCurrentPage={ props.setCurrentPage && typeof props.setCurrentPage === 'function' && props.setCurrentPage instanceof Function ? props.setCurrentPage : undefined }
+                UserInforClient={ props && props.UserInforClient && typeof props.UserInforClient === 'object' ? props.UserInforClient : undefined }
             />
 
         // This case for Forgot Password
         case 'jdvwW87LnMUJB69':
             return <ForgotPassword 
-                setCurrentPage={props.setCurrentPage}
-                UserInforClient={props.UserInforClient}
+                setCurrentPage={ props.setCurrentPage && typeof props.setCurrentPage === 'function' && props.setCurrentPage instanceof Function ? props.setCurrentPage : undefined }
+                UserInforClient={ props && props.UserInforClient && typeof props.UserInforClient === 'object' ? props.UserInforClient : undefined }
             />
 
         // This case for Profile Page
         case 'H8HBZbNuLNUkzTf':
             return <Profile 
-                UserInforClient={dataComp.UserInforClient}
+                UserInforClient={dataComp && dataComp.UserInforClient && typeof dataComp.UserInforClient === 'object' ? dataComp.UserInforClient : undefined}
             />
 
          // This case for Profile Any User Page
@@ -51,17 +51,17 @@ export function ChangePageAdapter(id_page, dataComp, props) {
         // This case for Newsfeed Page
         case 'uGqXQpyJeFUoBqm':
             return <Newsfeed 
-                UserInforClient={props.UserInforClient}
-                setCurrentPage={props.setCurrentPage}
+                UserInforClient={ props && props.UserInforClient && typeof props.UserInforClient === 'object' ? props.UserInforClient : undefined }
+                setCurrentPage={ props.setCurrentPage && typeof props.setCurrentPage === 'function' && props.setCurrentPage instanceof Function ? props.setCurrentPage : undefined }
             />
 
         // This case for Group Page
         case 'qT54LN6UKjYRd5x':
             return <Group 
-                UserInforClient={props.UserInforClient}
+                UserInforClient={ props && props.UserInforClient && typeof props.UserInforClient === 'object' ? props.UserInforClient : undefined }
             />
 
-        default: return <Newsfeed />
+        default: return <></>
 
     }
     

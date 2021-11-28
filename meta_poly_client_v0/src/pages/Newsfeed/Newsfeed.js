@@ -33,10 +33,15 @@ function Newsfeed(props) {
                         <img className="d-flex align-self-start rounded me-2" src="assets/images/users/avatar-5.jpg" alt="Soeng Souy" height={48} />
                         <div className="w-100 overflow-hidden">
                           <h5 className="mt-1 mb-0">
-                          {/* {PostItem.user_name} */}
+                            {
+                                props && props.UserInforClient && props.UserInforClient.user_name && typeof props.UserInforClient.user_name === 'string' ? props.UserInforClient.user_name : ''
+                            }
                           </h5>
-                          <h5 className="mt-1 mb-0">Võ Văn Hậu</h5>
-                          <p className="mb-1 mt-1 text-muted">TP.Hồ Chí Minh, Việt Nam</p>
+                          <p className="mb-1 mt-1 text-muted">
+                            {
+                              props && props.UserInforClient && props.UserInforClient.user_address && typeof props.UserInforClient.user_address === 'string' ? props.UserInforClient.user_address : 'TP.Hồ Chí Minh, Việt Nam'
+                            }
+                          </p>
                         </div>
                       </div>
                       <div className="list-group list-group-flush mt-3">
@@ -114,20 +119,15 @@ function Newsfeed(props) {
 
                 </div>
 
-                {/* Center Side */}
                 <div className="col-xxl-6 col-lg-12 order-lg-2 order-xxl-1">
-
                     <PostContentContainer 
                         setCurrentPage={props.setCurrentPage}
                         UserInforClient = {props.UserInforClient}
                     />
-
                 </div>
-
-              <SuggestFriend 
-                  UserInforClient = {props.UserInforClient}
-              />
-
+                <SuggestFriend 
+                    UserInforClient = {props && props.UserInforClient ? props.UserInforClient : undefined}
+                />
             </div>
           </div>
 

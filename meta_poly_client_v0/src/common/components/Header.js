@@ -1,33 +1,69 @@
 import '../../assets/css/components/header/header.css';
 
-import FriendRequest from './FriendRequest'
-import FindNewFriends from './FindNewFriends'
 import { useState, useEffect } from 'react';
+
 import axios from 'axios';
+
 import { API_URL } from '../../settings/Api';
+
+import { deleteCookie } from '../../libs_3rd/Cookie/handleCookie';
+
+// Components
+import FriendRequest from './FriendRequest';
+import FindNewFriends from './FindNewFriends';
 
 function Header(props) {
 
-        const [ComfUserInfor, setComfUserInfor] = useState([]);
+    const [ComfUserInfor, setComfUserInfor] = useState([]);
 
-        useEffect(function(){
-            const requestData = async () => {
-                const responseResult = await axios({
-                    headers: { 
-                        'Access-Control-Allow-Origin' : '*',
-                    },
-                    url: `${API_URL.GET_FRIEND_REQUEST}/${props.UserInforClient.userId}`,
-                    method: 'GET',
-                });
-                return responseResult.data;
-            };
+    function handle_Click_Logout() {
+
+        try {
+
+            if(
+                deleteCookie && typeof deleteCookie === 'function' && 
+                props.setCurrentPage && typeof props.setCurrentPage === 'function' && props.setCurrentPage instanceof Function
+            ) {
+                deleteCookie('user_id');
+
+                deleteCookie('access_token');
+
+                props.setCurrentPage('gh7Gv46kZYuhrAP');
+            }
+        }
+        catch (err) {
+            alert("Error System...!");
+        }
+    }
+
+    useEffect(function(){
+
+        const requestData = async () => {
+
+            const responseResult = await axios({
+                headers: { 
+                    'Access-Control-Allow-Origin' : '*',
+                },
+                url: `${API_URL.GET_FRIEND_REQUEST}/${props.UserInforClient.userId}`,
+                method: 'GET',
+            });
+
+            return responseResult.data;
+        };
+
+        if(props && props.UserInforClient && props.UserInforClient.userId) {
+
             requestData()
-            .then(
-                function(res){
+            .then(function(res){
+
+                if(res && Array.isArray(res)) {
+
                     setComfUserInfor(res);
                 }
-            )
-        }, [props.UserInforClient.userId]);
+            });
+        }
+
+    }, [props]);
 
     return (
         <div className="Header-Container">
@@ -44,7 +80,7 @@ function Header(props) {
                                         <span className="noti-icon-badge" />
                                     </a>
                                     <div className="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg">
-                                        {/* item*/}
+    
                                         <div className="dropdown-item noti-title">
                                             <h5 className="m-0">
                                                 <span className="float-end">
@@ -55,7 +91,7 @@ function Header(props) {
                                             </h5>
                                         </div>
                                         <div style={{ maxHeight: '500px' }} data-simplebar>
-                                            {/* item*/}
+
                                             <a href="/#" className="dropdown-item notify-item">
                                                 <div className="notify-icon bg-primary">
                                                     <i className="mdi mdi-comment-account-outline" />
@@ -64,7 +100,7 @@ function Header(props) {
                                                     <small className="text-muted">1 min ago</small>
                                                 </p>
                                             </a>
-                                            {/* item*/}
+  
                                             <a href="/#" className="dropdown-item notify-item">
                                                 <div className="notify-icon bg-info">
                                                     <i className="mdi mdi-account-plus" />
@@ -73,7 +109,7 @@ function Header(props) {
                                                     <small className="text-muted">5 hours ago</small>
                                                 </p>
                                             </a>
-                                            {/* item*/}
+
                                             <a href="/#" className="dropdown-item notify-item">
                                                 <div className="notify-icon">
                                                     <img src="assets/images/users/avatar-2.jpg" className="img-fluid rounded-circle" alt="" /> </div>
@@ -82,7 +118,7 @@ function Header(props) {
                                                     <small>Hi, How are you? What about our next meeting</small>
                                                 </p>
                                             </a>
-                                            {/* item*/}
+
                                             <a href="/#" className="dropdown-item notify-item">
                                                 <div className="notify-icon bg-primary">
                                                     <i className="mdi mdi-comment-account-outline" />
@@ -91,7 +127,7 @@ function Header(props) {
                                                     <small className="text-muted">4 days ago</small>
                                                 </p>
                                             </a>
-                                            {/* item*/}
+
                                             <a href="/#" className="dropdown-item notify-item">
                                                 <div className="notify-icon">
                                                     <img src="assets/images/users/avatar-4.jpg" className="img-fluid rounded-circle" alt="" /> </div>
@@ -100,7 +136,7 @@ function Header(props) {
                                                     <small>Wow ! this admin looks good and awesome design</small>
                                                 </p>
                                             </a>
-                                            {/* item*/}
+
                                             <a href="/#" className="dropdown-item notify-item">
                                                 <div className="notify-icon bg-info">
                                                     <i className="mdi mdi-heart" />
@@ -111,7 +147,7 @@ function Header(props) {
                                                 </p>
                                             </a>
                                         </div>
-                                        {/* All*/}
+
                                         <a href="/#" className="dropdown-item text-end text-primary notify-item notify-all">
                                             Xem tất cả
                                         </a>
@@ -177,40 +213,47 @@ function Header(props) {
                                             <img src="assets/images/users/avatar-1.jpg" alt="metapoly" className="rounded-circle" />
                                         </span>
                                         <span>
-                                            <span className="account-user-name">Võ Văn Hậu</span>
+                                            <span className="account-user-name">
+                                                {
+                                                    props && props.UserInforClient && props.UserInforClient.user_name && typeof props.UserInforClient.user_name === 'string' ? props.UserInforClient.user_name : ''
+                                                }
+                                            </span>
                                             <span className="account-position">Backend Developer</span>
                                         </span>
                                     </a>
                                     <div className="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
-                                        {/* item*/}
+       
                                         <div className=" dropdown-header noti-title">
                                             <h6 className="text-overflow m-0">Xin chào !</h6>
                                         </div>
-                                        {/* item*/}
-                                        <a href="/#" className="dropdown-item notify-item" onClick={() => props.setCurrentPage('H8HBZbNuLNUkzTf')}>
+ 
+                                        <button className="dropdown-item notify-item" onClick={() => props.setCurrentPage('H8HBZbNuLNUkzTf')}>
                                             <i className="mdi mdi-account-circle me-1" />
                                             <span>Tài khoản của tôi</span>
-                                        </a>
-                                        {/* item*/}
-                                        <a href="/#" className="dropdown-item notify-item">
+                                        </button>
+   
+                                        <button className="dropdown-item notify-item">
                                             <i className="mdi mdi-account-edit me-1" />
                                             <span>Cài đặt</span>
-                                        </a>
-                                        {/* item*/}
-                                        <a href="/#" className="dropdown-item notify-item">
+                                        </button>
+                      
+                                        <button className="dropdown-item notify-item">
                                             <i className="mdi mdi-lifebuoy me-1" />
                                             <span>Hỗ trợ</span>
-                                        </a>
-                                        {/* item*/}
-                                        <a href="/#" className="dropdown-item notify-item">
+                                        </button>
+                      
+                                        <button className="dropdown-item notify-item">
                                             <i className="mdi mdi-lock-outline me-1" />
                                             <span>Bảo mật</span>
-                                        </a>
-                                        {/* item*/}
-                                        <a href="/#" className="dropdown-item notify-item">
+                                        </button>
+                       
+                                        <button className="dropdown-item notify-item"
+                                            onClick={handle_Click_Logout}
+                                        >
                                             <i className="mdi mdi-logout me-1" />
                                             <span>Đăng xuất</span>
-                                        </a>
+                                        </button>
+
                                     </div>
                                 </li>
                             </ul>
@@ -270,7 +313,6 @@ function Header(props) {
                                                                         )
                                                                     }) : ''
                                                                 }
-                                                                {/* All*/}
                                                                 <a href="/#" className="dropdown-item text-center text-primary notify-item notify-all">
                                                                     Xem tất cả
                                                                 </a>

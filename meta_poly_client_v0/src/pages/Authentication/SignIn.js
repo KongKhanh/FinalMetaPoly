@@ -71,7 +71,6 @@ function SignIn(props) {
             left: 0,
             top: 0,
             width: '100%',
-            height: '100%',
             backgroundColor: 'rgb(0, 0, 0, 0.5)',
             zIndex: 1002,
         },

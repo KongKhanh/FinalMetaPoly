@@ -24,18 +24,24 @@ function SuggestFriend(props){
                 method: 'POST',
                 data: DataRequestFriend,
             });
-            return responseResult.data;
 
+            return responseResult.data;
         }
 
-        RequestAddFriend().then((res)=>{
-          if (res.status_task === 1){
-            alert("Đã thêm bạn")
-          }
-          else{
-            alert("Thêm bạn thất bại")
-          }
+        if(FriendId && props && props.UserInforClient && props.UserInforClient.userId) {
+
+          RequestAddFriend().then((res)=>{
+
+            if (res && res.status_task === 1){
+
+                alert("Đã thêm bạn")
+            }
+            else{
+              
+                alert("Thêm bạn thất bại")
+            }
         });
+        }
     }
 
      function showUserRecommend(){
@@ -47,7 +53,7 @@ function SuggestFriend(props){
                       <div className="inbox-item">
                         <div className="inbox-item-img"><img src="assets/images/users/avatar-2.jpg" className="rounded-circle" alt="" /></div>
                         <p className="inbox-item-author">
-                        {item.user_name}
+                          {item && item.user_name ? item.user_name : ''}
                         </p>
                         <p className="inbox-item-text"></p>
                         <p className="inbox-item-date">
@@ -55,7 +61,7 @@ function SuggestFriend(props){
                           <button 
                               type="button"
                               className="btn btn-sm  border-0 px-1 py-0" 
-                              onClick={()=>onClickAddFriend(item.user_id)} 
+                              onClick={()=>onClickAddFriend(item && item.user_id ? item.user_id : undefined)} 
                           > 
                               <img src="./assets/icons/flaticon/24px/add-friend.png" width="30" alt=""/>
                           </button>
@@ -78,7 +84,8 @@ function SuggestFriend(props){
      }
  
      useEffect(function(){
-         const requestData = async () => {
+
+         const reqGetRecommendFriends = async () => {
              const responseResult = await axios({
                  headers: { 
                      'Access-Control-Allow-Origin' : '*',
@@ -88,14 +95,21 @@ function SuggestFriend(props){
              });
              return responseResult.data;
          };
-         requestData()
-         .then(
-             function(res) {
-                    setUserList(res);
-            }
-        )
+
+         if(props && props.UserInforClient && props.UserInforClient.userId) {
+
+            reqGetRecommendFriends()
+            .then(
+                function(res) {
+
+                    if(res && Array.isArray(res)) {
+                        setUserList(res);
+                    }
+                }
+            );
+         }
+
      }, [props]);
-     //end
 
     return(
         <div className="col-xxl-3 col-lg-6 order-lg-1 order-xxl-2">
@@ -111,7 +125,7 @@ function SuggestFriend(props){
               </div>
               <h4 className="header-title mb-3">Đề xuất kết bạn</h4>
 
-              {UserList && Array.isArray(UserList) ? showUserRecommend() : ''}   
+              { UserList && Array.isArray(UserList) ? showUserRecommend() : '' }   
               
               <div className="mt-2 mb-3 text-end">
                 <button className="text-end border-0 bg-white">

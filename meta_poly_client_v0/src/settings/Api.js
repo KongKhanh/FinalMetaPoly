@@ -13,7 +13,7 @@ export const API_URL = {
 
     GET_ADD_FRIEND: BASE_API_URL + "/friend",
 
-    GET_FRIEND_REQUEST: BASE_API_URL + "/comfirm",
+    GET_FRIEND_REQUEST: BASE_API_URL + "/comfirm/friends/multif",
 
     COMFIRM_REQUEST_FRIEND: BASE_API_URL + '/confirm/friend/is-accept',
 

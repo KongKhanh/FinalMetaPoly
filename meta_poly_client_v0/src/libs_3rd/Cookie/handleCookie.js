@@ -21,13 +21,41 @@ export function getCookie(cname) {
   }
   
 export function checkCookie() {
-    let user = getCookie("username");
-    if (user !== "") {
-      alert("Welcome again " + user);
-    } else {
-      user = prompt("Please enter your name:", "");
-      if (user !== "" && user !== null) {
-        setCookie("username", user, 365);
+
+      let user = getCookie("username");
+
+      if (user !== "") {
+
+          alert("Welcome again " + user);
+      } 
+      else {
+
+          user = prompt("Please enter your name:", "");
+
+          if (user !== "" && user !== null) {
+            
+            setCookie("username", user, 365);
+          }
       }
+}
+
+export function deleteAllCookies() {
+
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+
+        var cookie = cookies[i];
+
+        var eqPos = cookie.indexOf("=");
+
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
     }
-  }
+}
+
+export function deleteCookie(name) {
+  
+  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}

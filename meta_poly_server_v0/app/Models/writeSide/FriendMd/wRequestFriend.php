@@ -1,22 +1,21 @@
 <?php 
-    class wRequestFriend{
+
+    require_once('./app/Models/DataRunner/DB.php');
+
+    class wRequestFriend extends DB {
         
-        private $tableName = 'friends_box';
+        protected $tableName = 'friends_box';
 
         public function wUpdateFriend($confirmRequestfriend,$fbid){
-            
-            require_once('./app/Models/DataRunner/DB.php');
-
-            return DB::updateData($confirmRequestfriend, 'friends_box', DB::whereData(
+        
+            return self::updateData($confirmRequestfriend, $this->tableName, DB::whereData(
                 'fb_id', '=', $fbid
             ));
         }
 
         public function wDeleteFriend($fbid){
-            
-            require_once('./app/Models/DataRunner/DB.php');
 
-            return DB::deleteData('friends_box', DB::whereData(
+            return self::deleteData($this->tableNam, DB::whereData(
                 'fb_id', '=', $fbid
             ));
         }

@@ -33,6 +33,7 @@ export default function MediaBoxContainer(props) {
     useEffect(() => {
 
         if(props.MediaContentURL) {
+            
             setMediaContentPop(props.MediaContentURL);
         }
 

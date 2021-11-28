@@ -21,7 +21,7 @@
 
     $router->get('/newsfeed','NewsfeedController@__getPostList');
 
-    $router->get('/comfirm/{idUser}','NotificationController@__GetComfirmUserID');
+    $router->get('/comfirm/friends/multif/{idUser}','NotificationController@__GetComfirmUserID');
     
     $router->get('/friendlist/{idUser}','FriendController@__ListFriend');
 
@@ -69,6 +69,8 @@
     $router->post('/posting/single/create-new','PostingController@__handleCreateNewPost');
 
     $router->post('/posting/single/create-comment','PostingController@__handleCreateNewComment');
+
+    $router->post('/posting/friendTag','PostingController@__handleCreateFriendTagList');
 
     // ---------------------For Group
     $router->post('/group/single/create-new','GroupCtrl@__handleCreateNewGr');

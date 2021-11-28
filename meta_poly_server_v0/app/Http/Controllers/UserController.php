@@ -286,6 +286,10 @@ class UserController {
         if($yr && is_array($yr)) {
             
             echo json_encode($yr);
+        } 
+        else {
+
+            echo json_encode([]);
         }
     }
 }

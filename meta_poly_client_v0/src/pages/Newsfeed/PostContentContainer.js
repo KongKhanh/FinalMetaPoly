@@ -76,7 +76,7 @@ export default function PostContentContainer(props) {
             source.cancel('Operation canceled by the user.');
         }
 
-    }, []);
+    }, [props.UserInforClient]);
 
     return (
         <div className="post-content-container">

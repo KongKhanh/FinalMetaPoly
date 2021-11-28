@@ -2,7 +2,10 @@
 
     class FriendController{
 
+        protected $RequestFriendObj;
+
         function __construct(){
+
             require('./app/Models/writeSide/FriendMd/wRequestFriend.php');
     
             $this->RequestFriendObj = new wRequestFriend();
@@ -38,7 +41,7 @@
     
         }
 
-        //MaiMai
+        //Author: @MaiMai
         public function __ListFriend($userID){
             try {
                 require_once('./app/Models/readSide/FriendMd/FriendMd.php');
@@ -69,7 +72,7 @@
             }
         } 
 
-        //@Author: @KongKhanh
+        //Author: @KongKhanh
         public function __ConfirmRequestFriend(){
             try {
 
@@ -82,7 +85,7 @@
 
                 if($confirmRequestfriend['fb_active'] == 1) { 
 
-                    $this->RequestFriendObj::wUpdateFriend($confirmRequestfriend,$confirmRequestfriend['fb_id']);
+                    $this->RequestFriendObj->wUpdateFriend($confirmRequestfriend,$confirmRequestfriend['fb_id']);
 
                     echo json_encode([
                         'status_task' => 1,
@@ -95,7 +98,7 @@
                 } 
                 if($confirmRequestfriend['fb_active'] == 0) {
 
-                    $this->RequestFriendObj::wDeleteFriend($confirmRequestfriend['fb_id']);
+                    $this->RequestFriendObj->wDeleteFriend($confirmRequestfriend['fb_id']);
 
                     echo json_encode([
                         'status_task' => 1,

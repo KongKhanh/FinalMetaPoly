@@ -24,12 +24,13 @@ export default function PostingBox(props) {
         ppt_name: false,
     });
 
+    const [tagList, setTagList] = useState([]);
 
     const [activeAttachMediaBox, setActiveAttachMediaBox] = useState({
         is_active: false,
     });
 
-    const __requestCreateNewPost = async () => {
+    const __requestCreateNewPost = async () => {;
 
         const dataRequest = new FormData();
 
@@ -42,6 +43,8 @@ export default function PostingBox(props) {
         dataRequest.append('ppt_name', pctMediaObj.ppt_name[0]);
 
         dataRequest.append('post_fk_user_id', props.UserInforClient.userId);
+
+        dataRequest.append('post_tag_list', JSON.stringify(tagList));
 
         const resultsReq = await axios({
             headers: {
@@ -74,6 +77,10 @@ export default function PostingBox(props) {
 
         __requestCreateNewPost()
             .then((res) => {
+
+                console.log(res)
+
+                return;
 
                 if (res && res.status_task === 1 && res.infoCurPost) {
 
@@ -236,6 +243,10 @@ export default function PostingBox(props) {
                                 handleClickReqPosting = {handleClickReqPosting}
 
                                 UserInforClient ={props.UserInforClient}
+
+                                setTagList = {setTagList}
+
+                                tagList = { tagList && Array.isArray(tagList) ? tagList : undefined } 
                             /> : '' 
                         }
 

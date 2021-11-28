@@ -13,16 +13,24 @@
         }
 
         public function __GetComfirmUserID($idUser){
+
+            if(isset($idUser)) {
+
+                $ComfirmUsersL =  $this->modelNotification -> GetComfirmUserID(base64_decode($idUser));
+
+                if(isset($ComfirmUsersL) && is_array($ComfirmUsersL)) {
+
+                    for($i = 0; $i < count($ComfirmUsersL); $i++){
     
-            $ComfirmUserId =  $this->modelNotification -> GetComfirmUserID(base64_decode($idUser));
-
-            for($i = 0; $i < count($ComfirmUserId); $i++){
-
-            $ComfirmUserId[$i]['user_name'] = base64_decode($ComfirmUserId[$i]['user_name']);
-
+                        if($ComfirmUsersL[$i] &&  $ComfirmUsersL[$i]['user_name']) {
+                            
+                            $ComfirmUsersL[$i]['user_name'] = base64_decode($ComfirmUsersL[$i]['user_name']);
+                        }  
+                    }
+        
+                    echo json_encode($ComfirmUsersL);
+                }
             }
-
-            echo json_encode($ComfirmUserId);
         }
     }
 ?>

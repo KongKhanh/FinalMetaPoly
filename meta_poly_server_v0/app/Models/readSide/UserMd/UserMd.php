@@ -49,7 +49,8 @@ class UserMd{
        
     }
 
-    public function getUserByKey($keyName,$keyValue){
+    public function getUserByKey($keyName, $keyValue){
+
         require('./app/Models/initialConnect/connectDatabase.php');
         
         $sql = "SELECT * FROM users WHERE $keyName = '$keyValue' ";
