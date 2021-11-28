@@ -1,3 +1,5 @@
+import { PATH_MEDIA_CDN } from '../../settings/Api';
+
 export default function ShowComments(props) {
 
     if(props.CommentList && Array.isArray(props.CommentList)) {
@@ -5,7 +7,19 @@ export default function ShowComments(props) {
         return props.CommentList.map((CommentItem, index) => {
             return (
                 <div className="d-flex mb-2" key={`comment_index_${index}`}>
-                    <img className="me-2 rounded" src="assets/images/users/avatar-9.jpg" alt="metapoly" height={32} />
+
+                    <img 
+                        className="me-2 rounded" 
+                        src={
+                            `${CommentItem && CommentItem.user_avatar && CommentItem.user_avatar !== '' ? 
+                                PATH_MEDIA_CDN.USER_AVATAR_STORE_PATH + '/' + CommentItem.user_avatar : 
+                                './assets/icons/flaticon/128px/user_avatar_default_v0.png'
+                            }`
+                        } 
+                        alt="metapoly" 
+                        height={32} 
+                    />
+
                     <div 
                         className="border px-2 py-1" 
                         style={{backgroundColor: '#F0F2F5', borderRadius: '16px',}}
@@ -43,7 +57,7 @@ export default function ShowComments(props) {
     else {
 
         return (
-            <div className="Err"></div>
+            <div className="Error"></div>
         )
     }
     

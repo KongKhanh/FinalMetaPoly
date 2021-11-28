@@ -105,7 +105,18 @@ export default function PostContentContainer(props) {
                                     <div className="card-body pb-1">
                                         <div className="d-flex">
 
-                                        <img className="me-2 rounded" src={`${PATH_MEDIA_CDN.USER_AVATAR_STORE_PATH}/${PostItem.user_avatar}`} alt="metapoly" height={32} />
+                                        <img 
+                                            className="me-2 rounded"  
+                                            src={
+                                                `${PostItem.user_avatar && PostItem.user_avatar !== '' ? 
+                                                    PATH_MEDIA_CDN.USER_AVATAR_STORE_PATH + '/' + PostItem.user_avatar : 
+                                                    './assets/icons/flaticon/128px/user_avatar_default_v0.png'
+                                            }`}
+
+                                            alt="metapoly" 
+
+                                            height={32} 
+                                        />
 
                                             <div className="w-100">
 
@@ -159,10 +170,6 @@ export default function PostContentContainer(props) {
                                                     <img src={ PostItem.media_url ? `${BASE_API_URL + PostItem.media_url}` : `${PATH_MEDIA_CDN.IMAGES_STORE_PATH}/no_default_thumbnail_1.png` } alt="post_img" className="rounded mb-3 mb-sm-0 img-fluid" />
                                                 </div>
 
-                                                <div className="col-sm-12 d-flex align-items-center justify-content-center">
-                                                    <img src={ PostItem.media_url ? `${BASE_API_URL + PostItem.media_url}` : `${PATH_MEDIA_CDN.IMAGES_STORE_PATH}/no_default_thumbnail_1.png` } alt="post_img"  className="rounded mb-3 mb-sm-0 img-fluid" />
-                                                </div>
-
                                             </div>
 
                                         </div>
@@ -201,7 +208,16 @@ export default function PostContentContainer(props) {
 
                                             <div className="d-flex align-items-center mb-2">
                                                 <div className="me-1">
-                                                    <img src="assets/images/users/avatar-1.jpg" height={32} className="align-self-start rounded" alt="UA" />
+                                                    <img 
+                                                        src={
+                                                            `${props.UserInforClient && props.UserInforClient.user_avatar && props.UserInforClient.user_avatar !== '' ? 
+                                                                PATH_MEDIA_CDN.USER_AVATAR_STORE_PATH + '/' + props.UserInforClient.user_avatar : 
+                                                                './assets/icons/flaticon/128px/user_avatar_default_v0.png'
+                                                            }`
+                                                        }  
+                                                        height={32} 
+                                                        className="align-self-start rounded" alt="UA" 
+                                                    />
                                                 </div>
                                                 <CommentBox 
                                                     PostItem = {PostItem ? PostItem : undefined}
@@ -209,6 +225,7 @@ export default function PostContentContainer(props) {
                                                     PostList = {PostList}
                                                     setPostList = {setPostList}
                                                     index_xx = {index_xx}
+                                                    CommentList = {PostItem.comment_list ? PostItem.comment_list : undefined}
                                                 />
                                             </div>
 

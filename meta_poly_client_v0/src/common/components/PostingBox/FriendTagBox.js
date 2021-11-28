@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { useState, useEffect } from "react";
 
-import { API_URL } from "../../../settings/Api";
+import { API_URL, PATH_MEDIA_CDN } from "../../../settings/Api";
 
 export default function FriendTagBox(props) {
     //LF:list friend
@@ -167,7 +167,17 @@ export default function FriendTagBox(props) {
                                                                 return (
                                                                     <div className="Friend-items p-2" key={`FTi_${index}`}>
                                                                         <div className="Avatar-Area-Custom me-2 d-inline">
-                                                                            <img src="./assets/images/users/avatar-9.jpg" className="Avatar-Item" alt="MetaPoly_Avatar" width="30"></img>
+                                                                            <img 
+                                                                                src={
+                                                                                    `${Fi && Fi.user_avatar && Fi.user_avatar !== '' ? 
+                                                                                        PATH_MEDIA_CDN.USER_AVATAR_STORE_PATH + '/' + Fi.user_avatar : 
+                                                                                        './assets/icons/flaticon/128px/user_avatar_default_v0.png'
+                                                                                    }`
+                                                                                } 
+                                                                                className="Avatar-Item" 
+                                                                                alt="MetaPoly_Avatar" 
+                                                                                width="30"
+                                                                            />
                                                                         </div>
                                                                         <div className="Info-Relative-Area d-inline">{Fi.user_name}</div>
                                                                         <div className="Friend-tag-select btn border-0 d-inline float-end" onClick={() => activeButton(index, Fi)} >
@@ -180,13 +190,6 @@ export default function FriendTagBox(props) {
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            {/* <div className="Box-Body-Content-Media mt-2">
-                                                <div className="Box-Body-Content-Media-Inner p-2 border">
-
-
-                                                </div>
-                                            </div> */}
 
                                         </div>
 

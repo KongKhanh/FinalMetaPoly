@@ -65,7 +65,9 @@
                 $i = 0;
         
                  foreach($update_Block as $BlockKey => $BlockValue) {
-                    if(isset($BlockValue)){
+
+                    if(!is_null($BlockValue)){
+                        
                         if(is_string($BlockValue)) {
     
                             $BlockValue = "'$BlockValue'";

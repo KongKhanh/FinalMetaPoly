@@ -115,8 +115,9 @@ function ProfileSettings(props){
         requestInforProfileSetting().then((res)=>{
          
           if (res && res.status_task === 1 && res.Uinu){
-            if(props.setUserInfor && typeof props.setUserInfor === 'function' && props.setUserInfor instanceof Function)
-            {
+
+            if(props.setUserInfor && typeof props.setUserInfor === 'function' && props.setUserInfor instanceof Function) {
+
               props.setUserInfor({
 
                 ...props.UserInfor,
@@ -124,6 +125,8 @@ function ProfileSettings(props){
                 UserName: res.Uinu.user_name && typeof res.Uinu.user_name === 'string' ? res.Uinu.user_name : undefined,
                 
                 UserPhone: res.Uinu.user_phone ? res.Uinu.user_phone : undefined,
+
+                UserEmail: res.Uinu.user_email ? res.Uinu.user_email : undefined,
   
                 UserGender: res.Uinu.user_gender ? res.Uinu.user_gender : undefined,
   
@@ -133,7 +136,7 @@ function ProfileSettings(props){
   
               })
             }
-            alert("Cập nhập thành công")
+            alert("Cập nhập thành công");
           }
           else{
             alert("Cập nhập thất bại")

@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+import { PATH_MEDIA_CDN } from '../../../settings/Api';
+
+// Components
 import MediaBoxContainer from './MediaBoxContainer';
 import BtnDragMedia from './BtnDragMedia';
 import FriendTagBox from "./FriendTagBox";
@@ -81,14 +84,27 @@ export default function AttachMediaBox(props) {
                                                     <div className="Box-Body-Post-Wrapper">
                                                         <div className="Avatar-Area me-1">
                                                             <div className="Avatar-Area-Custom">
-                                                                <img src="./assets/images/users/avatar-9.jpg" className="Avatar-Item" alt="MetaPoly_Avatar"></img>
+                                                                <img 
+                                                                    src={
+                                                                        `${props.UserInforClient && props.UserInforClient.user_avatar && props.UserInforClient.user_avatar !== '' ? 
+                                                                            PATH_MEDIA_CDN.USER_AVATAR_STORE_PATH + '/' + props.UserInforClient.user_avatar : 
+                                                                            './assets/icons/flaticon/128px/user_avatar_default_v0.png'
+                                                                        }`
+                                                                    } 
+                                                                    className="Avatar-Item" 
+                                                                    alt="MetaPoly_Avatar" 
+                                                                />
                                                             </div>
                                                         </div>
                                                         <div className="Info-Relative-Area">
                                                             <div className="Info-Relative-Custom">
                                                                 <div className="Info-Relative-Wrapper">
                                                                     <div className="Relative-User-Name">
-                                                                        <span className="User-Name-Value">Vo Van Hau</span>
+                                                                        <span className="User-Name-Value">
+                                                                            {
+                                                                                props && props.UserInforClient && props.UserInforClient.user_name && typeof props.UserInforClient.user_name === 'string' ? props.UserInforClient.user_name : ''
+                                                                            }
+                                                                        </span>
                                                                     </div>
                                                                     <div className="Relative-Wrapper-Tags Relative-Wrapper-Lock-Net TLContainer">
                                                                         <div className="TLContainer-Wrapper">

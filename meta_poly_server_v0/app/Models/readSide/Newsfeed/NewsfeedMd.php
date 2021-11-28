@@ -57,7 +57,8 @@
 
                 require('./app/Models/initialConnect/connectDatabase.php');
                 
-                $sql = "SELECT comments.comment_id, comments.comment_fk_post_id, comments.comment_content, comments.comment_created_at, users.user_id, users.user_name 
+                $sql = "SELECT comments.comment_id, comments.comment_fk_post_id, comments.comment_content, comments.comment_created_at, 
+                users.user_id, users.user_name, users.user_avatar 
                 FROM comments INNER JOIN users 
                 ON comments.comment_fk_user_id = users.user_id 
                 WHERE comment_fk_post_id = {$id_Post}";

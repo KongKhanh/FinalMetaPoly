@@ -49,12 +49,17 @@ function App() {
 
                 if(resR.data && resR.data.rft && resR.data.status_task === 1) { // Authorization Successfullly
 
-                    if(resR.data.rft.user_name && resR.data.rft.user_phone) {
+                    if(
+                        resR.data.rft.user_name && 
+                        resR.data.rft.user_phone && 
+                        resR.data.rft.user_avatar
+                    ) {
                         
                         setUserInforClient({
                             ...UserInforClient,
                             user_phone: resR.data.rft.user_phone,
                             user_name: resR.data.rft.user_name,
+                            user_avatar: resR.data.rft.user_avatar
                         });
                     }
                 }
