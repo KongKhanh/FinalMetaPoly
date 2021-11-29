@@ -15,82 +15,147 @@ class PostingController {
             
             require_once('./Helpers/php/UploadImage.php');
 
-            $target_info = isset($blockPostingInfo['ppt_name']) ? $blockPostingInfo['ppt_name'] : null;
-
             $path = require_once('./Config/path.php');
 
             if ($path && is_array($path)) {
 
-                $target_info = array_merge($target_info, [
-                    'path_sto' => $path['store_media_images'],
-                ]);
+                require_once('./app/Models/writeSide/PostingMd/PostingMd.php');
 
                 // Module for uploading images to store
                 $Status_Store_Media = UploadImageModule::__upLoad($target_info);
+                $PostingMd_vn = new PostingMd();
 
-                if ($Status_Store_Media) {
+                // After Inserting Into ##posts Table, Run Code Below
+                $LastRecordPosting = $PostingMd_vn->_insertNewSinglePost([
+                    'post_fk_user_id' => base64_decode($blockPostingInfo['post_fk_user_id']),
+                ]);
 
-                    require_once('./app/Models/writeSide/PostingMd/PostingMd.php');
+                if (isset($LastRecordPosting)) {
 
-                    $PostingMd_vn = new PostingMd();
-
-                    // After Inserting Into ##posts Table, Run Code Below
-                    $LastRecordPosting = $PostingMd_vn->_insertNewSinglePost([
-                        'post_fk_user_id' => base64_decode($blockPostingInfo['post_fk_user_id']),
+                    // Insert Content Of Posting
+                    $PostingMd_vn->_insertPostContent([
+                        'pct_content' => $blockPostingInfo['pct_content'],
+                        'pct_fk_post_id' => $LastRecordPosting,
                     ]);
 
-                    if (isset($LastRecordPosting)) {
 
-                        // Insert Content Of Posting
-                        $PostingMd_vn->_insertPostContent([
-                            'pct_content' => $blockPostingInfo['pct_content'],
-                            'pct_fk_post_id' => $LastRecordPosting,
-                        ]);
+                    $target_info = isset($blockPostingInfo['ppt_name']) ? $blockPostingInfo['ppt_name'] : null;
+
+                    $iv = null;
+
+                    if($target_info) {
+
+                        $fg = null;
+
+                        $allowedfileExtensions_i = array("jpg", "gif", "png");
+                        $allowedfileExtensions_v = array("mov", "mp4", "3gp", "ogg");
+
+                        $ext = pathinfo($target_info['name'], PATHINFO_EXTENSION);
+
+                        if(in_array($ext, $allowedfileExtensions_i)) {
+
+                            $fg = 'i';
+                        } 
+
+                        elseif(in_array($ext, $allowedfileExtensions_v)) {
+
+                            $fg = 'v';
+                        }
+            
+                        if(!is_null($fg)) {
+                            
+                            if($fg == 'i') {
+
+                                $target_info = array_merge($target_info, [
+                                    'path_sto' => $path['store_media_images'],
+                                ]); 
+                            } 
+                            elseif ($fg == 'v'){
+
+                                $target_info = array_merge($target_info, [
+                                    'path_sto' => $path['store_media_videos'],
+                                ]); 
+                            }
+
+                            // Module for uploading media types to store
+                            $Status_Store_Media = UploadImageModule::__upLoad($target_info);
+
+                            if($Status_Store_Media && $fg == 'i') {
+
+                                $iv = 'i';
+                            } 
+                            elseif($Status_Store_Media && $fg == 'v') {
+
+                                $iv = 'v';
+                            } 
+                        }
+                    }
+
+                    // Insert Media Of Posting
+                    if(!is_null($iv) && $iv == 'i') {
 
                         // Insert Images Of Posting
-                        $PostingMd_vn->_insertPostMedia([
-                            'ppt_name' => $target_info['name'],
-                            'ppt_fk_post_id' => $LastRecordPosting,
-                        ]);
+                        $PostingMd_vn->_insertPostMedia(
+                            [
+                                'ppt_name' => $target_info['name'],
+                                'ppt_fk_post_id' => $LastRecordPosting,
+                            ], 
+                            $iv
+                        );
+                    } 
+                    elseif($iv && $iv == 'v') {
 
-                        if(isset($blockPostingInfo['post_tag_list']) && is_array($blockPostingInfo['post_tag_list'])) {
+                        // Insert Video Of Posting
+                        $PostingMd_vn->_insertPostMedia(
+                            [
+                                'pvdo_name' => $target_info['name'],
+                                'pvdo_fk_post_id' => $LastRecordPosting,
+                            ], 
+                            $iv
+                        );
+                    }
+                 
+                    // Insert Friends_Tag Of Posting
+                    if(isset($blockPostingInfo['post_tag_list']) && is_array($blockPostingInfo['post_tag_list'])) {
 
-                            for ($pt = 0; $pt < count($blockPostingInfo['post_tag_list']); $pt++) {
+                        for ($pt = 0; $pt < count($blockPostingInfo['post_tag_list']); $pt++) {
 
-                                $PostingMd_vn->_insertFriendTagList([
+                            $PostingMd_vn->_insertFriendTagList([
 
-                                    'pt_user_id' => $blockPostingInfo['post_tag_list'][$pt] && $blockPostingInfo['post_tag_list'][$pt]->user_id ? $blockPostingInfo['post_tag_list'][$pt]->user_id : null,
+                                'pt_user_id' => $blockPostingInfo['post_tag_list'][$pt] && $blockPostingInfo['post_tag_list'][$pt]->user_id ? $blockPostingInfo['post_tag_list'][$pt]->user_id : null,
 
-                                    'pt_fk_post_id' => $LastRecordPosting,    
-                                ]);
-                            }
-                        }
-
-                        // Select Info Of Current Record
-                        require_once('./app/Models/readSide/Newsfeed/NewsfeedMd.php');
-
-                        $infoCurPost = NewsfeedMd::__getPostInfoByUniq($LastRecordPosting);
-
-                        if (isset($infoCurPost)) {
-
-                            $target_info['path_sto'] = ltrim($target_info['path_sto'], '.');
-
-                            $infoCurPost['media_url'] = $target_info['path_sto'] . $target_info['name'];
-                            $infoCurPost['user_name'] = base64_decode($infoCurPost['user_name']);
-
-                            echo json_encode([
-                                'status_task' => 1,
-                                'message_task' => 'successful',
-                                'infoCurPost' => $infoCurPost,
+                                'pt_fk_post_id' => $LastRecordPosting,    
                             ]);
                         }
-                    } else {
+                    }
+
+                    // Select Info Of Current Record
+                    require_once('./app/Models/readSide/Newsfeed/NewsfeedMd.php');
+
+                    $rNewsfeedMd_vn = new NewsfeedMd();
+
+                    $infoCurPost = $rNewsfeedMd_vn->__getPostInfoByUniq($LastRecordPosting);
+
+                    if (isset($infoCurPost)) {
+
+                        $target_info['path_sto'] = ltrim($target_info['path_sto'], '.');
+
+                        $infoCurPost['media_url'] = $target_info['path_sto'] . $target_info['name'];
+                        $infoCurPost['user_name'] = base64_decode($infoCurPost['user_name']);
+
+                        echo json_encode([
+                            'status_task' => 1,
+                            'message_task' => 'successful',
+                            'infoCurPost' => $infoCurPost,
+                        ]);
+                    }
+                } else {
                         echo json_encode([
                             'status_task' => 2,
                             'message_task' => 'failed',
                         ]);
                     }
-                }
+                
             }
         } 
         catch (Exception $err) {
@@ -103,8 +168,7 @@ class PostingController {
     }
 
     // @Auth Mai Mai
-    public function __likePost()
-    {
+    public function __likePost() {
 
         require('./app/Models/writeSide/LikePostMd/LikePostMd.php');
 
@@ -140,8 +204,7 @@ class PostingController {
         }
     }
 
-    public function __handleCreateFriendTagList()
-    {
+    public function __handleCreateFriendTagList() {
 
         try {
 
@@ -169,8 +232,7 @@ class PostingController {
 
 
     // @Auth VoVanHau
-    public static function __handleCreateNewComment()
-    {
+    public static function __handleCreateNewComment() {
 
         try {
 
@@ -187,21 +249,53 @@ class PostingController {
                 && !is_null($blockCommentInfo['comment_fk_user_id'])
             ) {
 
-                require('./app/Models/writeSide/PostingMd/PostingMd.php');
+                require_once('./app/Models/writeSide/PostingMd/PostingMd.php');
+
+                require_once('./app/Models/readSide/Newsfeed/NewsfeedMd.php');
 
                 // Object of ##PostingMd class
+                // Object of ##NewsfeedMd class
                 $PostingMd_vn = new PostingMd();
+                $rNewsfeedMd_vn = new NewsfeedMd();
 
                 try {
 
                     $idRecord = $PostingMd_vn->_insertNewSingleComment($blockCommentInfo);
 
-                    echo json_encode([
-                        'status_task' =>  1,
-                        'message_task' => 'successful',
-                        'idRecord' => $idRecord,
-                    ]);
-                } catch (Exception $err) {
+                    if($idRecord) {
+
+                        $lci = $rNewsfeedMd_vn->__getSingleCommentInfo($idRecord);
+
+                        if($lci) {
+
+                            $lci['user_name'] = base64_decode($lci['user_name']);
+
+                            echo json_encode([
+                                'status_task' =>  1,
+                                'message_task' => 'successful',
+                                'idRecord' => $idRecord,
+                                'lci' => $lci,
+                            ]);
+                        }
+
+                        else {
+
+                            echo json_encode([
+                                'status_task' => 2,
+                                'message_task' => 'failed',
+                            ]); 
+                        }
+                    }
+
+                    else {
+
+                        echo json_encode([
+                            'status_task' => 2,
+                            'message_task' => 'failed',
+                        ]); 
+                    }
+                } 
+                catch (Exception $err) {
                     echo json_encode([
                         'status_task' => 2,
                         'message_task' => 'failed',

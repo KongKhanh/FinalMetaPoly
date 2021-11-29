@@ -221,9 +221,6 @@
 .posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Content-Box-Container .Box-Body-Content-Media .Box-Body-Content-Media-Inner .Box-Body-Content-Media-Drag .labbel-select-container .Media-Drag-Container .Media-Drag-Wrapper .Media-Drag-Box .Media-Drag-Box-Content-Container .Media-Drag-Box-Content-Wrapper .Box-Content-Title .head-note {
   font-weight: lighter;
 }
-.posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .AttachMediaBox-Body .Box-Body-Wrapper .Box-Body-Wrapper-Inner .Content-Box-Container .Box-Body-Content-Media .Box-Body-Content-Media-Inner .Box-Body-Content-Media-Drag #imgInpPost {
-  display: none;
-}
 .posting-box-container .posting-box-inner-container .posting-box-wrapper .posting-box-inner-wrapper .AttachMediaBox-Container .AttachMediaBox-Inner-Container .AttachMediaBox-Wrapper .AttachMediaBox-Inner-Wrapper .AttachMediaBox-Box .Box-Footer .Box-Footer-Container .Box-Footer-Wrapper #btnPostToNewsFeed {
   background-color: #1877F2;
   width: 100%;

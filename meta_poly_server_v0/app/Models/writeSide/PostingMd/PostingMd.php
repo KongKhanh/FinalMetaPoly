@@ -11,6 +11,7 @@
             'comments',
             'post_photos',
             'post_tags',
+            'post_videos',
         ];
 
         // Just for ##Posting Table in Database
@@ -29,12 +30,12 @@
         }
 
         // Just for ##Posting Media ( Images ) Table in Database
-        public function _insertPostMedia($blockPostMediaInfo) {
+        public function _insertPostMedia($blockPostMediaInfo, $iv) {
 
             // Khong can @@require('./app/Models/DataRunner/DB.php'); vi ham @@_insertNewSinglePost() da require()
             // Just for relative functions
 
-            return self::addBlockRunner($blockPostMediaInfo, $this->linkTable[2]);
+            return self::addBlockRunner($blockPostMediaInfo, $iv && $iv == 'i' ? $this->linkTable[2] : $this->linkTable[4]);
         }
 
 

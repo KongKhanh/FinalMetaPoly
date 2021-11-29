@@ -1,15 +1,38 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function MediaBoxContainer(props) {
 
+    const [tM, setTM] = useState(false); // State for showing Videos or Images
+
    function setMediaContentPop(file) {
 
-        const imgInpPostBox = document.getElementById('imgInpPostBox');
+        if(props.MediaType) {
 
-        if(imgInpPostBox) {
+            var etar = false;
 
-            imgInpPostBox.src = URL.createObjectURL(file); 
+            if(props.MediaType === 'image') {
 
+                if(document.getElementById('imgInpPostBox')) {
+
+                    etar = document.getElementById('imgInpPostBox');
+
+                    setTM('i');
+                }
+            } 
+            else if(props.MediaType === 'video') {
+
+                if(document.getElementById('videoInpPostBox')) {
+
+                    etar = document.getElementById('videoInpPostBox');
+
+                    setTM('v');
+                }
+            }
+            
+            if(etar) {
+
+                etar.src = URL.createObjectURL(file); 
+            }
         }
     }
 
@@ -26,8 +49,6 @@ export default function MediaBoxContainer(props) {
             ...props.pctMediaObj,
             ppt_name: false,
         });
-    
-
     }
 
     useEffect(() => {
@@ -39,9 +60,41 @@ export default function MediaBoxContainer(props) {
 
     }, [props]);
 
+    const Styles = {
+
+        imgInpPostBox: {
+
+            display: `${tM && tM === 'i' ? 'block' : 'none'}`,
+        },
+        
+        videoInpPostBox: {
+
+            display: `${tM && tM === 'v' ? 'block' : 'none'}`,
+        }
+    };
+
     return (
         <div className="Box-Body-Content-Media-Package">
-            <img src="#" alt="MetaPoly_Media" className="Post-Media_Images_Item" id="imgInpPostBox"/>
+            <div>
+                <img 
+                    src="#" 
+                    alt="MetaPoly_Media" 
+                    className="Post-Media_Images_Item" 
+                    id="imgInpPostBox"
+                    style={ Styles.imgInpPostBox }
+                />
+            </div>
+            <div>
+                <video 
+                    controls 
+                    id="videoInpPostBox" 
+                    className="w-100"
+                    style={ Styles.videoInpPostBox }
+                >
+                    <source src="#" type="video/mp4" />
+                    <source src="#" type="video/ogg" />
+                </video>
+            </div>
             <div className="Media-Package-Btn-Cancel">
                 <button className="Btn-Off-Media" onClick={() => handleClickCancelMedia(props.MediaContentURL)}>
                         <div className="btn-icon-wapper">

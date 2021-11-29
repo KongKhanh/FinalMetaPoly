@@ -11,17 +11,6 @@ class UploadImageModule  {
             $target_file = $target_dir . basename($target_info['name']);
 
             $uploadStatus = true;
-        
-            $check = getimagesize($target_info['tmp_name']);
-
-            if($check !== false) {
-
-                $uploadStatus = true;
-
-            } else {
-
-                $uploadStatus = false;
-            }
 
             if ($uploadStatus == false) {
 
@@ -33,17 +22,19 @@ class UploadImageModule  {
 
                 if (move_uploaded_file($target_info['tmp_name'], $target_file)) {
 
-                    // return "The file ". htmlspecialchars(basename($target_info['name'])). " has been uploaded.";
+                    // return "The file ". htmlspecialchars(basename($target_info['name'])). " has been uploaded.";;
                     return true;
-
-                } else {
+                } 
+                else {
 
                     // return "Sorry, there was an error uploading your file.";
+
                     return false;
                 }
             }
         }
         else {
+
             // return "Sorry, there was an error uploading your file.";
             return false;
         }

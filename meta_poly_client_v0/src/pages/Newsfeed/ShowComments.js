@@ -1,10 +1,18 @@
 import { PATH_MEDIA_CDN } from '../../settings/Api';
 
+import { ccd } from '../../libs_3rd/CustomDate/CustomDate';
+
 export default function ShowComments(props) {
 
     if(props.CommentList && Array.isArray(props.CommentList)) {
 
         return props.CommentList.map((CommentItem, index) => {
+
+            
+            // Time Handler for Post_Create_At
+            const ccd_obj = new ccd(CommentItem.comment_created_at);
+            const myr = ccd_obj.gs();
+
             return (
                 <div className="d-flex mb-2" key={`comment_index_${index}`}>
 
@@ -26,17 +34,17 @@ export default function ShowComments(props) {
                     >
                     <div className="d-flex align-items-end">
                         <h5 className="m-0">
-                            {CommentItem.user_name}
+                            {CommentItem && CommentItem.user_name ? CommentItem.user_name : ''}
                         </h5>
                         <small className="text-muted mb-0 align-text-bottom mx-2">
-                        {
-                            'Vừa đăng'
-                        }
+                            {
+                                ccd && typeof ccd === 'function' && ccd instanceof Function && myr ? `${myr.t} ${myr.f} trước` : ''
+                            }
                         </small>
                     </div>
                     <div className="my-1">
                         {
-                            CommentItem ? CommentItem.comment_content : ''
+                            CommentItem && CommentItem.comment_content ? CommentItem.comment_content : ''
                         }
                     </div>
                     <div className="d-flex">

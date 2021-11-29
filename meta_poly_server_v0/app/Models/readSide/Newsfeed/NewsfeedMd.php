@@ -4,16 +4,27 @@
 
     class NewsfeedMd extends DB {
 
+        protected $linkTable = [
+            'comments',  
+            'users',
+            'post_content',
+            'post_photos',
+            'post_videos',
+            'posts',
+        ];
+
         public function getPostList(){
 
                 require('./app/Models/initialConnect/connectDatabase.php');
                 
                 $sql = "SELECT users.user_avatar, posts.post_id, posts.post_created_at, users.user_id, users.user_name, 
-                post_content.pct_id, post_content.pct_content, post_photos.ppt_id, post_photos.ppt_name
+                post_content.pct_id, post_content.pct_content, post_photos.ppt_id, post_photos.ppt_name,
+                post_videos.pvdo_name, post_videos.pvdo_id
                 FROM (
                     posts INNER JOIN users ON posts.post_fk_user_id = users.user_id
                     LEFT JOIN post_photos ON post_photos.ppt_fk_post_id = posts.post_id
                     LEFT JOIN post_content ON post_content.pct_fk_post_id = posts.post_id
+                    LEFT JOIN post_videos ON post_videos.pvdo_fk_post_id = posts.post_id
                 ) ORDER BY posts.post_id DESC";
 
                 $stmt = $conn->prepare($sql);
@@ -79,22 +90,44 @@
             }
         }
 
-        public static function __getPostInfoByUniq($uniqID) {
+        public function __getSingleCommentInfo($ic) {
+
+            return parent::selectData(
+
+                $this->linkTable[0],
+
+                [
+                    'comment_id', 'comment_fk_user_id', 'comment_fk_post_id', 'comment_content', 'comment_created_at', 
+                    'user_id', 'user_name', 'user_avatar'
+                ],
+
+                parent::whereData('comment_id', '=', $ic),
+
+                [
+                    parent::innerJoinZ($this->linkTable[0], 'comment_fk_user_id', '=', $this->linkTable[1], 'user_id', 'innerJoin'),
+                ],
+
+                false
+            );
+        }
+
+        public function __getPostInfoByUniq($uniqID) {
 
             try{
 
                 return self::selectData(
 
-                    'posts',
+                    $this->linkTable[5],
 
                     false,
 
                     self::whereData('post_id', '=', $uniqID),
 
                     [
-                        self::innerJoinZ('posts', 'post_fk_user_id', '=', 'users', 'user_id', 'innerJoin'),
-                        self::innerJoinZ('posts', 'post_id', '=', 'post_content', 'pct_fk_post_id', 'leftJoin'),
-                        self::innerJoinZ('posts', 'post_id', '=', 'post_photos', 'ppt_fk_post_id', 'leftJoin'),
+                        self::innerJoinZ($this->linkTable[5], 'post_fk_user_id', '=', $this->linkTable[1], 'user_id', 'innerJoin'),
+                        self::innerJoinZ($this->linkTable[5], 'post_id', '=', $this->linkTable[2], 'pct_fk_post_id', 'leftJoin'),
+                        self::innerJoinZ($this->linkTable[5], 'post_id', '=', $this->linkTable[3], 'ppt_fk_post_id', 'leftJoin'),
+                        self::innerJoinZ($this->linkTable[5], 'post_id', '=', $this->linkTable[4], 'pvdo_fk_post_id', 'leftJoin'),
                     ],
 
                     false,
