@@ -25,10 +25,6 @@ class PostingController {
                     'path_sto' => $path['store_media_images'],
                 ]);
 
-                echo json_encode(count($target_info));
-
-                return;
-
                 // Module for uploading images to store
                 $Status_Store_Media = UploadImageModule::__upLoad($target_info);
 
