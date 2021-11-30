@@ -211,6 +211,7 @@
                 }
     
                 if($whereData) {
+
                     $sql .= " {$whereData}";
                 }
     

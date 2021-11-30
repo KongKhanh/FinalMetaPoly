@@ -202,6 +202,7 @@ class PostingController {
         }
     }
 
+    // @Auth Mai Mai
     public function __handleCreateFriendTagList() {
 
         try {
@@ -228,9 +229,8 @@ class PostingController {
         }
     }
 
-
     // @Auth VoVanHau
-    public static function __handleCreateNewComment() {
+    public function __handleCreateNewComment() {
 
         try {
 
@@ -273,6 +273,87 @@ class PostingController {
                                 'message_task' => 'successful',
                                 'idRecord' => $idRecord,
                                 'lci' => $lci,
+                            ]);
+                        }
+
+                        else {
+
+                            echo json_encode([
+                                'status_task' => 2,
+                                'message_task' => 'failed',
+                            ]); 
+                        }
+                    }
+
+                    else {
+
+                        echo json_encode([
+                            'status_task' => 2,
+                            'message_task' => 'failed',
+                        ]); 
+                    }
+                } 
+                catch (Exception $err) {
+                    echo json_encode([
+                        'status_task' => 2,
+                        'message_task' => 'failed',
+                    ]);
+                }
+            }
+        } catch (Exception $err) {
+            echo json_encode([
+                'status_task' => 2,
+                'message_task' => 'failed',
+            ]);
+            return;
+        }
+    }
+
+    public function __handleCreateNewReplyComment(){
+
+        try {
+
+            $blockReplyCommentInfo = [
+                'cr_fk_comment_id' => isset($_POST['cr_fk_comment_id']) ? trim(strip_tags($_POST['cr_fk_comment_id'])) : null,
+                'cr_fk_user_id' => isset($_POST['cr_fk_user_id']) ?  base64_decode(trim(strip_tags($_POST['cr_fk_user_id']))) : null,
+                'cr_content' => isset($_POST['cr_content']) ?  trim(strip_tags($_POST['cr_content'])) : null,
+            ];
+
+            // ------------Validate Input Data Field------------
+            if (
+                !is_null($blockReplyCommentInfo['cr_fk_comment_id'])
+                && !is_null($blockReplyCommentInfo['cr_fk_user_id'])
+                && !is_null($blockReplyCommentInfo['cr_content'])
+            ) {
+
+                require_once('./app/Models/writeSide/PostingMd/PostingMd.php');
+
+                require_once('./app/Models/readSide/Newsfeed/NewsfeedMd.php');
+
+                // Object of ##PostingMd class
+                // Object of ##NewsfeedMd class
+                $PostingMd_vn = new PostingMd();
+                $rNewsfeedMd_vn = new NewsfeedMd();
+
+                try {
+
+                    $idRecord = $PostingMd_vn->_insertNewSingleReplyComment($blockReplyCommentInfo);
+
+                    if($idRecord) {
+
+                        $rlci = $rNewsfeedMd_vn->__getSingleReplyCommentInfo($idRecord);
+
+                        if($rlci) {
+
+                            if($rlci['user_name']) {
+
+                                $rlci['user_name'] = base64_decode($rlci['user_name']);
+                            }
+
+                            echo json_encode([
+                                'status_task' =>  1,
+                                'message_task' => 'successful',
+                                'rlci' => $rlci,
                             ]);
                         }
 

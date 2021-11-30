@@ -153,7 +153,7 @@ export default function AttachMediaBox(props) {
                                                         </div>
                                                         <div className="Avatar-Area align-items-center m-3 mb-0">
                                                             {
-                                                                (props.tagList.length != 0 && Array.isArray(props.tagList)) ?
+                                                                (props.tagList.length !== 0 && Array.isArray(props.tagList)) ?
                                                                     <div className=""> cùng với
                                                                         <ul className="d-inline ms-1 p-1">
                                                                             {

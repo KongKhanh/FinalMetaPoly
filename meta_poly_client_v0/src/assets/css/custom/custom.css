@@ -110,4 +110,8 @@
   display: block;
 }
 
+.BtnControlRepCo:hover {
+  text-decoration: underline;
+}
+
 /*# sourceMappingURL=custom.css.map */

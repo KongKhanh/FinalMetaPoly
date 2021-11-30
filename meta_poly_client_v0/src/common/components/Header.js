@@ -340,7 +340,9 @@ function Header(props) {
                                                         </div>
                                                     </div>
                                                     <div className="Nav-Control-Layout-Item-Container mx-2">
-                                                        <div className="Nav-Control-Layout-Item">
+                                                        <div className="Nav-Control-Layout-Item"
+                                                            onClick = {()=> props.setCurrentPage('UynckbNrNL5c8Nu')}
+                                                        >
                                                             <img src="./assets/icons/flaticon/24px/chat.png" alt="icon" />
                                                             <span className="Nav-Control-Layout-Item-Title">Tin nhắn</span>
                                                         </div>

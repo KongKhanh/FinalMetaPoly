@@ -64,11 +64,12 @@
     // 
     $router->post('/group/request/sending/accept-join/{id_User}','GroupCtrl@__handleJoinGrRequest');
 
-
     // ---------------------For Posting
     $router->post('/posting/single/create-new','PostingController@__handleCreateNewPost');
 
     $router->post('/posting/single/create-comment','PostingController@__handleCreateNewComment');
+
+    $router->post('/posting/single/reply-comment','PostingController@__handleCreateNewReplyComment');
 
     $router->post('/posting/friendTag','PostingController@__handleCreateFriendTagList');
 
