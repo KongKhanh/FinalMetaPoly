@@ -11,6 +11,7 @@
             'post_photos',
             'post_videos',
             'posts',
+            'comment_replies',
         ];
 
         public function getPostList(){
@@ -110,6 +111,28 @@
                 false
             );
         }
+
+        public function __getSingleReplyCommentInfo($ic) {
+
+            return parent::selectData(
+
+                $this->linkTable[6],
+
+                [
+                    'cr_id', 'cr_fk_comment_id', 'cr_fk_user_id', 'cr_content', 'cr_created_at', 
+                    'user_id', 'user_name', 'user_avatar'
+                ],
+
+                parent::whereData('cr_id', '=', $ic),
+
+                [
+                    parent::innerJoinZ($this->linkTable[6], 'cr_fk_user_id', '=', $this->linkTable[1], 'user_id', 'innerJoin'),
+                ],
+
+                false
+            );
+        }
+
 
         public function __getPostInfoByUniq($uniqID) {
 

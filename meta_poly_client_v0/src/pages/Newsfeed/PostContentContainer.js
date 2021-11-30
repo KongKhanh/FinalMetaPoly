@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import axios from 'axios';
 
-import { BASE_API_URL, API_URL, PATH_MEDIA_CDN } from '../../settings/Api';
+import { API_URL, PATH_MEDIA_CDN } from '../../settings/Api';
 
 import {ccd} from '../../libs_3rd/CustomDate/CustomDate';
 
@@ -237,6 +237,7 @@ export default function PostContentContainer(props) {
                                             <ShowComments 
                                                 PostItem = {PostItem ? PostItem : undefined}
                                                 CommentList = {PostItem.comment_list ? PostItem.comment_list : undefined}
+                                                UserInforClient = { props.UserInforClient ? props.UserInforClient : undefined }
                                             />
 
                                             <hr />
@@ -251,7 +252,7 @@ export default function PostContentContainer(props) {
                                                             }`
                                                         }  
                                                         height={32} 
-                                                        className="align-self-start rounded" alt="UA" 
+                                                        className="align-self-start rounded-circle border" alt="UA" 
                                                     />
                                                 </div>
                                                 <CommentBox 

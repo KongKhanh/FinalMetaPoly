@@ -12,6 +12,7 @@
             'post_photos',
             'post_tags',
             'post_videos',
+            'comment_replies',
         ];
 
         // Just for ##Posting Table in Database
@@ -38,10 +39,14 @@
             return self::addBlockRunner($blockPostMediaInfo, $iv && $iv == 'i' ? $this->linkTable[2] : $this->linkTable[4]);
         }
 
-
         public function _insertNewSingleComment($blockCommentInfo) {
 
             return self::addBlockRunner($blockCommentInfo, $this->linkTable[1]);
+        }
+
+        public function _insertNewSingleReplyComment($blockCommentInfo) {
+
+            return self::addBlockRunner($blockCommentInfo, $this->linkTable[5]);
         }
         
         public function _insertFriendTagList($blockFriendTagList){

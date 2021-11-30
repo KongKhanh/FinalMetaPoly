@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { API_URL,BASE_API_URL,PATH_MEDIA_CDN} from '../../settings/Api';
+import { API_URL, PATH_MEDIA_CDN } from '../../settings/Api';
 
 //Component 
 import PostProfile from './PostProfile';

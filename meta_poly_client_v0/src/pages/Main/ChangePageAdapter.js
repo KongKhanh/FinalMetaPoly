@@ -4,6 +4,7 @@ import Profile from '../Profile/Profile';
 import Newsfeed from '../Newsfeed/Newsfeed';
 import Group from '../Group/Group';
 import ForgotPassword from '../Authentication/ForgotPassword';
+import SupperChat from '../Chat/SuperChat';
 
 export function ChangePageAdapter(id_page, dataComp, props) {
 
@@ -59,6 +60,12 @@ export function ChangePageAdapter(id_page, dataComp, props) {
         case 'qT54LN6UKjYRd5x':
             return <Group 
                 UserInforClient={ props && props.UserInforClient && typeof props.UserInforClient === 'object' ? props.UserInforClient : undefined }
+            />
+
+        // This case for Chat Page
+        case 'UynckbNrNL5c8Nu':
+            return <SupperChat 
+                UserInforClient={dataComp && dataComp.UserInforClient && typeof dataComp.UserInforClient === 'object' ? dataComp.UserInforClient : undefined}
             />
 
         default: return <></>

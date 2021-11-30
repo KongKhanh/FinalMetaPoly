@@ -29,6 +29,8 @@ export const API_URL = {
     CREATE_NEW_POST: BASE_API_URL + '/posting/single/create-new',
 
     CREATE_NEW_COMMENT: BASE_API_URL + '/posting/single/create-comment',
+    
+    CREATE_NEW_REPLY_COMMENT: BASE_API_URL + '/posting/single/reply-comment',
 
     CREATE_NEW_GROUP: BASE_API_URL + '/group/single/create-new',
 
