@@ -244,7 +244,7 @@ class UserController {
 
     public function __getUser($idUser){
         try {
-            require('./app/Models/writeSide/UserMd/wUserMd.php');
+            require_once('./app/Models/writeSide/UserMd/wUserMd.php');
 
             $UsersAllList = $this->modelUserObj->getUser(base64_decode($idUser));
             $UserRecommend = [];

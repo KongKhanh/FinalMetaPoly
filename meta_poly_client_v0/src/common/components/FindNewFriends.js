@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import axios from 'axios';
-import { API_URL} from '../../settings/Api';
+import { API_URL, PATH_MEDIA_CDN} from '../../settings/Api';
 
 function FindNewFriends(props){
 
@@ -67,12 +67,12 @@ function FindNewFriends(props){
                             <div className="notification-list" key={index}>
                                 <a href="/#" className="dropdown-item notify-item">
                                 <div className="d-flex">
-                                    <img className="d-flex me-2 rounded-circle" src="assets/images/users/avatar-2.jpg" alt="MPI" height={32} />
+                                    <img className="d-flex me-2 rounded-circle" src={`${PATH_MEDIA_CDN.USER_AVATAR_STORE_PATH}/${userItem.user_avatar}`} alt="MPI" height={32} />
                                     <div className="w-100">
                                     <h5 className="m-0 font-14">
                                         {userItem.user_name}
                                     </h5>
-                                    <span className="font-12 mb-0">UI Designer</span>
+                                    <span className="font-12 mb-0">{userItem.user_description}</span>
                                     </div>
                                 </div>
                                 </a>

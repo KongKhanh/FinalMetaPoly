@@ -108,7 +108,7 @@ function RightSide(props){
                  headers: { 
                      'Access-Control-Allow-Origin' : '*',
                  },
-                 url: `${API_URL.GET_LIST_USER}/${props.UserInforClient.userId}`,
+                 url: `${API_URL.d}/${props.UserInforClient.userId}`,
                  method: 'GET',
              });
              return responseResult.data;

@@ -133,65 +133,6 @@ function Profile(props){
                   </div>
               </div>
 
-              <div className="card">
-                  <div className="card-body">
-                    <div className="dropdown float-end">
-                      <a href="/#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i className="mdi mdi-dots-vertical" />
-                      </a>
-                      <div className="dropdown-menu dropdown-menu-end">
-                        {/* item*/}
-                        <a href="/#" className="dropdown-item">Settings</a>
-                        {/* item*/}
-                        <a href="/#" className="dropdown-item">Action</a>
-                      </div>
-                    </div>
-                    <h4 className="header-title mb-3">Danh sách bạn bè</h4>
-                    <div className="inbox-widget">
-                      <div className="inbox-item">
-                        <div className="inbox-item-img"><img src="assets/images/users/avatar-2.jpg" className="rounded-circle" alt="" /></div>
-                        <p className="inbox-item-author">Tomaslau</p>
-                        <p className="inbox-item-text">I've finished it! See you so...</p>
-                        <p className="inbox-item-date">
-                          <a href="/#" className="btn btn-sm btn-link text-info font-13"> Reply </a>
-                        </p>
-                      </div>
-                      <div className="inbox-item">
-                        <div className="inbox-item-img"><img src="assets/images/users/avatar-3.jpg" className="rounded-circle" alt="" /></div>
-                        <p className="inbox-item-author">Stillnotdavid</p>
-                        <p className="inbox-item-text">This theme is awesome!</p>
-                        <p className="inbox-item-date">
-                          <a href="/#" className="btn btn-sm btn-link text-info font-13"> Reply </a>
-                        </p>
-                      </div>
-                      <div className="inbox-item">
-                        <div className="inbox-item-img"><img src="assets/images/users/avatar-4.jpg" className="rounded-circle" alt="" /></div>
-                        <p className="inbox-item-author">Kurafire</p>
-                        <p className="inbox-item-text">Nice to meet you</p>
-                        <p className="inbox-item-date">
-                          <a href="/#" className="btn btn-sm btn-link text-info font-13"> Reply </a>
-                        </p>
-                      </div>
-                      <div className="inbox-item">
-                        <div className="inbox-item-img"><img src="assets/images/users/avatar-5.jpg" className="rounded-circle" alt="" /></div>
-                        <p className="inbox-item-author">Shahedk</p>
-                        <p className="inbox-item-text">Hey! there I'm available...</p>
-                        <p className="inbox-item-date">
-                          <a href="/#" className="btn btn-sm btn-link text-info font-13"> Reply </a>
-                        </p>
-                      </div>
-                      <div className="inbox-item">
-                        <div className="inbox-item-img"><img src="assets/images/users/avatar-6.jpg" className="rounded-circle" alt="" /></div>
-                        <p className="inbox-item-author">Adhamdannaway</p>
-                        <p className="inbox-item-text">This theme is awesome!</p>
-                        <p className="inbox-item-date">
-                          <a href="/#" className="btn btn-sm btn-link text-info font-13"> Reply </a>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-
           <FriendListProfile 
             UserInforClient= {props.UserInforClient}
           />

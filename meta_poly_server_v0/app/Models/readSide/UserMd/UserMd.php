@@ -35,9 +35,9 @@ class UserMd{
 
     public function getUser($idUser){
 
-        require('./app/Models/initialConnect/connectDatabase.php');
+        require_once('./app/Models/initialConnect/connectDatabase.php');
         
-        $slq = "SELECT * FROM users WHERE NOT user_id = $idUser";
+        $slq = "SELECT * FROM users WHERE NOT user_id = $idUser"   ;
 
         $stmt = $conn->prepare($slq);
 
