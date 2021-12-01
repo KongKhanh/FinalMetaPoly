@@ -91,8 +91,11 @@ function SignIn(props) {
                                     <div className="col-xxl-4 col-lg-5">
                                         <div className="card">
 
-                                            <div className="card-header pt-2 pb-2 text-center bg-blue">
-                                                <a href="/#" style={{ color: '#FFFFFF', fontSize: '32px' }}>MetaPoly</a>
+                                            <div className="card-header pt-1 pb-1 text-center bg-blue">
+                                                {/* <a href="/#" style={{ color: '#FFFFFF', fontSize: '32px' }}>MetaPoly</a> */}
+                                                <div>
+                                                    <img className="mb-2" src="./assets/images/brands/logo_header_default_v0_white.png" alt="Logo" width="150" height="150" />
+                                                </div>
                                             </div>
 
                                             <div className="card-body p-3">
@@ -100,9 +103,7 @@ function SignIn(props) {
                                                 <div className="text-center w-75 m-auto">
                                                     <h4 className="text-dark-50 text-center pb-0 fw-bold">Đăng nhập</h4>
                                                     <p className="text-muted mb-1">Kết nối - Sáng tạo - Giá trị</p>
-                                                    <div>
-                                                        <img className="mb-2" src="./assets/images/brands/logo_header_default_v0.jpg" alt="Logo" width="200" height="200" />
-                                                    </div>
+
                                                 </div>
 
                                                 <form action="#">

@@ -15,6 +15,7 @@ function Profile(props){
         UserBirthday: '',
         UserGender: '',
         UserEmail: '',
+        UserDescription: '',
     });
     const [ProfileSetting, setProfileSetting] = useState({
         UserName: '',
@@ -23,6 +24,7 @@ function Profile(props){
         UserGender: '',
         UserEmail: '',
         UserBirthday: '',
+        UserDescription: '',
     });
     
     const [PostList, setPostList] = useState([]);
@@ -49,7 +51,8 @@ function Profile(props){
                     UserGender: res.user_gender,
                     UserAvatar: res.user_avatar,
                     UserBirthday: res.user_date_of_birth,
-                    PostList: res.post_list_by_user_id
+                    PostList: res.post_list_by_user_id,
+                    UserDescription: res.user_description,
                 });  
                 setProfileSetting({
                     ...ProfileSetting,
@@ -59,6 +62,7 @@ function Profile(props){
                     // UserAvatar: res.user_avatar,
                     UserGender: res.user_gender,
                     UserBirthday: res.user_date_of_birth,
+                    UserDescription: res.user_description,
                 });
                 setPostList(res.post_list_by_user_id);
             }
@@ -88,8 +92,7 @@ function Profile(props){
                       <div className="text-start mt-3">
                         <h4 className="font-13 text-uppercase">Giới thiệu :</h4>
                         <p className="text-muted font-13 mb-3">
-                          Hi I'm Johnathn Deo,has been the industry's standard dummy text ever since the
-                          1500s, when an unknown printer took a galley of type.
+                        {UserInfor.UserDescription}
                         </p>
                         <p className="text-muted mb-2 font-13"><strong>Họ và tên :</strong> <span className="ms-2">{UserInfor.UserName}</span></p>
 

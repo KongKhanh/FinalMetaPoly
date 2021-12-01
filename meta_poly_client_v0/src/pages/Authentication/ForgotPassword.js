@@ -68,14 +68,15 @@ export default function ForgotPassword(props) {
                                     </a>
                                 </div> */}
                                 <div className="card-header pt-2 pb-2 text-center bg-blue">
-                                    <a href="/#" style={{ color: '#FFFFFF', fontSize: '32px' }}>MetaPoly</a>
+                                    {/* <a href="/#" style={{ color: '#FFFFFF', fontSize: '32px' }}>MetaPoly</a> */}
+                                    <div>
+                                        <img className="mb-2" src="./assets/images/brands/logo_header_default_v0_white.png" alt="Logo" width="180" height="180" />
+                                    </div>
                                 </div>
 
                                 <div className="card-body p-4">
                                     <div className="text-center w-75 m-auto">
-                                        <div>
-                                            <img className="mb-2" src="./assets/images/brands/logo_header_default_v0.jpg" alt="Logo" width="200" height="200" />
-                                        </div>
+
                                         <h4 className="text-dark-50 text-center mt-0 fw-bold">Bạn quên mật khẩu?</h4>
                                         <p className="text-muted mb-4">Nhập số điện thoại đã đăng ký tài khoản để nhận mật khẩu mới tại email của bạn.</p>
                                     </div>

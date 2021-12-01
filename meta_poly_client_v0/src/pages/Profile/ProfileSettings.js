@@ -48,6 +48,11 @@ function ProfileSettings(props){
       {
         DataRequestInfor.append('user_avatar',props.ProfileSetting.UserAvatar[0]);
       }
+
+      if(props.ProfileSetting.UserDescription !== '')
+      {
+        DataRequestInfor.append('user_description',props.ProfileSetting.UserDescription.trim());
+      }
       
       if(props && props.ProfileSetting && props.ProfileSetting.UserBirthday !== '')
       {
@@ -133,6 +138,8 @@ function ProfileSettings(props){
                 UserBirthday: res.Uinu.user_date_of_birth ? res.Uinu.user_date_of_birth : undefined,
   
                 UserAvatar: res.Uinu.user_avatar && typeof res.Uinu.user_avatar === 'string' ? res.Uinu.user_avatar : undefined,
+
+                UserDescription: res.Uinu.user_description && typeof res.Uinu.user_description === 'string' ? res.Uinu.user_description : undefined,
   
               })
             }
@@ -250,6 +257,21 @@ function ProfileSettings(props){
                     </div>
                   </div>
                 </div>
+              </div>
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="mb-3">
+                    <label htmlFor="Description" className="form-label">Mô tả:</label>
+                    <textarea rows="7" 
+                    className="form-control" 
+                    id="Description"
+                    name='UserDescription' 
+                    value={props.ProfileSetting.UserDescription} 
+                    onChange={(event) =>OnChangeSettingProfile(event)}
+                    ></textarea>
+                  </div>
+                </div>
+               
               </div>
 
               <div className="text-end">

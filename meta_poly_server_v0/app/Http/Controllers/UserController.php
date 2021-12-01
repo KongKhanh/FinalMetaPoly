@@ -159,6 +159,8 @@ class UserController {
                     'user_phone' => isset($_POST['user_phone']) ? trim(strip_tags(base64_encode($_POST['user_phone']))) : '',
     
                     'user_avatar' => isset($_FILES["user_avatar"]) ? ($_FILES["user_avatar"]) : null,
+
+                    'user_description' => isset($_POST['user_description']) ? trim(strip_tags($_POST['user_description'])) : '',
     
                     // 'user_date_of_birth' => isset($_POST['user_date_of_birth']) ? trim(strip_tags(base64_encode($_POST['user_date_of_birth']))) : '',
                 ];
