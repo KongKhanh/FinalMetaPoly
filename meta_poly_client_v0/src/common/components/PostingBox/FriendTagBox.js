@@ -26,8 +26,6 @@ export default function FriendTagBox(props) {
         }()
     ));
 
-    console.log(activeFT);
-
     function stg() {
 
         props.setTagList(activeFT);
@@ -77,9 +75,6 @@ export default function FriendTagBox(props) {
 
     async function responeListFriend() {
         const responeResult = await axios({
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-            },
             url: `${API_URL.FRIEND_LIST}/${props.UserInforClient.userId}`,
             method: 'GET',
         });

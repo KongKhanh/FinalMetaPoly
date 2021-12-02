@@ -13,9 +13,6 @@ function FindNewFriends(props){
         DataFindNewFriend.append('user_name', Cf);
 
         const responseResult = await axios({
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-              },
               url: `${API_URL.FIND_NEW_FRIENDS}/${props.UserInforClient.userId}`,
               method: 'POST',
               data: DataFindNewFriend

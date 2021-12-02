@@ -19,13 +19,13 @@
 
             try {
 
-                $gl = self::selectData(
+                $gl = parent::selectData(
 
                     $this->linkTable[4],
                      
                     false, 
 
-                    self::whereDataMultiCondition(
+                    parent::whereDataMultiCondition(
                         [
                             ['user_group_fk_user_id', '=', isset($id_User) ? $id_User : null, 'AND'],
                             ['user_group_accept', '=', 1], // Permission: 1 for joined, 0 for waiting accept to join
@@ -33,7 +33,7 @@
                     ),
 
                     [
-                        self::innerJoinZ($this->linkTable[4], 'user_group_fk_group_id', '=', $this->tableName, 'group_id', 'innerJoin'),
+                        parent::innerJoinZ($this->linkTable[4], 'user_group_fk_group_id', '=', $this->tableName, 'group_id', 'innerJoin'),
                     ],
 
                     true,
@@ -50,13 +50,13 @@
         // Select cac thong tin co ban ve 1 Group
         public function __getSingleData($id_Gr) {
 
-            $r = self::selectData(
+            $r = parent::selectData(
                 $this->tableName, 
                 [
                     'group_name',
                     'group_created_at'
                 ], 
-                self::whereData('group_id', '=', isset($id_Gr) ? $id_Gr : null),
+                parent::whereData('group_id', '=', isset($id_Gr) ? $id_Gr : null),
                 false,
                 false,
             );
@@ -75,19 +75,19 @@
             // LEFT JOIN group_post_photos ON  group_posts.gp_id = group_post_photos.gppt_fk_gp_id
             // WHERE user_group_fk_group_id = {$id_Gr}
 
-            $p = self::selectData(
+            $p = parent::selectData(
 
                 $this->linkTable[0], 
 
                 false, 
 
-                self::whereData('user_group_fk_group_id', '=', $id_Gr),
+                parent::whereData('user_group_fk_group_id', '=', $id_Gr),
 
                 [
-                    self::innerJoinZ($this->linkTable[0], 'gp_fk_ug_id', '=', $this->linkTable[4], 'user_group_id', 'innerJoin'),
-                    self::innerJoinZ($this->linkTable[4], 'user_group_fk_user_id', '=', $this->linkTable[3], 'user_id', 'innerJoin'),
-                    self::innerJoinZ($this->linkTable[0], 'gp_id', '=', $this->linkTable[1], 'gpct_fk_gp_id', 'leftJoin'),
-                    self::innerJoinZ($this->linkTable[0], 'gp_id', '=', $this->linkTable[2], 'gppt_fk_gp_id', 'leftJoin'),
+                    parent::innerJoinZ($this->linkTable[0], 'gp_fk_ug_id', '=', $this->linkTable[4], 'user_group_id', 'innerJoin'),
+                    parent::innerJoinZ($this->linkTable[4], 'user_group_fk_user_id', '=', $this->linkTable[3], 'user_id', 'innerJoin'),
+                    parent::innerJoinZ($this->linkTable[0], 'gp_id', '=', $this->linkTable[1], 'gpct_fk_gp_id', 'leftJoin'),
+                    parent::innerJoinZ($this->linkTable[0], 'gp_id', '=', $this->linkTable[2], 'gppt_fk_gp_id', 'leftJoin'),
                 ],
 
                 true,
@@ -110,18 +110,18 @@
         // Select cac thanh vien trong 1 Group
         public function __getMembersGr($id_Gr) {
 
-            $mg = self::selectData(
+            $mg = parent::selectData(
 
                 $this->linkTable[4], 
 
                 false, 
 
-                self::whereData('user_group_fk_group_id', '=', isset($id_Gr) ? $id_Gr : null),
+                parent::whereData('user_group_fk_group_id', '=', isset($id_Gr) ? $id_Gr : null),
 
                 [
-                    self::innerJoinZ($this->linkTable[4], 'user_group_fk_user_id', '=', $this->linkTable[3], 'user_id', 'innerJoin'),
+                    parent::innerJoinZ($this->linkTable[4], 'user_group_fk_user_id', '=', $this->linkTable[3], 'user_id', 'innerJoin'),
                 ],
-
+ 
                 true,
             );
 
@@ -173,13 +173,13 @@
 
             try {
 
-                $grlw = self::selectData(
+                $grlw = parent::selectData(
 
                     $this->linkTable[4],
                      
                     false, 
 
-                    self::whereDataMultiCondition(
+                    parent::whereDataMultiCondition(
                         [
                             ['user_group_fk_user_id', '=', isset($id_User) ? $id_User : null, 'AND'],
                             ['user_group_accept', '=', 0], // Permission: 1 for joined, 0 for waiting accept to join

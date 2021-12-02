@@ -107,8 +107,11 @@ class UserController {
         try {
             require_once('./app/Http/Middleware/Authorization.php');
 
-            $Authorization_vn = new Authorization();
-            $token = $Authorization_vn->getBearerToken(); // get token from request of Client
+            // *** Way 1: -----------Authorization in Header-----------
+            // $Authorization_vn = new Authorization();
+            // $token = $Authorization_vn->getBearerToken(); // get token from request of Client
+
+            $token = isset($_POST['access_token']) ? trim($_POST['access_token']) : null; // get token from request of Client
 
             if($token) {
 
@@ -129,6 +132,13 @@ class UserController {
                         'message_task' => 'failed',
                     ]);
                 }
+            }
+            else {
+
+                echo json_encode([
+                    'status_task' => 2,
+                    'message_task' => 'failed',
+                ]);
             }
         }
         catch (Exception $err) {

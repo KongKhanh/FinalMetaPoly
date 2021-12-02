@@ -138,23 +138,40 @@
 
             try{
 
-                return self::selectData(
+                require('./app/Models/initialConnect/connectDatabase.php');
 
-                    $this->linkTable[5],
+                $sql = "SELECT * FROM posts 
+                INNER JOIN users ON users.user_id = posts.post_fk_user_id
+                LEFT JOIN post_content ON post_content.pct_fk_post_id = posts.post_id
+                LEFT JOIN post_photos ON post_photos.ppt_fk_post_id = posts.post_id
+                LEFT JOIN post_videos ON post_videos.pvdo_fk_post_id = posts.post_id
+                WHERE post_id = {$uniqID}";
 
-                    false,
+                $stmt = $conn->prepare($sql);
+                        
+                $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-                    self::whereData('post_id', '=', $uniqID),
+                $stmt->execute(); 
 
-                    [
-                        self::innerJoinZ($this->linkTable[5], 'post_fk_user_id', '=', $this->linkTable[1], 'user_id', 'innerJoin'),
-                        self::innerJoinZ($this->linkTable[5], 'post_id', '=', $this->linkTable[2], 'pct_fk_post_id', 'leftJoin'),
-                        self::innerJoinZ($this->linkTable[5], 'post_id', '=', $this->linkTable[3], 'ppt_fk_post_id', 'leftJoin'),
-                        self::innerJoinZ($this->linkTable[5], 'post_id', '=', $this->linkTable[4], 'pvdo_fk_post_id', 'leftJoin'),
-                    ],
+                return $result = $stmt->fetch();
 
-                    false,
-                );
+                // return self::selectData(
+
+                //     $this->linkTable[5],
+
+                //     false,
+
+                //     self::whereData('post_id', '=', $uniqID),
+
+                //     [
+                //         self::innerJoinZ($this->linkTable[5], 'post_fk_user_id', '=', $this->linkTable[1], 'user_id', 'innerJoin'),
+                //         self::innerJoinZ($this->linkTable[5], 'post_id', '=', $this->linkTable[2], 'pct_fk_post_id', 'leftJoin'),
+                //         self::innerJoinZ($this->linkTable[5], 'post_id', '=', $this->linkTable[3], 'ppt_fk_post_id', 'leftJoin'),
+                //         self::innerJoinZ($this->linkTable[5], 'post_id', '=', $this->linkTable[4], 'pvdo_fk_post_id', 'leftJoin'),
+                //     ],
+
+                //     false,
+                // );
 
             }
             catch (Exception $err){

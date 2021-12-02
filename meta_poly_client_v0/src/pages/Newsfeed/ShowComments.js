@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { PATH_MEDIA_CDN } from '../../settings/Api';
 
 import { ccd } from '../../libs_3rd/CustomDate/CustomDate';
@@ -6,17 +8,25 @@ import ReplyCommentBox from './ReplyCommentBox';
 
 export default function ShowComments(props) {
 
+
+    const [InfoUserRepTo, setInfoUserRepTo] = useState({});
+
     function toggleActiveReplyCommentBox(CommentItem) {
 
-        console.log(CommentItem);
-        console.log('Ok');
+        if(CommentItem && typeof CommentItem === 'object') {
+
+            setInfoUserRepTo({
+                ...InfoUserRepTo,
+                user_id: CommentItem.user_id ? CommentItem.user_id : undefined,
+                user_name: CommentItem.user_name ? CommentItem.user_name : undefined,
+            });
+        }
     }
 
     if(props.CommentList && Array.isArray(props.CommentList)) {
 
         return props.CommentList.map((CommentItem, index) => {
 
-            
             // Time Handler for Post_Create_At
             const ccd_obj = new ccd(CommentItem.comment_created_at);
             const myr = ccd_obj.gs();
@@ -67,13 +77,12 @@ export default function ShowComments(props) {
                                             CommentItem ? CommentItem : undefined
                                         )}
                                     >
-                                        {/* <img src="./assets/icons/flaticon/24px/reply_all.png" alt="MPI" className="me-1"/> */}
                                         <span className="fw-bold">Trả lời</span>
                                     </button>
                                 </div>
                             </div>
 
-                            <div className="d-flex">
+                            {/* <div className="d-flex">
 
                                 <img className="me-2 rounded-circle " src="assets/images/users/avatar-8.jpg" alt="UMA" height="26" />
 
@@ -89,26 +98,26 @@ export default function ShowComments(props) {
                                         <div className="d-flex">
                                             <button 
                                                 className="btn btn-sm btn-link text-muted py-0 ps-0 pe-1 d-flex align-items-end fs-6 BtnControlRepCo"
-                                            >
+                                            > */}
                                                 {/* 👍  */}
-                                                <span className="fw-bold">Thích</span>
+                                                {/* <span className="fw-bold">Thích</span>
                                             </button>
                                             <span>.</span>
                                             <button 
                                                 className="btn btn-sm btn-link text-muted py-0 px-1 d-flex align-items-end fs-6 BtnControlRepCo btnRepComment"
                                             >
-                                                {/* <img src="./assets/icons/flaticon/24px/reply_all.png" alt="MPI" className="me-1"/> */}
                                                 <span className="fw-bold">Trả lời</span>
                                             </button>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
 
-                            <ReplyCommentBox 
+                            {/* <ReplyCommentBox 
                                 UserInforClient = { props.UserInforClient && typeof props.UserInforClient === 'object' ? props.UserInforClient : undefined }
+                                InfoUserRepTo = { InfoUserRepTo && typeof InfoUserRepTo === 'object' ? InfoUserRepTo : undefined }
                                 CommentItem = { CommentItem && typeof CommentItem === 'object'? CommentItem : undefined }
-                            />
+                            /> */}
                         </div>
                     </div>
                 </div>

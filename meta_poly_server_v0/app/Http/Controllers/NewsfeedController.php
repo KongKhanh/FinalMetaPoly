@@ -1,6 +1,6 @@
 <?php
     //@Author KongKhanh
-class NewsfeedController{
+class NewsfeedController {
     
     private $NewsfeedMdObj;
 

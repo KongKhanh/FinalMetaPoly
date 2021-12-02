@@ -60,7 +60,10 @@ export default function PostContentContainer(props) {
 
             const responseResult = await axios({
                 headers: { 
-                'Access-Control-Allow-Origin' : '*',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Credentials': true,
+                    'Access-Control-Allow-Methods': '*',
                 },
                 url: `${API_URL.GET_NEWS_FEED}`,
                 method: 'GET',
@@ -242,6 +245,7 @@ export default function PostContentContainer(props) {
 
                                             <hr />
 
+                                            {/* Super Comment */}
                                             <div className="d-flex align-items-center mb-2">
                                                 <div className="me-1">
                                                     <img 

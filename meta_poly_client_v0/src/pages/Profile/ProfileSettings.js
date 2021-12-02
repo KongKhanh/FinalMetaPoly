@@ -58,7 +58,7 @@ function ProfileSettings(props){
       {
         const responseResult = await axios({
           headers: { 
-              'Access-Control-Allow-Origin' : '*',
+              // 'Access-Control-Allow-Origin' : '*',
               'Content-Type': 'multipart/form-data'
           },
           url: `${API_URL && API_URL.UPDATE_PROFILE_INFOR ? API_URL.UPDATE_PROFILE_INFOR : undefined}/${props.idUserCoockie}`,

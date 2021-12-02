@@ -40,9 +40,6 @@ function LikeButton(props){
         formData.append('activeLike', activeToggleLike);
 
         const responseResult = await axios({
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-          },
           url: `${API_URL.CREATE_NEW_LIKE}`,
           method: 'POST',
           data: formData

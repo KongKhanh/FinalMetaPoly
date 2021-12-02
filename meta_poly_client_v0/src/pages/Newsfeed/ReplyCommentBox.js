@@ -6,11 +6,46 @@ import { API_URL, PATH_MEDIA_CDN } from '../../settings/Api';
 
 export default function ReplyCommentBox(props) {
 
+    // console.log(props.InfoUserRepTo);
+
     const [RepCommentObj, setRepCommentObj] = useState({
         cr_fk_comment_id: props.CommentItem && props.CommentItem.comment_id ? props.CommentItem.comment_id : undefined,
         cr_fk_user_id: props.UserInforClient && props.UserInforClient.userId ? props.UserInforClient.userId : undefined,
         cr_content: '',
     });
+
+    const [CommentFriendsTag, setCommentFriendsTag] = useState(
+        (
+            function() {
+                return [
+                    {
+                        ...props.InfoUserRepTo,
+                    }
+                ]
+            }()
+        )
+    );
+
+    // Modify Comment As Pattern
+    function showCustomRepComment(CommentFriendsTag) {
+
+        // console.log(CommentFriendsTag);
+
+        let patternC = '';
+
+        if(CommentFriendsTag && Array.isArray(CommentFriendsTag)) {
+
+            for(let ut of CommentFriendsTag) {
+
+                if(typeof ut === 'object' && Object.keys(ut).length > 0 && ut.user_name) {
+
+                    patternC += '@' + ut.user_name + ', ';
+                }
+            }
+        }
+
+        return patternC;
+    }
 
     function hOIRC(event) {
 
@@ -90,6 +125,7 @@ export default function ReplyCommentBox(props) {
                         name="cr_content"
                         style={Styles.CommentField}
                         onChange={(event) => hOIRC(event)}
+                        // value={showCustomRepComment(CommentFriendsTag ? CommentFriendsTag : undefined)}
                     />
                     <button 
                         className="border border-start-0 py-1" 

@@ -20,7 +20,10 @@ function RightSide(props){
 
             const responseResult = await axios({
                 headers: { 
-                    'Access-Control-Allow-Origin' : '*',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Credentials': true,
+                    'Access-Control-Allow-Methods': '*',
                 },
                 url: `${API_URL.GET_ADD_FRIEND}/${props.UserInforClient.userId}`,
                 method: 'POST',
@@ -105,9 +108,6 @@ function RightSide(props){
 
          const reqGetRecommendFriends = async () => {
              const responseResult = await axios({
-                 headers: { 
-                     'Access-Control-Allow-Origin' : '*',
-                 },
                  url: `${API_URL.GET_LIST_USER}/${props.UserInforClient.userId}`,
                  method: 'GET',
              });
