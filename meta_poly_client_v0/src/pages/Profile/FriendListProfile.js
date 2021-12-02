@@ -10,9 +10,6 @@ function FriendListProfile(props){
     useEffect(function(){
         const requestData = async () => {
             const responseResult = await axios({
-                headers: { 
-                    'Access-Control-Allow-Origin' : '*',
-                },
                 url: `${API_URL.FRIEND_LIST}/${props.UserInforClient.userId}`,
                 method: 'GET',
             });

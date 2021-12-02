@@ -10,9 +10,6 @@ function FriendRequest(props){
         DataRequestConfirm.append('fb_id', props.FriendRQ.fb_id);
 
         const responseResult = await axios({
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-              },
               url: `${API_URL.COMFIRM_REQUEST_FRIEND}`,
               method: 'POST',
               data: DataRequestConfirm

@@ -1,6 +1,15 @@
 <?php 
     class GroupCtrl {
 
+        protected $rGroupMd_vn;
+
+        function __construct(){
+
+            require_once('./app/Models/readSide/Group/rGroupMd.php');
+
+            $this->rGroupMd_vn = new rGroupMd();
+        }
+
         public function __handleCreateNewGr() {
 
             try {
@@ -38,13 +47,9 @@
 
                 if($id_User) {
 
-                    require_once('./app/Models/readSide/Group/rGroupMd.php');
-    
-                    $rGroupMd_vn = new rGroupMd();
+                    $glHasJoined = $this->rGroupMd_vn->__getGrListForJoined(base64_decode($id_User));
 
-                    $glHasJoined = $rGroupMd_vn->__getGrListForJoined(base64_decode($id_User));
-
-                    if($glHasJoined) {
+                    if(isset($glHasJoined)) {
 
                         echo json_encode([
                             'status_task' =>  1,
@@ -80,18 +85,14 @@
 
             try {
 
-                require_once('./app/Models/readSide/Group/rGroupMd.php');
-
                 $id_Gr_S = isset($id_Gr) ? trim($id_Gr) : null;
     
-                $rGroupMd_vn = new rGroupMd();
-    
                 // Thong tin ve 1 group
-                $gr_info = $rGroupMd_vn->__getSingleData($id_Gr);
+                $gr_info = $this->rGroupMd_vn->__getSingleData($id_Gr);
                 // Cac bai post trong group
-                $gr_post_l = $rGroupMd_vn->__getPostLGr($id_Gr);
+                $gr_post_l = $this->rGroupMd_vn->__getPostLGr($id_Gr);
                 // Cac thanh vien cua nhom
-                $gr_members_l = $rGroupMd_vn->__getMembersGr($id_Gr);
+                $gr_members_l = $this->rGroupMd_vn->__getMembersGr($id_Gr);
 
                 echo json_encode([
                     'status_task' =>  1,
@@ -102,13 +103,13 @@
                 ]);
             }
             catch (Exception $e) {
+
                 echo json_encode([
                     'status_task' =>  2,
                     'message_task' => 'fail',
                 ]);
             }
         }
-
         
         /*---------------------------------------RECOMMEND GROUP SYSTEM-----------------------------------
 
@@ -134,11 +135,7 @@
                         array_push($ta, $payload_GrJoini->group_id);
                     }
 
-                    require_once('./app/Models/readSide/Group/rGroupMd.php');
-
-                    $rGroupMd_vn = new rGroupMd();
-
-                    $rgrwl = $rGroupMd_vn->__GrWaitingAcceptingL(base64_decode($id_User)); // $rgrwl: nhung Group ma User da goi yeu cau tham gia nhung dang trong giai doan duyet
+                    $rgrwl = $this->rGroupMd_vn->__GrWaitingAcceptingL(base64_decode($id_User)); // $rgrwl: nhung Group ma User da goi yeu cau tham gia nhung dang trong giai doan duyet
 
                     if($rgrwl && is_array($rgrwl)) {
 
@@ -151,7 +148,7 @@
                         }
                     }
                     
-                    $rgr = $rGroupMd_vn->__recommedGrSystemCore($ta, base64_decode($id_User)); // $rgr: goi y Groups user chua tham gia
+                    $rgr = $this->rGroupMd_vn->__recommedGrSystemCore($ta, base64_decode($id_User)); // $rgr: goi y Groups user chua tham gia
                     
                     if($rgr && is_array($rgr)) {
 
@@ -190,12 +187,8 @@
             try {
 
                 if(isset($id_User)) {
-
-                    require_once('./app/Models/readSide/Group/rGroupMd.php');
-
-                    $rGroupMd_vn = new rGroupMd();
     
-                    $rGroupMd_vn->__GrWaitingAcceptingL($id_User);
+                    $this->rGroupMd_vn->__GrWaitingAcceptingL($id_User);
     
                     echo json_encode([
                         'status_task' =>  1,

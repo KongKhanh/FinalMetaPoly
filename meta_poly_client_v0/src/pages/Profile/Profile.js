@@ -30,19 +30,21 @@ function Profile(props){
     const [PostList, setPostList] = useState([]);
 
     useEffect(function(){
+
         const requestData = async () => {
             const responseResult = await axios({
-                headers: { 
-                    'Access-Control-Allow-Origin' : '*',
-                },
+
                 url: `${API_URL.GET_SINGLE_USER}/${props.UserInforClient.userId}`,
+
                 method: 'GET',
             });
             return responseResult.data;
         };
+
         requestData()
         .then(
             function(res) {
+
                 setUserInfor({
                     ...UserInfor,
                     UserName: res.user_name,
@@ -52,8 +54,9 @@ function Profile(props){
                     UserAvatar: res.user_avatar,
                     UserBirthday: res.user_date_of_birth,
                     PostList: res.post_list_by_user_id,
-                    UserDescription: res.user_description,
-                });  
+                    UserDescription: res.user_description ? res.user_description : '',
+                });
+
                 setProfileSetting({
                     ...ProfileSetting,
                     UserName: res.user_name,
@@ -62,8 +65,9 @@ function Profile(props){
                     // UserAvatar: res.user_avatar,
                     UserGender: res.user_gender,
                     UserBirthday: res.user_date_of_birth,
-                    UserDescription: res.user_description,
+                    UserDescription: res.user_description ? res.user_description : '',
                 });
+
                 setPostList(res.post_list_by_user_id);
             }
         )
@@ -133,19 +137,19 @@ function Profile(props){
               </div>
 
           <FriendListProfile 
-            UserInforClient= {props.UserInforClient}
+              UserInforClient= {props.UserInforClient}
           />
           </div>
 
           <PostProfile 
-              UserInfor = {UserInfor}
-              setUserInfor = {setUserInfor}
-              ProfileSetting = {ProfileSetting}
-              setProfileSetting = {setProfileSetting}
-              idUserCoockie = {props.UserInforClient.userId}
-              UserInforClient= {props.UserInforClient}
-              PostList = {PostList && Array.isArray(PostList) ? PostList : []}
-              setPostList = {setPostList}
+                UserInfor = {UserInfor}
+                setUserInfor = {setUserInfor}
+                ProfileSetting = {ProfileSetting}
+                setProfileSetting = {setProfileSetting}
+                idUserCoockie = {props.UserInforClient.userId}
+                UserInforClient= {props.UserInforClient}
+                PostList = {PostList && Array.isArray(PostList) ? PostList : []}
+                setPostList = {setPostList}
           />;
 
       </div>

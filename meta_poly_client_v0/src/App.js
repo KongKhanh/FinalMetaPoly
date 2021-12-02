@@ -31,6 +31,8 @@ function App() {
 
     useEffect(() => {
 
+        setHasSpinnerLoader(false);
+
         // -----------------------NOT DONE-----------------------
         const __AuthPermissionUsingApp = async () => {
 
@@ -40,13 +42,14 @@ function App() {
             }
             else {
 
+                let fdt = new FormData();
+
+                fdt.append('access_token', UserInforClient && UserInforClient.access_token ? UserInforClient.access_token.trim() : undefined);
+
                 const resR = await axios({
                     url: `${API_URL.AUTH_ACCOUNT_ACCESS_TOKEN}`,
-                    method: 'GET',
-                    headers: {
-                        'Authorization': 'Bearer ' + UserInforClient.access_token.trim(),
-                        'Access-Control-Allow-Origin': '*',
-                    }
+                    method: 'POST',
+                    data: fdt,
                 });
 
                 if(resR && resR.data) {

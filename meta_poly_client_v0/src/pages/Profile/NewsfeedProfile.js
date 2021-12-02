@@ -9,7 +9,7 @@ import {ccd} from '../../libs_3rd/CustomDate/CustomDate';
 function NewsfeedProfile(props) {
 
     function renderMediaType(mtr, PostItem) {
-
+        
         if (mtr === 'i') {
             return (
                 <img src={PostItem.ppt_name ? `${PATH_MEDIA_CDN.IMAGES_STORE_PATH}/${PostItem.ppt_name}` : `${PATH_MEDIA_CDN.IMAGES_STORE_PATH}/no_default_thumbnail_1.png`} alt="post_img" className="rounded mb-3 mb-sm-0 img-fluid" />
@@ -73,7 +73,7 @@ function NewsfeedProfile(props) {
             <img src="assets/images/small/small-2.jpg" alt="post-img" className="rounded me-1" height={60} />
             <img src="assets/images/small/small-3.jpg" alt="post-img" className="rounded" height={60} /> */}
             <div className="mt-2">
-                <a href="/#>" className="btn btn-sm btn-link text-muted ps-0">
+                <a href="/#" className="btn btn-sm btn-link text-muted ps-0">
                     <LikeButton
                         UserInforClient={props.UserInforClient}
                         PostID={props.NewsfeedProfileItem.post_id}

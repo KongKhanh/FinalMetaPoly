@@ -17,6 +17,7 @@ class UserController {
         require('./app/Http/Controllers/NewsfeedProflieController.php');
 
         $NewsfeedControllerObj = new NewsfeedProflieController();
+        
         $UserPostListById = $NewsfeedControllerObj->__getPostProfileList($idUser);
 
         $UserInfor = $this->modelUserObj->getIdUser(base64_decode($idUser));
@@ -107,8 +108,11 @@ class UserController {
         try {
             require_once('./app/Http/Middleware/Authorization.php');
 
-            $Authorization_vn = new Authorization();
-            $token = $Authorization_vn->getBearerToken(); // get token from request of Client
+            // *** Way 1: -----------Authorization in Header-----------
+            // $Authorization_vn = new Authorization();
+            // $token = $Authorization_vn->getBearerToken(); // get token from request of Client
+
+            $token = isset($_POST['access_token']) ? trim($_POST['access_token']) : null; // get token from request of Client
 
             if($token) {
 
@@ -129,6 +133,13 @@ class UserController {
                         'message_task' => 'failed',
                     ]);
                 }
+            }
+            else {
+
+                echo json_encode([
+                    'status_task' => 2,
+                    'message_task' => 'failed',
+                ]);
             }
         }
         catch (Exception $err) {
@@ -243,6 +254,7 @@ class UserController {
         }
     }
 
+    //@Author: @KongKhanh
     public function __getUser($idUser){
         try {
             require_once('./app/Models/writeSide/UserMd/wUserMd.php');
@@ -257,6 +269,7 @@ class UserController {
             }
 
             echo json_encode($UserRecommend);
+
         } catch (Exception $err) {
             echo json_encode([
                 'status_task' => 2,

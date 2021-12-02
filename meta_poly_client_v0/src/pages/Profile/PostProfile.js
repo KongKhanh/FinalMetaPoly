@@ -145,16 +145,16 @@ function PostProfile(props){
                           props.PostList.map((NewsfeedProfileItem, index) => {
                             return (
                               <div key={index}>
-                                <NewsfeedProfile 
-                                  NewsfeedProfileItem = {NewsfeedProfileItem}
-                                  index = {index}
-                                  UserInforClient= {props.UserInforClient}
-                                  UserInfor = {props.UserInfor}
-                                  setUserInfor = {props.setUserInfor}
-                                  
-                                  PostList={props.PostList}
-                                  setPostList = {props.setPostList}
-                                />
+                                  <NewsfeedProfile 
+                                      NewsfeedProfileItem = {NewsfeedProfileItem}
+                                      index = {index}
+                                      UserInforClient= {props.UserInforClient}
+                                      UserInfor = {props.UserInfor}
+                                      setUserInfor = {props.setUserInfor}
+                                      
+                                      PostList={props.PostList}
+                                      setPostList = {props.setPostList}
+                                  />
                               </div>
                             )
                           })

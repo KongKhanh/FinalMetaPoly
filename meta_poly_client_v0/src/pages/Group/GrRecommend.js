@@ -85,10 +85,6 @@ export default function GrRecommend(props) {
             
             const rsq = await axios({
                 url: API_URL && API_URL.GET_GROUP_RECOMMEND ? `${API_URL.GET_GROUP_RECOMMEND}/${userId}` : undefined,
-                headers: {
-                    'Content-Type' : 'application/json',
-                    'Accept' : 'application/json',
-                },
                 method: 'POST',
                 data: fd_GrJoinL,
             });
@@ -105,7 +101,8 @@ export default function GrRecommend(props) {
         if(props.UserInforClient && props.UserInforClient.userId) {
 
             // Sau khi co danh sach cac Groups da tham gia thi thuc hien lay cac danh sach cac Groups goi y
-            if(props.GrSingleList && Array.isArray(props.GrSingleList) && props.GrSingleList.length > 0) {
+            if(props.GrSingleList && Array.isArray(props.GrSingleList)) {
+
                 __reqRecGr(props.UserInforClient.userId, props.GrSingleList);
             }
         }

@@ -39,7 +39,7 @@
 
     $router->post('/user/auth-using','UserController@__authUsingUser'); // auth Sign In For Accessing
 
-    $router->get('/accessing/checking/token','UserController@__checkingExistingToken'); // checking existing Token True or False
+    $router->post('/accessing/checking/token','UserController@__checkingExistingToken'); // checking existing Token True or False
 
     $router->post('/user/profile-setting/{idUser}','UserController@__setProfileSetting');
 

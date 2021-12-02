@@ -15,7 +15,10 @@
         $database_name = $database_engine['connections']['mysql']['database'];
     
         $conn = new PDO("mysql:host=$database_host;dbname=$database_name", $database_username, $database_password);
+
+        return $conn;
     }
+    
     catch (PDOException $err) {
 
         echo "Connection failed: " . $e->getMessage();

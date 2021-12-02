@@ -41,9 +41,6 @@ function Header(props) {
         const requestData = async () => {
 
             const responseResult = await axios({
-                headers: { 
-                    'Access-Control-Allow-Origin' : '*',
-                },
                 url: `${API_URL.GET_FRIEND_REQUEST}/${props.UserInforClient.userId}`,
                 method: 'GET',
             });
