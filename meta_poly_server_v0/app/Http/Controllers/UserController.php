@@ -255,6 +255,7 @@ class UserController {
 
     //@Author: @KongKhanh
     public function __getUser($idUser){
+        
         try {
             require_once('./app/Models/writeSide/UserMd/wUserMd.php');
 
