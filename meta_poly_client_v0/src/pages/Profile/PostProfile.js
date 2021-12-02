@@ -128,7 +128,7 @@ function PostProfile(props){
                       {/* comment box */}
                       <div className="border rounded mt-2 mb-3">
                         <form action="#" className="comment-area-box">
-                          <textarea rows={3} className="form-control border-0 resize-none" placeholder="Write something...." defaultValue={""} />
+                          <textarea rows={3} className="form-control border-0 resize-none" placeholder="Chia sẽ cảm nhận của bạn" defaultValue={""} />
                           <div className="p-2 bg-light d-flex justify-content-between align-items-center">
                             <div>
                               <a href="/#" className="btn btn-sm px-2 font-16 btn-light"><i className="mdi mdi-account-circle" /></a>
@@ -136,7 +136,7 @@ function PostProfile(props){
                               <a href="/#" className="btn btn-sm px-2 font-16 btn-light"><i className="mdi mdi-camera" /></a>
                               <a href="/#" className="btn btn-sm px-2 font-16 btn-light"><i className="mdi mdi-emoticon-outline" /></a>
                             </div>
-                            <button type="submit" className="btn btn-sm btn-dark waves-effect">Post</button>
+                            <button type="submit" className="btn btn-sm btn-dark waves-effect">Đăng</button>
                           </div>
                         </form>
                       </div>
@@ -145,16 +145,16 @@ function PostProfile(props){
                           props.PostList.map((NewsfeedProfileItem, index) => {
                             return (
                               <div key={index}>
-                                <NewsfeedProfile 
-                                  NewsfeedProfileItem = {NewsfeedProfileItem}
-                                  index = {index}
-                                  UserInforClient= {props.UserInforClient}
-                                  UserInfor = {props.UserInfor}
-                                  setUserInfor = {props.setUserInfor}
-                                  
-                                  PostList={props.PostList}
-                                  setPostList = {props.setPostList}
-                                />
+                                  <NewsfeedProfile 
+                                      NewsfeedProfileItem = {NewsfeedProfileItem}
+                                      index = {index}
+                                      UserInforClient= {props.UserInforClient}
+                                      UserInfor = {props.UserInfor}
+                                      setUserInfor = {props.setUserInfor}
+                                      
+                                      PostList={props.PostList}
+                                      setPostList = {props.setPostList}
+                                  />
                               </div>
                             )
                           })

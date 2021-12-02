@@ -6,7 +6,7 @@ import { API_URL, PATH_MEDIA_CDN } from '../../settings/Api';
 
 function RightSide(props){
      // @author KongKhanh
-    const [UserList, setUserList] = useState([]);
+    const [FriendRecommendList, setFriendRecommendList] = useState([]);
 
     function onClickAddFriend(FriendId){ 
 
@@ -19,14 +19,11 @@ function RightSide(props){
             DataRequestFriend.append('fb_fk_user_comf_id', FriendId);
 
             const responseResult = await axios({
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Credentials': true,
-                    'Access-Control-Allow-Methods': '*',
-                },
+
                 url: `${API_URL.GET_ADD_FRIEND}/${props.UserInforClient.userId}`,
+
                 method: 'POST',
+                
                 data: DataRequestFriend,
             });
 
@@ -51,7 +48,7 @@ function RightSide(props){
 
      function showUserRecommend(){
 
-         return UserList.map((URecI, index)=> {
+         return FriendRecommendList.map((URecI, index)=> {
              return(
                  <div key={`user_recommend_${index}`} className="mb-2">
                      <div className="inbox-widget">
@@ -108,9 +105,12 @@ function RightSide(props){
 
          const reqGetRecommendFriends = async () => {
              const responseResult = await axios({
+
                  url: `${API_URL.GET_LIST_USER}/${props.UserInforClient.userId}`,
-                 method: 'GET',
+
+                 method: 'GET', 
              });
+
              return responseResult.data;
          };
 
@@ -120,8 +120,11 @@ function RightSide(props){
             .then(
                 function(res) {
 
-                    if(res && Array.isArray(res)) {
-                        setUserList(res);
+                  console.log(res);
+
+                    if(res && res.friendlist && Array.isArray(res.friendlist)) {
+                        
+                        setFriendRecommendList(res.friendlist);
                     }
                 }
             );
@@ -143,7 +146,7 @@ function RightSide(props){
               </div>
               <h5 className="mb-3 fs-6 text-uppercase">Đề xuất kết bạn</h5>
 
-              { UserList && Array.isArray(UserList) ? showUserRecommend() : '' }   
+              { FriendRecommendList && Array.isArray(FriendRecommendList) ? showUserRecommend() : '' }   
               
               <div className="my-1 text-end">
                 <button className="text-end border-0 bg-white">

@@ -13,22 +13,22 @@ export function SpinnerLoader(props) {
 
     var flag = 0;
 
-    const tsl = setInterval(function () {
+    // const tsl = setInterval(function () {
 
-        if(document.getElementById('Spinner_Loader_v1')) {
+    //     if(document.getElementById('Spinner_Loader_v1')) {
 
-            const sli = document.getElementById('Spinner_Loader_v1');
+    //         const sli = document.getElementById('Spinner_Loader_v1');
 
-            if(flag > slc.length) {
+    //         if(flag > slc.length) {
 
-                flag = 0;
-            }
+    //             flag = 0;
+    //         }
 
-            sli.style.borderTop = `4px solid ${slc[flag]}`; 
+    //         sli.style.borderTop = `4px solid ${slc[flag]}`; 
         
-            flag++;
-        }
-    }, 2000);
+    //         flag++;
+    //     }
+    // }, 2000);
 
     return (
         <>

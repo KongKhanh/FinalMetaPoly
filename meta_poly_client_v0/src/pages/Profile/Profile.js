@@ -15,6 +15,7 @@ function Profile(props){
         UserBirthday: '',
         UserGender: '',
         UserEmail: '',
+        UserDescription: '',
     });
     const [ProfileSetting, setProfileSetting] = useState({
         UserName: '',
@@ -23,21 +24,27 @@ function Profile(props){
         UserGender: '',
         UserEmail: '',
         UserBirthday: '',
+        UserDescription: '',
     });
     
     const [PostList, setPostList] = useState([]);
 
     useEffect(function(){
+
         const requestData = async () => {
             const responseResult = await axios({
+
                 url: `${API_URL.GET_SINGLE_USER}/${props.UserInforClient.userId}`,
+
                 method: 'GET',
             });
             return responseResult.data;
         };
+
         requestData()
         .then(
             function(res) {
+
                 setUserInfor({
                     ...UserInfor,
                     UserName: res.user_name,
@@ -46,8 +53,10 @@ function Profile(props){
                     UserGender: res.user_gender,
                     UserAvatar: res.user_avatar,
                     UserBirthday: res.user_date_of_birth,
-                    PostList: res.post_list_by_user_id
-                });  
+                    PostList: res.post_list_by_user_id,
+                    UserDescription: res.user_description ? res.user_description : '',
+                });
+
                 setProfileSetting({
                     ...ProfileSetting,
                     UserName: res.user_name,
@@ -56,7 +65,9 @@ function Profile(props){
                     // UserAvatar: res.user_avatar,
                     UserGender: res.user_gender,
                     UserBirthday: res.user_date_of_birth,
+                    UserDescription: res.user_description ? res.user_description : '',
                 });
+
                 setPostList(res.post_list_by_user_id);
             }
         )
@@ -85,8 +96,7 @@ function Profile(props){
                       <div className="text-start mt-3">
                         <h4 className="font-13 text-uppercase">Giới thiệu :</h4>
                         <p className="text-muted font-13 mb-3">
-                          Hi I'm Johnathn Deo,has been the industry's standard dummy text ever since the
-                          1500s, when an unknown printer took a galley of type.
+                        {UserInfor.UserDescription}
                         </p>
                         <p className="text-muted mb-2 font-13"><strong>Họ và tên :</strong> <span className="ms-2">{UserInfor.UserName}</span></p>
 
@@ -127,79 +137,20 @@ function Profile(props){
                   </div>
               </div>
 
-              <div className="card">
-                  <div className="card-body">
-                    <div className="dropdown float-end">
-                      <a href="/#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i className="mdi mdi-dots-vertical" />
-                      </a>
-                      <div className="dropdown-menu dropdown-menu-end">
-                        {/* item*/}
-                        <a href="/#" className="dropdown-item">Settings</a>
-                        {/* item*/}
-                        <a href="/#" className="dropdown-item">Action</a>
-                      </div>
-                    </div>
-                    <h4 className="header-title mb-3">Danh sách bạn bè</h4>
-                    <div className="inbox-widget">
-                      <div className="inbox-item">
-                        <div className="inbox-item-img"><img src="assets/images/users/avatar-2.jpg" className="rounded-circle" alt="" /></div>
-                        <p className="inbox-item-author">Tomaslau</p>
-                        <p className="inbox-item-text">I've finished it! See you so...</p>
-                        <p className="inbox-item-date">
-                          <a href="/#" className="btn btn-sm btn-link text-info font-13"> Reply </a>
-                        </p>
-                      </div>
-                      <div className="inbox-item">
-                        <div className="inbox-item-img"><img src="assets/images/users/avatar-3.jpg" className="rounded-circle" alt="" /></div>
-                        <p className="inbox-item-author">Stillnotdavid</p>
-                        <p className="inbox-item-text">This theme is awesome!</p>
-                        <p className="inbox-item-date">
-                          <a href="/#" className="btn btn-sm btn-link text-info font-13"> Reply </a>
-                        </p>
-                      </div>
-                      <div className="inbox-item">
-                        <div className="inbox-item-img"><img src="assets/images/users/avatar-4.jpg" className="rounded-circle" alt="" /></div>
-                        <p className="inbox-item-author">Kurafire</p>
-                        <p className="inbox-item-text">Nice to meet you</p>
-                        <p className="inbox-item-date">
-                          <a href="/#" className="btn btn-sm btn-link text-info font-13"> Reply </a>
-                        </p>
-                      </div>
-                      <div className="inbox-item">
-                        <div className="inbox-item-img"><img src="assets/images/users/avatar-5.jpg" className="rounded-circle" alt="" /></div>
-                        <p className="inbox-item-author">Shahedk</p>
-                        <p className="inbox-item-text">Hey! there I'm available...</p>
-                        <p className="inbox-item-date">
-                          <a href="/#" className="btn btn-sm btn-link text-info font-13"> Reply </a>
-                        </p>
-                      </div>
-                      <div className="inbox-item">
-                        <div className="inbox-item-img"><img src="assets/images/users/avatar-6.jpg" className="rounded-circle" alt="" /></div>
-                        <p className="inbox-item-author">Adhamdannaway</p>
-                        <p className="inbox-item-text">This theme is awesome!</p>
-                        <p className="inbox-item-date">
-                          <a href="/#" className="btn btn-sm btn-link text-info font-13"> Reply </a>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-
           <FriendListProfile 
-            UserInforClient= {props.UserInforClient}
+              UserInforClient= {props.UserInforClient}
           />
           </div>
 
           <PostProfile 
-              UserInfor = {UserInfor}
-              setUserInfor = {setUserInfor}
-              ProfileSetting = {ProfileSetting}
-              setProfileSetting = {setProfileSetting}
-              idUserCoockie = {props.UserInforClient.userId}
-              UserInforClient= {props.UserInforClient}
-              PostList = {PostList && Array.isArray(PostList) ? PostList : []}
-              setPostList = {setPostList}
+                UserInfor = {UserInfor}
+                setUserInfor = {setUserInfor}
+                ProfileSetting = {ProfileSetting}
+                setProfileSetting = {setProfileSetting}
+                idUserCoockie = {props.UserInforClient.userId}
+                UserInforClient= {props.UserInforClient}
+                PostList = {PostList && Array.isArray(PostList) ? PostList : []}
+                setPostList = {setPostList}
           />;
 
       </div>

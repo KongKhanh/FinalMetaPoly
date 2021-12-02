@@ -2,8 +2,11 @@ import { useState, useEffect} from 'react';
 
 import axios from 'axios';
 
-import { API_URL } from '../../settings/Api';
+import { API_URL, PATH_MEDIA_CDN } from '../../settings/Api';
 
+import {ccd} from '../../libs_3rd/CustomDate/CustomDate';
+
+// Components
 import CreateNewGroupForm from './CreateNewGroupForm';
 import GrRecommend from './GrRecommend';
 
@@ -60,6 +63,30 @@ export default function HomeGroup(props) {
         }
     }, [props]);
 
+    function renderMediaType(mtr, PostItem) {
+
+        if(mtr === 'i') {
+            return (
+                <img src={ PostItem.gppt_name ? `${PATH_MEDIA_CDN.IMAGES_STORE_PATH}/${PostItem.gppt_name}` : `${PATH_MEDIA_CDN.IMAGES_STORE_PATH}/no_default_thumbnail_1.png` } alt="post_img" className="rounded mb-3 mb-sm-0 img-fluid" />
+            )
+        }
+
+        else if(mtr === 'v') {
+            return (
+                <video 
+                    className="w-100"
+                    controls 
+                    autoPlay
+                    muted
+                    poster={`${PATH_MEDIA_CDN.IMAGES_STORE_PATH}/video_default_loading_v0.jpg`}
+                >
+                    <source src={PostItem.pvdo_name ? `${PATH_MEDIA_CDN.VIDEOS_STORE_PATH}/${PostItem.pvdo_name}` : ''} type="video/mp4" />
+                    <source src={PostItem.pvdo_name ? `${PATH_MEDIA_CDN.VIDEOS_STORE_PATH}/${PostItem.pvdo_name}` : ''} type="video/ogg" />
+                </video>
+            )
+        }
+    }
+
     function showListGr(Grl) {
 
         if(Array.isArray(Grl) && Grl) {
@@ -92,6 +119,131 @@ export default function HomeGroup(props) {
                 )
             })
         }
+    }
+
+    function showAllPostInJoinedGr(sgp) { // ***@sgp la danh sach cac Groups ma trong moi Group se co nhieu bai Post
+
+        return sgp.map((sgpi, spindex) => {
+
+            if(sgpi && sgpi.pgig && Array.isArray(sgpi.pgig)) { // ***@pgig la danh sach cac bai Post trong 1 Group
+
+                return sgpi.pgig.map((pgsi, sbindex) => {  // Sub-Posting
+
+                    // Time Handler for Post_In_Group_Create_At
+                    const ccd_obj = new ccd(pgsi.gp_created_at ? pgsi.gp_created_at : '2001-01-01 01:01:01');
+                    const myr = ccd_obj.gs();
+
+                    const mtr = pgsi.gppt_name && pgsi.gppt_name !== null ? 'i' : pgsi.gpvdo_name && pgsi.gpvdo_name !== null ? 'v' : false; 
+
+                    return (
+                        <div className="card" key={`sub_po_of_gr_${sbindex}`}>
+                            <div className="card-body pb-1">
+                                <div className="d-flex">
+
+                                    <img 
+                                        className="me-2 rounded" 
+                                        alt="MPA" 
+                                        height={32} 
+                                        src={
+                                            `${pgsi.user_avatar && pgsi.user_avatar !== '' ? 
+                                                PATH_MEDIA_CDN.USER_AVATAR_STORE_PATH + '/' + pgsi.user_avatar : 
+                                                './assets/icons/flaticon/128px/user_avatar_default_v0.png'
+                                        }`}
+                                    />
+
+                                    <div className="w-100">
+                                        <div className="dropdown float-end text-muted">
+                                            <a href="/#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i className="mdi mdi-dots-horizontal" />
+                                            </a>
+                                            <div className="dropdown-menu dropdown-menu-end">
+                                            {/* item*/}
+                                            <a href="/#" className="dropdown-item">Edit</a>
+                                            {/* item*/}
+                                            <a href="/#" className="dropdown-item">Delete</a>
+                                            </div>
+                                        </div>
+                                        <h5 className="m-0">
+                                            {
+                                                pgsi && pgsi.user_name ? pgsi.user_name : ''
+                                            }
+                                        </h5>
+                                        <p className="text-muted">
+                                            <small>
+                                                {  
+                                                    myr.t + ' ' + myr.f + ' trước'
+                                                } 
+                                                <span className="mx-1">⚬</span> <span>Công khai</span>
+                                            </small>
+                                        </p>
+                                    </div>
+                                </div>
+                                <hr className="m-0" />
+                                <div className="my-3">
+                                    <p>
+                                        {
+                                            pgsi && pgsi.gpct_content ? pgsi.gpct_content : ''
+                                        }
+                                    </p>
+                                    <div className="row">
+                                        <div className="col-sm-12 d-flex align-items-center justify-content-center">
+
+                                            {/* 
+                                                **-----------------------------------Content Posting-----------------------------------**
+                                            */}
+                                            {
+                                                renderMediaType && typeof renderMediaType === 'function' && renderMediaType instanceof Function ? renderMediaType(mtr, pgsi) : ''
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="mt-1 mb-1">
+                                    <a href="/#" className="btn btn-sm btn-link text-muted ps-0"><i className="mdi mdi-heart text-danger" /> 1.2k Likes</a>
+                                    <a href="/#" className="btn btn-sm btn-link text-muted"><i className="uil uil-comments-alt" /> 148 Comments</a>
+                                    <a href="/#" className="btn btn-sm btn-link text-muted"><i className="uil uil-share-alt" /> Share</a>
+                                </div>
+                                <hr className="m-0" />
+                                <div className="mt-3">
+                                    <div className="d-flex">
+                                    <img className="me-2 rounded" src="assets/images/users/avatar-9.jpg" alt="MPI" height={32} />
+                                    <div className="w-100">
+                                        <h5 className="m-0">Sansa Stark </h5>
+                                        <p className="text-muted mb-0"><small>2 mins ago</small></p>
+                                        <p className="my-1">This is awesome! Proud of sis :) Waiting for you to
+                                        come back to winterfall</p>
+                                        <div>
+                                        <a href="/#" className="btn btn-sm btn-link text-muted p-0">
+                                            <i className="uil uil-heart me-1" /> Like
+                                        </a>
+                                        <a href="/#" className="btn btn-sm btn-link text-muted p-0 ps-2">
+                                            <i className="uil uil-comments-alt me-1" /> Reply
+                                        </a>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <hr />
+                                    <div className="d-flex mb-2">
+                                        <img 
+                                            height={32} 
+                                            className="align-self-start rounded me-2" 
+                                            alt="avaerr"
+                                            src={
+                                                `${props.UserInforClient && props.UserInforClient.user_avatar !== '' ? 
+                                                    PATH_MEDIA_CDN.USER_AVATAR_STORE_PATH + '/' + props.UserInforClient.user_avatar : 
+                                                    './assets/icons/flaticon/128px/user_avatar_default_v0.png'
+                                            }`}
+                                        />
+                                        <div className="w-100">
+                                            <input type="text" className="form-control border-0 form-control-sm" placeholder="Write a comment" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                })                
+            }       
+        })
     }
 
     return (
@@ -174,143 +326,9 @@ export default function HomeGroup(props) {
 
                             <div className="col-xxl-6 col-lg-12 order-lg-2 order-xxl-1 mt-2">
 
-                                <div className="card">
-                                    <div className="card-body pb-1">
-                                    <div className="d-flex">
-                                        <img className="me-2 rounded" src="assets/images/users/avatar-3.jpg" alt="MPI" height={32} />
-                                        <div className="w-100">
-                                        <div className="dropdown float-end text-muted">
-                                            <a href="/#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i className="mdi mdi-dots-horizontal" />
-                                            </a>
-                                            <div className="dropdown-menu dropdown-menu-end">
-                                            {/* item*/}
-                                            <a href="/#" className="dropdown-item">Edit</a>
-                                            {/* item*/}
-                                            <a href="/#" className="dropdown-item">Delete</a>
-                                            </div>
-                                        </div>
-                                        <h5 className="m-0">Jeremy Tomlinson</h5>
-                                        <p className="text-muted"><small>about 2 minuts ago <span className="mx-1">⚬</span> <span>Public</span></small></p>
-                                        </div>
-                                    </div>
-                                    <hr className="m-0" />
-                                    <div className="font-16 text-center text-dark my-3">
-                                        <i className="mdi mdi-format-quote-open font-20" /> Leave one wolf alive and the sheep are never safe. When people ask you
-                                        what happened here, tell them the North remembers. Tell them winter came for
-                                        House Frey.
-                                    </div>
-                                    <hr className="m-0" />
-                                    <div className="my-1">
-                                        <a href="/#" className="btn btn-sm btn-link text-muted ps-0"><i className="mdi mdi-heart text-danger" /> 2k Likes</a>
-                                        <a href="/#" className="btn btn-sm btn-link text-muted"><i className="uil uil-comments-alt" /> 200 Comments</a>
-                                        <a href="/#" className="btn btn-sm btn-link text-muted"><i className="uil uil-share-alt" /> Share</a>
-                                    </div>
-                                    <hr className="m-0" />
-                                    <div className="mt-3">
-                                        <div className="d-flex">
-                                        <img className="me-2 rounded" src="assets/images/users/avatar-9.jpg" alt="MPI" height={32} />
-                                        <div>
-                                            <h5 className="m-0">Sansa Stark </h5>
-                                            <p className="text-muted mb-0"><small>2 mins ago</small></p>
-                                            <p className="my-1">This is awesome! Proud of sis :) Waiting for you to
-                                            come back to winterfall</p>
-                                            <div>
-                                            <a href="/#" className="btn btn-sm btn-link text-muted p-0">
-                                                <i className="uil uil-heart me-1" /> Like
-                                            </a>
-                                            <a href="/#" className="btn btn-sm btn-link text-muted p-0 ps-2">
-                                                <i className="uil uil-comments-alt me-1" /> Reply
-                                            </a>
-                                            </div>
-                                            <div className="d-flex mt-3">
-                                            <img className="me-2 rounded" src="assets/images/users/avatar-8.jpg" alt="MPI" height={32} />
-                                            <div>
-                                                <h5 className="m-0">Cersei Lannister </h5>
-                                                <p className="text-muted mb-0"><small>1 min ago</small></p>
-                                                <p className="my-1">I swear! She won't be able to reach to winterfall</p>
-                                            </div>
-                                            </div> {/* end d-flex*/}
-                                        </div> {/* end div */}
-                                        </div> {/* end d-flex*/}
-                                        <hr />
-                                        <div className="d-flex mb-2">
-                                        <img src="assets/images/users/avatar-1.jpg" height={32} className="align-self-start rounded me-2" alt="Arya Stark" />
-                                        <div className="w-100">
-                                            <input type="text" className="form-control border-0 form-control-sm" placeholder="Write a comment" />
-                                        </div> {/* end w-100 */}
-                                        </div> {/* end d-flex */}
-                                    </div>
-                                    </div>
-                                </div>
-
-                                <div className="card">
-                                    <div className="card-body pb-1">
-                                        <div className="d-flex">
-                                            <img className="me-2 rounded" src="assets/images/users/avatar-5.jpg" alt="MPI" height={32} />
-                                            <div className="w-100">
-                                            <div className="dropdown float-end text-muted">
-                                                <a href="/#" className="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i className="mdi mdi-dots-horizontal" />
-                                                </a>
-                                                <div className="dropdown-menu dropdown-menu-end">
-                                                {/* item*/}
-                                                <a href="/#" className="dropdown-item">Edit</a>
-                                                {/* item*/}
-                                                <a href="/#" className="dropdown-item">Delete</a>
-                                                </div>
-                                            </div>
-                                            <h5 className="m-0">Jon Snow</h5>
-                                            <p className="text-muted"><small>20 min ago <span className="mx-1">⚬</span> <span>Public</span></small></p>
-                                            </div> {/* end w-100*/}
-                                        </div>
-                                        <hr className="m-0" />
-                                        <div className="my-3">
-                                            <p>"Feeling awesome at the wall!"</p>
-                                            <div className="row">
-                                            <div className="col-sm-8">
-                                                <img src="assets/images/small/small-4.jpg" alt="post-img" className="rounded me-1 mb-3 mb-sm-0 img-fluid" />
-                                            </div>
-                                            <div className="col">
-                                                <img src="assets/images/small/small-2.jpg" alt="post-img" className="rounded me-1 img-fluid mb-3" />
-                                                <img src="assets/images/small/small-3.jpg" alt="post-img" className="rounded me-1 img-fluid" />
-                                            </div>
-                                            </div>
-                                        </div>
-                                        <div className="mt-1 mb-1">
-                                            <a href="/#" className="btn btn-sm btn-link text-muted ps-0"><i className="mdi mdi-heart text-danger" /> 1.2k Likes</a>
-                                            <a href="/#" className="btn btn-sm btn-link text-muted"><i className="uil uil-comments-alt" /> 148 Comments</a>
-                                            <a href="/#" className="btn btn-sm btn-link text-muted"><i className="uil uil-share-alt" /> Share</a>
-                                        </div>
-                                        <hr className="m-0" />
-                                        <div className="mt-3">
-                                            <div className="d-flex">
-                                            <img className="me-2 rounded" src="assets/images/users/avatar-9.jpg" alt="MPI" height={32} />
-                                            <div className="w-100">
-                                                <h5 className="m-0">Sansa Stark </h5>
-                                                <p className="text-muted mb-0"><small>2 mins ago</small></p>
-                                                <p className="my-1">This is awesome! Proud of sis :) Waiting for you to
-                                                come back to winterfall</p>
-                                                <div>
-                                                <a href="/#" className="btn btn-sm btn-link text-muted p-0">
-                                                    <i className="uil uil-heart me-1" /> Like
-                                                </a>
-                                                <a href="/#" className="btn btn-sm btn-link text-muted p-0 ps-2">
-                                                    <i className="uil uil-comments-alt me-1" /> Reply
-                                                </a>
-                                                </div>
-                                            </div> {/* end w-100 */}
-                                            </div> {/* end d-flex */}
-                                            <hr />
-                                            <div className="d-flex mb-2">
-                                            <img src="assets/images/users/avatar-1.jpg" height={32} className="align-self-start rounded me-2" alt="Arya Stark" />
-                                            <div className="w-100">
-                                                <input type="text" className="form-control border-0 form-control-sm" placeholder="Write a comment" />
-                                            </div> {/* end w-100 */}
-                                            </div> {/* end d-flex */}
-                                        </div>
-                                    </div>
-                                </div>
+                                {
+                                    GrSingleList && Array.isArray(GrSingleList) ? showAllPostInJoinedGr(GrSingleList) : 'Plaa'
+                                }
 
                                 <div className="text-center mb-3">
                                     <a href="/#" className="text-danger"><i className="mdi mdi-spin mdi-loading me-1 font-16" /> Load more </a>

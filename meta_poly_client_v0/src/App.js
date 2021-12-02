@@ -98,9 +98,9 @@ function App() {
                             setCurrentPage={setCurrentPage && typeof setCurrentPage === 'function' && setCurrentPage instanceof Function ? setCurrentPage : undefined}
                         />
 
-                        {
+                        {/* {
                             hasSpinnerLoader ? <SpinnerLoader /> : ''
-                        }
+                        } */}
 
                     </div>
                 </div>

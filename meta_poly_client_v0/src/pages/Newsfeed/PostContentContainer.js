@@ -59,22 +59,22 @@ export default function PostContentContainer(props) {
         const requestPost = async () => {
 
             const responseResult = await axios({
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Credentials': true,
-                    'Access-Control-Allow-Methods': '*',
-                },
+
                 url: `${API_URL.GET_NEWS_FEED}`,
+
                 method: 'GET',
+
                 cancelToken: source.token,
-            }).catch(function (thrown) {
+
+            })
+            .catch(function (thrown) {
 
                 if (axios.isCancel(thrown)) {
 
                     console.log('Request canceled', thrown.message);
                 } 
                 else {
+
                     // handle error
                 }
             });
@@ -127,7 +127,7 @@ export default function PostContentContainer(props) {
                     PostList.map((PostItem, index_xx) => {
 
                         // Time Handler for Post_Create_At
-                        const ccd_obj = new ccd(PostItem.post_created_at);
+                        const ccd_obj = new ccd(PostItem.post_created_at ? PostItem.post_created_at : '2001-01-01 01:01:01');
                         const myr = ccd_obj.gs();
 
                         const mtr = PostItem.ppt_name && PostItem.ppt_name !== null ? 'i' : PostItem.pvdo_name && PostItem.pvdo_name !== null ? 'v' : false;
@@ -147,7 +147,7 @@ export default function PostContentContainer(props) {
                                                     './assets/icons/flaticon/128px/user_avatar_default_v0.png'
                                             }`}
 
-                                            alt="metapoly" 
+                                            alt="MPA" 
 
                                             height={32} 
                                         />
@@ -180,9 +180,7 @@ export default function PostContentContainer(props) {
                                                         {  
                                                             myr.t + ' ' + myr.f + ' trước'
                                                         }
-                                                        <span className="mx-1"></span>
-                                                        <i className="dripicons-rocket "> </i>
-                                                        <span>Công khai</span>
+                                                        <span className="mx-1">⚬</span> <span>Công khai</span>
                                                     </small>
                                                 </p>
 

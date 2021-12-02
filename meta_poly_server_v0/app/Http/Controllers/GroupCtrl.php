@@ -49,7 +49,7 @@
 
                     $glHasJoined = $this->rGroupMd_vn->__getGrListForJoined(base64_decode($id_User));
 
-                    if($glHasJoined) {
+                    if(isset($glHasJoined)) {
 
                         echo json_encode([
                             'status_task' =>  1,
@@ -103,13 +103,13 @@
                 ]);
             }
             catch (Exception $e) {
+
                 echo json_encode([
                     'status_task' =>  2,
                     'message_task' => 'fail',
                 ]);
             }
         }
-
         
         /*---------------------------------------RECOMMEND GROUP SYSTEM-----------------------------------
 
@@ -148,7 +148,7 @@
                         }
                     }
                     
-                    $rgr = $rGroupMd_vn->__recommedGrSystemCore($ta, base64_decode($id_User)); // $rgr: goi y Groups user chua tham gia
+                    $rgr = $this->rGroupMd_vn->__recommedGrSystemCore($ta, base64_decode($id_User)); // $rgr: goi y Groups user chua tham gia
                     
                     if($rgr && is_array($rgr)) {
 

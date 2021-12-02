@@ -21,6 +21,8 @@ class PostingController {
 
                 require_once('./app/Models/writeSide/PostingMd/PostingMd.php');
 
+                // Module for uploading images to store
+                $Status_Store_Media = UploadImageModule::__upLoad($target_info);
                 $PostingMd_vn = new PostingMd();
 
                 // After Inserting Into ##posts Table, Run Code Below

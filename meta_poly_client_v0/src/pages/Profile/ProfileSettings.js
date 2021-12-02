@@ -24,55 +24,62 @@ function ProfileSettings(props){
      
       var DataRequestInfor = new FormData(); // Currently empty
 
-      if(props && props.ProfileSetting && props.ProfileSetting.UserName !== '')
-      {
+      if(props && props.ProfileSetting && props.ProfileSetting.UserName !== ''){
+
         DataRequestInfor.append('user_name', props.ProfileSetting.UserName.trim());
       }
 
-      if(props && props.ProfileSetting && props.ProfileSetting.UserEmail !== '')
-      {
-      DataRequestInfor.append('user_email', props.ProfileSetting.UserEmail.trim());
+      if(props && props.ProfileSetting && props.ProfileSetting.UserEmail !== '') {
+
+        DataRequestInfor.append('user_email', props.ProfileSetting.UserEmail.trim());
       }
 
-      if(props && props.ProfileSetting && props.ProfileSetting.UserGender !== '')
-      {
-      DataRequestInfor.append('user_gender', props.ProfileSetting.UserGender.trim());
+      if(props && props.ProfileSetting && props.ProfileSetting.UserGender !== ''){
+
+        DataRequestInfor.append('user_gender', props.ProfileSetting.UserGender.trim());
       }
 
-      if(props && props.ProfileSetting && props.ProfileSetting.UserPhone !== '')
-      {
-      DataRequestInfor.append('user_phone', props.ProfileSetting.UserPhone.trim());
+      if(props && props.ProfileSetting && props.ProfileSetting.UserPhone !== ''){
+        
+        DataRequestInfor.append('user_phone', props.ProfileSetting.UserPhone.trim());
       }
 
-      if(props.ProfileSetting.UserAvatar !== '')
-      {
+      if(props.ProfileSetting.UserAvatar && props.ProfileSetting.UserAvatar !== ''){
+
         DataRequestInfor.append('user_avatar',props.ProfileSetting.UserAvatar[0]);
       }
+
+      if(props.ProfileSetting.UserDescription && props.ProfileSetting.UserDescription !== ''){
+
+        DataRequestInfor.append('user_description', props.ProfileSetting.UserDescription.trim());
+      }
       
-      if(props && props.ProfileSetting && props.ProfileSetting.UserBirthday !== '')
-      {
-      DataRequestInfor.append('user_date_of_birth', props.ProfileSetting.UserBirthday.trim());
+      if(props && props.ProfileSetting && props.ProfileSetting.UserBirthday !== '') {
+
+        DataRequestInfor.append('user_date_of_birth', props.ProfileSetting.UserBirthday.trim());
       }
 
-      if(props && props.idUserCoockie && typeof props.idUserCoockie === 'string')
-      {
+      if(props && props.idUserCoockie && typeof props.idUserCoockie === 'string') {
         const responseResult = await axios({
-          headers: { 
-              // 'Access-Control-Allow-Origin' : '*',
-              'Content-Type': 'multipart/form-data'
-          },
-          url: `${API_URL && API_URL.UPDATE_PROFILE_INFOR ? API_URL.UPDATE_PROFILE_INFOR : undefined}/${props.idUserCoockie}`,
-          method: 'POST',
-         
-          contentType: false,
-          processData: false,
+            headers: { 
+                'Content-Type': 'multipart/form-data'
+            },
+            url: `${API_URL && API_URL.UPDATE_PROFILE_INFOR ? API_URL.UPDATE_PROFILE_INFOR : undefined}/${props.idUserCoockie}`,
+            method: 'POST',
+          
+            contentType: false,
+            processData: false,
 
-          data: DataRequestInfor,
+            data: DataRequestInfor,
         });
+
         if(responseResult && responseResult.data){
+
           return responseResult.data;
         }
+
         else {
+
           return false;
         }
       }
@@ -118,31 +125,33 @@ function ProfileSettings(props){
 
             if(props.setUserInfor && typeof props.setUserInfor === 'function' && props.setUserInfor instanceof Function) {
 
-              props.setUserInfor({
+                props.setUserInfor({
 
-                ...props.UserInfor,
-  
-                UserName: res.Uinu.user_name && typeof res.Uinu.user_name === 'string' ? res.Uinu.user_name : undefined,
-                
-                UserPhone: res.Uinu.user_phone ? res.Uinu.user_phone : undefined,
+                    ...props.UserInfor,
+      
+                    UserName: res.Uinu.user_name && typeof res.Uinu.user_name === 'string' ? res.Uinu.user_name : undefined,
+                    
+                    UserPhone: res.Uinu.user_phone ? res.Uinu.user_phone : undefined,
 
-                UserEmail: res.Uinu.user_email ? res.Uinu.user_email : undefined,
-  
-                UserGender: res.Uinu.user_gender ? res.Uinu.user_gender : undefined,
-  
-                UserBirthday: res.Uinu.user_date_of_birth ? res.Uinu.user_date_of_birth : undefined,
-  
-                UserAvatar: res.Uinu.user_avatar && typeof res.Uinu.user_avatar === 'string' ? res.Uinu.user_avatar : undefined,
-  
-              })
+                    UserEmail: res.Uinu.user_email ? res.Uinu.user_email : undefined,
+      
+                    UserGender: res.Uinu.user_gender ? res.Uinu.user_gender : undefined,
+      
+                    UserBirthday: res.Uinu.user_date_of_birth ? res.Uinu.user_date_of_birth : undefined,
+      
+                    UserAvatar: res.Uinu.user_avatar && typeof res.Uinu.user_avatar === 'string' ? res.Uinu.user_avatar : undefined,
+
+                    UserDescription: res.Uinu.user_description && typeof res.Uinu.user_description === 'string' ? res.Uinu.user_description : undefined,
+                });
             }
+
             alert("Cập nhập thành công");
           }
+
           else{
+
             alert("Cập nhập thất bại")
           }
-          console.log(res);
-
         });
     }
 
@@ -250,6 +259,21 @@ function ProfileSettings(props){
                     </div>
                   </div>
                 </div>
+              </div>
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="mb-3">
+                    <label htmlFor="Description" className="form-label">Mô tả:</label>
+                    <textarea rows="7" 
+                      className="form-control" 
+                      id="Description"
+                      name='UserDescription' 
+                      value={props.ProfileSetting.UserDescription} 
+                      onChange={(event) =>OnChangeSettingProfile(event)}
+                    ></textarea>
+                  </div>
+                </div>
+               
               </div>
 
               <div className="text-end">

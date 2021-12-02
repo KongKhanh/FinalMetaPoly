@@ -17,6 +17,7 @@ class UserController {
         require('./app/Http/Controllers/NewsfeedProflieController.php');
 
         $NewsfeedControllerObj = new NewsfeedProflieController();
+        
         $UserPostListById = $NewsfeedControllerObj->__getPostProfileList($idUser);
 
         $UserInfor = $this->modelUserObj->getIdUser(base64_decode($idUser));
@@ -169,6 +170,8 @@ class UserController {
                     'user_phone' => isset($_POST['user_phone']) ? trim(strip_tags(base64_encode($_POST['user_phone']))) : '',
     
                     'user_avatar' => isset($_FILES["user_avatar"]) ? ($_FILES["user_avatar"]) : null,
+
+                    'user_description' => isset($_POST['user_description']) ? trim(strip_tags($_POST['user_description'])) : '',
     
                     // 'user_date_of_birth' => isset($_POST['user_date_of_birth']) ? trim(strip_tags(base64_encode($_POST['user_date_of_birth']))) : '',
                 ];
@@ -250,9 +253,10 @@ class UserController {
         }
     }
 
+    //@Author: @KongKhanh
     public function __getUser($idUser){
         try {
-            require('./app/Models/writeSide/UserMd/wUserMd.php');
+            require_once('./app/Models/writeSide/UserMd/wUserMd.php');
 
             $UsersAllList = $this->modelUserObj->getUser(base64_decode($idUser));
             $UserRecommend = [];
@@ -264,6 +268,7 @@ class UserController {
             }
 
             echo json_encode($UserRecommend);
+
         } catch (Exception $err) {
             echo json_encode([
                 'status_task' => 2,

@@ -25,6 +25,7 @@ class NewsfeedController {
 
             // Dòng này dùng để decode tên User Name
             $PostList[$i]['user_name'] = base64_decode($PostList[$i]['user_name']);
+            
 
             // Lấy post_id trong vòng lặp for truyền vào hàm getPostLikeList bên Model
             $PostLikeList = $this->NewsfeedMdObj->getPostLikeList($PostList[$i]['post_id']);

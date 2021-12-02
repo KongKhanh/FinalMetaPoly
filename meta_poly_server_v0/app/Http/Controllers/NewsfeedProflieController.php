@@ -2,20 +2,18 @@
 class NewsfeedProflieController
 {
 
-    private $NewsfeedProfileMdObj;
+    protected $NewsfeedProfileMdObj;
 
-    function __construct()
-    {
+    function __construct(){
 
         require('./app/Models/readSide/NewsfeedProfile/NewsfeedProfileMd.php');
 
         $this->NewsfeedProfileMdObj = new NewsfeedProfileMd();
     }
 
-    public function __getPostProfileList($idUser)
-    {
-        $NewsfeedProfileList = $this->NewsfeedProfileMdObj
-            ->getNewsFeedProfile(base64_decode($idUser));
+    public function __getPostProfileList($idUser) {
+        
+        $NewsfeedProfileList = $this->NewsfeedProfileMdObj -> getNewsFeedProfile(base64_decode($idUser));
 
         for ($x = 0; $x < count($NewsfeedProfileList); $x++) {
             //lấy danh sách like trong mỗi bài post
@@ -28,8 +26,6 @@ class NewsfeedProflieController
             }
 
             $NewsfeedProfileList[$x]['list_like'] = $NewsfeedProfileLikeList;
-
-            
         }
 
         return $NewsfeedProfileList;

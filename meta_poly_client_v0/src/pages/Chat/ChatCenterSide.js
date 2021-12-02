@@ -28,9 +28,9 @@ export default function ChatCenterSide() {
                                         <div className="conversation-actions dropdown">
                                         <button className="btn btn-sm btn-link" data-bs-toggle="dropdown" aria-expanded="false"><i className="uil uil-ellipsis-v" /></button>
                                         <div className="dropdown-menu dropdown-menu-end">
-                                            <a className="dropdown-item" href="#">Copy Message</a>
-                                            <a className="dropdown-item" href="#">Edit</a>
-                                            <a className="dropdown-item" href="#">Delete</a>
+                                            <a className="dropdown-item" href="/#">Copy Message</a>
+                                            <a className="dropdown-item" href="/#">Edit</a>
+                                            <a className="dropdown-item" href="/#">Delete</a>
                                         </div>
                                         </div>
                                     </li>
@@ -50,9 +50,9 @@ export default function ChatCenterSide() {
                                         <div className="conversation-actions dropdown">
                                         <button className="btn btn-sm btn-link" data-bs-toggle="dropdown" aria-expanded="false"><i className="uil uil-ellipsis-v" /></button>
                                         <div className="dropdown-menu">
-                                            <a className="dropdown-item" href="#">Copy Message</a>
-                                            <a className="dropdown-item" href="#">Edit</a>
-                                            <a className="dropdown-item" href="#">Delete</a>
+                                            <a className="dropdown-item" href="/#">Copy Message</a>
+                                            <a className="dropdown-item" href="/#">Edit</a>
+                                            <a className="dropdown-item" href="/#">Delete</a>
                                         </div>
                                         </div>
                                     </li>
@@ -72,9 +72,9 @@ export default function ChatCenterSide() {
                                         <div className="conversation-actions dropdown">
                                         <button className="btn btn-sm btn-link" data-bs-toggle="dropdown" aria-expanded="false"><i className="uil uil-ellipsis-v" /></button>
                                         <div className="dropdown-menu dropdown-menu-end">
-                                            <a className="dropdown-item" href="#">Copy Message</a>
-                                            <a className="dropdown-item" href="#">Edit</a>
-                                            <a className="dropdown-item" href="#">Delete</a>
+                                            <a className="dropdown-item" href="/#">Copy Message</a>
+                                            <a className="dropdown-item" href="/#">Edit</a>
+                                            <a className="dropdown-item" href="/#">Delete</a>
                                         </div>
                                         </div>
                                     </li>
@@ -94,9 +94,9 @@ export default function ChatCenterSide() {
                                         <div className="conversation-actions dropdown">
                                         <button className="btn btn-sm btn-link" data-bs-toggle="dropdown" aria-expanded="false"><i className="uil uil-ellipsis-v" /></button>
                                         <div className="dropdown-menu">
-                                            <a className="dropdown-item" href="#">Copy Message</a>
-                                            <a className="dropdown-item" href="#">Edit</a>
-                                            <a className="dropdown-item" href="#">Delete</a>
+                                            <a className="dropdown-item" href="/#">Copy Message</a>
+                                            <a className="dropdown-item" href="/#">Edit</a>
+                                            <a className="dropdown-item" href="/#">Delete</a>
                                         </div>
                                         </div>
                                     </li>
@@ -116,9 +116,9 @@ export default function ChatCenterSide() {
                                         <div className="conversation-actions dropdown">
                                         <button className="btn btn-sm btn-link" data-bs-toggle="dropdown" aria-expanded="false"><i className="uil uil-ellipsis-v" /></button>
                                         <div className="dropdown-menu dropdown-menu-end">
-                                            <a className="dropdown-item" href="#">Copy Message</a>
-                                            <a className="dropdown-item" href="#">Edit</a>
-                                            <a className="dropdown-item" href="#">Delete</a>
+                                            <a className="dropdown-item" href="/#">Copy Message</a>
+                                            <a className="dropdown-item" href="/#">Edit</a>
+                                            <a className="dropdown-item" href="/#">Delete</a>
                                         </div>
                                         </div>
                                     </li>
@@ -138,9 +138,9 @@ export default function ChatCenterSide() {
                                         <div className="conversation-actions dropdown">
                                         <button className="btn btn-sm btn-link" data-bs-toggle="dropdown" aria-expanded="false"><i className="uil uil-ellipsis-v" /></button>
                                         <div className="dropdown-menu">
-                                            <a className="dropdown-item" href="#">Copy Message</a>
-                                            <a className="dropdown-item" href="#">Edit</a>
-                                            <a className="dropdown-item" href="#">Delete</a>
+                                            <a className="dropdown-item" href="/#">Copy Message</a>
+                                            <a className="dropdown-item" href="/#">Edit</a>
+                                            <a className="dropdown-item" href="/#">Delete</a>
                                         </div>
                                         </div>
                                     </li>
@@ -161,9 +161,9 @@ export default function ChatCenterSide() {
                                         <div className="conversation-actions dropdown">
                                         <button className="btn btn-sm btn-link" data-bs-toggle="dropdown" aria-expanded="false"><i className="uil uil-ellipsis-v" /></button>
                                         <div className="dropdown-menu dropdown-menu-end">
-                                            <a className="dropdown-item" href="#">Copy Message</a>
-                                            <a className="dropdown-item" href="#">Edit</a>
-                                            <a className="dropdown-item" href="#">Delete</a>
+                                            <a className="dropdown-item" href="/#">Copy Message</a>
+                                            <a className="dropdown-item" href="/#">Edit</a>
+                                            <a className="dropdown-item" href="/#">Delete</a>
                                         </div>
                                         </div>
                                     </li>
@@ -183,9 +183,9 @@ export default function ChatCenterSide() {
                                         <div className="conversation-actions dropdown">
                                         <button className="btn btn-sm btn-link" data-bs-toggle="dropdown" aria-expanded="false"><i className="uil uil-ellipsis-v" /></button>
                                         <div className="dropdown-menu dropdown-menu-end">
-                                            <a className="dropdown-item" href="#">Copy Message</a>
-                                            <a className="dropdown-item" href="#">Edit</a>
-                                            <a className="dropdown-item" href="#">Delete</a>
+                                            <a className="dropdown-item" href="/#">Copy Message</a>
+                                            <a className="dropdown-item" href="/#">Edit</a>
+                                            <a className="dropdown-item" href="/#">Delete</a>
                                         </div>
                                         </div>
                                     </li>
@@ -229,9 +229,9 @@ export default function ChatCenterSide() {
                                         <div className="conversation-actions dropdown">
                                         <button className="btn btn-sm btn-link" data-bs-toggle="dropdown" aria-expanded="false"><i className="uil uil-ellipsis-v" /></button>
                                         <div className="dropdown-menu">
-                                            <a className="dropdown-item" href="#">Copy Message</a>
-                                            <a className="dropdown-item" href="#">Edit</a>
-                                            <a className="dropdown-item" href="#">Delete</a>
+                                            <a className="dropdown-item" href="/#">Copy Message</a>
+                                            <a className="dropdown-item" href="/#">Edit</a>
+                                            <a className="dropdown-item" href="/#">Delete</a>
                                         </div>
                                         </div>
                                     </li>
@@ -249,8 +249,8 @@ export default function ChatCenterSide() {
                                     </div>
                                     <div className="col-sm-auto">
                                     <div className="btn-group">
-                                        <a href="#" className="btn btn-light"><i className="uil uil-paperclip" /></a>
-                                        <a href="#" className="btn btn-light"> <i className="uil uil-smile" /> </a>
+                                        <a href="/#" className="btn btn-light"><i className="uil uil-paperclip" /></a>
+                                        <a href="/#" className="btn btn-light"> <i className="uil uil-smile" /> </a>
                                         <div className="d-grid">
                                         <button type="submit" className="btn btn-success chat-send"><i className="uil uil-message" /></button>
                                         </div>
