@@ -32,6 +32,8 @@ class NewsfeedController {
 
             $setCommentList = $this->NewsfeedMdObj->getCommentList($PostList[$i]['post_id']);
 
+            $getPostTagList = $this->NewsfeedMdObj->getPostTagList($PostList[$i]['post_id']);
+
             for($y=0; $y < count($PostLikeList); $y++){
                 $PostLikeList[$y]['pl_fk_user_id'] = base64_encode($PostLikeList[$y]['pl_fk_user_id']);
             }
@@ -40,8 +42,15 @@ class NewsfeedController {
                 $setCommentList[$x]['user_name'] = base64_decode($setCommentList[$x]['user_name']);
             }
 
+            for( $z=0; $z < count($getPostTagList); $z++){
+                $getPostTagList[$z]['user_name'] = base64_decode($getPostTagList[$z]['user_name']);
+            }
+
             // List Like of The Post
             $PostList[$i]['list_like'] = $PostLikeList;
+            
+            // List TagList of The Post
+            $PostList[$i]['post_tag_list'] = $getPostTagList;
 
             // List Comment of The Post
             $PostList[$i]['comment_list'] = $setCommentList;

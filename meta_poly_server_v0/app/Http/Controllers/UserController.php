@@ -173,7 +173,8 @@ class UserController {
 
                     'user_description' => isset($_POST['user_description']) ? trim(strip_tags($_POST['user_description'])) : '',
     
-                    // 'user_date_of_birth' => isset($_POST['user_date_of_birth']) ? trim(strip_tags(base64_encode($_POST['user_date_of_birth']))) : '',
+                    'user_date_of_birth' => isset($_POST['user_date_of_birth']) ? trim(strip_tags($_POST['user_date_of_birth']).' 00:00:00') : '',
+
                 ];
 
                 $path = require_once('./Config/path.php');

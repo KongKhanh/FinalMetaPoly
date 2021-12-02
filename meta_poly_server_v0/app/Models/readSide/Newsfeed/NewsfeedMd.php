@@ -39,6 +39,27 @@
                 return $result;
         }
 
+        public function getPostTagList($post_id){
+
+                require('./app/Models/initialConnect/connectDatabase.php');
+                
+                $sql = "SELECT * FROM post_tags 
+                        INNER JOIN users 
+                        ON post_tags.pt_user_id = users.user_id
+                        WHERE pt_fk_post_id = {$post_id}";
+
+                $stmt = $conn->prepare($sql);
+        
+                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        
+                $stmt->execute(); 
+        
+                $result = $stmt->fetchAll();
+
+                return $result;
+
+        }
+
         public function getPostLikeList($id_Post){
 
             try{

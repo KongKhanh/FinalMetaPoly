@@ -87,6 +87,8 @@ function ProfileSettings(props){
 
     function OnChangeSettingProfile(event){
 
+      console.log(event.target.value);
+
         if(event.target.id === 'user_avatar_0'){
          
           const [file] = event.target.files;
@@ -120,6 +122,8 @@ function ProfileSettings(props){
     function OnClickSaveSettingProfile(){
       
         requestInforProfileSetting().then((res)=>{
+          console.log(res);
+
          
           if (res && res.status_task === 1 && res.Uinu){
 
@@ -173,6 +177,8 @@ function ProfileSettings(props){
             )
         })
     }
+
+    
 
     return(
         <div className="tab-pane" id="settings">
@@ -230,10 +236,12 @@ function ProfileSettings(props){
                     <label htmlFor="Date" className="form-label">Ngày sinh</label>
                     <input 
                     type="date" 
+                    placeholder="dd-mm-yyyy"
                     className="form-control" 
                     id="Date"
                     name='UserBirthday' 
-                    value={props.ProfileSetting.UserBirthday.split(' ')[0]} 
+                    placeholder='dd-mm-yyyy'
+                    value={props.ProfileSetting.UserBirthday.split(' ')[0]}
                     onChange={(event) => OnChangeSettingProfile(event)}
                     />
                   </div>
