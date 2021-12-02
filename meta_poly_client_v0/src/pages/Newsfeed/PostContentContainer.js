@@ -170,6 +170,7 @@ export default function PostContentContainer(props) {
                                                             PostItem.user_name && typeof PostItem.user_name === 'string' ? PostItem.user_name.trim() : 'Undefined'
                                                         }
                                                     </a>
+                                                    <span className="">  cùng với  <a href = "/#" > Kong Khanh </a> </span>
                                                 </h5>
 
                                                 <p className="text-muted mb-0">

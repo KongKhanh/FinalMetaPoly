@@ -69,7 +69,6 @@ function Profile(props){
         )
     }, []);
     
-
     return(
         <div className="row">
             <div className="col-xl-4 col-lg-5">
@@ -112,7 +111,7 @@ function Profile(props){
                             }
                           </span>
                         </p>
-                        <p className="text-muted mb-2 font-13"><strong>Ngày sinh :</strong> <span className="ms-2 ">{UserInfor.UserBirthday.split(' ')[0]}</span></p>
+                        <p className="text-muted mb-2 font-13"><strong>Ngày sinh :</strong> <span className="ms-2 ">{UserInfor.UserBirthday.split(' ')[0].split('-')[2] + '/' +UserInfor.UserBirthday.split(' ')[0].split('-')[1]+'/'+UserInfor.UserBirthday.split(' ')[0].split('-')[0]}</span></p>
                       </div>
 
                       <ul className="social-list list-inline mt-3 mb-0">

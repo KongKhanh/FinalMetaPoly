@@ -19,6 +19,7 @@ function Newsfeed(props) {
                 <div className="col-xxl-3 col-lg-6 order-lg-1 order-xxl-1"></div>
                 <LeftSide 
                     UserInforClient = {props && props.UserInforClient ? props.UserInforClient : undefined}
+                    setCurrentPage = { props.setCurrentPage && typeof props.setCurrentPage === 'function' && props.setCurrentPage instanceof Function ? props.setCurrentPage : undefined }
                 />
 
 
