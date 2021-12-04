@@ -20,6 +20,8 @@ class UserController {
         
         $UserPostListById = $NewsfeedControllerObj->__getPostProfileList($idUser);
 
+    
+
         $UserInfor = $this->modelUserObj->getIdUser(base64_decode($idUser));
         $UserInfor['user_name'] = base64_decode($UserInfor['user_name']);
         $UserInfor['user_phone'] = base64_decode($UserInfor['user_phone']);
@@ -263,7 +265,7 @@ class UserController {
             $UsersAllList = $this->modelUserObj->__getUserRecommendMd(base64_decode($idUser));
 
             $UserRecommend = [];
-            
+
             for ($i = 0; $i < 5; $i++) {
 
                 if (isset($UsersAllList[$i])) {

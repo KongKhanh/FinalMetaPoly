@@ -42,7 +42,7 @@ export function ChangePageAdapter(id_page, dataComp, props) {
          case 'ywHfYcKTYtkfREz':
             return <Profile 
                 UserInforClient={
-                   { userId: 'Ng==',
+                   { userId: 'MTc=',
                     access_token: '',
                     user_phone: '',
                     user_name: '',}

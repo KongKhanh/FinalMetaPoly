@@ -31,7 +31,7 @@ function App() {
 
     useEffect(() => {
 
-        setHasSpinnerLoader(false);
+        setHasSpinnerLoader(hasSpinnerLoader);
 
         // -----------------------NOT DONE-----------------------
         const __AuthPermissionUsingApp = async () => {

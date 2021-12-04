@@ -23,8 +23,9 @@ export default function PostContentContainer(props) {
     const [PostList, setPostList] = useState([]);
 
     function ViewProfileUser(ua) {
+        
         console.log(ua);
-        props.setCurrentPage('ywHfYcKTYtkfREz');
+        // props.setCurrentPage('ywHfYcKTYtkfREz');
     }
 
     function renderMediaType(mtr, PostItem) {
