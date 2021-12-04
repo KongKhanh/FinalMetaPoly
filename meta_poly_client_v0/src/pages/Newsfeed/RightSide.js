@@ -120,7 +120,7 @@ function RightSide(props){
             .then(
                 function(res) {
 
-                    console.log(res);
+                  console.log(res);
 
                     if(res && res.status_task && res.status_task === 1 && res.ufrl && Array.isArray(res.ufrl)) {
 

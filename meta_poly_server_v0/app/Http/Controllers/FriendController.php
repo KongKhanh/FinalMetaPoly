@@ -52,6 +52,7 @@
                 $listFriend = $listFriend_Obj->getListFriend(base64_decode($userID));
 
                 if($listFriend && is_array($listFriend)){
+
                     for($i=0; $i < count($listFriend); $i++){
                         $listFriend[$i]['user_name'] = base64_decode($listFriend[$i]['user_name']);
                     }
@@ -75,6 +76,7 @@
 
         //Author: @KongKhanh
         public function __ConfirmRequestFriend(){
+            
             try {
 
                 $confirmRequestfriend = [

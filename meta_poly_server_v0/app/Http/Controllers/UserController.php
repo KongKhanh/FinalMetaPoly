@@ -263,6 +263,7 @@ class UserController {
             $UsersAllList = $this->modelUserObj->__getUserRecommendMd(base64_decode($idUser));
 
             $UserRecommend = [];
+            
             for ($i = 0; $i < 5; $i++) {
 
                 if (isset($UsersAllList[$i])) {
@@ -350,9 +351,6 @@ class UserController {
     //@Author: @KongKhanh
     public function __FindUserController($idUser){
         
-        require('./app/Models/writeSide/UserMd/wUserMd.php');
-
-        $this->modelUserObj = new wUserMd();
 
         $searchUser = [
             'user_name' => isset($_POST['user_name']) ? trim(strip_tags($_POST['user_name'])) : ''
@@ -360,7 +358,7 @@ class UserController {
 
         $pattern = "/{$searchUser['user_name']}/i";
 
-        $FindUserList =  $this->modelUserObj->FindUser(base64_decode($idUser));
+        $FindUserList =  $this->modelUserObj->FindAllUser(base64_decode($idUser));
 
         $yr = [];
 

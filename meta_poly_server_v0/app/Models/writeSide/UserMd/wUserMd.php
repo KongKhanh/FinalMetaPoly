@@ -27,22 +27,6 @@
             ));
         }
         
-        //@Author: @KongKhanh
-        public function FindUser($idUser){
-
-            require('./app/Models/initialConnect/connectDatabase.php');
-            
-            $slq = "SELECT * FROM users WHERE NOT user_id = $idUser";
-    
-            $stmt = $conn->prepare($slq);
-    
-            $stmt->setFetchMode(PDO::FETCH_ASSOC);
-    
-            $stmt->execute(); 
-    
-            return $result = $stmt->fetchAll();
-        }
-
     }
 
 ?>

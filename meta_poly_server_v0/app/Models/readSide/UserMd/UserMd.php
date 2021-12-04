@@ -35,18 +35,19 @@ class UserMd {
 
     public function __getUserRecommendMd($idUser){
 
-        require_once('./app/Models/initialConnect/connectDatabase.php');
-        
-        $slq = "SELECT * FROM users WHERE NOT user_id = $idUser";
+        try {
 
-        $stmt = $conn->prepare($slq);
+            require_once('./app/Models/readSide/FriendMd/FriendMd.php');
 
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $rfmoj = new FriendMd();
 
-        $stmt->execute(); 
+            return $rfmoj -> __getFriendRecommendMd($idUser);
+        }
 
-        return $result = $stmt->fetchAll();
-       
+        catch(Exception $err){
+            
+            return false;
+        }
     }
 
     public function getUserByKey($keyName, $keyValue){
@@ -66,6 +67,7 @@ class UserMd {
     }
 
     public function getUserPhone($userPhone){
+
         require('./app/Models/initialConnect/connectDatabase.php');
         
         $slq = "SELECT * FROM users WHERE user_phone = $userPhone";
@@ -77,6 +79,22 @@ class UserMd {
         $stmt->execute(); 
 
         return $result = $stmt->fetch();
+    }
+
+    //@Author: @KongKhanh
+    public function FindAllUser($idUser){
+
+        require('./app/Models/initialConnect/connectDatabase.php');
+        
+        $slq = "SELECT * FROM users WHERE NOT user_id = $idUser";
+
+        $stmt = $conn->prepare($slq);
+
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+        $stmt->execute(); 
+
+        return $result = $stmt->fetchAll();
     }
 }
 
