@@ -121,6 +121,7 @@ class UserController {
                 if($rft) { // Token is existing
 
                     $rft['user_name'] = base64_decode($rft['user_name']);
+
                     echo json_encode([
                         'status_task' =>  1,
                         'message_task' => 'successful',
@@ -255,23 +256,31 @@ class UserController {
     }
 
     //@Author: @KongKhanh
-    public function __getUser($idUser){
+    public function __getUserRecommend($idUser){
         
         try {
-            require_once('./app/Models/writeSide/UserMd/wUserMd.php');
 
-            $UsersAllList = $this->modelUserObj->getUser(base64_decode($idUser));
+            $UsersAllList = $this->modelUserObj->__getUserRecommendMd(base64_decode($idUser));
+
             $UserRecommend = [];
             for ($i = 0; $i < 5; $i++) {
+
                 if (isset($UsersAllList[$i])) {
+
                     $UsersAllList[$i]['user_name'] = base64_decode($UsersAllList[$i]['user_name']);
+
                     array_push($UserRecommend, $UsersAllList[$i]);
                 }
             }
 
-            echo json_encode($UserRecommend);
+            echo json_encode([
+                'status_task' =>  1,
+                'message_task' => 'successful',
+                'ufrl' => $UserRecommend,
+            ]);
+        } 
+        catch (Exception $err) {
 
-        } catch (Exception $err) {
             echo json_encode([
                 'status_task' => 2,
                 'message_task' => 'failed',

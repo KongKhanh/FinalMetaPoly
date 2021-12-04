@@ -17,7 +17,7 @@
     // ------------------------------Handle GET method------------------------------
     $router->get('/user/{idUser}','UserController@__getIdUser');
     
-    $router->get('/userlist/{idUser}','UserController@__getUser');
+    $router->get('/userlist/{idUser}','UserController@__getUserRecommend');
 
     $router->get('/newsfeed','NewsfeedController@__getPostList');
 

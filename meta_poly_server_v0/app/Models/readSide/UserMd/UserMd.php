@@ -1,6 +1,6 @@
 <?php 
 
-class UserMd{
+class UserMd {
 
     public function getIdUser($idUser){
 
@@ -33,11 +33,11 @@ class UserMd{
         return $result = $stmt->fetch();
     }
 
-    public function getUser($idUser){
+    public function __getUserRecommendMd($idUser){
 
         require_once('./app/Models/initialConnect/connectDatabase.php');
         
-        $slq = "SELECT * FROM users WHERE NOT user_id = $idUser"   ;
+        $slq = "SELECT * FROM users WHERE NOT user_id = $idUser";
 
         $stmt = $conn->prepare($slq);
 
