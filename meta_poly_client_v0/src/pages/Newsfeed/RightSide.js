@@ -8,9 +8,9 @@ function RightSide(props){
      // @author KongKhanh
     const [FriendRecommendList, setFriendRecommendList] = useState([]);
 
-    function onClickAddFriend(FriendId){ 
+    function onClickAddFriend(FriendId, Btn_id){ 
 
-        const RequestAddFriend = async() => {
+        const RequestAddFriend = async () => {
 
             var DataRequestFriend = new FormData(); // Currently empty
 
@@ -30,19 +30,72 @@ function RightSide(props){
             return responseResult.data;
         }
 
-        if(FriendId && props && props.UserInforClient && props.UserInforClient.userId) {
+        const RequestCancelAddFriend = async (fbid) => {
 
-          RequestAddFriend().then((res)=>{
+            var DataRequestFriend = new FormData(); // Currently empty
 
-            if (res && res.status_task === 1){
+            DataRequestFriend.append('fbid', fbid);
 
-                alert("Đã thêm bạn")
+            DataRequestFriend.append('status_cancel', 'true');
+
+            const responseResult = await axios({
+
+                url: `${API_URL.GET_ADD_FRIEND}/${props.UserInforClient.userId}`,
+
+                method: 'POST',
+                
+                data: DataRequestFriend,
+            });
+
+            return responseResult.data;
+        }
+
+        if(FriendId && props.UserInforClient && props.UserInforClient.userId) {
+
+            if(document.getElementById(Btn_id)) {
+
+                let bipd = document.getElementById(Btn_id);
+
+                if(bipd.getAttribute('data-toggle-reqed-add-friend') && bipd.getAttribute('data-toggle-reqed-add-friend') === 'true') {
+
+                    RequestAddFriend().then((response)=>{
+
+                        if (response && response.status_task === 1 && response.recordID){
+
+                            bipd.setAttribute('data-toggle-reqed-add-friend', 'false');
+
+                            bipd.setAttribute('data-reqed-add-friend-fbid', response.recordID);
+
+                            bipd.innerHTML = "Huy Ket Ban";
+
+                            alert("Đã thêm bạn");
+                        }
+                    });
+                }
+                else if(
+                    bipd.getAttribute('data-toggle-reqed-add-friend') && 
+                    bipd.getAttribute('data-toggle-reqed-add-friend') === 'false' && 
+                    bipd.getAttribute('data-reqed-add-friend-fbid') !== 'false'
+                ) {
+
+                    RequestCancelAddFriend( 
+                        bipd.getAttribute('data-reqed-add-friend-fbid')
+                    )
+                    .then((response) => {
+
+                        if (response && response.status_task === 1){
+
+                            bipd.setAttribute('data-toggle-reqed-add-friend', 'true');
+
+                            bipd.setAttribute('data-reqed-add-friend-fbid', 'false');
+
+                            bipd.innerHTML = "Gui loi moi";
+
+                            alert("Had Cancel Request");
+                        }
+                    });
+                }
             }
-            else{
-              
-                alert("Thêm bạn thất bại")
-            }
-        });
         }
     }
 
@@ -71,19 +124,25 @@ function RightSide(props){
                               </div>
 
                               <div>
-                                  <p className="inbox-URecI-author mb-0 fw-bolder">
-                                    {URecI && URecI.user_name ? URecI.user_name : ''}
+                                  <p className="inbox-URecI-author mb-0 fw-bolder UserLinkToProfile">
+                                      {URecI && URecI.user_name ? URecI.user_name : ''}
                                   </p>
                               </div>
                           </div>
                         
                           <div className="w-25 d-flex justify-content-end">
                             <button 
-                                type="button"
-                                className="btn btn-sm  border-0 px-1 py-0" 
-                                onClick={()=>onClickAddFriend(URecI && URecI.user_id ? URecI.user_id : undefined)} 
+                                type = "button"
+                                className = "btn btn-sm border-0 px-1 py-0 fs-12" 
+                                onClick = {() => onClickAddFriend(
+                                    URecI && URecI.user_id ? URecI.user_id : undefined,
+                                    `btnReqRecFri_RkmDHFXKsdnoP8Q_${URecI.user_id}`
+                                )} 
+                                id = {`btnReqRecFri_RkmDHFXKsdnoP8Q_${URecI.user_id}`}
+                                data-toggle-reqed-add-friend = {`true`}
+                                data-reqed-add-friend-fbid = {`false`}
                             > 
-                                <img src="./assets/icons/flaticon/24px/add-friend.png" width="30" alt=""/>
+                                <img src="./assets/icons/flaticon/24px/add-friend.png" width="30" alt="btnReq"/>
                             </button>
 
                             <button 
@@ -119,8 +178,6 @@ function RightSide(props){
             reqGetRecommendFriends()
             .then(
                 function(res) {
-
-                  console.log(res);
 
                     if(res && res.status_task && res.status_task === 1 && res.ufrl && Array.isArray(res.ufrl)) {
 

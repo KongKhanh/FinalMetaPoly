@@ -114,4 +114,12 @@
   text-decoration: underline;
 }
 
+.UserLinkToProfile {
+  cursor: pointer;
+}
+.UserLinkToProfile:hover {
+  color: #2980b9;
+  text-decoration: underline;
+}
+
 /*# sourceMappingURL=custom.css.map */

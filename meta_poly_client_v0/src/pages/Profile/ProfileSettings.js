@@ -59,12 +59,13 @@ function ProfileSettings(props){
         DataRequestInfor.append('user_date_of_birth', props.ProfileSetting.UserBirthday.trim());
       }
 
-      if(props && props.idUserCoockie && typeof props.idUserCoockie === 'string') {
+      if(props && props.idUserClient && typeof props.idUserClient === 'string') {
+        
         const responseResult = await axios({
             headers: { 
                 'Content-Type': 'multipart/form-data'
             },
-            url: `${API_URL && API_URL.UPDATE_PROFILE_INFOR ? API_URL.UPDATE_PROFILE_INFOR : undefined}/${props.idUserCoockie}`,
+            url: `${API_URL && API_URL.UPDATE_PROFILE_INFOR ? API_URL.UPDATE_PROFILE_INFOR : undefined}/${props.idUserClient}`,
             method: 'POST',
           
             contentType: false,
@@ -233,17 +234,16 @@ function ProfileSettings(props){
                 </div>
                 <div className="col-md-6">
                   <div className="mb-3">
-                    <label htmlFor="Date" className="form-label">Ngày sinh</label>
-                    <input 
-                    type="date" 
-                    placeholder="dd-mm-yyyy"
-                    className="form-control" 
-                    id="Date"
-                    name='UserBirthday' 
-                    placeholder='dd-mm-yyyy'
-                    value={props.ProfileSetting.UserBirthday.split(' ')[0]}
-                    onChange={(event) => OnChangeSettingProfile(event)}
-                    />
+                      <label htmlFor="Date" className="form-label">Ngày sinh</label>
+                      <input 
+                        type="date" 
+                        placeholder="dd-mm-yyyy"
+                        className="form-control" 
+                        id="Date"
+                        name='UserBirthday' 
+                        value={props.ProfileSetting.UserBirthday.split(' ')[0]}
+                        onChange={(event) => OnChangeSettingProfile(event)}
+                      />
                   </div>
                 </div>
                 <div className="col-md-6">
@@ -258,12 +258,12 @@ function ProfileSettings(props){
                   <div className="mb-3 d-flex flex-column">
                     <label className="form-label">Ảnh đại hiện</label>
                     <div className="d-flex">
-                      <input type="file" accept="image/*"
-                      className="form-control" 
-                      id="user_avatar_0"
-                      name="UserAvatar" 
-                      onChange={(event) =>OnChangeSettingProfile(event)}
-                      />
+                        <input type="file" accept="image/*"
+                          className="form-control" 
+                          id="user_avatar_0"
+                          name="UserAvatar" 
+                          onChange={(event) =>OnChangeSettingProfile(event)}
+                        />
                     </div>
                   </div>
                 </div>
@@ -271,14 +271,14 @@ function ProfileSettings(props){
               <div className="row">
                 <div className="col-md-12">
                   <div className="mb-3">
-                    <label htmlFor="Description" className="form-label">Mô tả:</label>
-                    <textarea rows="7" 
-                      className="form-control" 
-                      id="Description"
-                      name='UserDescription' 
-                      value={props.ProfileSetting.UserDescription} 
-                      onChange={(event) =>OnChangeSettingProfile(event)}
-                    ></textarea>
+                      <label htmlFor="Description" className="form-label">Mô tả:</label>
+                      <textarea rows="7" 
+                          className="form-control" 
+                          id="Description"
+                          name='UserDescription' 
+                          value={props.ProfileSetting.UserDescription} 
+                          onChange={(event) =>OnChangeSettingProfile(event)}
+                      ></textarea>
                   </div>
                 </div>
                

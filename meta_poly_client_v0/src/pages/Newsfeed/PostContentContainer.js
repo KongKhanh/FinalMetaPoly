@@ -22,10 +22,19 @@ export default function PostContentContainer(props) {
     // Danh sach cac bai Post
     const [PostList, setPostList] = useState([]);
 
-    function ViewProfileUser(ua) {
+    function ViewProfileUser(ua) { // ua is the user_id
+
+        if (typeof(Storage) !== "undefined") {
+
+            sessionStorage.setItem('profile_view_id', ua);
+        } 
+        else {
+            
+            // Sorry! No Web Storage support..
+            alert("System Error...!");
+        }
         
-        console.log(ua);
-        // props.setCurrentPage('ywHfYcKTYtkfREz');
+        props.setCurrentPage('ywHfYcKTYtkfREz');
     }
 
     function renderMediaType(mtr, PostItem) {
@@ -169,11 +178,14 @@ export default function PostContentContainer(props) {
                                                 </div>
 
                                                 <h5 className="m-0">
-                                                    <a href="/#" onClick={() => ViewProfileUser(PostItem.user_id)}>
+                                                    <span 
+                                                        className="UserLinkToProfile"
+                                                        onClick={() => ViewProfileUser(PostItem.user_id ? PostItem.user_id : undefined)}
+                                                    >
                                                         {
                                                             PostItem.user_name && typeof PostItem.user_name === 'string' ? PostItem.user_name.trim() : 'Undefined'
                                                         }
-                                                    </a>
+                                                    </span>
 
                                                     {(PostItem.post_tag_list.length > 0) ?
                                                         < span className="">  cùng với &nbsp;

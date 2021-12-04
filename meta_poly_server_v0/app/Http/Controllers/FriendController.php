@@ -1,6 +1,6 @@
 <?php 
 
-    class FriendController{
+    class FriendController {
 
         protected $RequestFriendObj;
 
@@ -14,29 +14,85 @@
         public function __AddNewFriend() {
 
             try {
-    
+
+                // Field for adding
                 $confirmRequestfriend = [
                     'fb_fk_user_req_id' => isset($_POST['fb_fk_user_req_id']) ? (base64_decode($_POST['fb_fk_user_req_id'])) : null,
                     'fb_fk_user_comf_id' => isset($_POST['fb_fk_user_comf_id']) ? ($_POST['fb_fk_user_comf_id']) : null,
+                    'fb_active' => 0, // Waiting for friends to accept request
                 ];
-                
+
+                // Field for deleting
+                $f_cancel_req_add_fri = [
+                    'fbid' => isset($_POST['fbid']) ? trim(strip_tags($_POST['fbid'])) : null,
+                    'status_cancel' => isset($_POST['status_cancel']) ? trim(strip_tags($_POST['status_cancel'])) : null,
+                ]; 
+
                 require_once('./app/Models/writeSide/FriendMd/wFriendMd.php');
-        
+
                 $waddFriendObj = new wFriendMd();
 
-                $recordID = $waddFriendObj->insertFriend($confirmRequestfriend);
+                if(is_null($f_cancel_req_add_fri['status_cancel']) && is_null($f_cancel_req_add_fri['fbid'])) { // Thuc hien tac vu them ban moi
+    
+                    $recordID = $waddFriendObj->insertFriend($confirmRequestfriend);
+    
+                    if($recordID) {
+    
+                        echo json_encode([
+                            'status_task' =>  1,
+                            'message_task' => 'successful',
+                            'recordID' => $recordID,
+                        ]);
+                    }
+                    else {
+    
+                        echo json_encode([
+                            'status_task' => 2,
+                            'message_task' => 'failed',
+                        ]);
+                    }
 
-                echo json_encode([
-                    'status_task' =>  1,
-                    'message_task' => 'successful',
-                    'recordID' => $recordID,
-                ]);
+                }
+                else {
+
+                    if(isset($f_cancel_req_add_fri['status_cancel']) && isset($f_cancel_req_add_fri['fbid'])) {
+
+                        $stdr = $this->RequestFriendObj->wDeleteFriend(trim($f_cancel_req_add_fri['fbid']));
+
+                        if($stdr) {
+
+                            echo json_encode([
+                                'status_task' =>  1,
+                                'message_task' => 'successful',
+                            ]);
+                        } 
+                        else {
+                            
+                            echo json_encode([
+                                'status_task' =>  2,
+                                'message_task' => 'fail',
+                                'a' => $f_cancel_req_add_fri
+                            ]);
+                        }
+                    } 
+                    else {
+
+                        echo json_encode([
+                            'status_task' =>  2,
+                            'message_task' => 'fail',
+                        ]);
+                    }
+                }
+                return;
             }
             catch(Exception $err) {
+                
                 echo json_encode([
                     'status_task' => 2,
                     'message_task' => 'failed',
                 ]);
+
+                return;
             }
     
         }
@@ -99,6 +155,7 @@
 
                     return;
                 } 
+
                 if($confirmRequestfriend['fb_active'] == 0) {
 
                     $this->RequestFriendObj->wDeleteFriend($confirmRequestfriend['fb_id']);

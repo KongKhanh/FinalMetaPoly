@@ -31,14 +31,14 @@ export default function LeftSide(props) {
                         height={48}
                         />
                         <div className="w-100 overflow-hidden">
-                        <h5 className="mt-1 mb-0">
+                        <h5 className="mt-1 mb-0 UserLinkToProfile">
                             {
                                 props && props.UserInforClient && props.UserInforClient.user_name && typeof props.UserInforClient.user_name === 'string' ? props.UserInforClient.user_name : ''
                             }
                         </h5>
                         <p className="mb-1 mt-1 text-muted">
                             {
-                            props && props.UserInforClient && props.UserInforClient.user_address && typeof props.UserInforClient.user_address === 'string' ? props.UserInforClient.user_address : 'TP.Hồ Chí Minh, Việt Nam'
+                                props && props.UserInforClient && props.UserInforClient.user_address && typeof props.UserInforClient.user_address === 'string' ? props.UserInforClient.user_address : 'TP.Hồ Chí Minh, Việt Nam'
                             }
                         </p>
                         </div>

@@ -1,7 +1,7 @@
 //Components
 import LikeButton from '../Newsfeed/ControlBtnPost/LikeButton';
 
-import { API_URL, PATH_MEDIA_CDN } from '../../settings/Api';
+import { PATH_MEDIA_CDN } from '../../settings/Api';
 
 import {ccd} from '../../libs_3rd/CustomDate/CustomDate';
 

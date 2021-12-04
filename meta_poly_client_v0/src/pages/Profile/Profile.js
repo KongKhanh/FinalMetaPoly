@@ -146,7 +146,6 @@ function Profile(props){
                 setUserInfor = {setUserInfor}
                 ProfileSetting = {ProfileSetting}
                 setProfileSetting = {setProfileSetting}
-                idUserCoockie = {props.UserInforClient.userId}
                 UserInforClient= {props.UserInforClient}
                 PostList = {PostList && Array.isArray(PostList) ? PostList : []}
                 setPostList = {setPostList}

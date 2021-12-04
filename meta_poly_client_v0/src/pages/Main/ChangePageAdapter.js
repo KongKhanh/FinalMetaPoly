@@ -42,10 +42,12 @@ export function ChangePageAdapter(id_page, dataComp, props) {
          case 'ywHfYcKTYtkfREz':
             return <Profile 
                 UserInforClient={
-                   { userId: 'MTc=',
-                    access_token: '',
-                    user_phone: '',
-                    user_name: '',}
+                   { 
+                        userId: sessionStorage.getItem('profile_view_id') ? sessionStorage.getItem('profile_view_id') : undefined,
+                        access_token: '',
+                        user_phone: '',
+                        user_name: '',
+                    }
                 }
             />
 

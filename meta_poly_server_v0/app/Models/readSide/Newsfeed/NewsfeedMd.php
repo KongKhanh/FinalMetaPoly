@@ -16,6 +16,8 @@
 
         public function getPostList(){
 
+            try {
+
                 require('./app/Models/initialConnect/connectDatabase.php');
                 
                 $sql = "SELECT users.user_avatar, posts.post_id, posts.post_created_at, users.user_id, users.user_name, 
@@ -34,12 +36,17 @@
         
                 $stmt->execute(); 
         
-                $result = $stmt->fetchAll();
+                return $result = $stmt->fetchAll();
+            }
+            catch (Exception $err) {
 
-                return $result;
+                return false;
+            }
         }
 
         public function getPostTagList($post_id){
+
+            try {
 
                 require('./app/Models/initialConnect/connectDatabase.php');
                 
@@ -57,7 +64,11 @@
                 $result = $stmt->fetchAll();
 
                 return $result;
+            }
+            catch (Exception $err) {
 
+                return false;
+            }
         }
 
         public function getPostLikeList($id_Post){
@@ -114,44 +125,58 @@
 
         public function __getSingleCommentInfo($ic) {
 
-            return parent::selectData(
+            try {
 
-                $this->linkTable[0],
+                return parent::selectData(
 
-                [
-                    'comment_id', 'comment_fk_user_id', 'comment_fk_post_id', 'comment_content', 'comment_created_at', 
-                    'user_id', 'user_name', 'user_avatar'
-                ],
+                    $this->linkTable[0],
+    
+                    [
+                        'comment_id', 'comment_fk_user_id', 'comment_fk_post_id', 'comment_content', 'comment_created_at', 
+                        'user_id', 'user_name', 'user_avatar'
+                    ],
+    
+                    parent::whereData('comment_id', '=', $ic),
+    
+                    [
+                        parent::innerJoinZ($this->linkTable[0], 'comment_fk_user_id', '=', $this->linkTable[1], 'user_id', 'innerJoin'),
+                    ],
+    
+                    false
+                );
+            }
+            catch (Exception $err) {
 
-                parent::whereData('comment_id', '=', $ic),
-
-                [
-                    parent::innerJoinZ($this->linkTable[0], 'comment_fk_user_id', '=', $this->linkTable[1], 'user_id', 'innerJoin'),
-                ],
-
-                false
-            );
+                return false;
+            }
         }
 
         public function __getSingleReplyCommentInfo($ic) {
 
-            return parent::selectData(
+            try {
 
-                $this->linkTable[6],
+                return parent::selectData(
 
-                [
-                    'cr_id', 'cr_fk_comment_id', 'cr_fk_user_id', 'cr_content', 'cr_created_at', 
-                    'user_id', 'user_name', 'user_avatar'
-                ],
+                    $this->linkTable[6],
+    
+                    [
+                        'cr_id', 'cr_fk_comment_id', 'cr_fk_user_id', 'cr_content', 'cr_created_at', 
+                        'user_id', 'user_name', 'user_avatar'
+                    ],
+    
+                    parent::whereData('cr_id', '=', $ic),
+    
+                    [
+                        parent::innerJoinZ($this->linkTable[6], 'cr_fk_user_id', '=', $this->linkTable[1], 'user_id', 'innerJoin'),
+                    ],
+    
+                    false
+                );
+            }
+            catch (Exception $err) {
 
-                parent::whereData('cr_id', '=', $ic),
-
-                [
-                    parent::innerJoinZ($this->linkTable[6], 'cr_fk_user_id', '=', $this->linkTable[1], 'user_id', 'innerJoin'),
-                ],
-
-                false
-            );
+                return false;
+            }
         }
 
 

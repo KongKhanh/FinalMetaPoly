@@ -4,11 +4,13 @@
 
     class wFriendMd extends DB {
         
-        private $tableName = 'friends_box';
+        protected $tableName = 'friends_box';
 
         public function insertFriend($blockInfoUser){
 
-            return self::addBlockRunner($blockInfoUser, $this->tableName);
+            return parent::addBlockRunner($blockInfoUser, $this->tableName);
         }
+
+        
     }
 ?>

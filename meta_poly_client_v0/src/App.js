@@ -31,8 +31,6 @@ function App() {
 
     useEffect(() => {
 
-        setHasSpinnerLoader(hasSpinnerLoader);
-
         // -----------------------NOT DONE-----------------------
         const __AuthPermissionUsingApp = async () => {
 
@@ -98,9 +96,9 @@ function App() {
                             setCurrentPage={setCurrentPage && typeof setCurrentPage === 'function' && setCurrentPage instanceof Function ? setCurrentPage : undefined}
                         />
 
-                        {/* {
+                        {
                             hasSpinnerLoader ? <SpinnerLoader /> : ''
-                        } */}
+                        }
 
                     </div>
                 </div>

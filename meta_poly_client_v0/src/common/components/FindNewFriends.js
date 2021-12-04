@@ -44,7 +44,6 @@ function FindNewFriends(props){
                     <input type="text" className="form-control dropdown-toggle px-2" placeholder="Tìm kiếm bạn bè ..." id="top-search" 
                         onChange={(event) =>onChangeUser(event)}
                     />
-                    {/* <span className="mdi mdi-magnify search-icon" /> */}
                     <button className="input-group-text btn-warning" type="button" id="btnFindFriends">
                         <div>
                             <img src="./assets/icons/flaticon/16px/magnifying_glass.png" alt="MPI"/>
@@ -62,17 +61,17 @@ function FindNewFriends(props){
                     ResultsFiding.map((userItem,index)=> {
                         return(
                             <div className="notification-list" key={index}>
-                                <a href="/#" className="dropdown-item notify-item">
-                                <div className="d-flex">
-                                    <img className="d-flex me-2 rounded-circle" src={`${PATH_MEDIA_CDN.USER_AVATAR_STORE_PATH}/${userItem.user_avatar}`} alt="MPI" height={32} />
-                                    <div className="w-100">
-                                    <h5 className="m-0 font-14">
-                                        {userItem.user_name}
-                                    </h5>
-                                    <span className="font-12 mb-0">{userItem.user_description}</span>
+                                <div className="dropdown-item notify-item">
+                                    <div className="d-flex align-items-center">
+                                        <img className="d-flex me-2 rounded-circle" src={`${PATH_MEDIA_CDN.USER_AVATAR_STORE_PATH}/${userItem.user_avatar}`} alt="MPI" height={32} />
+                                        <div className="w-100">
+                                            <h5 className="m-0 font-14 UserLinkToProfile">
+                                                {userItem.user_name}
+                                            </h5>
+                                            <span className="font-12 mb-0">{userItem.user_description}</span>
+                                        </div>
                                     </div>
                                 </div>
-                                </a>
                             </div>
                         )
                     })

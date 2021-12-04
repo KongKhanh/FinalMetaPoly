@@ -6,20 +6,27 @@ function FriendRequest(props){
     const RequestConfirm = async(Cf) => {
         
         const DataRequestConfirm = new FormData();
+
         DataRequestConfirm.append('fb_active', Cf);
+
         DataRequestConfirm.append('fb_id', props.FriendRQ.fb_id);
 
         const responseResult = await axios({
-              url: `${API_URL.COMFIRM_REQUEST_FRIEND}`,
-              method: 'POST',
-              data: DataRequestConfirm
-            });
-            return responseResult.data;
+
+            url: `${API_URL.COMFIRM_REQUEST_FRIEND}`,
+
+            method: 'POST',
+
+            data: DataRequestConfirm
+        });
+            
+        return responseResult.data;
     }
 
     function onClickConfirm(x){
         
         RequestConfirm(x).then((res)=>{
+            
             console.log(res);
         });
     }

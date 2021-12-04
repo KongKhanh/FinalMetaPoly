@@ -1,6 +1,7 @@
 export const BASE_API_URL = 'http://localhost:4000';
 // export const BASE_API_URL = 'https://hailuaviet.infinityfreeapp.com';
 // export const BASE_API_URL = 'https://trangvuhung001.000webhostapp.com';
+// export const BASE_API_URL = 'https://metapoly.site';
 
 export const API_URL = {
 

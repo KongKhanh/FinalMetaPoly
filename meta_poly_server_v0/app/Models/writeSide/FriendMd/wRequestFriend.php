@@ -8,14 +8,14 @@
 
         public function wUpdateFriend($confirmRequestfriend,$fbid){
         
-            return self::updateData($confirmRequestfriend, $this->tableName, DB::whereData(
+            return parent::updateData($confirmRequestfriend, $this->tableName, DB::whereData(
                 'fb_id', '=', $fbid
             ));
         }
 
         public function wDeleteFriend($fbid){
 
-            return self::deleteData($this->tableNam, DB::whereData(
+            return parent::deleteData($this->tableName, DB::whereData(
                 'fb_id', '=', $fbid
             ));
         }

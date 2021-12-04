@@ -63,14 +63,13 @@ class FriendMd
     }
 
 
-    public function __getFriendRecommendMd($idUser)
-    {
+    public function __getFriendRecommendMd($idUser) {
 
         $lfom = $this->getListFriend($idUser);
 
         $listFriendRecommend = [];
 
-        $sql = 'SELECT * FROM users WHERE ';
+        $sql = "SELECT * FROM users WHERE NOT user_id = {$idUser} AND ";
 
         $rp = '';
 
@@ -88,7 +87,9 @@ class FriendMd
 
         }
 
-        $sql .= $rp ; 
+
+
+        $sql .= $rp; 
 
         $stmt = $this->conn->prepare($sql);
 
