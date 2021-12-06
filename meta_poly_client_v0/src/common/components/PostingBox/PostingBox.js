@@ -78,8 +78,6 @@ export default function PostingBox(props) {
         __requestCreateNewPost()
             .then((res) => {
 
-                console.log(res);
-
                 if (res && res.status_task === 1 && res.infoCurPost) {
 
                     // Tra ve trang thai ban dau cua Content Box
@@ -108,6 +106,8 @@ export default function PostingBox(props) {
                                 comment_list: [],
 
                                 list_like: [],
+
+                                post_tag_list: [],
 
                                 media_url: res.infoCurPost.media_url,
 

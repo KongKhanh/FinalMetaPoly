@@ -2,6 +2,13 @@
 
     class DB {
 
+        private static $conn;
+
+        function __construct() {
+
+            self::$conn = require_once('./app/Models/initialConnect/connectDatabase.php');
+        }
+
         public static function whereData($compareKey, $syntaxKey, $compareValue) {
 
             if(isset($compareKey) && isset($syntaxKey) && isset($compareValue)) {
@@ -90,7 +97,7 @@
     
                 $sql .= $whereData;
     
-                $stmt = $conn->prepare($sql);
+                $stmt = self::$conn->prepare($sql);
     
                 $stmt->setFetchMode(PDO::FETCH_ASSOC);
     
@@ -115,7 +122,7 @@
 
                     $sql = "DELETE FROM {$table_Name} " . $whereData;
     
-                    $stmt = $conn->prepare($sql);
+                    $stmt = self::$conn->prepare($sql);
     
                     $stmt->setFetchMode(PDO::FETCH_ASSOC);
     
@@ -136,8 +143,6 @@
         public static function addBlockRunner($add_Block, $table_Name) {
 
             try {
- 
-                require_once('./app/Models/initialConnect/connectDatabase.php');
 
                 $keyBlockGobal = "";
                 $valueBlockGobal = "";
@@ -166,10 +171,10 @@
                 }
     
                 $sql = "INSERT INTO {$table_Name}({$keyBlockGobal}) VALUES ({$valueBlockGobal})";
-    
-                $conn->exec($sql);
+
+                self::$conn->exec($sql);
                 
-                return $conn->lastInsertId();
+                return self::$conn->lastInsertId();
             }
 
             catch (Exception $e) {
@@ -184,8 +189,6 @@
         public static function selectData($table_Name, $proField = false, $whereData = false, $joinXS = false, $mro = true) {
 
             try {
-
-                require('./app/Models/initialConnect/connectDatabase.php');
 
                 $sql = "SELECT ";
     
@@ -225,7 +228,7 @@
                     $sql .= " {$whereData}";
                 }
     
-                $stmt = $conn->prepare($sql);
+                $stmt =  self::$conn->prepare($sql);
     
                 $stmt->setFetchMode(PDO::FETCH_ASSOC);
     

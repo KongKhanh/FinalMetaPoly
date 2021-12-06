@@ -17,12 +17,12 @@ class PostingController {
 
             $path = require_once('./Config/path.php');
 
+            require_once('./app/Models/writeSide/PostingMd/PostingMd.php');
+
             if ($path && is_array($path)) {
 
-                require_once('./app/Models/writeSide/PostingMd/PostingMd.php');
-
                 // Module for uploading images to store
-                $Status_Store_Media = UploadImageModule::__upLoad($target_info);
+                // $Status_Store_Media = UploadImageModule::__upLoad($target_info);
                 $PostingMd_vn = new PostingMd();
 
                 // After Inserting Into ##posts Table, Run Code Below
@@ -37,7 +37,6 @@ class PostingController {
                         'pct_content' => $blockPostingInfo['pct_content'],
                         'pct_fk_post_id' => $LastRecordPosting,
                     ]);
-
 
                     $target_info = isset($blockPostingInfo['ppt_name']) ? $blockPostingInfo['ppt_name'] : null;
 
